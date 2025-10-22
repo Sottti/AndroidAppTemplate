@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Minimal, safe defaults for Android 12+ (API 31+) -->
+<data-extraction-rules>
+    <!-- Cloud backup to Google Drive -->
+    <cloud-backup>
+        <!-- Back up all SharedPreferences -->
+        <include
+            domain="sharedpref"
+            path="." />
+        <!-- Back up all app databases -->
+        <include
+            domain="database"
+            path="." />
+        <!-- Include Jetpack DataStore (Preferences/Proto) files -->
+        <include
+            domain="file"
+            path="datastore/" />
+    </cloud-backup>
+
+    <!-- Device-to-device transfer during setup -->
+    <device-transfer>
+        <!-- Back up all SharedPreferences -->
+        <include
+            domain="sharedpref"
+            path="." />
+        <!-- Back up all app databases -->
+        <include
+            domain="database"
+            path="." />
+        <!-- Include Jetpack DataStore (Preferences/Proto) files -->
+        <include
+            domain="file"
+            path="datastore/" />
+    </device-transfer>
+</data-extraction-rules>

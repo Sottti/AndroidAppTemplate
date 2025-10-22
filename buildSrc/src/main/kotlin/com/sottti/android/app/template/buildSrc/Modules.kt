@@ -1,0 +1,35 @@
+package com.sottti.android.app.template.buildSrc
+
+object module {
+    object presentation {
+        const val feature = ":presentation:feature"
+        const val paparazzi = ":presentation:paparazzi"
+        const val utils = ":presentation:utils"
+
+        object designSystem {
+            const val colors = ":presentation:design-system:colors"
+            const val dimensions = ":presentation:design-system:dimensions"
+            const val iconResources = ":presentation:design-system:icon-resources"
+            const val shapes = ":presentation:design-system:shapes"
+            const val text = ":presentation:design-system:text"
+            const val themes = ":presentation:design-system:themes"
+            const val typography = ":presentation:design-system:typography"
+        }
+    }
+
+    object domain {
+        const val entity = ":domain:entity"
+        const val settings = ":domain:settings"
+        const val systemFeatures = ":domain:system-features"
+    }
+
+    object data {
+        const val entity = ":data:entity"
+        const val modules = ":data:modules"
+        const val network = ":data:network"
+        const val settings = ":data:settings"
+        const val systemFeatures = ":data:system-features"
+    }
+
+    const val di = ":di"
+}

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.AndroidAppTemplate" parent="Theme.AndroidAppTemplate.Base">
+        <!-- Only API-27-specific flags here -->
+        <item name="android:windowLightNavigationBar">?attr/isLightTheme</item>
+    </style>
+</resources>

@@ -1,0 +1,4 @@
+<resources>
+    <string name="feature_button_text">Do Something</string>
+    <string name="feature_text">Hello World!</string>
+</resources>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name="com.sottti.android.app.template.presentation.home.ui.FeatureActivity"
+            android:configChanges="uiMode"
+            android:exported="false"
+            android:icon="@mipmap/ic_launcher"
+            android:theme="@style/Theme.AndroidAppTemplate" />
+    </application>
+
+</manifest>

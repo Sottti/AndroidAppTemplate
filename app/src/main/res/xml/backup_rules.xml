@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?><!-- Applies on Android 6.0–11 (API 23–30). Keep because minSdk is 26. -->
+<full-backup-content>
+    <!-- Back up all SharedPreferences -->
+    <include
+        domain="sharedpref"
+        path="." />
+    <!-- Back up all app databases -->
+    <include
+        domain="database"
+        path="." />
+    <!-- Include Jetpack DataStore (Preferences/Proto) files -->
+    <include
+        domain="file"
+        path="datastore/" />
+</full-backup-content>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary">#166B54</color>
+    <color name="onPrimary">#FFFFFF</color>
+    <color name="primaryContainer">#A4F2D5</color>
+    <color name="onPrimaryContainer">#00513E</color>
+
+    <!-- Primary Fixed -->
+    <color name="primaryFixed">#A4F2D5</color>
+    <color name="primaryFixedDim">#88D6BA</color>
+    <color name="onPrimaryFixed">#003326</color>
+    <color name="onPrimaryFixedVariant">#00513E</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary">#4C635A</color>
+    <color name="onSecondary">#FFFFFF</color>
+    <color name="secondaryContainer">#CEE9DC</color>
+    <color name="onSecondaryContainer">#344C43</color>
+
+    <!-- Secondary Fixed -->
+    <color name="secondaryFixed">#CEE9DC</color>
+    <color name="secondaryFixedDim">#B2CCC0</color>
+    <color name="onSecondaryFixed">#1A3028</color>
+    <color name="onSecondaryFixedVariant">#344C43</color>
+
+    <!-- Tertiary Colors -->
+    <color name="tertiary">#406376</color>
+    <color name="onTertiary">#FFFFFF</color>
+    <color name="tertiaryContainer">#C3E8FE</color>
+    <color name="onTertiaryContainer">#274B5D</color>
+
+    <!-- Tertiary Fixed -->
+    <color name="tertiaryFixed">#C3E8FE</color>
+    <color name="tertiaryFixedDim">#A7CCE1</color>
+    <color name="onTertiaryFixed">#053041</color>
+    <color name="onTertiaryFixedVariant">#274B5D</color>
+
+    <!-- Error Colors -->
+    <color name="error">#BA1A1A</color>
+    <color name="onError">#FFECE9</color>
+    <color name="errorContainer">#FFDAD6</color>
+    <color name="onErrorContainer">#93000A</color>
+
+    <!-- Background & Surface -->
+    <color name="background">#F5FBF6</color>
+    <color name="onBackground">#171D1A</color>
+    <color name="surface">#F5FBF6</color>
+    <color name="onSurface">#171D1A</color>
+
+    <!-- Surface Variants -->
+    <color name="surfaceVariant">#E1EAE6</color>
+    <color name="onSurfaceVariant">#3F4944</color>
+    <color name="surfaceTint">#166B54</color>
+
+    <!-- Outline & Scrim -->
+    <color name="outline">#707974</color>
+    <color name="outlineVariant">#DBE5DF</color>
+    <color name="scrim">#000000</color>
+
+    <!-- Inverse Colors -->
+    <color name="inverseSurface">#2C322F</color>
+    <color name="inverseOnSurface">#ECF2ED</color>
+    <color name="inversePrimary">#88D6BA</color>
+
+    <!-- Extra Surface Colors -->
+    <color name="surfaceDim">#D5DBD7</color>
+    <color name="surfaceBright">#F5FBF6</color>
+    <color name="surfaceContainerLowest">#FFFFFF</color>
+    <color name="surfaceContainerLow">#EFF5F0</color>
+    <color name="surfaceContainer">#E9EFEB</color>
+    <color name="surfaceContainerHigh">#E4EAE5</color>
+    <color name="surfaceContainerHighest">#DEE4DF</color>
+</resources>
