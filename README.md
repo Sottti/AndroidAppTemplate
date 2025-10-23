@@ -26,7 +26,7 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:** [Compose Navigation](https://developer.android.com/jetpack/compose/navigation)
+    * **Navigation:** [Compose Navigation 3]([https://developer.android.com/jetpack/compose/navigation](https://developer.android.com/guide/navigation/navigation-3))
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
