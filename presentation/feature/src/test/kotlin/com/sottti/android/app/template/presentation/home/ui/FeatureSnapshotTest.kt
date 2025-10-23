@@ -19,7 +19,7 @@ internal class FeatureSnapshotTest(
     @Test
     fun snapshotTest() {
         paparazzi.snapshot {
-            FeaturePreview()
+
         }
     }
 

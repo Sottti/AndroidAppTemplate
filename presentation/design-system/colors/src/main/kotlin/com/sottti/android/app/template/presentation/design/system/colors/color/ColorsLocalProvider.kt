@@ -5,13 +5,15 @@ import androidx.compose.runtime.CompositionLocalProvider
 
 @Composable
 public fun ColorsLocalProvider(
-    dynamicColor: Boolean,
-    isSystemInDarkTheme: Boolean,
+    colorContrast: ColorContrast,
+    useDarkTheme: Boolean,
+    useDynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     val colors = colors(
-        isSystemInDarkTheme = isSystemInDarkTheme,
-        useDynamicColor = dynamicColor,
+        colorContrast = colorContrast,
+        useDarkTheme = useDarkTheme,
+        useDynamicColor = useDynamicColor,
     )
 
     CompositionLocalProvider(LocalColors provides colors) {

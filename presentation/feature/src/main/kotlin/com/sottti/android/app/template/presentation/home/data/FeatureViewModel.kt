@@ -3,6 +3,7 @@ package com.sottti.android.app.template.presentation.home.data
 import androidx.lifecycle.ViewModel
 import com.sottti.android.app.template.domain.settings.model.DynamicColor
 import com.sottti.android.app.template.domain.settings.model.SystemTheme
+import com.sottti.android.app.template.domain.settings.usecase.GetSystemColorContrast
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemTheme
 import com.sottti.android.app.template.domain.settings.usecase.ObserveSystemTheme
 import com.sottti.android.app.template.domain.settings.usecase.ObserveUseDynamicColor
@@ -21,12 +22,16 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class FeatureViewModel @Inject constructor(
+    getSystemColorContrast: GetSystemColorContrast,
     getSystemTheme: GetSystemTheme,
     observeSystemTheme: ObserveSystemTheme,
     observeUseDynamicColor: ObserveUseDynamicColor,
 ) : ViewModel() {
 
-    val initialState = initialState(getSystemTheme())
+    val initialState = initialState(
+        systemColorContrast = getSystemColorContrast(),
+        systemTheme = getSystemTheme(),
+    )
 
     private val actions = MutableSharedFlow<FeatureActions>(extraBufferCapacity = 64)
     val state: StateFlow<FeatureStateWrapper> = combine(
@@ -49,8 +54,8 @@ internal class FeatureViewModel @Inject constructor(
         { dynamicColor, systemTheme, stateMutationAction ->
             { previous: FeatureStateWrapper ->
                 previous.reduce(
-                    dynamicColor,
-                    systemTheme,
+                    dynamicColor = dynamicColor,
+                    systemTheme = systemTheme,
                 )
             }
         }

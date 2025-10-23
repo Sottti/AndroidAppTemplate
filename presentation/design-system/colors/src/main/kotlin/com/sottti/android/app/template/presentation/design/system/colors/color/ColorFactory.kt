@@ -1,20 +1,20 @@
 package com.sottti.android.app.template.presentation.design.system.colors.color
 
 import androidx.compose.material3.ColorScheme
-import androidx.compose.material3.dynamicDarkColorScheme
-import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import androidx.compose.ui.platform.LocalContext
+import com.sottti.android.app.template.presentation.design.system.colors.color.mapper.darkColorScheme
+import com.sottti.android.app.template.presentation.design.system.colors.color.mapper.dynamicColorScheme
+import com.sottti.android.app.template.presentation.design.system.colors.color.mapper.lightColorScheme
 
 @Composable
 @ReadOnlyComposable
 public fun colors(
-    useDynamicColor: Boolean,
-    isSystemInDarkTheme: Boolean,
+    colorContrast: ColorContrast,
+    useDarkTheme: Boolean,
+    useDynamicColor: Boolean = false,
 ): ColorScheme = when {
-    useDynamicColor && isSystemInDarkTheme -> dynamicDarkColorScheme(LocalContext.current)
-    useDynamicColor -> dynamicLightColorScheme(LocalContext.current)
-    isSystemInDarkTheme -> ColorSchemes.Dark.standardContrast
-    else -> ColorSchemes.Light.standardContrast
+    useDynamicColor -> dynamicColorScheme(useDarkTheme)
+    useDarkTheme -> colorContrast.darkColorScheme()
+    else -> colorContrast.lightColorScheme()
 }

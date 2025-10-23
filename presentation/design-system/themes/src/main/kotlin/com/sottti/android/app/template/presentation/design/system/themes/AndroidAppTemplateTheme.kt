@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
+import com.sottti.android.app.template.presentation.design.system.colors.color.ColorContrast
 import com.sottti.android.app.template.presentation.design.system.colors.color.ColorsLocalProvider
 import com.sottti.android.app.template.presentation.design.system.colors.color.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.DimensionsLocalProvider
@@ -16,35 +17,39 @@ import com.sottti.android.app.template.presentation.design.system.typography.Typ
 
 @Composable
 public fun AndroidAppTemplateTheme(
-    dynamicColor: Boolean = true,
-    isSystemInDarkTheme: Boolean = isSystemInDarkTheme(),
+    colorContrast: ColorContrast = ColorContrast.Standard,
     themeVariant: AndroidAppTemplateThemeVariant = AndroidAppTemplateThemeVariant.Default,
+    useDarkTheme: Boolean = isSystemInDarkTheme(),
+    useDynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     when (themeVariant) {
         AndroidAppTemplateThemeVariant.Default ->
             DefaultThemeVariant(
-                dynamicColor = dynamicColor,
-                isSystemInDarkTheme = isSystemInDarkTheme,
-                content = content
+                colorContrast = colorContrast,
+                content = content,
+                useDarkTheme = useDarkTheme,
+                useDynamicColor = useDynamicColor,
             )
     }
 }
 
 @Composable
 private fun DefaultThemeVariant(
-    dynamicColor: Boolean,
-    isSystemInDarkTheme: Boolean,
+    colorContrast: ColorContrast,
+    useDarkTheme: Boolean,
+    useDynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     ColorsLocalProvider(
-        dynamicColor = dynamicColor,
-        isSystemInDarkTheme = isSystemInDarkTheme,
+        colorContrast = colorContrast,
+        useDarkTheme = useDarkTheme,
+        useDynamicColor = useDynamicColor,
     ) {
         TypographyLocalProvider {
             DimensionsLocalProvider {
                 ShapesLocalProvider {
-                    UpdateSystemBars(isSystemInDarkTheme)
+                    UpdateSystemBars(useDarkTheme)
                     MaterialTheme(
                         colorScheme = colors,
                         content = content,
@@ -58,13 +63,13 @@ private fun DefaultThemeVariant(
 
 @Composable
 private fun UpdateSystemBars(
-    isSystemInDarkTheme: Boolean,
+    useDarkTheme: Boolean,
 ) {
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            val isLightTheme = !isSystemInDarkTheme
+            val isLightTheme = !useDarkTheme
             WindowCompat
                 .getInsetsController(window, view)
                 .apply {

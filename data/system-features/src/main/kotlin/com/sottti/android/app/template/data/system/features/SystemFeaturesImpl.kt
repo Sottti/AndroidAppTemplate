@@ -10,6 +10,9 @@ import javax.inject.Inject
 
 internal class SystemFeaturesImpl @Inject constructor() : SystemFeatures {
 
+    @ChecksSdkIntAtLeast(api = UPSIDE_DOWN_CAKE)
+    override fun systemColorContrastAvailable(): Boolean = isAtLeastSdk34()
+
     @ChecksSdkIntAtLeast(api = S)
     override fun systemDynamicColorAvailable(): Boolean = isAtLeastSdk31()
 

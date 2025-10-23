@@ -11,6 +11,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sottti.android.app.template.domain.settings.model.SystemTheme.DarkSystemTheme
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.home.data.FeatureViewModel
+import com.sottti.android.app.template.presentation.home.data.toColorContrast
 import com.sottti.android.app.template.presentation.home.model.unwrap
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,8 +26,9 @@ internal open class FeatureActivity : ComponentActivity() {
         setContent {
             viewModel.state.collectAsStateWithLifecycle().value.let { state ->
                 AndroidAppTemplateTheme(
-                    dynamicColor = state.themeProperties.dynamicColor.enabled,
-                    isSystemInDarkTheme = state.themeProperties.systemTheme == DarkSystemTheme,
+                    colorContrast = state.themeProperties.systemColorContrast.toColorContrast(),
+                    useDarkTheme = state.themeProperties.systemTheme == DarkSystemTheme,
+                    useDynamicColor = state.themeProperties.dynamicColor.enabled,
                 ) {
                     HomeUi(state = state.unwrap(), onAction = viewModel.onAction)
                 }
