@@ -11,7 +11,7 @@ public fun paparazzi(
     deviceConfig = PIXEL_10_PRO_XL.copy(nightMode = nightMode),
     renderingMode = renderingMode,
     showSystemUi = false,
-    theme = "Theme.RollerCoasters",
+    theme = "Theme.AndroidAppTemplate",
 )
 
 public fun nightModeParameters(): Collection<Array<Any>> =
