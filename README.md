@@ -1,8 +1,10 @@
 # Android App Template (AAT)
 
-[![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
-[![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![API](https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/sottti/AndroidAppTemplate/main/app/build.gradle.kts&query=minSdk\s*=\s*(\d+)&label=API&color=blue&prefix=24%2B)
+![API](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.minSdk&label=API&color=brightgreen&suffix=%2B&logo=android&logoColor=white)
+![Compose BOM](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.compose-bom&label=Compose%20BOM&color=007ACC&logo=jetpackcompose&logoColor=white)
+![Navigation](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.compose-navigation&label=Navigation&color=4CAF50&logo=android&logoColor=white)
+![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.kotlin&label=Kotlin&color=7F52FF&logo=kotlin&logoColor=white)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
 
 A clean, modern, and opinionated Android application template to bootstrap your new projects
 quickly. This template is built with a focus on modern Android development (MAD), scalability, and
