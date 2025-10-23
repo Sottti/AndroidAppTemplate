@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
-    <color name="primary">#B1D18A</color>
-    <color name="onPrimary">#1F3701</color>
-    <color name="primaryContainer">#354E16</color>
-    <color name="onPrimaryContainer">#CDEDA3</color>
+    <!--
+      Primary Colors
+      Base: Dark.StandardContrast
+    -->
+    <color name="primary">#88D6BA</color>
+    <color name="onPrimary">#003E2F</color>
+    <color name="primaryContainer">#00513E</color>
+    <color name="onPrimaryContainer">#A4F2D5</color>
+
     <!-- Primary Fixed -->
     <color name="primaryFixed">#A4F2D5</color>
     <color name="primaryFixedDim">#88D6BA</color>
@@ -12,10 +16,11 @@
     <color name="onPrimaryFixedVariant">#00513E</color>
 
     <!-- Secondary Colors -->
-    <color name="secondary">#BFCBAD</color>
-    <color name="onSecondary">#2A331E</color>
-    <color name="secondaryContainer">#404A33</color>
-    <color name="onSecondaryContainer">#DCE7C8</color>
+    <color name="secondary">#B2CCC0</color>
+    <color name="onSecondary">#243B32</color>
+    <color name="secondaryContainer">#344C43</color>
+    <color name="onSecondaryContainer">#CEE9DC</color>
+
     <!-- Secondary Fixed -->
     <color name="secondaryFixed">#CEE9DC</color>
     <color name="secondaryFixedDim">#B2CCC0</color>
@@ -23,10 +28,11 @@
     <color name="onSecondaryFixedVariant">#344C43</color>
 
     <!-- Tertiary Colors -->
-    <color name="tertiary">#A0D0CB</color>
-    <color name="onTertiary">#003735</color>
-    <color name="tertiaryContainer">#1F4E4B</color>
-    <color name="onTertiaryContainer">#BCECE7</color>
+    <color name="tertiary">#A7CCE1</color>
+    <color name="onTertiary">#143A4C</color>
+    <color name="tertiaryContainer">#274B5D</color>
+    <color name="onTertiaryContainer">#C3E8FE</color>
+
     <!-- Tertiary Fixed -->
     <color name="tertiaryFixed">#C3E8FE</color>
     <color name="tertiaryFixedDim">#A7CCE1</color>
@@ -35,37 +41,37 @@
 
     <!-- Error Colors -->
     <color name="error">#FFB4AB</color>
-    <color name="onError">#690005</color>
-    <color name="errorContainer">#93000A</color>
+    <color name="onError">#600004</color>
+    <color name="errorContainer">#740006</color>
     <color name="onErrorContainer">#FFDAD6</color>
 
     <!-- Background & Surface -->
-    <color name="background">#12140E</color>
-    <color name="onBackground">#E2E3D8</color>
-    <color name="surface">#12140E</color>
-    <color name="onSurface">#E2E3D8</color>
+    <color name="background">#0F1512</color>
+    <color name="onBackground">#DEE4DF</color>
+    <color name="surface">#0F1512</color>
+    <color name="onSurface">#DEE4DF</color>
 
     <!-- Surface Variants -->
-    <color name="surfaceVariant">#44483D</color>
-    <color name="onSurfaceVariant">#C5C8BA</color>
+    <color name="surfaceVariant">#3F4944</color>
+    <color name="onSurfaceVariant">#DBE5DF</color>
     <color name="surfaceTint">#88D6BA</color>
 
     <!-- Outline & Scrim -->
-    <color name="outline">#8F9285</color>
-    <color name="outlineVariant">#44483D</color>
+    <color name="outline">#666F6A</color>
+    <color name="outlineVariant">#3F4944</color>
     <color name="scrim">#000000</color>
 
     <!-- Inverse Colors -->
-    <color name="inverseSurface">#E2E3D8</color>
-    <color name="inverseOnSurface">#2F312A</color>
-    <color name="inversePrimary">#4C662B</color>
+    <color name="inverseSurface">#DEE4DF</color>
+    <color name="inverseOnSurface">#2C322F</color>
+    <color name="inversePrimary">#166B54</color>
 
     <!-- Extra Surface Colors -->
-    <color name="surfaceDim">#12140E</color>
-    <color name="surfaceBright">#383A32</color>
-    <color name="surfaceContainerLowest">#0C0F09</color>
-    <color name="surfaceContainerLow">#1A1C16</color>
-    <color name="surfaceContainer">#1E201A</color>
-    <color name="surfaceContainerHigh">#282B24</color>
-    <color name="surfaceContainerHighest">#33362E</color>
+    <color name="surfaceDim">#0F1512</color>
+    <color name="surfaceBright">#343B37</color>
+    <color name="surfaceContainerLowest">#090F0D</color>
+    <color name="surfaceContainerLow">#171D1A</color>
+    <color name="surfaceContainer">#1B211E</color>
+    <color name="surfaceContainerHigh">#252B28</color>
+    <color name="surfaceContainerHighest">#303633</color>
 </resources>

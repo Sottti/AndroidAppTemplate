@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Primary Colors -->
     <color name="primary">#166B54</color>
     <color name="onPrimary">#FFFFFF</color>
     <color name="primaryContainer">#A4F2D5</color>
-    <color name="onPrimaryContainer">#00513E</color>
+    <color name="onPrimaryContainer">#003326</color>
 
     <!-- Primary Fixed -->
     <color name="primaryFixed">#A4F2D5</color>
@@ -16,7 +15,7 @@
     <color name="secondary">#4C635A</color>
     <color name="onSecondary">#FFFFFF</color>
     <color name="secondaryContainer">#CEE9DC</color>
-    <color name="onSecondaryContainer">#344C43</color>
+    <color name="onSecondaryContainer">#1A3028</color>
 
     <!-- Secondary Fixed -->
     <color name="secondaryFixed">#CEE9DC</color>
@@ -28,7 +27,7 @@
     <color name="tertiary">#406376</color>
     <color name="onTertiary">#FFFFFF</color>
     <color name="tertiaryContainer">#C3E8FE</color>
-    <color name="onTertiaryContainer">#274B5D</color>
+    <color name="onTertiaryContainer">#053041</color>
 
     <!-- Tertiary Fixed -->
     <color name="tertiaryFixed">#C3E8FE</color>
@@ -54,7 +53,7 @@
     <color name="surfaceTint">#166B54</color>
 
     <!-- Outline & Scrim -->
-    <color name="outline">#707974</color>
+    <color name="outline">#545D59</color>
     <color name="outlineVariant">#DBE5DF</color>
     <color name="scrim">#000000</color>
 
