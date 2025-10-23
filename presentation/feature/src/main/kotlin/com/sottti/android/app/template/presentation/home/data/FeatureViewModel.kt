@@ -2,11 +2,13 @@ package com.sottti.android.app.template.presentation.home.data
 
 import androidx.lifecycle.ViewModel
 import com.sottti.android.app.template.domain.settings.model.DynamicColor
+import com.sottti.android.app.template.domain.settings.model.SystemColorContrast
 import com.sottti.android.app.template.domain.settings.model.SystemTheme
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemColorContrast
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemTheme
+import com.sottti.android.app.template.domain.settings.usecase.ObserveDynamicColor
+import com.sottti.android.app.template.domain.settings.usecase.ObserveSystemColorContrast
 import com.sottti.android.app.template.domain.settings.usecase.ObserveSystemTheme
-import com.sottti.android.app.template.domain.settings.usecase.ObserveUseDynamicColor
 import com.sottti.android.app.template.presentation.home.model.FeatureActions
 import com.sottti.android.app.template.presentation.home.model.FeatureActions.NoOp
 import com.sottti.android.app.template.presentation.home.model.FeatureStateWrapper
@@ -24,8 +26,9 @@ import javax.inject.Inject
 internal class FeatureViewModel @Inject constructor(
     getSystemColorContrast: GetSystemColorContrast,
     getSystemTheme: GetSystemTheme,
+    observeSystemColorContrast: ObserveSystemColorContrast,
     observeSystemTheme: ObserveSystemTheme,
-    observeUseDynamicColor: ObserveUseDynamicColor,
+    observeDynamicColor: ObserveDynamicColor,
 ) : ViewModel() {
 
     val initialState = initialState(
@@ -35,11 +38,12 @@ internal class FeatureViewModel @Inject constructor(
 
     private val actions = MutableSharedFlow<FeatureActions>(extraBufferCapacity = 64)
     val state: StateFlow<FeatureStateWrapper> = combine(
-        flow = observeUseDynamicColor(),
-        flow2 = observeSystemTheme(),
-        flow3 = actions.onStart { emit(NoOp) },
-    ) { dynamicColor, systemTheme, stateMutationAction ->
-        reducer(dynamicColor, systemTheme, stateMutationAction)
+        flow = observeDynamicColor(),
+        flow2 = observeSystemColorContrast(),
+        flow3 = observeSystemTheme(),
+        flow4 = actions.onStart { emit(NoOp) },
+    ) { dynamicColor, systemColorContrast, systemTheme, stateMutationAction ->
+        reducer(dynamicColor, systemColorContrast, systemTheme, stateMutationAction)
     }.scan(initialState) { previous, reduce -> reduce(previous) }
         .drop(1)
         .stateInWhileSubscribed(initialValue = initialState)
@@ -48,13 +52,15 @@ internal class FeatureViewModel @Inject constructor(
     private fun processAction(action: FeatureActions) = actions.tryEmit(action)
     private val reducer: (
         dynamicColor: DynamicColor,
+        systemColorContrast: SystemColorContrast,
         systemTheme: SystemTheme,
         stateMutationAction: FeatureActions,
     ) -> (FeatureStateWrapper) -> FeatureStateWrapper =
-        { dynamicColor, systemTheme, stateMutationAction ->
+        { dynamicColor, systemColorContrast, systemTheme, stateMutationAction ->
             { previous: FeatureStateWrapper ->
                 previous.reduce(
                     dynamicColor = dynamicColor,
+                    systemColorContrast = systemColorContrast,
                     systemTheme = systemTheme,
                 )
             }

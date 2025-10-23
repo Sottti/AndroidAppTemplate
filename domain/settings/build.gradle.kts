@@ -1,5 +1,3 @@
-import com.sottti.android.app.template.buildSrc.module
-
 plugins {
     alias(libs.plugins.kotlin.jvm)
 }

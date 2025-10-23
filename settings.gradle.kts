@@ -37,4 +37,5 @@ include(
     ":presentation:feature",
     ":presentation:paparazzi",
     ":presentation:utils",
+    ":utils:lifecycle",
 )

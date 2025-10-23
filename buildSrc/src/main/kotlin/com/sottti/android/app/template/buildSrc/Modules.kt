@@ -31,5 +31,9 @@ object module {
         const val systemFeatures = ":data:system-features"
     }
 
+    object utils {
+        const val lifecycle = ":utils:lifecycle"
+    }
+
     const val di = ":di"
 }

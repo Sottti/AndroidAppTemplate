@@ -7,12 +7,12 @@ import com.sottti.android.app.template.presentation.home.model.FeatureStateWrapp
 
 internal fun FeatureStateWrapper.reduce(
     dynamicColor: DynamicColor,
-    //systemColorContrast : SystemColorContrast,
+    systemColorContrast: SystemColorContrast,
     systemTheme: SystemTheme,
 ): FeatureStateWrapper = copy(
     themeProperties = themeProperties.copy(
         dynamicColor = dynamicColor,
-        //systemColorContrast = systemColorContrast,
+        systemColorContrast = systemColorContrast,
         systemTheme = systemTheme,
     ),
     state = state.copy(),

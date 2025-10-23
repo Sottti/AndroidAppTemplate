@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sottti.android.app.template"
+    namespace = "com.sottti.android.app.template.di"
 }
 
 dependencies {

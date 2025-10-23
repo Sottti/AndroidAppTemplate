@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 public interface SettingsRepository {
     public fun getSystemColorContrast(): SystemColorContrast
+    public fun observeSystemColorContrast(): Flow<SystemColorContrast>
 
     public fun observeDynamicColor(): Flow<DynamicColor>
 

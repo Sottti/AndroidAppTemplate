@@ -1,18 +1,25 @@
 package com.sottti.roller.android.app.template.data.settings.managers
 
 import android.app.UiModeManager
+import android.content.Context
 import com.sottti.android.app.template.domain.settings.model.SystemColorContrast
 import com.sottti.android.app.template.domain.system.features.SystemFeatures
+import com.sottti.android.app.template.utils.lifecycle.observeConfigurationChanges
 import com.sottti.roller.android.app.template.data.settings.mapper.toSystemColorContrast
+import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
+import javax.inject.Singleton
 
+@Singleton
 internal class SystemColorContrastManager @Inject constructor(
-    private val features: SystemFeatures,
+    @ApplicationContext private val context: Context,
+    private val systemFeatures: SystemFeatures,
     private val uiModeManager: UiModeManager?,
 ) {
-    val systemColorContrast: SystemColorContrast
-        get() = when {
-            features.systemColorContrastAvailable() -> {
+    fun getSystemColorContrast(): SystemColorContrast =
+        when {
+            systemFeatures.systemColorContrastAvailable() -> {
                 // uiModeManager.contrast returns 0f for standard, 0.5f for medium and 1f for high
                 val contrast = uiModeManager?.contrast ?: 0f
                 toSystemColorContrast(contrast)
@@ -20,4 +27,7 @@ internal class SystemColorContrastManager @Inject constructor(
 
             else -> SystemColorContrast.StandardContrast
         }
+
+    fun observeSystemColorContrast(): Flow<SystemColorContrast> =
+        context.observeConfigurationChanges({ getSystemColorContrast() })
 }

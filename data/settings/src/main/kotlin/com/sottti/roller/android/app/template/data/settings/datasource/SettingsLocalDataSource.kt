@@ -16,7 +16,10 @@ internal class SettingsLocalDataSource @Inject constructor(
     private val themeManager: ThemeManager,
 ) {
     fun getSystemColorContrast(): SystemColorContrast =
-        systemColorContrastManager.systemColorContrast
+        systemColorContrastManager.getSystemColorContrast()
+
+    fun observeSystemColorContrast(): Flow<SystemColorContrast> =
+        systemColorContrastManager.observeSystemColorContrast()
 
     fun observeDynamicColor(): Flow<DynamicColor> = flow {
         when {

@@ -9,7 +9,7 @@ import com.sottti.android.app.template.presentation.home.model.FeatureStateWrapp
 import com.sottti.android.app.template.presentation.home.model.FeatureThemePropertiesState
 
 internal fun initialState(
-    systemColorContrast : SystemColorContrast,
+    systemColorContrast: SystemColorContrast,
     systemTheme: SystemTheme,
     dynamicColor: DynamicColor = DynamicColor(false),
 ) = FeatureStateWrapper(

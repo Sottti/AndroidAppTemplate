@@ -14,6 +14,9 @@ internal class SettingsRepositoryImpl @Inject constructor(
     override fun getSystemColorContrast(): SystemColorContrast =
         localDataSource.getSystemColorContrast()
 
+    override fun observeSystemColorContrast(): Flow<SystemColorContrast> =
+        localDataSource.observeSystemColorContrast()
+
     override fun observeDynamicColor(): Flow<DynamicColor> =
         localDataSource.observeDynamicColor()
 

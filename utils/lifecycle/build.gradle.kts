@@ -1,0 +1,12 @@
+plugins {
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+}
+
+android {
+    namespace = "com.sottti.android.app.template.utils.lifecycle"
+}
+
+dependencies {
+    implementation(libs.kotlin.coroutines.core)
+}

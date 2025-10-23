@@ -45,6 +45,8 @@
             <option value="$PROJECT_DIR$/presentation/feature" />
             <option value="$PROJECT_DIR$/presentation/paparazzi" />
             <option value="$PROJECT_DIR$/presentation/utils" />
+            <option value="$PROJECT_DIR$/utils" />
+            <option value="$PROJECT_DIR$/utils/lifecycle" />
           </set>
         </option>
       </GradleProjectSettings>

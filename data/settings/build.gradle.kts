@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sottti.android.app.template"
+    namespace = "com.sottti.android.app.template.data.settings"
 }
 
 dependencies {
@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.hilt)
     implementation(project(module.domain.settings))
     implementation(project(module.domain.systemFeatures))
+    implementation(project(module.utils.lifecycle))
     ksp(libs.hilt.compiler)
 
     androidTestImplementation(libs.junit.ext)

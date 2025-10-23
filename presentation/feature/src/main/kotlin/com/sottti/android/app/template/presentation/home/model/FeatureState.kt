@@ -5,6 +5,6 @@ import androidx.compose.runtime.Immutable
 
 @Immutable
 internal data class FeatureState(
-    @StringRes val buttonTextResId : Int,
-    @StringRes val textResId : Int,
+    @StringRes val buttonTextResId: Int,
+    @StringRes val textResId: Int,
 )
