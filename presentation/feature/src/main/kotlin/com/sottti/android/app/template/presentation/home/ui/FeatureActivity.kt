@@ -28,7 +28,8 @@ internal open class FeatureActivity : ComponentActivity() {
                 AndroidAppTemplateTheme(
                     colorContrast = state.themeProperties.systemColorContrast.toColorContrast(),
                     useDarkTheme = state.themeProperties.systemTheme == DarkSystemTheme,
-                    useDynamicColor = state.themeProperties.dynamicColor.enabled,
+                    //useDynamicColor = state.themeProperties.dynamicColor.enabled,
+                    useDynamicColor = false,
                 ) {
                     HomeUi(state = state.unwrap(), onAction = viewModel.onAction)
                 }
