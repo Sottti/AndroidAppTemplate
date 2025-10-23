@@ -1,5 +1,4 @@
 import com.sottti.android.app.template.buildSrc.module
-import org.gradle.kotlin.dsl.project
 
 plugins {
     alias(libs.plugins.android.library)

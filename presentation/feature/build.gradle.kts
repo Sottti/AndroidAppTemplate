@@ -17,6 +17,8 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.compose.material)
     implementation(libs.hilt)
+    implementation(libs.hilt.navigation.compose)
+    implementation(libs.lifecycle.viewModel)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.designSystem.dimensions))

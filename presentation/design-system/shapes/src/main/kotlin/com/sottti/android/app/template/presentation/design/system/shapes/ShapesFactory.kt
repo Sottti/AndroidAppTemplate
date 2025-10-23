@@ -2,7 +2,6 @@ package com.sottti.android.app.template.presentation.design.system.shapes
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.shapes.model.RoundedCornerShapes
 import com.sottti.android.app.template.presentation.design.system.shapes.model.Shapes
 import com.sottti.android.app.template.presentation.design.system.shapes.tokens.ShapeTokens

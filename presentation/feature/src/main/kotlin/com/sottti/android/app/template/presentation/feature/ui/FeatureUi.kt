@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.text.Text
@@ -20,8 +23,11 @@ import com.sottti.android.app.template.presentation.feature.model.FeatureState
 internal fun FeatureUi(
     viewModel: FeatureViewModel = hiltViewModel<FeatureViewModel>(),
 ) {
-    val state = viewModel.initialState
-    FeatureUi()
+    val state by viewModel.state.collectAsStateWithLifecycle()
+    FeatureUi(
+        state = state,
+        onAction = viewModel.onAction,
+    )
 }
 
 @Composable
