@@ -1,4 +1,4 @@
-package com.sottti.roller.android.app.template.data.settings.managers
+package com.sottti.android.app.template.data.settings.managers
 
 import android.app.UiModeManager
 import android.content.Context

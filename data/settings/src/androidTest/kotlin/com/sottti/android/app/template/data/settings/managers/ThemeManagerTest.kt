@@ -5,7 +5,6 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.sottti.android.app.template.domain.system.features.SystemFeatures
-import com.sottti.roller.android.app.template.data.settings.managers.ThemeManager
 import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.unmockkStatic
