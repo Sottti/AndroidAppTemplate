@@ -4,4 +4,7 @@ plugins {
 
 dependencies {
     implementation(libs.annotations)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
 }
