@@ -2,7 +2,7 @@
 
 [![Kotlin](https://img.shields.io/badge/Kotlin-1.9.20-blue.svg?logo=kotlin)](http://kotlinlang.org)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-![API](https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/app/build.gradle.kts&query=minSdk\s*=\s*(\d+)&label=API&color=blue&prefix=24%2B)
+![API](https://img.shields.io/badge/dynamic/regex?url=https://raw.githubusercontent.com/sottti/AndroidAppTemplate/main/app/build.gradle.kts&query=minSdk\s*=\s*(\d+)&label=API&color=blue&prefix=24%2B)
 
 A clean, modern, and opinionated Android application template to bootstrap your new projects
 quickly. This template is built with a focus on modern Android development (MAD), scalability, and
