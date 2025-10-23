@@ -17,8 +17,6 @@ the repetitive setup process of configuring dependencies, setting up architectur
 common utilities. Just clone or use this template, rename the package, and start building your app's
 features immediately.
 
----
-
 ## ✨ Features
 
 This template is packed with the latest libraries and tools from the Android ecosystem:
@@ -26,30 +24,48 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:** [Compose Navigation 3]([https://developer.android.com/jetpack/compose/navigation](https://developer.android.com/guide/navigation/navigation-3))
+    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:
-  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronicity:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
   communication.
 * **Serialization:** [Kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) (used
   with Ktor) for fast and modern JSON parsing.
-* **Linting:** `ktlint` and Android Lint configured for code consistency.
 * **Testing:**
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
     * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
 
----
+## 🏗️ Project Structure
 
-## 🚀 How to Use This Template
+This project follows a standard multi-module setup, which is highly recommended for separation of
+concerns and build speed.
+
+## 🏛️ Architecture (MVVM + Clean)
+
+This template uses a state-driven MVVM (Model-View-ViewModel) architecture combined with principles
+from Clean Architecture.
+
+* **UI (Compose)**: Observes `State` from the `ViewModel` and sends `Actions` (user actions) to it.
+  It is passive and dumb.
+* **ViewModel**: Follows
+  a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
+  Handles business logic for the screen. It consumes `Actions`, interacts with
+  UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
+* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
+  `GetUserProfileUseCase`). This makes logic reusable and easier to test.
+* **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
+  source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
+  consume.
+
+  ## 🚀 How to Use This Template
 
 1. **Create Your Repository:**
    Click the "Use this template" button on the GitHub repository page. This will create a new
@@ -77,34 +93,6 @@ This template is packed with the latest libraries and tools from the Android eco
 5. **Start Coding!**
    You're all set. Start building your app's unique features.
 
----
-
-## 🏗️ Project Structure
-
-This project follows a standard multi-module setup, which is highly recommended for separation of
-concerns and build speed.
-
----
-
-## 🏛️ Architecture (MVVM + Clean)
-
-This template uses a state-driven MVVM (Model-View-ViewModel) architecture combined with principles
-from Clean Architecture.
-
-* **UI (Compose)**: Observes `State` from the `ViewModel` and sends `Actions` (user actions) to it.
-  It is passive and dumb.
-* **ViewModel**: Follows
-  a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
-  Handles business logic for the screen. It consumes `Actions`, interacts with
-  UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
-* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
-  `GetUserProfileUseCase`). This makes logic reusable and easier to test.
-* **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
-  source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
-  consume.
-
----
-
 ## 🤝 Contributing
 
 This is a template for *your* projects, but if you have ideas on how to improve the template itself,
@@ -117,8 +105,6 @@ contributions are welcome!
 5. Push to the branch (`git push origin feature/my-new-feature`).
 6. Create a new **Pull Request**.
 
----
-
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see the [LICENSE](LICENSE) file for details.
