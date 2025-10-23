@@ -27,10 +27,12 @@ mockk = "1.14.6"
 paging = "3.3.6"
 paparazzi = "2.0.0-alpha02"
 result = "2.1.0"
+robolectric = "4.11.1"
 room = "2.8.3"
 splashscreen = "1.2.0-rc01"
 targetSdk = "36"
 test-runner = "1.7.0"
+testCore = "1.6.1"
 truth = "1.4.5"
 turbine = "1.2.1"
 
@@ -78,11 +80,13 @@ paging-runtime = { group = "androidx.paging", name = "paging-runtime-ktx", versi
 paging-testing = { group = "androidx.paging", name = "paging-testing", version.ref = "paging" }
 paparazzi-core = { group = "app.cash.paparazzi", name = "paparazzi", version.ref = "paparazzi" }
 result = { group = "com.michael-bull.kotlin-result", name = "kotlin-result", version.ref = "result" }
+robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "robolectric" }
 room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
 room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
+test-core = { group = "androidx.test", name = "core-ktx", version.ref = "testCore" }
 test-runner = { group = "androidx.test", name = "runner", version.ref = "test-runner" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
