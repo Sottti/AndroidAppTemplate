@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.settings.managers.fakes
 
 import com.sottti.android.app.template.data.settings.managers.ThemeManager
-import com.sottti.android.app.template.domain.settings.model.SystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

@@ -2,10 +2,10 @@ package com.sottti.android.app.template.data.settings.managers.fakes
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.HighContrast
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.LowContrast
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.MediumContrast
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.StandardContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.HighContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.LowContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.MediumContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.StandardContrast
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

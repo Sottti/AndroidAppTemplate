@@ -6,7 +6,6 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.design.system.dimensions"
-
 }
 
 dependencies {

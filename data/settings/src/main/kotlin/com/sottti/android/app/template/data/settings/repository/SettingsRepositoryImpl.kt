@@ -1,9 +1,9 @@
 package com.sottti.android.app.template.data.settings.repository
 
 import com.sottti.android.app.template.data.settings.datasource.SettingsLocalDataSource
-import com.sottti.android.app.template.domain.settings.model.DynamicColor
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast
-import com.sottti.android.app.template.domain.settings.model.SystemTheme
+import com.sottti.android.app.template.domain.cores.models.DynamicColor
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.cores.models.SystemTheme
 import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

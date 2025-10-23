@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--
-      Primary Colors
-      Base: Dark.StandardContrast
-    -->
     <color name="primary">#88D6BA</color>
     <color name="onPrimary">#003E2F</color>
     <color name="primaryContainer">#00513E</color>

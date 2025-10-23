@@ -8,7 +8,6 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.design.system.shapes"
-
 }
 
 dependencies {

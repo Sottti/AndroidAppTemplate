@@ -1,26 +1,27 @@
 package com.sottti.android.app.template.presentation.design.system.themes
 
 import android.app.Activity
-import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.sottti.android.app.template.presentation.design.system.colors.color.ColorContrast
-import com.sottti.android.app.template.presentation.design.system.colors.color.ColorsLocalProvider
-import com.sottti.android.app.template.presentation.design.system.colors.color.colors
-import com.sottti.android.app.template.presentation.design.system.dimensions.DimensionsLocalProvider
-import com.sottti.android.app.template.presentation.design.system.shapes.ShapesLocalProvider
-import com.sottti.android.app.template.presentation.design.system.typography.TypographyLocalProvider
+import com.sottti.android.app.template.domain.cores.models.DynamicColor
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.ColorsLocalProvider
+import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
+import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.DimensionsLocalProvider
+import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.ShapesLocalProvider
+import com.sottti.android.app.template.presentation.design.system.typography.compositionLocal.TypographyLocalProvider
 
 @Composable
 public fun AndroidAppTemplateTheme(
-    colorContrast: ColorContrast = ColorContrast.Standard,
+    colorContrast: SystemColorContrast = SystemColorContrast.StandardContrast,
+    dynamicColor: DynamicColor = DynamicColor(false),
+    systemTheme: SystemTheme,
     themeVariant: AndroidAppTemplateThemeVariant = AndroidAppTemplateThemeVariant.Default,
-    useDarkTheme: Boolean = isSystemInDarkTheme(),
-    useDynamicColor: Boolean = false,
     content: @Composable () -> Unit,
 ) {
     when (themeVariant) {
@@ -28,28 +29,28 @@ public fun AndroidAppTemplateTheme(
             DefaultThemeVariant(
                 colorContrast = colorContrast,
                 content = content,
-                useDarkTheme = useDarkTheme,
-                useDynamicColor = useDynamicColor,
+                dynamicColor = dynamicColor,
+                systemTheme = systemTheme,
             )
     }
 }
 
 @Composable
 private fun DefaultThemeVariant(
-    colorContrast: ColorContrast,
-    useDarkTheme: Boolean,
-    useDynamicColor: Boolean = false,
+    colorContrast: SystemColorContrast,
+    dynamicColor: DynamicColor,
+    systemTheme: SystemTheme,
     content: @Composable () -> Unit,
 ) {
     ColorsLocalProvider(
         colorContrast = colorContrast,
-        useDarkTheme = useDarkTheme,
-        useDynamicColor = useDynamicColor,
+        dynamicColor = dynamicColor,
+        systemTheme = systemTheme,
     ) {
         TypographyLocalProvider {
             DimensionsLocalProvider {
                 ShapesLocalProvider {
-                    UpdateSystemBars(useDarkTheme)
+                    UpdateSystemBars(systemTheme)
                     MaterialTheme(
                         colorScheme = colors,
                         content = content,
@@ -63,13 +64,13 @@ private fun DefaultThemeVariant(
 
 @Composable
 private fun UpdateSystemBars(
-    useDarkTheme: Boolean,
+    systemTheme: SystemTheme,
 ) {
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            val isLightTheme = !useDarkTheme
+            val isLightTheme = systemTheme == SystemTheme.LightSystemTheme
             WindowCompat
                 .getInsetsController(window, view)
                 .apply {

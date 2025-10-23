@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import com.sottti.android.app.template.presentation.design.system.typography.typography
+import com.sottti.android.app.template.presentation.design.system.typography.compositionLocal.typography
 import androidx.compose.material3.Text as MaterialText
 
 @Stable

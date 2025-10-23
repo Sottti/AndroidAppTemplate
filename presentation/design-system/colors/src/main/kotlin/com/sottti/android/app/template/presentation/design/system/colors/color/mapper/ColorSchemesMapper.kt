@@ -7,32 +7,37 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalContext
-import com.sottti.android.app.template.presentation.design.system.colors.color.ColorContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.HighContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.LowContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.MediumContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.StandardContrast
+import com.sottti.android.app.template.domain.cores.models.SystemTheme
 import com.sottti.android.app.template.presentation.design.system.colors.color.ColorSchemes
 
 @Composable
 @ReadOnlyComposable
 @RequiresApi(api = 31)
 internal fun dynamicColorScheme(
-    useDarkTheme: Boolean,
-): ColorScheme = when (useDarkTheme) {
-    true -> dynamicDarkColorScheme(LocalContext.current)
-    false -> dynamicLightColorScheme(LocalContext.current)
+    systemTheme: SystemTheme,
+): ColorScheme = when (systemTheme) {
+    SystemTheme.DarkSystemTheme -> dynamicDarkColorScheme(LocalContext.current)
+    SystemTheme.LightSystemTheme -> dynamicLightColorScheme(LocalContext.current)
 }
 
 
-internal fun ColorContrast.darkColorScheme(): ColorScheme =
+internal fun SystemColorContrast.darkColorScheme(): ColorScheme =
     when (this) {
-        ColorContrast.High -> ColorSchemes.Dark.highContrast
-        ColorContrast.Medium -> ColorSchemes.Dark.mediumContrast
-        ColorContrast.Standard -> ColorSchemes.Dark.standardContrast
-        ColorContrast.Low -> ColorSchemes.Dark.standardContrast
+        HighContrast -> ColorSchemes.Dark.highContrast
+        MediumContrast -> ColorSchemes.Dark.mediumContrast
+        StandardContrast -> ColorSchemes.Dark.standardContrast
+        LowContrast -> ColorSchemes.Dark.standardContrast
     }
 
-internal fun ColorContrast.lightColorScheme(): ColorScheme =
+internal fun SystemColorContrast.lightColorScheme(): ColorScheme =
     when (this) {
-        ColorContrast.High -> ColorSchemes.Light.highContrast
-        ColorContrast.Medium -> ColorSchemes.Light.mediumContrast
-        ColorContrast.Standard -> ColorSchemes.Light.standardContrast
-        ColorContrast.Low -> ColorSchemes.Light.standardContrast
+        HighContrast -> ColorSchemes.Light.highContrast
+        MediumContrast -> ColorSchemes.Light.mediumContrast
+        StandardContrast -> ColorSchemes.Light.standardContrast
+        LowContrast -> ColorSchemes.Light.standardContrast
     }

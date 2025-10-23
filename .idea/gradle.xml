@@ -30,6 +30,7 @@
             <option value="$PROJECT_DIR$/data/system-features" />
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/domain/core-models" />
             <option value="$PROJECT_DIR$/domain/entity" />
             <option value="$PROJECT_DIR$/domain/settings" />
             <option value="$PROJECT_DIR$/domain/system-features" />
@@ -43,6 +44,7 @@
             <option value="$PROJECT_DIR$/presentation/design-system/themes" />
             <option value="$PROJECT_DIR$/presentation/design-system/typography" />
             <option value="$PROJECT_DIR$/presentation/feature" />
+            <option value="$PROJECT_DIR$/presentation/home" />
             <option value="$PROJECT_DIR$/presentation/paparazzi" />
             <option value="$PROJECT_DIR$/presentation/utils" />
             <option value="$PROJECT_DIR$/utils" />

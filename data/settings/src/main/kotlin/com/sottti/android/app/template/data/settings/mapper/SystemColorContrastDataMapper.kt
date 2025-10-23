@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.settings.mapper
 
 import androidx.annotation.FloatRange
 import androidx.annotation.VisibleForTesting
-import com.sottti.android.app.template.domain.settings.model.SystemColorContrast
+import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
 
 @VisibleForTesting
 internal const val STANDARD_CONTRAST_THRESHOLD = 0f

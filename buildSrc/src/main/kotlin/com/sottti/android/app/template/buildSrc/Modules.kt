@@ -5,6 +5,7 @@ package com.sottti.android.app.template.buildSrc
 object module {
     object presentation {
         const val feature = ":presentation:feature"
+        const val home = ":presentation:home"
         const val paparazzi = ":presentation:paparazzi"
         const val utils = ":presentation:utils"
 
@@ -20,6 +21,7 @@ object module {
     }
 
     object domain {
+        const val coreModels = ":domain:core-models"
         const val entity = ":domain:entity"
         const val settings = ":domain:settings"
         const val systemFeatures = ":domain:system-features"

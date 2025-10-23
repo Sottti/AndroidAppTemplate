@@ -2,6 +2,8 @@ package com.sottti.android.app.template.data.settings.di
 
 import android.app.UiModeManager
 import android.content.Context
+import com.sottti.android.app.template.data.settings.managers.ThemeManager
+import com.sottti.android.app.template.data.settings.managers.ThemeManagerImpl
 import com.sottti.android.app.template.data.settings.repository.SettingsRepositoryImpl
 import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import dagger.Binds
@@ -14,13 +16,19 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-internal fun interface SettingsDataModule {
+internal interface SettingsDataModule {
 
     @Binds
     @Singleton
     fun bindRepository(
         impl: SettingsRepositoryImpl,
     ): SettingsRepository
+
+    @Binds
+    @Singleton
+    fun bindThemeManager(
+        impl: ThemeManagerImpl,
+    ): ThemeManager
 
     companion object {
         @Provides

@@ -8,10 +8,9 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.design.system.icon.resources"
-
 }
 
 dependencies {
-    implementation(project(module.presentation.designSystem.colors))
     implementation(libs.appcompat)
+    implementation(project(module.presentation.designSystem.colors))
 }

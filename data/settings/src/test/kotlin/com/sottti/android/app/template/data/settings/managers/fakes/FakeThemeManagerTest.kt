@@ -2,8 +2,8 @@ package com.sottti.android.app.template.data.settings.managers.fakes
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.domain.settings.model.SystemTheme.DarkSystemTheme
-import com.sottti.android.app.template.domain.settings.model.SystemTheme.LightSystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme.DarkSystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme.LightSystemTheme
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

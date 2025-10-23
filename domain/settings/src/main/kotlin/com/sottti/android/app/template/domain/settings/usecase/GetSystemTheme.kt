@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.domain.settings.usecase
 
-import com.sottti.android.app.template.domain.settings.model.SystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme
 import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import javax.inject.Inject
 
