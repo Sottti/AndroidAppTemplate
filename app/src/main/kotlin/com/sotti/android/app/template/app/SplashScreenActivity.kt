@@ -1,4 +1,4 @@
-package com.sotti.android.app.template
+package com.sotti.android.app.template.app
 
 import android.annotation.SuppressLint
 import android.os.Bundle

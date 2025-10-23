@@ -1,3 +1,5 @@
+@file:Suppress("ClassName", "ConstPropertyName")
+
 package com.sottti.android.app.template.buildSrc
 
 object module {

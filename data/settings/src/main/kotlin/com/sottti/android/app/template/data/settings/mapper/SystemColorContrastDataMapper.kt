@@ -9,11 +9,12 @@ private const val HIGH_CONTRAST_THRESHOLD = 1.0f
 
 internal fun toSystemColorContrast(
     @FloatRange(from = -1.0, to = 1.0) contrast: Float?,
-): SystemColorContrast =
-    when {
-        contrast < STANDARD_CONTRAST_THRESHOLD -> SystemColorContrast.LowContrast
-        contrast < MEDIUM_CONTRAST_THRESHOLD -> SystemColorContrast.StandardContrast
-        contrast < HIGH_CONTRAST_THRESHOLD -> SystemColorContrast.MediumContrast
-        contrast >= HIGH_CONTRAST_THRESHOLD -> SystemColorContrast.HighContrast
-        else -> SystemColorContrast.StandardContrast
+): SystemColorContrast {
+    val nonNullContrast = contrast ?: return SystemColorContrast.StandardContrast
+    return when {
+        nonNullContrast < STANDARD_CONTRAST_THRESHOLD -> SystemColorContrast.LowContrast
+        nonNullContrast < MEDIUM_CONTRAST_THRESHOLD -> SystemColorContrast.StandardContrast
+        nonNullContrast < HIGH_CONTRAST_THRESHOLD -> SystemColorContrast.MediumContrast
+        else -> SystemColorContrast.HighContrast
     }
+}
