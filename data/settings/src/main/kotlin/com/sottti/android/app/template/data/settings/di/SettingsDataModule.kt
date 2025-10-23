@@ -2,8 +2,8 @@ package com.sottti.android.app.template.data.settings.di
 
 import android.app.UiModeManager
 import android.content.Context
-import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import com.sottti.android.app.template.data.settings.repository.SettingsRepositoryImpl
+import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

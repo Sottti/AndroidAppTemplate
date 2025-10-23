@@ -3,8 +3,8 @@ package com.sottti.android.app.template.data.settings
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.settings.datasource.SettingsLocalDataSource
-import com.sottti.android.app.template.data.settings.managers.FakeSystemColorContrastManager
-import com.sottti.android.app.template.data.settings.managers.FakeThemeManager
+import com.sottti.android.app.template.data.settings.managers.fakes.FakeSystemColorContrastManager
+import com.sottti.android.app.template.data.settings.managers.fakes.FakeThemeManager
 import com.sottti.android.app.template.domain.settings.model.DynamicColor
 import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.HighContrast
 import com.sottti.android.app.template.domain.settings.model.SystemColorContrast.MediumContrast
@@ -60,19 +60,19 @@ internal class SettingsLocalDataSourceTest {
 
     @Test
     fun `when observing dynamic color, it emits the correct state and completes`() = runTest {
-            fakeSystemFeatures.setSystemDynamicColorAvailable(true)
+        fakeSystemFeatures.setSystemDynamicColorAvailable(true)
 
-            dataSource.observeDynamicColor().test {
-                assertThat(awaitItem()).isEqualTo(DynamicColor(true))
-                awaitComplete()
-            }
-
-            fakeSystemFeatures.setSystemDynamicColorAvailable(false)
-            dataSource.observeDynamicColor().test {
-                assertThat(awaitItem()).isEqualTo(DynamicColor(false))
-                awaitComplete()
-            }
+        dataSource.observeDynamicColor().test {
+            assertThat(awaitItem()).isEqualTo(DynamicColor(true))
+            awaitComplete()
         }
+
+        fakeSystemFeatures.setSystemDynamicColorAvailable(false)
+        dataSource.observeDynamicColor().test {
+            assertThat(awaitItem()).isEqualTo(DynamicColor(false))
+            awaitComplete()
+        }
+    }
 
 
     @Test
