@@ -1,0 +1,6 @@
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-androidTest-0 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/generated/res/resValues/androidTest/debug
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-updated_navigation_xml-1 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/generated/updated_navigation_xml/debugAndroidTest
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-mergeDebugAndroidTestResources-2 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/merged.dir
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-mergeDebugAndroidTestResources-3 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/intermediates/incremental/debugAndroidTest/mergeDebugAndroidTestResources/stripped.dir
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-debugAndroidTest-4 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/intermediates/merged_res/debugAndroidTest/mergeDebugAndroidTestResources
+com.sottti.android.app.template.utils.lifecycle.test.lifecycle-debug-5 /Users/sotti/Projects/AndroidAppTemplate/utils/lifecycle/build/intermediates/packaged_res/debug/packageDebugResources
