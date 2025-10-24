@@ -12,7 +12,7 @@ import com.sottti.android.app.template.presentation.pully.list.feature.ui.PullyL
 
 @Composable
 @ReadOnlyComposable
-internal fun entryProvider(): (NavKey) -> NavEntry<NavKey> =
+internal fun navigationEntries(): (NavKey) -> NavEntry<NavKey> =
     entryProvider {
         entry<PullyListFeature> { PullyListFeatureUi() }
         entry<ItemDetailFeature> { ItemDetailUi() }

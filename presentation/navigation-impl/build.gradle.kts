@@ -11,6 +11,9 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.navigation.impl"
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 }
 
 dependencies {
@@ -23,4 +26,14 @@ dependencies {
     implementation(project(module.presentation.navigation))
     implementation(project(module.presentation.pullyListFeature))
     ksp(libs.hilt.compiler)
+
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
+    androidTestImplementation(libs.junit)
+    androidTestImplementation(libs.kotlin.coroutines.test)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.truth)
+    testImplementation(libs.turbine)
 }

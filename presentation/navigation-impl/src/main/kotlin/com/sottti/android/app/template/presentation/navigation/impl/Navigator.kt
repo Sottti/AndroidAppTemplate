@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
-import androidx.navigation3.runtime.NavEntryDecorator
+import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
@@ -14,54 +14,54 @@ import com.sottti.android.app.template.presentation.navigation.model.NavigationC
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateTo
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateToRoot
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.PullyListFeature
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+
+private typealias EntryProvider = (key: NavKey) -> NavEntry<NavKey>
 
 @Composable
 public fun Navigator(
     navigationManager: NavigationManager,
+    entryProvider: EntryProvider? = null,
 ) {
     val backStack = rememberNavBackStack(PullyListFeature)
-    observeCommands(
-        backStack = backStack,
-        navigationManager = navigationManager,
-    )
+    LaunchedEffect(key1 = navigationManager) {
+        observeCommandsInScope(
+            backStack = backStack,
+            navigationManager = navigationManager,
+            scope = this,
+        )
+    }
     NavDisplay(
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
-        entryDecorators = entryDecorators(),
-        entryProvider = entryProvider(),
+        entryDecorators = listOf(
+            rememberSaveableStateHolderNavEntryDecorator(),
+            rememberViewModelStoreNavEntryDecorator()
+        ),
+        entryProvider = entryProvider ?: navigationEntries(),
     )
 }
 
-@Composable
-private fun observeCommands(
+private fun observeCommandsInScope(
     backStack: NavBackStack<NavKey>,
     navigationManager: NavigationManager,
-) {
-    LaunchedEffect(navigationManager, backStack) {
-        navigationManager.commands().onEach { command ->
-            when (command) {
-                is NavigateTo -> if (backStack.lastOrNull() != command.destination) {
-                    backStack.add(command.destination)
-                }
+    scope: CoroutineScope,
+) = navigationManager.commands().onEach { command ->
+    when (command) {
+        is NavigateTo -> if (backStack.lastOrNull() != command.destination) {
+            backStack.add(command.destination)
+        }
 
-                NavigateBack -> if (backStack.size > 1) {
-                    backStack.removeLastOrNull()
-                }
+        NavigateBack -> if (backStack.size > 1) {
+            backStack.removeLastOrNull()
+        }
 
-                is NavigateToRoot -> {
-                    backStack.clear()
-                    backStack.add(command.rootDestination)
-                }
-            }
-        }.launchIn(this)
+        is NavigateToRoot -> {
+            backStack.clear()
+            backStack.add(command.rootDestination)
+        }
     }
 }
-
-@Composable
-private fun entryDecorators(): List<NavEntryDecorator<NavKey>> =
-    listOf(
-        rememberSaveableStateHolderNavEntryDecorator(),
-        rememberViewModelStoreNavEntryDecorator()
-    )
+    .launchIn(scope)
