@@ -6,7 +6,6 @@ import com.sottti.android.app.template.presentation.item.detail.feature.model.It
 import com.sottti.android.app.template.presentation.item.detail.feature.model.ItemDetailFeatureState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
