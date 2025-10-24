@@ -32,7 +32,6 @@ object module {
 
     object data {
         const val entity = ":data:entity"
-        const val modules = ":data:modules"
         const val network = ":data:network"
         const val settings = ":data:settings"
         const val systemFeatures = ":data:system-features"
