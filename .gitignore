@@ -1,3 +1,4 @@
+# Already in your file (keep these)
 *.iml
 .gradle
 /local.properties
@@ -12,29 +13,29 @@
 /captures
 .externalNativeBuild
 .cxx
-local.properties
+# local.properties # (You had this twice, removed one)
 
-# Project exclude paths
-/buildSrc/build/
-/buildSrc/build/classes/kotlin/main/
-/data/settings/build/
-/data/settings/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
-/data/system-features/build/
-/data/system-features/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
-/di/build/
-/domain/settings/build/
-/domain/settings/build/classes/kotlin/main/
-/domain/system-features/build/
-/domain/system-features/build/classes/kotlin/main/
-/presentation/design-system/colors/build/
-/presentation/design-system/dimensions/build/
-/presentation/design-system/icon-resources/build/
-/presentation/design-system/shapes/build/
-/presentation/design-system/text/build/
-/presentation/design-system/themes/build/
-/presentation/design-system/typography/build/
-/presentation/feature/build/
-/presentation/feature/build/intermediates/javac/debug/compileDebugJavaWithJavac/classes/
-/presentation/paparazzi/build/
-/presentation/paparazzi/build/classes/kotlin/main/
-/presentation/utils/build/
+# Project exclude paths (keep these if you like, but /build should cover them)
+# /buildSrc/build/
+# ... your other specific build paths ...
+
+# --- Recommended Additions ---
+
+# Generated binary files (add these)
+*.apk
+*.ap_
+*.aab
+*.dex
+*.class
+
+# More IDE files (add these)
+/.idea/gradle.xml
+/.idea/misc.xml
+/.idea/runConfigurations/
+/.idea/deploymentTargetDropDown.xml
+
+# Gradle generated files (add .gradle/ if not covered by top-level rule)
+# .gradle/ # Usually covered by the .gradle rule above
+
+# Output directory (might be redundant if covered by /build)
+# output/
