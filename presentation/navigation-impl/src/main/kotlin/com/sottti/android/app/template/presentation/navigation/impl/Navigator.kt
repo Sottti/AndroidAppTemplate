@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
 import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavEntryDecorator
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
@@ -26,12 +27,9 @@ public fun Navigator(
         navigationManager = navigationManager,
     )
     NavDisplay(
-        entryDecorators = listOf(
-            rememberSaveableStateHolderNavEntryDecorator(),
-            rememberViewModelStoreNavEntryDecorator()
-        ),
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
+        entryDecorators = entryDecorators(),
         entryProvider = entryProvider(),
     )
 }
@@ -44,16 +42,12 @@ private fun observeCommands(
     LaunchedEffect(navigationManager, backStack) {
         navigationManager.commands().onEach { command ->
             when (command) {
-                is NavigateTo -> {
-                    if (backStack.lastOrNull() != command.destination) {
-                        backStack.add(command.destination)
-                    }
+                is NavigateTo -> if (backStack.lastOrNull() != command.destination) {
+                    backStack.add(command.destination)
                 }
 
-                NavigateBack -> {
-                    if (backStack.size > 1) {
-                        backStack.removeLastOrNull()
-                    }
+                NavigateBack -> if (backStack.size > 1) {
+                    backStack.removeLastOrNull()
                 }
 
                 is NavigateToRoot -> {
@@ -61,7 +55,13 @@ private fun observeCommands(
                     backStack.add(command.rootDestination)
                 }
             }
-        }
-            .launchIn(this)
+        }.launchIn(this)
     }
 }
+
+@Composable
+private fun entryDecorators(): List<NavEntryDecorator<NavKey>> =
+    listOf(
+        rememberSaveableStateHolderNavEntryDecorator(),
+        rememberViewModelStoreNavEntryDecorator()
+    )
