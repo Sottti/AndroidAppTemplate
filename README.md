@@ -47,6 +47,28 @@ This template is packed with the latest libraries and tools from the Android eco
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
     * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
 
+### 🌟 Additional Highlights
+
+* **Dynamic system theming:** The `presentation` layer streams system theme and contrast updates,
+  maps them through the `data/system-features` module, and applies them across the Compose UI while
+  synchronizing system bars for a fully adaptive experience.
+* **Navigation infrastructure:** A dedicated Compose Navigation 3 stack coordinates screen changes
+  via a `NavigationManager`, with `Navigator` components observing command channels and handling
+  saveable state, back stack pops, and simultaneous navigation requests.
+* **Snapshot tooling:** The `presentation` module includes a Paparazzi test toolkit featuring a
+  custom Pixel 10 Pro XL device profile and helpers that generate day/night parameter sets for rich
+  screenshot coverage.
+* **Coroutine utilities:** The `utils` module ships reusable coroutine extensions such as
+  `stateInWhileSubscribed` and `observeConfigurationChanges` for concise and lifecycle-aware state
+  management in ViewModels.
+* **Build hygiene:** Gradle is configured for Kotlin explicit API mode, context receivers, and the
+  Versions Plugin to keep dependencies up to date and compiler flags consistent across modules.
+* **Testable system features:** The `data/system-features` module exposes fake managers backed by
+  Turbine-based tests, showcasing how to stub system services when exercising the settings feature.
+* **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
+  `HomeActivity` combine with the navigation manager to launch directly into themed Compose content
+  with minimal boilerplate.
+
 ## 🏗️ Project Structure
 
 This project follows a standard multi-module setup, which is highly recommended for separation of
