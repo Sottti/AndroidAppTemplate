@@ -8,4 +8,5 @@ public interface NavigationManager {
     public fun commands(): Flow<NavigationCommand>
     public fun navigateBack()
     public fun navigateTo(destination: NavigationDestination)
+    public fun navigateToRoot(rootDestination: NavigationDestination)
 }

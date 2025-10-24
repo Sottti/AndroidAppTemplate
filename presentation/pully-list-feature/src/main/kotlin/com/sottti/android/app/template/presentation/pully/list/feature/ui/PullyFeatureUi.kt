@@ -1,5 +1,6 @@
 package com.sottti.android.app.template.presentation.pully.list.feature.ui
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -42,6 +43,7 @@ internal fun FeatureUi(
 ) {
     Column(
         modifier = Modifier
+            .background(colors.background)
             .fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally,

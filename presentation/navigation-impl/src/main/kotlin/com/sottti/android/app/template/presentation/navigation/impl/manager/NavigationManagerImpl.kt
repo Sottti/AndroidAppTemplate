@@ -12,18 +12,18 @@ import javax.inject.Singleton
 @Singleton
 public class NavigationManagerImpl @Inject constructor() : NavigationManager {
 
-    private val _commands = Channel<NavigationCommand>(Channel.BUFFERED)
-    override fun commands(): Flow<NavigationCommand> = _commands.receiveAsFlow()
+    private val commandsChannel = Channel<NavigationCommand>(Channel.BUFFERED)
+    override fun commands(): Flow<NavigationCommand> = commandsChannel.receiveAsFlow()
 
     public override fun navigateTo(destination: NavigationDestination) {
-        _commands.trySend(NavigationCommand.NavigateTo(destination))
+        commandsChannel.trySend(NavigationCommand.NavigateTo(destination))
     }
 
     public override fun navigateBack() {
-        _commands.trySend(NavigationCommand.NavigateBack)
+        commandsChannel.trySend(NavigationCommand.NavigateBack)
     }
 
-    public fun navigateToRoot(rootDestination: NavigationDestination) {
-        _commands.trySend(NavigationCommand.NavigateToRoot(rootDestination))
+    public override fun navigateToRoot(rootDestination: NavigationDestination) {
+        commandsChannel.trySend(NavigationCommand.NavigateToRoot(rootDestination))
     }
 }

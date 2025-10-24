@@ -17,11 +17,15 @@ android {
 }
 
 dependencies {
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.lifecycle.viewModel.navigation)
     implementation(libs.navigation.runtime)
     implementation(libs.navigation.ui)
+    implementation(platform(libs.compose.bom))
+    implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.itemDetailFeature))
     implementation(project(module.presentation.navigation))
     implementation(project(module.presentation.pullyListFeature))
