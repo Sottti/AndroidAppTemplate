@@ -8,7 +8,6 @@ import androidx.compose.ui.test.assertCountEquals
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEM_DETAIL_FEATURE_TEST_TAG
@@ -27,8 +26,7 @@ internal class NavigatorTest {
 
     private lateinit var navigationManager: FakeNavigationManager
 
-    private val entryProvider: (NavKey) -> NavEntry<NavKey> =
-        fakeNavigationEntries()
+    private val entryProvider: EntryProvider<NavKey> = fakeNavigationEntries()
 
 
     @Before
@@ -142,7 +140,7 @@ internal class NavigatorTest {
     }
 
     @Test
-    fun given_current_screen_when_navigate_to_same_screen_command_is_emitted_then_screen_remains_displayed_without_duplicates() {
+    fun when_navigate_to_same_screen_command_is_emitted_then_screen_remains_displayed_without_duplicates() {
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
         composeTestRule
