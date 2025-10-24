@@ -20,7 +20,7 @@ internal class FakeNavigationManager : NavigationManager {
         _commands.trySend(NavigationCommand.NavigateTo(destination))
     }
 
-    fun navigateToRoot(destination: NavigationDestination) {
-        _commands.trySend(NavigationCommand.NavigateToRoot(destination))
+    override fun navigateToRoot(rootDestination: NavigationDestination) {
+        _commands.trySend(NavigationCommand.NavigateToRoot(rootDestination))
     }
 }

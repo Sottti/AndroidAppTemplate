@@ -13,7 +13,6 @@ import androidx.navigation3.runtime.NavKey
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEM_DETAIL_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.PULLY_LIST_FEATURE_TEST_TAG
-import com.sottti.android.app.template.presentation.navigation.impl.fakes.TaggedComposable
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.fakeNavigationEntries
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetailFeature
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.PullyListFeature
