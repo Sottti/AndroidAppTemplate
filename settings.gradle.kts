@@ -35,9 +35,12 @@ include(
     ":presentation:design-system:text",
     ":presentation:design-system:themes",
     ":presentation:design-system:typography",
-    ":presentation:feature",
     ":presentation:home",
+    ":presentation:item-detail-feature",
+    ":presentation:navigation",
+    ":presentation:navigation-impl",
     ":presentation:paparazzi",
+    ":presentation:pully-list-feature",
     ":presentation:utils",
     ":utils:lifecycle",
 )

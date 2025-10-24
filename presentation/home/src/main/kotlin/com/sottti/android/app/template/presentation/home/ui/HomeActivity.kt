@@ -10,12 +10,18 @@ import androidx.activity.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.home.data.HomeViewModel
+import com.sottti.android.app.template.presentation.navigation.impl.Navigator
+import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
 
 @AndroidEntryPoint
 internal open class HomeActivity : ComponentActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
+
+    @Inject
+    lateinit var navigationManager: NavigationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -27,7 +33,7 @@ internal open class HomeActivity : ComponentActivity() {
                     dynamicColor = state.dynamicColor,
                     systemTheme = state.systemTheme,
                 ) {
-                    HomeUi()
+                    Navigator(navigationManager)
                 }
             }
         }

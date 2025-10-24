@@ -1,0 +1,4 @@
+<resources>
+    <string name="item_detail_feature_button_text">Go Back</string>
+    <string name="item_detail_feature_text">Item Detail</string>
+</resources>

@@ -43,9 +43,12 @@
             <option value="$PROJECT_DIR$/presentation/design-system/text" />
             <option value="$PROJECT_DIR$/presentation/design-system/themes" />
             <option value="$PROJECT_DIR$/presentation/design-system/typography" />
-            <option value="$PROJECT_DIR$/presentation/feature" />
             <option value="$PROJECT_DIR$/presentation/home" />
+            <option value="$PROJECT_DIR$/presentation/item-detail-feature" />
+            <option value="$PROJECT_DIR$/presentation/navigation" />
+            <option value="$PROJECT_DIR$/presentation/navigation-impl" />
             <option value="$PROJECT_DIR$/presentation/paparazzi" />
+            <option value="$PROJECT_DIR$/presentation/pully-list-feature" />
             <option value="$PROJECT_DIR$/presentation/utils" />
             <option value="$PROJECT_DIR$/utils" />
             <option value="$PROJECT_DIR$/utils/lifecycle" />

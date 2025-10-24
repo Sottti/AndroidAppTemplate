@@ -1,0 +1,30 @@
+package com.sottti.android.app.template.presentation.navigation.impl.manager
+
+import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
+import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination
+import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
+import javax.inject.Inject
+import javax.inject.Singleton
+
+@Singleton
+public class NavigationManagerImpl @Inject constructor() : NavigationManager {
+
+    private val _commands = Channel<NavigationCommand>(Channel.BUFFERED)
+    internal val commands: Flow<NavigationCommand> = _commands.receiveAsFlow()
+    override fun commands(): Flow<NavigationCommand> = commands
+
+    public override fun navigateTo(destination: NavigationDestination) {
+        _commands.trySend(NavigationCommand.NavigateTo(destination))
+    }
+
+    public override fun navigateBack() {
+        _commands.trySend(NavigationCommand.NavigateBack)
+    }
+
+    public fun navigateToRoot(rootDestination: NavigationDestination) {
+        _commands.trySend(NavigationCommand.NavigateToRoot(rootDestination))
+    }
+}

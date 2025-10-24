@@ -22,6 +22,8 @@ dependencies {
     implementation(project(module.presentation.designSystem.dimensions))
     implementation(project(module.presentation.designSystem.text))
     implementation(project(module.presentation.designSystem.themes))
+    implementation(project(module.presentation.navigation))
+    implementation(project(module.presentation.navigationImpl))
     implementation(project(module.presentation.utils))
     ksp(libs.hilt.compiler)
 }

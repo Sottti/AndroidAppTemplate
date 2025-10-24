@@ -4,9 +4,12 @@ package com.sottti.android.app.template.buildSrc
 
 object module {
     object presentation {
-        const val feature = ":presentation:feature"
         const val home = ":presentation:home"
+        const val itemDetailFeature = ":presentation:item-detail-feature"
+        const val navigation = ":presentation:navigation"
+        const val navigationImpl = ":presentation:navigation-impl"
         const val paparazzi = ":presentation:paparazzi"
+        const val pullyListFeature = ":presentation:pully-list-feature"
         const val utils = ":presentation:utils"
 
         object designSystem {
