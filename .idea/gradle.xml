@@ -24,6 +24,7 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/data/items" />
             <option value="$PROJECT_DIR$/data/settings" />
             <option value="$PROJECT_DIR$/data/system-features" />
             <option value="$PROJECT_DIR$/di" />

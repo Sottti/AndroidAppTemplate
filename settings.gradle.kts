@@ -19,6 +19,7 @@ dependencyResolutionManagement {
 }
 include(
     ":app",
+    ":data:items",
     ":data:settings",
     ":data:system-features",
     ":di",

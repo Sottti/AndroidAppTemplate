@@ -5,8 +5,8 @@ plugins {
 }
 
 dependencies {
+    api(project(module.domain.coreModels))
     implementation(libs.javax.inject)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.paging.common)
-    implementation(project(module.domain.coreModels))
 }

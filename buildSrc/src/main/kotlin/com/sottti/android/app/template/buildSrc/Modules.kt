@@ -38,6 +38,7 @@ object module {
     }
 
     object data {
+        const val items = ":data:items"
         const val settings = ":data:settings"
         const val systemFeatures = ":data:system-features"
     }
