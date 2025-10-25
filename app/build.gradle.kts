@@ -37,6 +37,6 @@ dependencies {
     implementation(project(module.di))
     implementation(project(module.presentation.designSystem.iconResources))
     implementation(project(module.presentation.designSystem.themes))
-    implementation(project(module.presentation.home))
+    implementation(project(module.presentation.features.home))
     ksp(libs.hilt.compiler)
 }

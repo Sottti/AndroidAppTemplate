@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name="com.sotti.android.app.template.app.AndroidAppTemplateApplication"
+        android:name=".AndroidAppTemplateApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:enableOnBackInvokedCallback="true"
@@ -16,7 +16,7 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar"
         tools:targetApi="36">
         <activity
-            android:name="com.sotti.android.app.template.app.SplashScreenActivity"
+            android:name=".SplashScreenActivity"
             android:exported="true"
             android:icon="@mipmap/ic_launcher"
             android:theme="@style/Theme.AndroidAppTemplate.SplashScreen">

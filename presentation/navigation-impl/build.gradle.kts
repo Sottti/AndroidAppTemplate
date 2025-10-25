@@ -26,9 +26,9 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))
-    implementation(project(module.presentation.itemDetailFeature))
+    implementation(project(module.presentation.features.itemDetail))
+    implementation(project(module.presentation.features.itemsList))
     implementation(project(module.presentation.navigation))
-    implementation(project(module.presentation.pullyListFeature))
     ksp(libs.hilt.compiler)
 
     androidTestImplementation(libs.compose.ui.test.junit4)

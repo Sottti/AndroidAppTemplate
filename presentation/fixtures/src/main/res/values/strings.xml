@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="fixture_button_text">Button Text</string>
+    <string name="fixture_primary_text">Primary Text</string>
+    <string name="fixture_secondary_text">Secondary Text</string>
+    <string name="fixture_text_explainer" translatable="false">Text that explains something.</string>
+    <string name="fixture_text_explainer_long" translatable="false">Text that explains something that is rather long and might expand multiple lines</string>
+    <string name="fixture_title">Title</string>
+    <string name="fixture_title_long" translatable="false">Long title that might expand multiple lines</string>
+</resources>

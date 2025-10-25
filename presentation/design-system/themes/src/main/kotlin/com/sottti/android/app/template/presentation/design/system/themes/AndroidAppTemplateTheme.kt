@@ -1,6 +1,7 @@
 package com.sottti.android.app.template.presentation.design.system.themes
 
 import android.app.Activity
+import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.MaterialTheme.typography
 import androidx.compose.runtime.Composable
@@ -10,6 +11,8 @@ import androidx.core.view.WindowCompat
 import com.sottti.android.app.template.domain.cores.models.DynamicColor
 import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
 import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme.DarkSystemTheme
+import com.sottti.android.app.template.domain.cores.models.SystemTheme.LightSystemTheme
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.ColorsLocalProvider
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.DimensionsLocalProvider
@@ -20,7 +23,7 @@ import com.sottti.android.app.template.presentation.design.system.typography.com
 public fun AndroidAppTemplateTheme(
     colorContrast: SystemColorContrast = SystemColorContrast.StandardContrast,
     dynamicColor: DynamicColor = DynamicColor(false),
-    systemTheme: SystemTheme,
+    systemTheme: SystemTheme = if (isSystemInDarkTheme()) DarkSystemTheme else LightSystemTheme,
     themeVariant: AndroidAppTemplateThemeVariant = AndroidAppTemplateThemeVariant.Default,
     content: @Composable () -> Unit,
 ) {
@@ -70,7 +73,7 @@ private fun UpdateSystemBars(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            val isLightTheme = systemTheme == SystemTheme.LightSystemTheme
+            val isLightTheme = systemTheme == LightSystemTheme
             WindowCompat
                 .getInsetsController(window, view)
                 .apply {
