@@ -70,9 +70,11 @@ private fun UpdateSystemBars(
     systemTheme: SystemTheme,
 ) {
     val view = LocalView.current
-    if (!view.isInEditMode) {
+    val context = view.context
+
+    if (!view.isInEditMode && context is Activity) {
         SideEffect {
-            val window = (view.context as Activity).window
+            val window = context.window
             val isLightTheme = systemTheme == LightSystemTheme
             WindowCompat
                 .getInsetsController(window, view)
