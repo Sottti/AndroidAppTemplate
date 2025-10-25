@@ -3,8 +3,6 @@ package com.sottti.android.app.template.presentation.design.system.progress.indi
 import androidx.compose.ui.Modifier
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
-import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicatorPreview
-import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicatorStateProvider
 import com.sottti.android.app.template.presentation.paparazzi.nightModeParameters
 import com.sottti.android.app.template.presentation.paparazzi.paparazzi
 import org.junit.Rule

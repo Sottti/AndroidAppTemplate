@@ -19,8 +19,8 @@ import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
-import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.domain.cores.models.ImageUrl
+import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.images.R
