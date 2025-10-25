@@ -23,6 +23,7 @@ include(
     ":data:system-features",
     ":di",
     ":domain:core-models",
+    ":domain:items",
     ":domain:settings",
     ":domain:system-features",
     ":presentation:design-system:colors",

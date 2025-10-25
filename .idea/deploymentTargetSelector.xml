@@ -16,9 +16,6 @@
       <SelectionState runConfigName="NavigatorTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="given_initial_screen_when_navigate_to_command_is_emitted_then_the_new_screen_is_displayed()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="when_manager_instance_changes_observer_reattaches()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

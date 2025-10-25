@@ -29,6 +29,7 @@
             <option value="$PROJECT_DIR$/di" />
             <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/domain/core-models" />
+            <option value="$PROJECT_DIR$/domain/items" />
             <option value="$PROJECT_DIR$/domain/settings" />
             <option value="$PROJECT_DIR$/domain/system-features" />
             <option value="$PROJECT_DIR$/presentation" />

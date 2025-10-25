@@ -32,6 +32,7 @@ object module {
 
     object domain {
         const val coreModels = ":domain:core-models"
+        const val items = ":domain:items"
         const val settings = ":domain:settings"
         const val systemFeatures = ":domain:system-features"
     }
