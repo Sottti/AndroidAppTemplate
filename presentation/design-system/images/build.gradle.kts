@@ -9,7 +9,6 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.images"
-
 }
 
 dependencies {
