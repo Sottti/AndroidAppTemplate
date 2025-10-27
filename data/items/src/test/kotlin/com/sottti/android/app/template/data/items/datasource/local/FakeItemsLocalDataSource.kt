@@ -20,7 +20,7 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
             .forEach { pagingSource -> pagingSource.invalidate() }
     }
 
-    override fun clearAll() {
+    override suspend fun clearAll() {
         clearCalls++
         saved.clear()
         activeSources

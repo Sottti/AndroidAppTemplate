@@ -6,5 +6,5 @@ import com.sottti.android.app.template.model.Item
 internal interface ItemsLocalDataSource {
     fun observeItems(): PagingSource<Int, Item>
     suspend fun saveItems(items: List<Item>)
-    fun clearAll()
+    suspend fun clearAll()
 }

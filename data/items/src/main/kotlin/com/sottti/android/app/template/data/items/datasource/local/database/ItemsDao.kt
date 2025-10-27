@@ -17,5 +17,5 @@ internal interface ItemsDao {
     fun observeItems(): PagingSource<Int, ItemRoomModel>
 
     @Query("DELETE FROM items")
-    fun clearAll()
+    suspend fun clearAll()
 }

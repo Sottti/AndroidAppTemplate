@@ -18,7 +18,7 @@ internal class ItemsLocalDataSourceImpl @Inject constructor(
         dao.insertOrUpdate(items.map { it.toRoom() })
     }
 
-    override fun clearAll() {
+    override suspend fun clearAll() {
         dao.clearAll()
     }
 }

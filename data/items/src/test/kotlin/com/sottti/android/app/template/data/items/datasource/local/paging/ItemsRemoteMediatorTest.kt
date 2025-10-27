@@ -17,12 +17,9 @@ import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteD
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 import java.io.IOException
 
 @OptIn(ExperimentalPagingApi::class)
-@RunWith(JUnit4::class)
 internal class ItemsRemoteMediatorTest {
 
     private lateinit var itemsRemoteMediator: ItemsRemoteMediator

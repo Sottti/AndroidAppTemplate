@@ -5,9 +5,15 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageSi
 import com.sottti.android.app.template.data.items.datasource.remote.model.PaginatedItemsApiModel
 import com.sottti.android.app.template.data.network.model.ResultApiModel
 
-internal interface ItemsApiCalls {
-    suspend fun getItems(
+private typealias ItemsApiCallsResponseProvider =
+        suspend (PageApiModel, PageSizeApiModel) -> ResultApiModel<PaginatedItemsApiModel>
+
+internal class FakeItemsApiCalls(
+    private val responder: ItemsApiCallsResponseProvider,
+) : ItemsApiCalls {
+
+    override suspend fun getItems(
         page: PageApiModel,
         size: PageSizeApiModel,
-    ): ResultApiModel<PaginatedItemsApiModel>
+    ): ResultApiModel<PaginatedItemsApiModel> = responder(page, size)
 }

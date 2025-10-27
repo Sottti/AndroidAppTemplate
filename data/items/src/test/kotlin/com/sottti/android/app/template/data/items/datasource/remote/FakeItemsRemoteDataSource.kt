@@ -5,11 +5,11 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageAp
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.core.models.Result
 
-private typealias ItemsResponseProvider =
+private typealias ItemsRemoteDataSourceResponseProvider =
         suspend (page: PageApiModel, pageSize: PageSizeApiModel) -> Result<PaginatedItems>
 
 internal class FakeItemsRemoteDataSource(
-    private val responder: ItemsResponseProvider,
+    private val responder: ItemsRemoteDataSourceResponseProvider,
 ) : ItemsRemoteDataSource {
     override suspend fun getItems(
         page: PageApiModel,

@@ -11,10 +11,7 @@ import com.sottti.android.app.template.data.items.datasource.data.itemRoomModel
 import com.sottti.android.app.template.data.items.datasource.local.mapper.fakes.FakeRoomPagingSource
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
-import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
 
-@RunWith(JUnit4::class)
 internal class ItemMappingPagingSourceTest {
 
     @Test

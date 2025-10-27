@@ -4,6 +4,8 @@ import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDat
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceImpl
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceImpl
+import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCalls
+import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsImpl
 import com.sottti.android.app.template.data.items.repository.ItemsRepositoryImpl
 import com.sottti.android.app.template.repository.ItemsRepository
 import dagger.Binds
@@ -33,4 +35,10 @@ internal interface ItemsDataModule {
     fun bindRepository(
         impl: ItemsRepositoryImpl,
     ): ItemsRepository
+
+    @Binds
+    @Singleton
+    fun bindApiCalls(
+        impl: ItemsApiCallsImpl,
+    ): ItemsApiCalls
 }
