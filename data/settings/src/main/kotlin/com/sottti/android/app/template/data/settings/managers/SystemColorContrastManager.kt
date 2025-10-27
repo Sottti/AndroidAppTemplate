@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.data.settings.managers
 
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import kotlinx.coroutines.flow.Flow
 
 internal interface SystemColorContrastManager {

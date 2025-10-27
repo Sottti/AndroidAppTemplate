@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.presentation.images.network
 
 import androidx.compose.runtime.Immutable
-import com.sottti.android.app.template.domain.cores.models.ImageUrl
+import com.sottti.android.app.template.domain.core.models.ImageUrl
 
 @Immutable
 internal data class NetworkImageState(

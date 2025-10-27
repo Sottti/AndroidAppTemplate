@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.settings.managers
 
 import android.content.Context
 import com.sottti.android.app.template.data.settings.mapper.toSystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import com.sottti.android.app.template.domain.system.features.SystemFeatures
 import com.sottti.android.app.template.utils.lifecycle.observeConfigurationChanges
 import dagger.hilt.android.qualifiers.ApplicationContext

@@ -8,11 +8,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
-import com.sottti.android.app.template.domain.cores.models.DynamicColor
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
-import com.sottti.android.app.template.domain.cores.models.SystemTheme.DarkSystemTheme
-import com.sottti.android.app.template.domain.cores.models.SystemTheme.LightSystemTheme
+import com.sottti.android.app.template.domain.core.models.DynamicColor
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme.DarkSystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme.LightSystemTheme
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.ColorsLocalProvider
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.DimensionsLocalProvider

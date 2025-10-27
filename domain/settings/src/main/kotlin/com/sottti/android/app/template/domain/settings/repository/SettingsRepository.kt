@@ -1,8 +1,8 @@
 package com.sottti.android.app.template.domain.settings.repository
 
-import com.sottti.android.app.template.domain.cores.models.DynamicColor
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.DynamicColor
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import kotlinx.coroutines.flow.Flow
 
 public interface SettingsRepository {

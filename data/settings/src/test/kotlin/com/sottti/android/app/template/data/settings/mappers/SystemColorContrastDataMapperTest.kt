@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.settings.mappers
 
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.settings.mapper.toSystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized

@@ -5,9 +5,9 @@ import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.settings.datasource.SettingsLocalDataSource
 import com.sottti.android.app.template.data.settings.managers.fakes.FakeSystemColorContrastManager
 import com.sottti.android.app.template.data.settings.managers.fakes.FakeThemeManager
-import com.sottti.android.app.template.domain.cores.models.DynamicColor
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.DynamicColor
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import com.sottti.android.app.template.domain.system.features.FakeSystemFeatures
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

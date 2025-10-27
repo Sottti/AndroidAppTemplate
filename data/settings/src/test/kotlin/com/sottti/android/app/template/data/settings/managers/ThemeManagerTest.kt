@@ -5,7 +5,7 @@ import android.content.res.Configuration
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

@@ -1,9 +1,9 @@
 package com.sottti.android.app.template.presentation.home.data
 
 import androidx.lifecycle.ViewModel
-import com.sottti.android.app.template.domain.cores.models.DynamicColor
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.DynamicColor
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemColorContrast
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemTheme
 import com.sottti.android.app.template.domain.settings.usecase.ObserveDynamicColor

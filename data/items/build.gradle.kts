@@ -15,6 +15,7 @@ dependencies {
     implementation(libs.paging.runtime)
     implementation(libs.room)
     implementation(libs.room.paging)
+    implementation(project(module.data.network))
     implementation(project(module.domain.items))
     ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)

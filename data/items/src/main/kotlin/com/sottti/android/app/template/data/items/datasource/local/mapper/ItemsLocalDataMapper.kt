@@ -1,8 +1,8 @@
 package com.sottti.android.app.template.data.items.datasource.local.mapper
 
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
-import com.sottti.android.app.template.domain.cores.models.ImageContentDescription
-import com.sottti.android.app.template.domain.cores.models.ImageUrl
+import com.sottti.android.app.template.domain.core.models.ImageContentDescription
+import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.model.ItemId
 import com.sottti.android.app.template.model.ItemImage

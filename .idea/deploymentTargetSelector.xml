@@ -16,12 +16,6 @@
       <SelectionState runConfigName="NavigatorTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="when_manager_instance_changes_observer_reattaches()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
-      <SelectionState runConfigName="when_recomposed_state_changes_then_current_screen_persists()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="when_disposed_and_recreated_then_starts_at_root()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>

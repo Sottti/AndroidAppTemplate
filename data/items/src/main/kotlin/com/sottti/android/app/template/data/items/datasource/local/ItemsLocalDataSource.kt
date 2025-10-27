@@ -16,4 +16,8 @@ internal class ItemsLocalDataSource @Inject constructor(
     suspend fun saveItems(items: List<Item>) {
         dao.insertOrUpdate(items.map { it.toRoom() })
     }
+
+    fun clearAll() {
+        dao.clearAll()
+    }
 }

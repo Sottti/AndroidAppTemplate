@@ -20,6 +20,7 @@ dependencyResolutionManagement {
 include(
     ":app",
     ":data:items",
+    ":data:network",
     ":data:settings",
     ":data:system-features",
     ":di",

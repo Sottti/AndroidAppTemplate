@@ -7,12 +7,12 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.platform.LocalContext
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.HighContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.LowContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.MediumContrast
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast.StandardContrast
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast.HighContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast.LowContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast.MediumContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast.StandardContrast
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import com.sottti.android.app.template.presentation.design.system.colors.color.ColorSchemes
 
 @Composable

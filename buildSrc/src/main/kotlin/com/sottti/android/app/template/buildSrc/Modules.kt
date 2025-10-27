@@ -39,6 +39,7 @@ object module {
 
     object data {
         const val items = ":data:items"
+        const val network = ":data:network"
         const val settings = ":data:settings"
         const val systemFeatures = ":data:system-features"
     }

@@ -1,14 +1,16 @@
 package com.sottti.android.app.template.data.items.datasource.local.paging
 
-import android.util.Log.e
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
 import androidx.paging.RemoteMediator
 import androidx.paging.RemoteMediator.MediatorResult.Error
 import androidx.paging.RemoteMediator.MediatorResult.Success
+import com.github.michaelbull.result.mapBoth
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
+import com.sottti.android.app.template.data.items.datasource.remote.model.PageApiModel
+import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.model.Item
 import java.io.IOException
 import javax.inject.Inject
@@ -39,14 +41,17 @@ internal class ItemsRemoteMediator @Inject constructor(
                 }
             }
 
-            val networkItems = remoteDataSource.getItems(
-                page = page,
-                pageSize = state.config.pageSize,
+            remoteDataSource.getItems(
+                page = PageApiModel(page),
+                pageSize = PageSizeApiModel(state.config.pageSize),
+            ).mapBoth(
+                success = { result ->
+                    if (loadType == LoadType.REFRESH) localDataSource.clearAll()
+                    if (result.items.isNotEmpty()) localDataSource.saveItems(result.items)
+                    return Success(endOfPaginationReached = result.items.isEmpty())
+                },
+                failure = { exception -> return Error(exception) },
             )
-            if (networkItems.isNotEmpty()) {
-                localDataSource.saveItems(networkItems)
-            }
-            Success(endOfPaginationReached = networkItems.isEmpty())
         } catch (e: IOException) {
             Error(e)
         } catch (e: Exception) {

@@ -15,4 +15,7 @@ internal interface ItemsDao {
 
     @Query(""" SELECT * FROM items ORDER BY name ASC """)
     fun observeItems(): PagingSource<Int, ItemRoomModel>
+
+    @Query("DELETE FROM items")
+    fun clearAll()
 }

@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.domain.cores.models
+package com.sottti.android.app.template.domain.core.models
 
 import androidx.annotation.ChecksSdkIntAtLeast
 

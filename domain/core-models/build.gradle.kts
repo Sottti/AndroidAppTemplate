@@ -4,4 +4,5 @@ plugins {
 
 dependencies {
     implementation(libs.annotations)
+    implementation(libs.result)
 }

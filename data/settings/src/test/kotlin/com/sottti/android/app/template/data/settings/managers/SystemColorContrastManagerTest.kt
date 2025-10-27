@@ -9,7 +9,7 @@ import com.sottti.android.app.template.data.settings.managers.fakes.FakeUiModeMa
 import com.sottti.android.app.template.data.settings.mapper.HIGH_CONTRAST_THRESHOLD
 import com.sottti.android.app.template.data.settings.mapper.MEDIUM_CONTRAST_THRESHOLD
 import com.sottti.android.app.template.data.settings.mapper.STANDARD_CONTRAST_THRESHOLD
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import com.sottti.android.app.template.domain.system.features.FakeSystemFeatures
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

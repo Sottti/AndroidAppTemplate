@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.settings.managers.fakes
 
 import com.sottti.android.app.template.data.settings.managers.SystemColorContrastManager
-import com.sottti.android.app.template.domain.cores.models.SystemColorContrast
+import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 

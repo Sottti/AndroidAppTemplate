@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.settings.managers
 
 import android.content.Context
 import android.content.res.Configuration
-import com.sottti.android.app.template.domain.cores.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme
 import com.sottti.android.app.template.utils.lifecycle.observeConfigurationChanges
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
