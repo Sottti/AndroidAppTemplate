@@ -12,11 +12,13 @@ internal class ItemMappingPagingSource(
     private val roomPagingSource: PagingSource<Int, ItemRoomModel>,
 ) : PagingSource<Int, Item>() {
 
-    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, Item> {
-        return when (val roomResult = roomPagingSource.load(params)) {
+    override suspend fun load(
+        params: LoadParams<Int>,
+    ): LoadResult<Int, Item> =
+        when (val roomResult = roomPagingSource.load(params)) {
             is Invalid -> Invalid()
             is Error -> Error(roomResult.throwable)
-            is Page ->  Page(
+            is Page -> Page(
                 data = roomResult.data.map { it.toDomain() },
                 prevKey = roomResult.prevKey,
                 nextKey = roomResult.nextKey,
@@ -24,7 +26,6 @@ internal class ItemMappingPagingSource(
                 itemsAfter = roomResult.itemsAfter,
             )
         }
-    }
 
     override fun getRefreshKey(state: PagingState<Int, Item>): Int? =
         state.anchorPosition?.let { anchorPosition ->

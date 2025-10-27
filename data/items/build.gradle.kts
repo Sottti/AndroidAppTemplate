@@ -19,4 +19,10 @@ dependencies {
     implementation(project(module.domain.items))
     ksp(libs.hilt.compiler)
     ksp(libs.room.compiler)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.test.core)
+    testImplementation(libs.truth)
 }
