@@ -5,7 +5,7 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageSi
 import com.sottti.android.app.template.data.items.datasource.remote.model.PaginatedItemsApiModel
 import com.sottti.android.app.template.data.network.model.ResultApiModel
 
-internal interface ItemsApiCalls {
+internal fun interface ItemsApiCalls {
     suspend fun getItems(
         page: PageApiModel,
         size: PageSizeApiModel,
