@@ -5,7 +5,8 @@ import android.content.res.Configuration
 import androidx.test.core.app.ApplicationProvider
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.domain.core.models.SystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme.DarkSystemTheme
+import com.sottti.android.app.template.domain.core.models.SystemTheme.LightSystemTheme
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -16,7 +17,6 @@ import org.robolectric.annotation.Config
 @Config(sdk = [34])
 @RunWith(RobolectricTestRunner::class)
 internal class ThemeManagerTest {
-
     private lateinit var initialContext: Context
 
     @Before
@@ -29,9 +29,10 @@ internal class ThemeManagerTest {
         val darkContext = getThemedContext(isNightMode = true)
         val darkManager = ThemeManagerImpl(context = darkContext)
 
+
         val theme = darkManager.getSystemTheme()
 
-        assertThat(theme).isEqualTo(SystemTheme.DarkSystemTheme)
+        assertThat(theme).isEqualTo(DarkSystemTheme)
     }
 
     @Test
@@ -41,7 +42,7 @@ internal class ThemeManagerTest {
 
         val theme = lightManager.getSystemTheme()
 
-        assertThat(theme).isEqualTo(SystemTheme.LightSystemTheme)
+        assertThat(theme).isEqualTo(LightSystemTheme)
     }
 
     @Test
@@ -51,7 +52,7 @@ internal class ThemeManagerTest {
             val lightManager = ThemeManagerImpl(context = lightContext)
 
             lightManager.observeSystemTheme().test {
-                assertThat(awaitItem()).isEqualTo(SystemTheme.LightSystemTheme)
+                assertThat(awaitItem()).isEqualTo(LightSystemTheme)
                 cancelAndIgnoreRemainingEvents()
             }
         }

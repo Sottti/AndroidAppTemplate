@@ -13,7 +13,6 @@ dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.kotlin.test)
-    testImplementation(libs.mockk)
     testImplementation(libs.truth)
     testImplementation(libs.turbine)
 }

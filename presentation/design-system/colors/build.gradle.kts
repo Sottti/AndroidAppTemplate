@@ -19,6 +19,5 @@ dependencies {
     implementation(project(module.domain.coreModels))
 
     testImplementation(libs.junit)
-    testImplementation(libs.mockk)
     testImplementation(libs.truth)
 }

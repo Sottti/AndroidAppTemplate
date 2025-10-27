@@ -1,13 +1,11 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
-import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
-    alias(libs.plugins.gradle.versions) apply true
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
@@ -18,14 +16,12 @@ plugins {
 }
 
 subprojects {
-    afterEvaluate {
-        when {
-            plugins.hasPlugin("com.android.application") -> {
-                configure<ApplicationExtension> { androidApplicationConfig() }
-            }
+    plugins.withId("com.android.application") {
+        configure<ApplicationExtension> { androidApplicationConfig() }
+    }
 
-            plugins.hasPlugin("com.android.library") -> androidLibraryConfig()
-        }
+    plugins.withId("com.android.library") {
+        androidLibraryConfig()
     }
 
     plugins.withId("org.jetbrains.kotlin.android") {
@@ -33,7 +29,6 @@ subprojects {
             explicitApi()
             jvmToolchain(17)
             compilerOptions {
-                jvmTarget.set(JvmTarget.JVM_17)
                 freeCompilerArgs.add("-Xwhen-guards")
                 freeCompilerArgs.add("-Xcontext-parameters")
                 freeCompilerArgs.add("-Xannotation-default-target=param-property")
@@ -59,11 +54,6 @@ private fun ApplicationExtension.androidApplicationConfig() {
         minSdk = minSdk()
         targetSdk = targetSdk()
     }
-
-    compileOptions {
-        sourceCompatibility = javaVersion()
-        targetCompatibility = javaVersion()
-    }
 }
 
 private fun Project.androidLibraryConfig() {
@@ -71,15 +61,9 @@ private fun Project.androidLibraryConfig() {
         compileSdk = compileSdk()
         defaultConfig { minSdk = minSdk() }
         lint { targetSdk = targetSdk() }
-
-        compileOptions {
-            sourceCompatibility = javaVersion()
-            targetCompatibility = javaVersion()
-        }
     }
 }
 
 private fun compileSdk() = libs.versions.compileSdk.get().toInt()
-private fun javaVersion() = JavaVersion.VERSION_17
 private fun minSdk() = libs.versions.minSdk.get().toInt()
 private fun targetSdk() = libs.versions.targetSdk.get().toInt()
