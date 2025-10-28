@@ -14,15 +14,15 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
         FakeItemMappingPagingSource(saved)
             .also { source -> activeSources += source }
 
-    override suspend fun saveItems(items: List<Item>) {
+    override suspend fun insertOrUpdate(
+        clearExisting: Boolean,
+        items: List<Item>,
+    ) {
+        if (clearExisting) {
+            clearCalls++
+            saved.clear()
+        }
         saved.addAll(items)
-        activeSources
-            .forEach { pagingSource -> pagingSource.invalidate() }
-    }
-
-    override suspend fun clearAll() {
-        clearCalls++
-        saved.clear()
         activeSources
             .forEach { pagingSource -> pagingSource.invalidate() }
     }

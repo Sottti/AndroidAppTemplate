@@ -1,5 +1,6 @@
 package com.sottti.android.app.template.data.items.datasource.local.paging
 
+import android.net.http.HttpException
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState
@@ -34,28 +35,36 @@ internal class ItemsRemoteMediator @Inject constructor(
                 LoadType.PREPEND -> return Success(endOfPaginationReached = true)
                 LoadType.APPEND -> {
                     state.lastItemOrNull() ?: return Success(endOfPaginationReached = false)
-                    val totalItemsLoaded = state.pages.sumOf { items -> items.data.size }
-                    val numPagesLoaded = totalItemsLoaded / state.config.pageSize
-                    val nextPageToLoad = numPagesLoaded + 1
-                    nextPageToLoad
+                    nextPageToLoad(state)
                 }
             }
-
-            remoteDataSource.getItems(
-                page = PageApiModel(page),
-                pageSize = PageSizeApiModel(state.config.pageSize),
-            ).mapBoth(
-                success = { result ->
-                    if (loadType == LoadType.REFRESH) localDataSource.clearAll()
-                    if (result.items.isNotEmpty()) localDataSource.saveItems(result.items)
-                    return Success(endOfPaginationReached = result.items.isEmpty())
-                },
-                failure = { exception -> return Error(exception) },
-            )
+            return fetchFromRemote(loadType = loadType, page = page, state = state)
         } catch (e: IOException) {
             Error(e)
-        } catch (e: Exception) {
+        } catch (e: HttpException) {
             Error(e)
         }
     }
+
+    private fun nextPageToLoad(state: PagingState<Int, Item>): Int {
+        val totalItemsLoaded = state.pages.sumOf { items -> items.data.size }
+        val numPagesLoaded = totalItemsLoaded / state.config.pageSize
+        val nextPageToLoad = numPagesLoaded + 1
+        return nextPageToLoad
+    }
+
+    private suspend fun fetchFromRemote(
+        loadType: LoadType,
+        page: Int,
+        state: PagingState<Int, Item>,
+    ): MediatorResult = remoteDataSource.getItems(
+        page = PageApiModel(page),
+        pageSize = PageSizeApiModel(state.config.pageSize),
+    ).mapBoth(
+        success = { result ->
+            localDataSource.insertOrUpdate(loadType == LoadType.REFRESH, result.items)
+            return Success(endOfPaginationReached = result.items.isEmpty())
+        },
+        failure = { exception -> return Error(exception) },
+    )
 }

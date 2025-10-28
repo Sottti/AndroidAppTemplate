@@ -14,11 +14,13 @@ internal class ItemsLocalDataSourceImpl @Inject constructor(
     override fun observeItems(): PagingSource<Int, Item> =
         ItemMappingPagingSource(roomPagingSource = dao.observeItems())
 
-    override suspend fun saveItems(items: List<Item>) {
-        dao.insertOrUpdate(items.map { it.toRoom() })
-    }
-
-    override suspend fun clearAll() {
-        dao.clearAll()
+    override suspend fun insertOrUpdate(
+        clearExisting: Boolean,
+        items: List<Item>,
+    ) {
+        dao.clearAndInsertOrUpdate(
+            clearExisting = clearExisting,
+            items = items.toRoom(),
+        )
     }
 }

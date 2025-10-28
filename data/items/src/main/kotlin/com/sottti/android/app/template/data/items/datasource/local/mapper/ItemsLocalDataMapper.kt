@@ -18,6 +18,8 @@ internal fun ItemRoomModel.toDomain() =
         )
     )
 
+internal fun List<Item>.toRoom() = map { it.toRoom() }
+
 internal fun Item.toRoom() =
     ItemRoomModel(
         id = id.value,
