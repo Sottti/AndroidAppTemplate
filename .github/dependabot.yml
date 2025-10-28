@@ -3,7 +3,7 @@ updates:
   
   # This entry handles your .toml file AND any .gradle files
   - package-ecosystem: "gradle"
-    directory: "/" 
+    directory: "/"
     schedule:
       interval: "daily"
     labels:
@@ -12,9 +12,9 @@ updates:
     # Optional: This group will batch all "androidx.*" updates
     # from your .toml file into a single PR.
     groups:
-       androidx:
-         patterns:
-           - "androidx.*"
+      androidx:
+        patterns:
+          - "androidx.*"
 
   # (Recommended) This keeps your GitHub Actions workflows up to date
   - package-ecosystem: "github-actions"

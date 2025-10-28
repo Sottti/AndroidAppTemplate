@@ -12,6 +12,7 @@ android {
 
 dependencies {
     implementation(libs.hilt)
+    implementation(project(module.data.items))
     implementation(project(module.data.settings))
     implementation(project(module.data.systemFeatures))
     implementation(project(module.domain.settings))

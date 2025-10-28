@@ -24,5 +24,5 @@ internal abstract class ItemsDatabase : RoomDatabase() {
                 .build()
     }
 
-    abstract fun dao(): ItemsDao
+    abstract fun itemsDao(): ItemsDao
 }

@@ -19,6 +19,7 @@ import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
 import coil3.request.ImageRequest
 import coil3.request.crossfade
+import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
@@ -29,7 +30,7 @@ import com.sottti.android.app.template.presentation.previews.AndroidAppTemplateP
 @Composable
 public fun NetworkImage(
     url: ImageUrl,
-    contentDescription: String,
+    contentDescription: ImageContentDescription,
     modifier: Modifier = Modifier,
     roundedCorners: Boolean = false,
     foreverLoading: Boolean = false,
@@ -53,7 +54,7 @@ public fun NetworkImage(
             painterState is AsyncImagePainter.State.Success ->
                 Image(
                     painter = painter,
-                    contentDescription = contentDescription,
+                    contentDescription = contentDescription.value,
                     contentScale = ContentScale.Crop,
                     modifier = imageModifier,
                 )
@@ -66,7 +67,7 @@ public fun NetworkImage(
 @Composable
 private fun imageRequest(url: ImageUrl): ImageRequest {
     val context = LocalContext.current
-    return remember(url, context) {
+    return remember(url.value, context) {
         ImageRequest
             .Builder(context)
             .data(url.value)

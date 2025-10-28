@@ -17,12 +17,12 @@ internal class ItemsLocalDataMapperTest {
     @Test
     fun `maps items to room`() {
         val items = listOf(item, item2)
-        val result = items.toRoom()
-        assertThat(result).isEqualTo(listOf(itemRoomModel,item2RoomModel))
+        val result = items.toRoom(System.currentTimeMillis())
+        assertThat(result).isEqualTo(listOf(itemRoomModel, item2RoomModel))
     }
 
     @Test
     fun `maps item to room`() {
-        assertThat(item.toRoom()).isEqualTo(itemRoomModel)
+        assertThat(item.toRoom(System.currentTimeMillis())).isEqualTo(itemRoomModel)
     }
 }

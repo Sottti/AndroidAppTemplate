@@ -36,6 +36,7 @@ include(
     ":presentation:design-system:shapes",
     ":presentation:design-system:text",
     ":presentation:design-system:themes",
+    ":presentation:design-system:top-bars",
     ":presentation:design-system:typography",
     ":presentation:features:home",
     ":presentation:features:item-detail",

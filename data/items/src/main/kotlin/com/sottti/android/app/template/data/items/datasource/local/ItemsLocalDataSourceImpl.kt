@@ -6,21 +6,29 @@ import com.sottti.android.app.template.data.items.datasource.local.mapper.ItemMa
 import com.sottti.android.app.template.data.items.datasource.local.mapper.toRoom
 import com.sottti.android.app.template.model.Item
 import javax.inject.Inject
+import kotlin.time.Duration.Companion.minutes
 
 internal class ItemsLocalDataSourceImpl @Inject constructor(
-    private val dao: ItemsDao,
+    private val itemsDao: ItemsDao,
+    private val timeProvider: TimeProvider,
 ) : ItemsLocalDataSource {
 
-    override fun observeItems(): PagingSource<Int, Item> =
-        ItemMappingPagingSource(roomPagingSource = dao.observeItems())
+    private val maxExpTime = 30.minutes.inWholeMilliseconds
 
-    override suspend fun insertOrUpdate(
+    override fun observeItems(): PagingSource<Int, Item> =
+        ItemMappingPagingSource(roomPagingSource = itemsDao.observeItems())
+
+    override suspend fun needRefresh(): Boolean {
+        val oldestTimestamp = itemsDao.getOldestItemTimestamp() ?: return true
+        val isExpired = (timeProvider.nowInMillis() - oldestTimestamp) > maxExpTime
+        return isExpired
+    }
+
+    override suspend fun upsert(
         clearExisting: Boolean,
         items: List<Item>,
     ) {
-        dao.clearAndInsertOrUpdate(
-            clearExisting = clearExisting,
-            items = items.toRoom(),
-        )
+        itemsDao.clearAll()
+        itemsDao.upsert(items = items.toRoom(timeProvider.nowInMillis()))
     }
 }

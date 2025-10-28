@@ -5,5 +5,6 @@ import com.sottti.android.app.template.model.Item
 
 internal interface ItemsLocalDataSource {
     fun observeItems(): PagingSource<Int, Item>
-    suspend fun insertOrUpdate(clearExisting: Boolean, items: List<Item>)
+    suspend fun needRefresh(): Boolean
+    suspend fun upsert(clearExisting: Boolean = false, items: List<Item>)
 }

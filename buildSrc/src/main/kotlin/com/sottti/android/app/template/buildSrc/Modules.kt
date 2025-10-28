@@ -26,6 +26,7 @@ object module {
             const val shapes = ":presentation:design-system:shapes"
             const val text = ":presentation:design-system:text"
             const val themes = ":presentation:design-system:themes"
+            const val topBars = ":presentation:design-system:top-bars"
             const val typography = ":presentation:design-system:typography"
         }
     }
