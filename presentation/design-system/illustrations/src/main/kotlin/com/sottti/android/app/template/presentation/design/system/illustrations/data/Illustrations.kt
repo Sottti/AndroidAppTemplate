@@ -12,4 +12,13 @@ public object Illustrations {
                 descriptionResId = description,
             )
     }
+
+    public object AndroidRobotMatrix {
+        private val description: Int = R.string.description_illustration_android_robot_matrix
+        public val state: IllustrationState =
+            IllustrationState(
+                resId = R.drawable.il_android_robot_matrix,
+                descriptionResId = description,
+            )
+    }
 }

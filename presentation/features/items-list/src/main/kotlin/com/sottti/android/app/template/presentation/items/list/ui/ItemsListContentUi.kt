@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
@@ -20,7 +21,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.text.style.TextAlign
 import androidx.paging.LoadState
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
@@ -73,7 +73,7 @@ private fun Items(
     padding: PaddingValues,
 ) {
     when (items.loadState.refresh) {
-        is Loading -> FillMaxWidthProgressIndicator(padding)
+        is Loading -> ProgressIndicatorFillMaxSize(padding)
         is LoadState.Error -> ErrorUi(modifier = Modifier.padding(padding))
         is NotLoading -> when (items.itemCount) {
             0 -> EmptyUi(modifier = Modifier.padding(padding))
@@ -104,10 +104,18 @@ private fun ItemsLoaded(
         state = listState,
         verticalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
     ) {
+        if (items.loadState.prepend is Loading) {
+            item(key = "prepend loading") { ProgressIndicatorGridItem() }
+        }
+
         items(
             count = items.itemCount,
             key = { index -> items[index]?.id ?: index }
         ) { index -> items[index]?.let { item -> ItemCard(item = item, onAction = onAction) } }
+
+        if (items.loadState.append is Loading) {
+            item(key = "append loading") { ProgressIndicatorGridItem() }
+        }
     }
 }
 
@@ -117,15 +125,19 @@ private fun ItemCard(
     onAction: (ItemsListActions) -> Unit,
 ) {
     Card(
-        modifier = Modifier
-            .fillMaxSize()
-            .aspectRatio(1f),
+        modifier = Modifier.aspectRatio(1f),
         shape = shapes.roundedCorner.large,
         onClick = { onAction(ShowDetail) },
     ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            CardImage(item.description, item.imageUrl)
-            CardText(item.name)
+        Column(
+            modifier = Modifier.fillMaxSize(),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            CardImage(
+                description = item.description,
+                imageUrl = item.imageUrl,
+            )
+            CardText(text = item.name)
         }
     }
 }
@@ -138,7 +150,7 @@ private fun ColumnScope.CardImage(
     NetworkImage(
         modifier = Modifier
             .fillMaxWidth()
-            .weight(1f, fill = true)
+            .weight(1f)
             .padding(dimensions.spacing.small),
         url = imageUrl,
         contentDescription = description,
@@ -153,17 +165,21 @@ private fun CardText(text: String) {
             .padding(vertical = dimensions.spacing.smallMedium)
             .padding(horizontal = dimensions.spacing.small),
         text = text,
-        textAlign = TextAlign.Center,
     )
 }
 
 @Composable
-private fun FillMaxWidthProgressIndicator(
-    padding: PaddingValues = PaddingValues(vertical = dimensions.spacing.medium),
+private fun ProgressIndicatorFillMaxSize(
+    padding: PaddingValues,
 ) {
     ProgressIndicator(
         modifier = Modifier
             .padding(padding)
-            .fillMaxWidth(),
+            .fillMaxSize()
     )
+}
+
+@Composable
+private fun ProgressIndicatorGridItem() {
+    ProgressIndicator(modifier = Modifier.size(dimensions.components.cardInGrid.small))
 }

@@ -17,7 +17,7 @@ import com.sottti.android.app.template.presentation.previews.AndroidAppTemplateP
 public fun ErrorUi(
     modifier: Modifier = Modifier,
     button: ErrorButton? = null,
-    illustration: IllustrationState = Illustrations.FamilyBeachSunset.state,
+    illustration: IllustrationState = Illustrations.AndroidRobotMatrix.state,
     @StringRes primaryText: Int = R.string.error_primary_text_default,
     @StringRes secondaryText: Int = R.string.error_secondary_text_default,
 ) {

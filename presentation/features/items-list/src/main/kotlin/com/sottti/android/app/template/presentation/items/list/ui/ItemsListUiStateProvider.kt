@@ -8,8 +8,8 @@ import androidx.paging.LoadState.NotLoading
 import androidx.paging.LoadStates
 import androidx.paging.PagingData
 import com.sottti.android.app.template.presentation.items.list.R
-import com.sottti.android.app.template.presentation.items.list.data.fixtureItem2UiModel
-import com.sottti.android.app.template.presentation.items.list.data.fixtureItemUiModel
+import com.sottti.android.app.template.presentation.items.list.fixtures.listOfMultipleItemsUiModels
+import com.sottti.android.app.template.presentation.items.list.fixtures.listOfTwoItemsUiModels
 import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import kotlinx.coroutines.flow.Flow
@@ -19,13 +19,14 @@ internal class ItemsListUiStateProvider : PreviewParameterProvider<ItemsListStat
     override val values: Sequence<ItemsListState>
         get() = sequence {
             yield(loadingState)
-            yield(loadedStateAppendLoading)
             yield(loadedStatePrependLoading)
+            yield(loadedStateAppendLoading)
             yield(loadedStateAppendPrependBothLoading)
             yield(loadedStateNoPagination)
             yield(loadedStateAppendEndReached)
             yield(loadedStatePrependEndReached)
             yield(loadedStateAppendPrependBothEndsReached)
+            yield(loadedStateLoadsOfItems)
             yield(emptyState)
             yield(errorState)
         }
@@ -51,6 +52,12 @@ private val loadedStateAppendPrependBothEndsReached = itemsListState(
     prependState = NotLoading(endOfPaginationReached = true)
 )
 
+private val loadedStateLoadsOfItems = itemsListState(
+    appendState = NotLoading(endOfPaginationReached = true),
+    data = listOfMultipleItemsUiModels,
+)
+
+
 private val emptyState = itemsListState(
     refreshState = NotLoading(endOfPaginationReached = true),
     appendState = NotLoading(endOfPaginationReached = true),
@@ -63,20 +70,12 @@ private val errorState = itemsListState(
     data = emptyList(),
 )
 
-private val items = listOf(
-    fixtureItemUiModel,
-    fixtureItem2UiModel,
-)
-
 @OptIn(ExperimentalMaterial3Api::class)
 private fun itemsListState(
     refreshState: LoadState = NotLoading(endOfPaginationReached = false),
     appendState: LoadState = NotLoading(endOfPaginationReached = false),
     prependState: LoadState = NotLoading(endOfPaginationReached = false),
-    data: List<ItemUiModel> = listOf(
-        fixtureItemUiModel,
-        fixtureItem2UiModel,
-    ),
+    data: List<ItemUiModel> = listOfTwoItemsUiModels,
 ) = ItemsListState(
     titleResId = R.string.items_list_title,
     items = itemsPagingDataFlow(

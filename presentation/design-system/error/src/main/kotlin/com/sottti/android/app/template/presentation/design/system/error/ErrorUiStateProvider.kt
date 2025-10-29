@@ -14,7 +14,7 @@ internal class ErrorUiStateProvider : PreviewParameterProvider<ErrorState?> {
 
 private val defaultError = null
 private val alternativeError = ErrorState(
-    illustration = Illustrations.FamilyBeachSunset.state,
+    illustration = Illustrations.AndroidRobotMatrix.state,
     primaryText = FixturesR.fixture_primary_text,
     secondaryText = FixturesR.fixture_secondary_text,
     buttonText = FixturesR.fixture_button_text,

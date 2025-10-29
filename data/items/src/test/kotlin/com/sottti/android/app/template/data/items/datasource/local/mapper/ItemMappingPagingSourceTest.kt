@@ -4,11 +4,11 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.fixtures.item
-import com.sottti.android.app.template.data.items.datasource.fixtures.item2
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.item2RoomModel
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.itemRoomModel
 import com.sottti.android.app.template.data.items.datasource.local.mapper.fakes.FakeRoomPagingSource
+import com.sottti.android.app.template.fixtures.fixtureItem
+import com.sottti.android.app.template.fixtures.fixtureItem2
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
@@ -57,10 +57,10 @@ internal class ItemMappingPagingSourceTest {
         )
 
         val page1 = PagingSource.LoadResult.Page(
-            data = listOf(item), prevKey = null, nextKey = 2, itemsBefore = 0, itemsAfter = 1
+            data = listOf(fixtureItem), prevKey = null, nextKey = 2, itemsBefore = 0, itemsAfter = 1
         )
         val page2 = PagingSource.LoadResult.Page(
-            data = listOf(item2), prevKey = 1, nextKey = 3, itemsBefore = 1, itemsAfter = 0
+            data = listOf(fixtureItem2), prevKey = 1, nextKey = 3, itemsBefore = 1, itemsAfter = 0
         )
 
         val state = PagingState(

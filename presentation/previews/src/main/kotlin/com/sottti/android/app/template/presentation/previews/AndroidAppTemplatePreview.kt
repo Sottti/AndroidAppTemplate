@@ -7,7 +7,7 @@ import androidx.compose.ui.tooling.preview.Preview
 @Preview(
     device = DEVICE,
     group = LIGHT_THEME_GROUP,
-    name = DARK_THEME_NAME,
+    name = LIGHT_THEME_NAME,
 )
 @Preview(
     device = DEVICE,
