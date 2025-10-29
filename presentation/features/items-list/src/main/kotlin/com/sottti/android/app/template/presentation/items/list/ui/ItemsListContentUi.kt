@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyGridItemScope
+import androidx.compose.foundation.lazy.grid.LazyGridScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.Card
@@ -21,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.style.TextAlign
 import androidx.paging.LoadState
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
@@ -121,12 +124,12 @@ private fun ItemsLoaded(
 }
 
 @Composable
-private fun ItemCard(
+private fun LazyGridItemScope.ItemCard(
     item: ItemUiModel,
     onAction: (ItemsListActions) -> Unit,
 ) {
     Card(
-        modifier = Modifier.aspectRatio(1f),
+        modifier = Modifier.aspectRatio(1f).animateItem(),
         shape = shapes.roundedCorner.large,
         onClick = { onAction(ShowDetail) },
     ) {
@@ -166,6 +169,7 @@ private fun CardText(text: String) {
             .padding(vertical = dimensions.spacing.smallMedium)
             .padding(horizontal = dimensions.spacing.small),
         text = text,
+        textAlign = TextAlign.Center,
     )
 }
 
