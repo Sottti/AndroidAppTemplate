@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.presentation.design.system.illustrations.ui
+package com.sottti.android.app.template.presentation.design.system.illustrations.ui.cricled
 
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.illustrations.data.Illustrations
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
+import com.sottti.android.app.template.presentation.design.system.illustrations.ui.default.Illustration
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
 
@@ -24,9 +25,9 @@ public fun CircledIllustration(
     ) {
         Illustration(
             state = state,
+            circled = true,
             modifier = Modifier
-                .fillMaxSize()
-                .padding(dimensions.spacing.extraSmall)
+                .padding(dimensions.spacing.smallMedium)
         )
     }
 }

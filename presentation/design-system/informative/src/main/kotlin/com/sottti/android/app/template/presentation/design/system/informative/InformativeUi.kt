@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
-import com.sottti.android.app.template.presentation.design.system.illustrations.ui.CircledIllustration
+import com.sottti.android.app.template.presentation.design.system.illustrations.ui.cricled.CircledIllustration
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview

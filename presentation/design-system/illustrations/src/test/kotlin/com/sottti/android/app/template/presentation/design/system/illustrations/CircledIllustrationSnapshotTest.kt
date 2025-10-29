@@ -2,7 +2,7 @@ package com.sottti.android.app.template.presentation.design.system.illustrations
 
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
-import com.sottti.android.app.template.presentation.design.system.illustrations.ui.CircledIllustrationPreview
+import com.sottti.android.app.template.presentation.design.system.illustrations.ui.cricled.CircledIllustrationPreview
 import com.sottti.android.app.template.presentation.paparazzi.nightModeParameters
 import com.sottti.android.app.template.presentation.paparazzi.paparazzi
 import org.junit.Rule

@@ -34,10 +34,11 @@ internal fun EmptyUiPreview(
     state: EmptyState?,
 ) {
     AndroidAppTemplateTheme {
+        val modifier = Modifier.background(colors.background)
         when (state) {
-            null -> EmptyUi(modifier = Modifier.background(colors.background))
+            null -> EmptyUi(modifier = modifier)
             else -> EmptyUi(
-                modifier = Modifier.background(colors.background),
+                modifier = modifier,
                 illustration = state.illustration,
                 primaryText = state.primaryText,
                 secondaryText = state.secondaryText,

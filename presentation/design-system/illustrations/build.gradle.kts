@@ -13,6 +13,7 @@ android {
 
 dependencies {
     implementation(libs.compose.material)
+    implementation(libs.compose.ui.tooling)
     implementation(libs.material)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.dimensions))
