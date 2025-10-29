@@ -8,6 +8,10 @@ android {
 }
 
 dependencies {
+    implementation(libs.compose.foundation)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
     implementation(libs.kotlin.coroutines.core)
     implementation(libs.lifecycle.viewModel)
+    implementation(platform(libs.compose.bom))
 }

@@ -1,4 +1,4 @@
-package com.sottti.roller.coasters.presentation.topBars.ui
+package com.sottti.android.app.template.presentation.topBars.ui
 
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode

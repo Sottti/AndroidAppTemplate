@@ -4,8 +4,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
-import androidx.compose.foundation.layout.calculateEndPadding
-import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,7 +19,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
@@ -39,6 +36,7 @@ import com.sottti.android.app.template.presentation.images.network.NetworkImage
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
+import com.sottti.android.app.template.presentation.utils.plus
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -96,14 +94,7 @@ private fun ItemsLoaded(
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = 112.dp),
-        contentPadding = PaddingValues(
-            start = padding.calculateStartPadding(LocalLayoutDirection.current)
-                    + dimensions.spacing.medium,
-            end = padding.calculateEndPadding(LocalLayoutDirection.current)
-                    + dimensions.spacing.medium,
-            top = padding.calculateTopPadding() + dimensions.spacing.medium,
-            bottom = padding.calculateBottomPadding() + dimensions.spacing.medium,
-        ),
+        contentPadding = padding + PaddingValues(dimensions.spacing.medium),
         horizontalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
         modifier = Modifier.nestedScroll(nestedScrollConnection),
         state = listState,
@@ -124,7 +115,7 @@ private fun ItemCard(
     Card(
         modifier = Modifier
             .fillMaxSize()
-            .aspectRatio(0.9f),
+            .aspectRatio(1f),
         shape = shapes.roundedCorner.large,
         onClick = { onAction(ShowDetail) },
     ) {
@@ -140,9 +131,9 @@ private fun ItemCard(
                     roundedCorners = true,
                 )
             }
-            Text.Body.Medium(
+            Text.Body.Small(
                 modifier = Modifier
-                    .padding(vertical = dimensions.spacing.medium)
+                    .padding(vertical = dimensions.spacing.smallMedium)
                     .padding(horizontal = dimensions.spacing.small),
                 text = item.name.value,
                 textAlign = TextAlign.Center,

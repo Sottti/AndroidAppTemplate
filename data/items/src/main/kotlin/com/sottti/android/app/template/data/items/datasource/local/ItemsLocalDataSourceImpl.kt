@@ -13,14 +13,14 @@ internal class ItemsLocalDataSourceImpl @Inject constructor(
     private val timeProvider: TimeProvider,
 ) : ItemsLocalDataSource {
 
-    private val maxExpTime = 30.minutes.inWholeMilliseconds
+    private val expirationTime = 30.minutes.inWholeMilliseconds
 
     override fun observeItems(): PagingSource<Int, Item> =
         ItemMappingPagingSource(roomPagingSource = itemsDao.observeItems())
 
     override suspend fun needRefresh(): Boolean {
         val oldestTimestamp = itemsDao.getOldestItemTimestamp() ?: return true
-        val isExpired = (timeProvider.nowInMillis() - oldestTimestamp) > maxExpTime
+        val isExpired = (timeProvider.nowInMillis() - oldestTimestamp) > expirationTime
         return isExpired
     }
 
@@ -28,7 +28,9 @@ internal class ItemsLocalDataSourceImpl @Inject constructor(
         clearExisting: Boolean,
         items: List<Item>,
     ) {
-        itemsDao.clearAll()
+        if (clearExisting) {
+            itemsDao.clearAll()
+        }
         itemsDao.upsert(items = items.toRoom(timeProvider.nowInMillis()))
     }
 }

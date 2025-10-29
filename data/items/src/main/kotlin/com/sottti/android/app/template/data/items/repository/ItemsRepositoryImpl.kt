@@ -32,12 +32,7 @@ internal class ItemsRepositoryImpl @Inject constructor(
         if (localDataSource.needRefresh()) {
             remoteDataSource
                 .getItems()
-                .onSuccess { items ->
-                    localDataSource.upsert(
-                        clearExisting = true,
-                        items = items,
-                    )
-                }
+                .onSuccess { items -> localDataSource.upsert(clearExisting = true, items = items) }
         }
     }
 }
