@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="empty_primary_text_default">No items in sight</string>
+    <string name="empty_secondary_text_default">Take a rest and get ready when items are back.</string>
+</resources>

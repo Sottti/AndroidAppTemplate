@@ -20,6 +20,7 @@ object module {
         object designSystem {
             const val colors = ":presentation:design-system:colors"
             const val dimensions = ":presentation:design-system:dimensions"
+            const val empty = ":presentation:design-system:empty"
             const val iconResources = ":presentation:design-system:icon-resources"
             const val illustrations = ":presentation:design-system:illustrations"
             const val images = ":presentation:design-system:images"

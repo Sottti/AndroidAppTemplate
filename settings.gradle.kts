@@ -30,6 +30,7 @@ include(
     ":domain:system-features",
     ":presentation:design-system:colors",
     ":presentation:design-system:dimensions",
+    ":presentation:design-system:empty",
     ":presentation:design-system:icon-resources",
     ":presentation:design-system:illustrations",
     ":presentation:design-system:images",
