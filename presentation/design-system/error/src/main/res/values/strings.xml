@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_button_text_default">Retry</string>
+    <string name="error_primary_text_default">Oops!</string>
+    <string name="error_secondary_text_default">Something went off. &#10;We\'ll try to fix it as soon as possible.</string>
+</resources>
