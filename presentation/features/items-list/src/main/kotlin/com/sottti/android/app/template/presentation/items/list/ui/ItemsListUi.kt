@@ -5,8 +5,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.items.list.data.ItemsListViewModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
@@ -49,6 +51,14 @@ private fun ItemListUi(
 
 @Composable
 @AndroidAppTemplatePreview
-private fun ItemListUiPreview() {
-
+private fun ItemListUiPreview(
+    @PreviewParameter(ItemsListUiStateProvider::class)
+    state: ItemsListState,
+) {
+    AndroidAppTemplateTheme {
+        ItemListUi(
+            state = state,
+            onAction = {},
+        )
+    }
 }

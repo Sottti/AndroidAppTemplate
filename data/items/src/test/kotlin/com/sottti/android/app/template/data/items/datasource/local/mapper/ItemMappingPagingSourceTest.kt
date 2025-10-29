@@ -4,10 +4,10 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.data.item
-import com.sottti.android.app.template.data.items.datasource.data.item2
-import com.sottti.android.app.template.data.items.datasource.data.item2RoomModel
-import com.sottti.android.app.template.data.items.datasource.data.itemRoomModel
+import com.sottti.android.app.template.data.items.datasource.fixtures.item
+import com.sottti.android.app.template.data.items.datasource.fixtures.item2
+import com.sottti.android.app.template.data.items.datasource.local.fixtures.item2RoomModel
+import com.sottti.android.app.template.data.items.datasource.local.fixtures.itemRoomModel
 import com.sottti.android.app.template.data.items.datasource.local.mapper.fakes.FakeRoomPagingSource
 import kotlinx.coroutines.test.runTest
 import org.junit.Test

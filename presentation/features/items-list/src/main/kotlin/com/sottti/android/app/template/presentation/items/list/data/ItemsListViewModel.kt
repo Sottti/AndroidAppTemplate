@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import androidx.paging.map
-import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.presentation.items.list.R
+import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
@@ -30,9 +30,9 @@ internal class ItemsListViewModel @Inject constructor(
     private val refreshItemsIfNeeded: RefreshItemsIfNeeded,
 ) : ViewModel() {
 
-    private val items: Flow<PagingData<Item>> =
+    private val items: Flow<PagingData<ItemUiModel>> =
         observeItems()
-            .map { pagingData -> pagingData.map { item -> item } }
+            .map { pagingData -> pagingData.map { item -> item.toUi() } }
             .onStart { refreshItemsIfNeeded() }
             .cachedIn(viewModelScope)
 

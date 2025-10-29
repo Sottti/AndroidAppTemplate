@@ -2,6 +2,7 @@ package com.sottti.android.app.template.presentation.items.list.ui
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,19 +21,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.paging.LoadState
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.core.models.ImageContentDescription
+import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.empty.EmptyUi
+import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MainTopBar
 import com.sottti.android.app.template.presentation.images.network.NetworkImage
+import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
@@ -62,7 +66,7 @@ internal fun ItemsListContent(
 
 @Composable
 private fun Items(
-    items: LazyPagingItems<Item>,
+    items: LazyPagingItems<ItemUiModel>,
     listState: LazyGridState,
     nestedScrollConnection: NestedScrollConnection,
     onAction: (ItemsListActions) -> Unit,
@@ -70,9 +74,9 @@ private fun Items(
 ) {
     when (items.loadState.refresh) {
         is Loading -> FillMaxWidthProgressIndicator(padding)
-        is LoadState.Error -> TODO()
+        is LoadState.Error -> ErrorUi(modifier = Modifier.padding(padding))
         is NotLoading -> when (items.itemCount) {
-            0 -> {}
+            0 -> EmptyUi(modifier = Modifier.padding(padding))
             else -> ItemsLoaded(
                 items = items,
                 listState = listState,
@@ -86,14 +90,14 @@ private fun Items(
 
 @Composable
 private fun ItemsLoaded(
-    items: LazyPagingItems<Item>,
+    items: LazyPagingItems<ItemUiModel>,
     listState: LazyGridState,
     nestedScrollConnection: NestedScrollConnection,
     onAction: (ItemsListActions) -> Unit,
     padding: PaddingValues,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(minSize = 112.dp),
+        columns = GridCells.Adaptive(minSize = dimensions.components.cardInGrid.small),
         contentPadding = padding + PaddingValues(dimensions.spacing.medium),
         horizontalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
         modifier = Modifier.nestedScroll(nestedScrollConnection),
@@ -102,14 +106,14 @@ private fun ItemsLoaded(
     ) {
         items(
             count = items.itemCount,
-            key = { index -> items[index]?.id?.value ?: index }
+            key = { index -> items[index]?.id ?: index }
         ) { index -> items[index]?.let { item -> ItemCard(item = item, onAction = onAction) } }
     }
 }
 
 @Composable
 private fun ItemCard(
-    item: Item,
+    item: ItemUiModel,
     onAction: (ItemsListActions) -> Unit,
 ) {
     Card(
@@ -120,26 +124,37 @@ private fun ItemCard(
         onClick = { onAction(ShowDetail) },
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            item.image.let {
-                NetworkImage(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .weight(1f, fill = true)
-                        .padding(dimensions.spacing.small),
-                    url = it.imageUrl,
-                    contentDescription = it.description,
-                    roundedCorners = true,
-                )
-            }
-            Text.Body.Small(
-                modifier = Modifier
-                    .padding(vertical = dimensions.spacing.smallMedium)
-                    .padding(horizontal = dimensions.spacing.small),
-                text = item.name.value,
-                textAlign = TextAlign.Center,
-            )
+            CardImage(item.description, item.imageUrl)
+            CardText(item.name)
         }
     }
+}
+
+@Composable
+private fun ColumnScope.CardImage(
+    description: ImageContentDescription,
+    imageUrl: ImageUrl,
+) {
+    NetworkImage(
+        modifier = Modifier
+            .fillMaxWidth()
+            .weight(1f, fill = true)
+            .padding(dimensions.spacing.small),
+        url = imageUrl,
+        contentDescription = description,
+        roundedCorners = true,
+    )
+}
+
+@Composable
+private fun CardText(text: String) {
+    Text.Body.Small(
+        modifier = Modifier
+            .padding(vertical = dimensions.spacing.smallMedium)
+            .padding(horizontal = dimensions.spacing.small),
+        text = text,
+        textAlign = TextAlign.Center,
+    )
 }
 
 @Composable

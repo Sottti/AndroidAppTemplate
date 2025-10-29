@@ -8,7 +8,7 @@ import com.sottti.android.app.template.presentation.design.system.dimensions.tok
 
 @Composable
 internal fun dimensions(): Dimensions = Dimensions(
-    component = componentTokens(),
+    components = componentTokens(),
     cornerRadii = cornerRadiiTokens(),
     spacing = spacingTokens(),
 )
