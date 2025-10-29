@@ -6,5 +6,4 @@ import kotlinx.coroutines.flow.Flow
 
 public interface ItemsRepository {
     public fun observeItems(): Flow<PagingData<Item>>
-    public suspend fun refreshItemsIfNeeded()
 }

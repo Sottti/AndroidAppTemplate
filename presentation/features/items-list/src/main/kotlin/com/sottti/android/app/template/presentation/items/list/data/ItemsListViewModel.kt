@@ -13,27 +13,23 @@ import com.sottti.android.app.template.presentation.items.list.model.ItemsListSt
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetailFeature
 import com.sottti.android.app.template.usecase.ObserveItems
-import com.sottti.android.app.template.usecase.RefreshItemsIfNeeded
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.onStart
 import javax.inject.Inject
 
 @HiltViewModel
 internal class ItemsListViewModel @Inject constructor(
     private val navigationManager: NavigationManager,
     private val observeItems: ObserveItems,
-    private val refreshItemsIfNeeded: RefreshItemsIfNeeded,
 ) : ViewModel() {
 
     private val items: Flow<PagingData<ItemUiModel>> =
         observeItems()
             .map { pagingData -> pagingData.map { item -> item.toUi() } }
-            .onStart { refreshItemsIfNeeded() }
             .cachedIn(viewModelScope)
 
     val state: StateFlow<ItemsListState> =

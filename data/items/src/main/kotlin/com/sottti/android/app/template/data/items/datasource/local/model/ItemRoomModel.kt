@@ -5,9 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "items")
 internal data class ItemRoomModel(
-    @PrimaryKey val id: String,
+    @PrimaryKey val id: Int,
     val imageDescription: String,
     val imageUrl: String,
     val name: String,
-    val storedAt: Long,
 )

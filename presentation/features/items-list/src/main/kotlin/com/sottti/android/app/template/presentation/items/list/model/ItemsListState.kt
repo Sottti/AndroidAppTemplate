@@ -16,7 +16,7 @@ internal data class ItemsListState(
 @Immutable
 internal data class ItemUiModel(
     val description: ImageContentDescription,
-    val id: String,
+    val id: Int,
     val imageUrl: ImageUrl,
     val name: String,
 )

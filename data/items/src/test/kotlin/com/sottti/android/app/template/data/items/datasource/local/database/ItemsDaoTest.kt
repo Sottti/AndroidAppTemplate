@@ -17,7 +17,7 @@ class ItemsDaoTest {
         db = ApplicationProvider
             .getApplicationContext<Context>()
             .createDb()
-        dao = db.itemsDao()
+        dao = db.itemsDao
     }
 
     @After

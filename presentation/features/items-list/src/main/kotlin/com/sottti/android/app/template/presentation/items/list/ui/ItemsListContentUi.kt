@@ -26,6 +26,7 @@ import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
+import androidx.paging.compose.itemKey
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
@@ -110,7 +111,7 @@ private fun ItemsLoaded(
 
         items(
             count = items.itemCount,
-            key = { index -> items[index]?.id ?: index }
+            key = items.itemKey { it.id },
         ) { index -> items[index]?.let { item -> ItemCard(item = item, onAction = onAction) } }
 
         if (items.loadState.append is Loading) {

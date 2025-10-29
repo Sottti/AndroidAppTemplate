@@ -6,14 +6,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 internal data class ItemApiModel(
     @SerialName("id")
-    val id: String,
+    val id: Int,
 
     @SerialName("name")
     val name: String,
 
-    @SerialName("imageUrl")
-    val imageUrl: String,
-
-    @SerialName("imageDescription")
-    val imageDescription: String,
+    @SerialName("description")
+    val description: String,
 )

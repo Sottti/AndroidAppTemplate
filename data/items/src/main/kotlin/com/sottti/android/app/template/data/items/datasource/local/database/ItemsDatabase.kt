@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
+import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 
 @Database(
-    entities = [ItemRoomModel::class],
+    entities = [ItemRoomModel::class, RemoteKeysRoomModel::class],
     version = 1,
     exportSchema = false,
 )
@@ -24,5 +25,6 @@ internal abstract class ItemsDatabase : RoomDatabase() {
                 .build()
     }
 
-    abstract fun itemsDao(): ItemsDao
+    abstract val itemsDao: ItemsDao
+    abstract val remoteKeysDao: RemoteKeysDao
 }

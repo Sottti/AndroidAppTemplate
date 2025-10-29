@@ -7,7 +7,7 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.takeFrom
 
-private const val API_BASE_URL = "TODO()"
+private const val API_BASE_URL = "https://punkapi.online/v3/"
 
 internal fun createHttpClient() = HttpClient(CIO) {
     installJson()

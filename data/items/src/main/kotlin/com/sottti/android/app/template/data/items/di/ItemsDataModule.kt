@@ -1,17 +1,20 @@
 package com.sottti.android.app.template.data.items.di
 
 import android.content.Context
+import androidx.paging.ExperimentalPagingApi
+import androidx.paging.RemoteMediator
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceImpl
-import com.sottti.android.app.template.data.items.datasource.local.SystemTimeProvider
-import com.sottti.android.app.template.data.items.datasource.local.TimeProvider
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDao
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDatabase
+import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDao
+import com.sottti.android.app.template.data.items.datasource.local.mediator.ItemsRemoteMediator
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceImpl
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCalls
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsImpl
 import com.sottti.android.app.template.data.items.repository.ItemsRepositoryImpl
+import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.repository.ItemsRepository
 import dagger.Binds
 import dagger.Module
@@ -51,9 +54,10 @@ internal abstract class ItemsDataModule {
 
     @Binds
     @Singleton
-    abstract fun bindTimeProvider(
-        impl: SystemTimeProvider,
-    ): TimeProvider
+    @OptIn(ExperimentalPagingApi::class)
+    abstract fun bindItemsRemoteMediator(
+        impl: ItemsRemoteMediator,
+    ): RemoteMediator<Int, Item>
 
     companion object {
         @Provides
@@ -63,8 +67,15 @@ internal abstract class ItemsDataModule {
         ): ItemsDatabase = ItemsDatabase.create(context)
 
         @Provides
+        @Singleton
         fun provideItemsDao(
             database: ItemsDatabase,
-        ): ItemsDao = database.itemsDao()
+        ): ItemsDao = database.itemsDao
+
+        @Provides
+        @Singleton
+        fun provideRemoteKeysDao(
+            database: ItemsDatabase,
+        ): RemoteKeysDao = database.remoteKeysDao
     }
 }
