@@ -51,7 +51,7 @@ private fun ItemListUi(
 
 @Composable
 @AndroidAppTemplatePreview
-private fun ItemListUiPreview(
+internal fun ItemListUiPreview(
     @PreviewParameter(ItemsListUiStateProvider::class)
     state: ItemsListState,
 ) {
