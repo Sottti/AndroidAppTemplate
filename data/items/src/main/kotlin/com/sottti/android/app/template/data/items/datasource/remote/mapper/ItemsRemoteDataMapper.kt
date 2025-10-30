@@ -11,7 +11,7 @@ import com.sottti.android.app.template.model.ItemName
 internal fun List<ItemApiModel>.toDomain(): List<Item> =
     map { itemApiModel -> itemApiModel.toDomain() }
 
-private fun ItemApiModel.toDomain(): Item =
+internal fun ItemApiModel.toDomain(): Item =
     Item(
         id = ItemId(checkedId(id, name)),
         name = ItemName(name),

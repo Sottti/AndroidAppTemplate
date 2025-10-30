@@ -4,10 +4,9 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.local.fixtures.item2RoomModel
-import com.sottti.android.app.template.data.items.datasource.local.fixtures.itemRoomModel
-import com.sottti.android.app.template.data.items.datasource.local.mapper.fakes.FakeRoomPagingSource
-import com.sottti.android.app.template.fixtures.fixtureItem
+import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
+import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem2RoomModel
+import com.sottti.android.app.template.fixtures.fixtureItem1
 import com.sottti.android.app.template.fixtures.fixtureItem2
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
@@ -22,7 +21,7 @@ internal class ItemMappingPagingSourceTest {
         val itemsAfter = 12
 
         val roomPage = PagingSource.LoadResult.Page(
-            data = listOf(itemRoomModel, item2RoomModel),
+            data = listOf(fixtureItem1RoomModel, fixtureItem2RoomModel),
             prevKey = prevKey,
             nextKey = nextKey,
             itemsBefore = itemsBefore,
@@ -39,10 +38,10 @@ internal class ItemMappingPagingSourceTest {
         ) as PagingSource.LoadResult.Page
 
         assertThat(page.data.map { it.id.value })
-            .isEqualTo(listOf(itemRoomModel.id, item2RoomModel.id))
+            .isEqualTo(listOf(fixtureItem1RoomModel.id, fixtureItem2RoomModel.id))
 
         assertThat(page.data.map { it.name.value })
-            .isEqualTo(listOf(itemRoomModel.name, item2RoomModel.name))
+            .isEqualTo(listOf(fixtureItem1RoomModel.name, fixtureItem2RoomModel.name))
 
         assertThat(page.prevKey).isEqualTo(prevKey)
         assertThat(page.nextKey).isEqualTo(nextKey)
@@ -57,10 +56,18 @@ internal class ItemMappingPagingSourceTest {
         )
 
         val page1 = PagingSource.LoadResult.Page(
-            data = listOf(fixtureItem), prevKey = null, nextKey = 2, itemsBefore = 0, itemsAfter = 1
+            data = listOf(fixtureItem1),
+            prevKey = null,
+            nextKey = 2,
+            itemsBefore = 0,
+            itemsAfter = 1
         )
         val page2 = PagingSource.LoadResult.Page(
-            data = listOf(fixtureItem2), prevKey = 1, nextKey = 3, itemsBefore = 1, itemsAfter = 0
+            data = listOf(fixtureItem2),
+            prevKey = 1,
+            nextKey = 3,
+            itemsBefore = 1,
+            itemsAfter = 0,
         )
 
         val state = PagingState(
@@ -112,6 +119,27 @@ internal class ItemMappingPagingSourceTest {
         )
 
         assertThat(result).isInstanceOf(PagingSource.LoadResult.Invalid::class.java)
+    }
+
+    @Test
+    fun `getRefreshKey falls back to nextKey - 1 when prevKey null`() {
+        val mapper = ItemMappingPagingSource(
+            FakeRoomPagingSource { PagingSource.LoadResult.Invalid() }
+        )
+        val page = PagingSource.LoadResult.Page(
+            data = listOf(fixtureItem1),
+            prevKey = null,
+            nextKey = 5,
+            itemsBefore = 0,
+            itemsAfter = 0,
+        )
+        val state = PagingState(
+            pages = listOf(page),
+            anchorPosition = 0,
+            config = PagingConfig(10),
+            leadingPlaceholderCount = 0
+        )
+        assertThat(mapper.getRefreshKey(state)).isEqualTo(4)
     }
 
 }

@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.data.items.datasource.local.mediator
+package com.sottti.android.app.template.data.items.mediator
 
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType

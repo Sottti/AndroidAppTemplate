@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.data.items.datasource.local.mapper.fakes
+package com.sottti.android.app.template.data.items.datasource.local.mapper
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
