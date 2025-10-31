@@ -1,6 +1,9 @@
 package com.sottti.android.app.template.data.items.datasource.local.database
 
 import android.content.Context
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.testing.asSnapshot
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
@@ -13,15 +16,13 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class ItemsDaoTest {
+internal class ItemsDaoTest {
     private lateinit var db: ItemsDatabase
     private lateinit var dao: ItemsDao
 
     @Before
     fun setUp() {
-        db = ApplicationProvider
-            .getApplicationContext<Context>()
-            .createDb()
+        db = ApplicationProvider.getApplicationContext<Context>().createDb()
         dao = db.itemsDao
     }
 
@@ -31,10 +32,12 @@ class ItemsDaoTest {
     }
 
     @Test
-    fun `observe items on empty database returns empty page`() = runTest {
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
+    fun `observe items on empty database returns empty list`() = runTest {
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
 
-        assertThat(page.data).isEmpty()
+        assertThat(snapshot).isEmpty()
     }
 
     @Test
@@ -42,9 +45,11 @@ class ItemsDaoTest {
         val itemsToInsert = listOf(fixtureItem1RoomModel, fixtureItem2RoomModel)
         dao.upsert(itemsToInsert)
 
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
 
-        assertThat(page.data)
+        assertThat(snapshot)
             .containsExactlyElementsIn(itemsToInsert)
             .inOrder()
     }
@@ -56,10 +61,12 @@ class ItemsDaoTest {
         val updatedItem = fixtureItem1RoomModel.copy(name = fixtureItem2RoomModel.name)
         dao.upsert(listOf(updatedItem))
 
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
 
-        assertThat(page.data).hasSize(1)
-        assertThat(page.data.first()).isEqualTo(updatedItem)
+        assertThat(snapshot).hasSize(1)
+        assertThat(snapshot.first()).isEqualTo(updatedItem)
     }
 
     @Test
@@ -67,13 +74,17 @@ class ItemsDaoTest {
         val itemsToInsert = listOf(fixtureItem1RoomModel, fixtureItem2RoomModel)
         dao.upsert(itemsToInsert)
 
-        var page = dao.observeItems().loadAsPage(loadParamsRefresh)
-        assertThat(page.data).isNotEmpty()
+        var snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
+        assertThat(snapshot).isNotEmpty()
 
         dao.clear()
 
-        page = dao.observeItems().loadAsPage(loadParamsRefresh)
-        assertThat(page.data).isEmpty()
+        snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
+        assertThat(snapshot).isEmpty()
     }
 
     @Test
@@ -81,9 +92,11 @@ class ItemsDaoTest {
         val itemsToInsert = listOf(fixtureItem2RoomModel, fixtureItem1RoomModel)
         dao.upsert(itemsToInsert)
 
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
 
-        assertThat(page.data)
+        assertThat(snapshot)
             .containsExactly(fixtureItem1RoomModel, fixtureItem2RoomModel)
             .inOrder()
     }
@@ -95,15 +108,22 @@ class ItemsDaoTest {
         val newItems = listOf(fixtureItem2RoomModel)
         dao.cleanAndInsert(newItems)
 
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
-        assertThat(page.data).hasSize(1)
-        assertThat(page.data.first()).isEqualTo(fixtureItem2RoomModel)
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
+
+        assertThat(snapshot).hasSize(1)
+        assertThat(snapshot.first()).isEqualTo(fixtureItem2RoomModel)
     }
 
     @Test
     fun `upsert with empty list is a no-op`() = runTest {
         dao.upsert(emptyList())
-        val page = dao.observeItems().loadAsPage(loadParamsRefresh)
-        assertThat(page.data).isEmpty()
+
+        val snapshot = Pager(PagingConfig(pageSize = 10)) { dao.observeItems() }
+            .flow
+            .asSnapshot()
+
+        assertThat(snapshot).isEmpty()
     }
 }

@@ -24,6 +24,7 @@ dependencies {
 
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.paging.testing)
     testImplementation(libs.robolectric)
     testImplementation(libs.test.core)
     testImplementation(libs.truth)

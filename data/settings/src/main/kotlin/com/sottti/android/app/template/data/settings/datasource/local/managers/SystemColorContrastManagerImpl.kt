@@ -18,13 +18,12 @@ internal class SystemColorContrastManagerImpl @Inject constructor(
 ) : SystemColorContrastManager {
     override fun getSystemColorContrast(): SystemColorContrast =
         when {
-            systemFeatures.systemColorContrastAvailable() -> {
+            systemFeatures.systemColorContrastAvailable() ->
                 toSystemColorContrast(uiModeManager.getContrast())
-            }
 
             else -> SystemColorContrast.StandardContrast
         }
 
     override fun observeSystemColorContrast(): Flow<SystemColorContrast> =
-        context.observeConfigurationChanges({ getSystemColorContrast() })
+        context.observeConfigurationChanges { getSystemColorContrast() }
 }

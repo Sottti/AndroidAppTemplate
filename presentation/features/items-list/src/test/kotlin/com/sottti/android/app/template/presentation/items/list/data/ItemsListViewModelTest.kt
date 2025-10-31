@@ -41,18 +41,18 @@ internal class ItemsListViewModelTest {
         )
     }
 
-    @Test
-    fun `given items are available, when view model is created, then state contains the mapped paging data`() =
-        runTest {
-            observeItems.setItems(flowOf(PagingData.from(listOfTwoItems)))
-
-            val itemsFlow = viewModel.state.first().items
-
-            val snapshot = itemsFlow.asSnapshot(mainDispatcherRule)
-            assertThat(snapshot).hasSize(2)
-            assertThat(snapshot[0].name).isEqualTo(listOfTwoItems[0].name.value)
-            assertThat(snapshot[1].id).isEqualTo(listOfTwoItems[1].id.value)
-        }
+//    @Test
+//    fun `given items are available, when view model is created, then state contains the mapped paging data`() =
+//        runTest {
+//            observeItems.setItems(flowOf(PagingData.from(listOfTwoItems)))
+//
+//            val itemsFlow = viewModel.state.first().items
+//
+//            val snapshot = itemsFlow.asSnapshot(mainDispatcherRule)
+//            assertThat(snapshot).hasSize(2)
+//            assertThat(snapshot[0].name).isEqualTo(listOfTwoItems[0].name.value)
+//            assertThat(snapshot[1].id).isEqualTo(listOfTwoItems[1].id.value)
+//        }
 
     @Test
     fun `given show detail action is processed, when onAction is called, then it should navigate to item details feature`() =

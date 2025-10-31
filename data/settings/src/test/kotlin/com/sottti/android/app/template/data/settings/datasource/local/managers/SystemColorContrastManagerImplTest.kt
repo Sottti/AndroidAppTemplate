@@ -26,61 +26,59 @@ import org.robolectric.shadows.ShadowApplication
 internal class SystemColorContrastManagerImplTest {
 
     private lateinit var context: Context
-    private lateinit var shadowApplication: ShadowApplication
-    private lateinit var fakeSystemFeatures: FakeSystemFeatures
-    private lateinit var fakeUiModeManager: FakeUiModeManager
     private lateinit var manager: SystemColorContrastManager
+    private lateinit var shadowApplication: ShadowApplication
+    private lateinit var systemFeatures: FakeSystemFeatures
+    private lateinit var uiModeManager: FakeUiModeManager
 
     @Before
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
         shadowApplication = Shadows.shadowOf(context.applicationContext as Application)
-        fakeSystemFeatures = FakeSystemFeatures(default = true)
-        fakeUiModeManager = FakeUiModeManager()
+        systemFeatures = FakeSystemFeatures(default = true)
+        uiModeManager = FakeUiModeManager()
         manager = SystemColorContrastManagerImpl(
             context = context,
-            systemFeatures = fakeSystemFeatures,
-            uiModeManager = fakeUiModeManager
+            systemFeatures = systemFeatures,
+            uiModeManager = uiModeManager
         )
     }
 
     @Test
     fun `given contrast feature is unavailable, when getting contrast, then it should return standard`() {
-        fakeSystemFeatures.setSystemColorContrastAvailable(false)
+        systemFeatures.setSystemColorContrastAvailable(false)
         val contrast = manager.getSystemColorContrast()
         assertThat(contrast).isEqualTo(SystemColorContrast.StandardContrast)
     }
 
     @Test
     fun `given contrast feature is available, when manager returns medium, then getting contrast returns medium`() {
-        fakeSystemFeatures.setSystemColorContrastAvailable(true)
-        fakeUiModeManager.setContrast(MEDIUM_CONTRAST_THRESHOLD)
+        systemFeatures.setSystemColorContrastAvailable(true)
+        uiModeManager.setContrast(MEDIUM_CONTRAST_THRESHOLD)
         val contrast = manager.getSystemColorContrast()
         assertThat(contrast).isEqualTo(SystemColorContrast.MediumContrast)
     }
 
     @Test
     fun `given contrast feature is available, when manager returns high, then getting contrast returns high`() {
-        fakeSystemFeatures.setSystemColorContrastAvailable(true)
-        fakeUiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
+        systemFeatures.setSystemColorContrastAvailable(true)
+        uiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
         val contrast = manager.getSystemColorContrast()
         assertThat(contrast).isEqualTo(SystemColorContrast.HighContrast)
     }
 
     @Test
     fun `given contrast feature is available, when manager returns low, then getting contrast returns low`() {
-        fakeSystemFeatures.setSystemColorContrastAvailable(true)
-        fakeUiModeManager.setContrast(STANDARD_CONTRAST_THRESHOLD - 0.1f)
+        systemFeatures.setSystemColorContrastAvailable(true)
+        uiModeManager.setContrast(STANDARD_CONTRAST_THRESHOLD - 0.1f)
         val contrast = manager.getSystemColorContrast()
         assertThat(contrast).isEqualTo(SystemColorContrast.LowContrast)
     }
 
     @Test
     fun `when observing contrast, then it should emit the correct initial value`() = runTest {
-        // Arrange
-        fakeUiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
+        uiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
 
-        // Act & Assert
         manager.observeSystemColorContrast().test {
             assertThat(awaitItem()).isEqualTo(SystemColorContrast.HighContrast)
             cancelAndIgnoreRemainingEvents()
@@ -90,16 +88,16 @@ internal class SystemColorContrastManagerImplTest {
     @Test
     fun `given an active observer, when configuration changes, then it should emit the new contrast value`() =
         runTest {
-            fakeUiModeManager.setContrast(MEDIUM_CONTRAST_THRESHOLD)
+            uiModeManager.setContrast(MEDIUM_CONTRAST_THRESHOLD)
 
             manager.observeSystemColorContrast().test {
                 assertThat(awaitItem()).isEqualTo(SystemColorContrast.MediumContrast)
 
-                fakeUiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
+                uiModeManager.setContrast(HIGH_CONTRAST_THRESHOLD)
                 val resources = context.resources
                 val newConfig = Configuration(resources.configuration)
                 newConfig.orientation = Configuration.ORIENTATION_LANDSCAPE
-                resources.updateConfiguration(newConfig, resources.displayMetrics)
+                (context.applicationContext as Application).onConfigurationChanged(newConfig)
 
                 assertThat(awaitItem()).isEqualTo(SystemColorContrast.HighContrast)
             }

@@ -12,7 +12,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class RemoteKeysDaoTest {
+internal class RemoteKeysDaoTest {
     private lateinit var db: ItemsDatabase
     private lateinit var dao: RemoteKeysDao
 

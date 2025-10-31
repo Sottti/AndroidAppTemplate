@@ -26,12 +26,10 @@ internal class ObserveConfigurationChangesTest {
         capturingContext.observeConfigurationChanges(app::currentOrientationLabel).test {
             assertThat(awaitItem()).isEqualTo(PORTRAIT)
 
-            val landscape = app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
-            capturingContext.callbacks?.onConfigurationChanged(landscape)
-
+            app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
             assertThat(awaitItem()).isEqualTo(LANDSCAPE)
 
-            capturingContext.callbacks?.onConfigurationChanged(landscape)
+            app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
             expectNoEvents()
 
             cancelAndIgnoreRemainingEvents()
@@ -47,14 +45,9 @@ internal class ObserveConfigurationChangesTest {
         capturingContext.observeConfigurationChanges(app::currentOrientationLabel).test {
             assertThat(awaitItem()).isEqualTo(PORTRAIT)
 
-            val land = app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
-            capturingContext.callbacks?.onConfigurationChanged(land)
-
-            val port = app.setOrientation(Configuration.ORIENTATION_PORTRAIT)
-            capturingContext.callbacks?.onConfigurationChanged(port)
-
-            val landAgain = app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
-            capturingContext.callbacks?.onConfigurationChanged(landAgain)
+            app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
+            app.setOrientation(Configuration.ORIENTATION_PORTRAIT)
+            app.setOrientation(Configuration.ORIENTATION_LANDSCAPE)
 
             assertThat(awaitItem()).isEqualTo(LANDSCAPE)
 

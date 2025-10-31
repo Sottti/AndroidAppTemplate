@@ -1,5 +1,7 @@
 package com.sottti.android.app.template.presentation.items.list.ui
 
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalInspectionMode
 import com.android.resources.NightMode
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import com.sottti.android.app.template.presentation.paparazzi.nightModeParameters
@@ -21,7 +23,9 @@ internal class ItemsListSnapshotTest(
     @Test
     fun snapshotTest() {
         paparazzi.snapshot {
-            ItemListUiPreview(state)
+            CompositionLocalProvider(LocalInspectionMode provides true) {
+                ItemListUiPreview(state)
+            }
         }
     }
 

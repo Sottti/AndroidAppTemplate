@@ -78,7 +78,6 @@ robolectric = { group = "org.robolectric", name = "robolectric", version.ref = "
 room = { group = "androidx.room", name = "room-ktx", version.ref = "room" }
 room-compiler = { group = "androidx.room", name = "room-compiler", version.ref = "room" }
 room-paging = { group = "androidx.room", name = "room-paging", version.ref = "room" }
-room-testing = { group = "androidx.room", name = "room-testing", version.ref = "room" }
 splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
 test-core = { group = "androidx.test", name = "core-ktx", version.ref = "testCore" }
 test-runner = { group = "androidx.test", name = "runner", version.ref = "test-runner" }

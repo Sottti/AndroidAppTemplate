@@ -24,9 +24,8 @@ internal fun Application.setOrientation(orientation: Int): Configuration {
     val newConfig = Configuration(resources.configuration).apply {
         this.orientation = orientation
     }
-
-    @Suppress("DEPRECATION")
     resources.updateConfiguration(newConfig, resources.displayMetrics)
+    onConfigurationChanged(newConfig)
     return newConfig
 }
 

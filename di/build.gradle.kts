@@ -15,6 +15,7 @@ dependencies {
     implementation(project(module.data.items))
     implementation(project(module.data.settings))
     implementation(project(module.data.systemFeatures))
+    implementation(project(module.domain.items))
     implementation(project(module.domain.settings))
     implementation(project(module.domain.systemFeatures))
     ksp(libs.hilt.compiler)

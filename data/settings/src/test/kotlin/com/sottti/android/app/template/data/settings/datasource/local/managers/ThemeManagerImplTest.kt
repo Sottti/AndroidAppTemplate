@@ -51,35 +51,35 @@ internal class ThemeManagerImplTest {
     }
 
     @Test
-    fun `when observing the system theme, then it emits the correct initial value`() =
-        runTest {
-            val lightContext = context.getThemedContext(isNightMode = false)
-            val lightManager = ThemeManagerImpl(context = lightContext)
+    fun `when observing the system theme, then it emits the correct initial value`() = runTest {
+        val lightContext = context.getThemedContext(isNightMode = false)
+        val lightManager = ThemeManagerImpl(context = lightContext)
 
-            lightManager.observeSystemTheme().test {
-                assertThat(awaitItem()).isEqualTo(LightSystemTheme)
-                cancelAndIgnoreRemainingEvents()
-            }
+        lightManager.observeSystemTheme().test {
+            assertThat(awaitItem()).isEqualTo(LightSystemTheme)
+            cancelAndIgnoreRemainingEvents()
         }
+    }
 
     @Test
-    fun `given an active observer, when configuration changes from light to dark, then it emits dark theme`() =
-        runTest {
-            val themedContext = context.getThemedContext(isNightMode = false)
-            val manager = ThemeManagerImpl(context = themedContext)
+    fun `given an active observer, when configuration changes from light to dark, then it emits dark theme`() = runTest {
+        val themedContext = context.getThemedContext(isNightMode = false)
+        val manager = ThemeManagerImpl(context = themedContext)
 
-            manager.observeSystemTheme().test {
-                assertThat(awaitItem()).isEqualTo(LightSystemTheme)
+        manager.observeSystemTheme().test {
+            assertThat(awaitItem()).isEqualTo(LightSystemTheme)
 
-                val newConfig = Configuration(themedContext.resources.configuration)
-                newConfig.uiMode =
-                    (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or Configuration.UI_MODE_NIGHT_YES
-                themedContext.resources.updateConfiguration(
-                    newConfig,
-                    themedContext.resources.displayMetrics
-                )
+            val newConfig = Configuration(themedContext.resources.configuration)
+            newConfig.uiMode =
+                (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
+                        Configuration.UI_MODE_NIGHT_YES
 
-                assertThat(awaitItem()).isEqualTo(DarkSystemTheme)
-            }
+            val themedRes = themedContext.resources
+            themedRes.updateConfiguration(newConfig, themedRes.displayMetrics)
+
+            (themedContext.applicationContext as Application).onConfigurationChanged(newConfig)
+
+            assertThat(awaitItem()).isEqualTo(DarkSystemTheme)
         }
+    }
 }
