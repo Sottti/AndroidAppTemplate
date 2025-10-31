@@ -12,5 +12,5 @@ public sealed interface NavigationDestination : NavKey {
 
     @Immutable
     @Serializable
-    public data class ItemDetail(val itemId : Int) : NavigationDestination
+    public data class ItemDetail(val itemId: Int) : NavigationDestination
 }

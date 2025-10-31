@@ -1,6 +1,5 @@
 package com.sottti.android.app.template.usecase
 
-import androidx.paging.PagingData
 import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.model.ItemId
 import com.sottti.android.app.template.repository.ItemsRepository

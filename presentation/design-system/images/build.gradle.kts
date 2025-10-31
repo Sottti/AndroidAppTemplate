@@ -20,6 +20,7 @@ dependencies {
     implementation(libs.compose.material)
     implementation(libs.compose.ui.tooling)
     implementation(platform(libs.compose.bom))
+    implementation(project(module.presentation.designSystem.dimensions))
     implementation(project(module.presentation.designSystem.progressIndicators))
     implementation(project(module.presentation.designSystem.shapes))
     implementation(project(module.presentation.designSystem.themes))

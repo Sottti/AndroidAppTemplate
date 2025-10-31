@@ -1,7 +1,5 @@
 package com.sottti.android.app.template.presentation.item.details.model
 
-import androidx.annotation.DrawableRes
-import androidx.annotation.StringRes
 import androidx.compose.runtime.Immutable
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
@@ -24,7 +22,7 @@ internal sealed class ItemDetailsState {
     @Immutable
     data class Loaded(
         override val topBarState: TopBarState,
-        val imageDescription : String,
+        val imageDescription: String,
         val imageUrl: ImageUrl,
         val name: String,
     ) : ItemDetailsState()

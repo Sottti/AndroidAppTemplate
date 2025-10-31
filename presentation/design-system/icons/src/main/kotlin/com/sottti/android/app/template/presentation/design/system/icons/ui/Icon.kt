@@ -10,9 +10,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
+import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
-import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
 import androidx.compose.material3.Icon as MaterialIcon
 
 @Composable

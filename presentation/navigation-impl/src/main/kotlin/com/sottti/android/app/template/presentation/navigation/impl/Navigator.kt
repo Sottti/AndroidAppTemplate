@@ -35,7 +35,9 @@ public fun Navigator(
         )
     }
     NavDisplay(
-        modifier = Modifier.fillMaxSize().background(colors.background),
+        modifier = Modifier
+            .fillMaxSize()
+            .background(colors.background),
         backStack = backStack,
         onBack = { backStack.removeLastOrNull() },
         entryDecorators = listOf(

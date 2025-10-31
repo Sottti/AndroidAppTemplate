@@ -17,13 +17,14 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.text.style.TextAlign
-import androidx.paging.LoadState
+import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
 import androidx.paging.compose.LazyPagingItems
@@ -43,7 +44,6 @@ import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
-import com.sottti.android.app.template.presentation.utils.plus
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,13 +57,19 @@ internal fun ItemsListContent(
         modifier = Modifier.fillMaxSize(),
         topBar = { MainTopBar(titleResId = state.titleResId, scrollBehavior = scrollBehavior) },
     ) { padding ->
-        Items(
-            items = state.items.collectAsLazyPagingItems(),
-            listState = lazyListState,
-            nestedScrollConnection = scrollBehavior.nestedScrollConnection,
-            onAction = onAction,
-            padding = padding,
-        )
+        val items = state.items.collectAsLazyPagingItems()
+        PullToRefreshBox(
+            isRefreshing = items.loadState.refresh is Loading,
+            modifier = Modifier.padding(padding),
+            onRefresh = { items.refresh() },
+        ) {
+            Items(
+                items = items,
+                listState = lazyListState,
+                nestedScrollConnection = scrollBehavior.nestedScrollConnection,
+                onAction = onAction,
+            )
+        }
     }
 }
 
@@ -73,21 +79,23 @@ private fun Items(
     listState: LazyGridState,
     nestedScrollConnection: NestedScrollConnection,
     onAction: (ItemsListActions) -> Unit,
-    padding: PaddingValues,
 ) {
-    when (items.loadState.refresh) {
-        is Loading -> ProgressIndicatorFillMaxSize(padding)
-        is LoadState.Error -> ErrorUi(modifier = Modifier.padding(padding))
-        is NotLoading -> when (items.itemCount) {
-            0 -> EmptyUi(modifier = Modifier.padding(padding))
-            else -> ItemsLoaded(
-                items = items,
-                listState = listState,
-                nestedScrollConnection = nestedScrollConnection,
-                onAction = onAction,
-                padding = padding,
-            )
-        }
+    val isInitialLoad = items.loadState.refresh is Loading && items.itemCount == 0
+
+    when {
+        isInitialLoad -> ProgressIndicatorFillMaxSize()
+        items.loadState.refresh is Error && items.itemCount == 0 ->
+            ErrorUi(modifier = Modifier.padding())
+
+        items.loadState.refresh is NotLoading && items.itemCount == 0 ->
+            EmptyUi(modifier = Modifier.padding())
+
+        else -> ItemsLoaded(
+            items = items,
+            listState = listState,
+            nestedScrollConnection = nestedScrollConnection,
+            onAction = onAction,
+        )
     }
 }
 
@@ -97,11 +105,10 @@ private fun ItemsLoaded(
     listState: LazyGridState,
     nestedScrollConnection: NestedScrollConnection,
     onAction: (ItemsListActions) -> Unit,
-    padding: PaddingValues,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = dimensions.components.cardInGrid.small),
-        contentPadding = padding + PaddingValues(dimensions.spacing.medium),
+        contentPadding = PaddingValues(dimensions.spacing.medium),
         horizontalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
         modifier = Modifier.nestedScroll(nestedScrollConnection),
         state = listState,
@@ -176,13 +183,8 @@ private fun CardText(text: String) {
 
 @Composable
 private fun ProgressIndicatorFillMaxSize(
-    padding: PaddingValues,
 ) {
-    ProgressIndicator(
-        modifier = Modifier
-            .padding(padding)
-            .fillMaxSize()
-    )
+    ProgressIndicator(modifier = Modifier.fillMaxSize())
 }
 
 @Composable

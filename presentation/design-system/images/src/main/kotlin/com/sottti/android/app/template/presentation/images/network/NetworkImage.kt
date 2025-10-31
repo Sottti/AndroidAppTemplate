@@ -2,7 +2,7 @@ package com.sottti.android.app.template.presentation.images.network
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.runtime.Composable
@@ -14,6 +14,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import androidx.compose.ui.unit.min
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil3.compose.AsyncImagePainter
 import coil3.compose.rememberAsyncImagePainter
@@ -21,7 +22,9 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
+import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
+import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicatorSize
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.images.R
@@ -44,12 +47,22 @@ public fun NetworkImage(
         else -> RoundedCornerShape(ZeroCornerSize)
     }
 
-    Box(modifier = modifier.clip(cornerRadius)) {
+    BoxWithConstraints(modifier = modifier.clip(cornerRadius)) {
         val imageModifier = Modifier.matchParentSize()
+
+        val indicatorSize = when {
+            min(maxWidth, maxHeight) < dimensions.components.cardInGrid.medium ->
+                ProgressIndicatorSize.Small
+
+            min(maxWidth, maxHeight) < dimensions.components.cardInGrid.large ->
+                ProgressIndicatorSize.Medium
+
+            else -> ProgressIndicatorSize.Large
+        }
 
         when {
             foreverLoading || painterState is AsyncImagePainter.State.Loading ->
-                ProgressIndicator(modifier = imageModifier)
+                ProgressIndicator(modifier = imageModifier, size = indicatorSize)
 
             painterState is AsyncImagePainter.State.Success ->
                 Image(
@@ -86,7 +99,7 @@ internal fun NetworkImagePreview(
         NetworkImage(
             contentDescription = state.contentDescription,
             foreverLoading = state.foreverLoading,
-            modifier = Modifier.aspectRatio(ratio = 1.75f),
+            modifier = state.modifier,
             roundedCorners = state.roundedCorners,
             url = state.imageUrl,
         )

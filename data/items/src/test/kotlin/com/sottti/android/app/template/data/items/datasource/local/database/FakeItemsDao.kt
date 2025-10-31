@@ -40,7 +40,7 @@ internal class FakeItemsDao : ItemsDao {
         itemsFlow.value = saved.toList()
     }
 
-    override fun getItem(itemId: Int): ItemRoomModel {
+    override suspend fun getItem(itemId: Int): ItemRoomModel {
         return saved.first { it.id == itemId }
     }
 
