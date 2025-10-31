@@ -21,6 +21,7 @@ internal class ItemsLocalDataSourceImplTest {
     fun setUp() {
         itemsDao = FakeItemsDao()
         remoteKeysDao = FakeRemoteKeysDao()
+        timeProvider = FakeTimeProvider()
         localDataSource = ItemsLocalDataSourceImpl(
             itemsDao = itemsDao,
             remoteKeysDao = remoteKeysDao,

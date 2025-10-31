@@ -17,6 +17,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.scan
 
+private typealias ItemDetailsReducer = (ItemDetailsState) -> ItemDetailsState
+
 @HiltViewModel(assistedFactory = ItemDetailsViewModel.Factory::class)
 internal class ItemDetailsViewModel @AssistedInject constructor(
     @Assisted val itemId: ItemId,
@@ -41,17 +43,6 @@ internal class ItemDetailsViewModel @AssistedInject constructor(
             NavigateBack -> navigationManager.navigateBack()
         }
 
-    private val reducer: (
-        item: Item,
-    ) -> (ItemDetailsState) -> ItemDetailsState =
-        { item ->
-            { previous: ItemDetailsState ->
-                ItemDetailsState.Loaded(
-                    imageDescription = item.image.description.value,
-                    imageUrl = item.image.imageUrl,
-                    name = item.name.value,
-                    topBarState = previous.topBarState.copy(title = item.name.value),
-                )
-            }
-        }
+    private val reducer: (item: Item) -> ItemDetailsReducer =
+        { item -> { previous: ItemDetailsState -> previous.reduce(item = item) } }
 }

@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sottti.android.app.template.presentation.item.details.feature"
+    namespace = "com.sottti.android.app.template.presentation.item.details"
 }
 
 dependencies {
@@ -24,6 +24,7 @@ dependencies {
     implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.designSystem.dimensions))
     implementation(project(module.presentation.designSystem.icons))
+    implementation(project(module.presentation.designSystem.images))
     implementation(project(module.presentation.designSystem.progressIndicators))
     implementation(project(module.presentation.designSystem.text))
     implementation(project(module.presentation.designSystem.themes))

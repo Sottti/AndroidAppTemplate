@@ -31,4 +31,4 @@ private fun checkedId(id: Int, name: String): Int =
     }
 
 private fun createImageUrl(id: Int) =
-    ImageUrl("https://picsum.photos/id/$id/400")
+    ImageUrl("https://picsum.photos/id/$id/600")
