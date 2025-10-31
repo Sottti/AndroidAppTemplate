@@ -8,7 +8,7 @@ import com.sottti.android.app.template.fixtures.listOfTwoItems
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetailFeature
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
 import com.sottti.android.app.template.usecase.FakeObserveItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -76,7 +76,7 @@ internal class ItemsListViewModelTest {
 
         navigationManager.commands().test {
             assertThat(awaitItem())
-                .isEqualTo(NavigationCommand.NavigateTo(ItemDetailFeature))
+                .isEqualTo(NavigationCommand.NavigateTo(ItemDetail))
             cancelAndIgnoreRemainingEvents()
         }
     }

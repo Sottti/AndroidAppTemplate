@@ -16,7 +16,7 @@ import com.sottti.android.app.template.presentation.navigation.manager.Navigatio
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateBack
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateTo
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateToRoot
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.PullyListFeature
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,7 +26,7 @@ public fun Navigator(
     navigationManager: NavigationManager,
     entryProvider: EntryProvider<NavKey>? = null,
 ) {
-    val backStack = rememberNavBackStack(PullyListFeature)
+    val backStack = rememberNavBackStack(ItemsList)
     LaunchedEffect(key1 = navigationManager) {
         observeCommandsInScope(
             backStack = backStack,

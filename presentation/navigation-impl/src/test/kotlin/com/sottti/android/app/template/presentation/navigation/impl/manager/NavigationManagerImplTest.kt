@@ -31,7 +31,7 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `when navigate to is called, then a navigate to command should be emitted`() = runTest {
-        val destination = NavigationDestination.PullyListFeature
+        val destination = NavigationDestination.ItemsList
 
         manager.commands().test {
             expectNoEvents()
@@ -57,7 +57,7 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when navigate to root is called, then a navigate to root command should be emitted`() =
         runTest {
-            val rootDestination = NavigationDestination.PullyListFeature
+            val rootDestination = NavigationDestination.ItemsList
 
             manager.commands().test {
                 expectNoEvents()
@@ -72,8 +72,8 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when multiple navigation methods are called, then commands should be emitted in the correct order`() =
         runTest {
-            val firstDestination = NavigationDestination.PullyListFeature
-            val secondDestination = NavigationDestination.ItemDetailFeature
+            val firstDestination = NavigationDestination.ItemsList
+            val secondDestination = NavigationDestination.ItemDetail
 
             manager.commands().test {
                 expectNoEvents()
@@ -94,13 +94,13 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `burst of commands preserves order`() = runTest {
-        val destinations = List(50) { NavigationDestination.PullyListFeature }
+        val destinations = List(50) { NavigationDestination.ItemsList }
         manager.commands().test {
             expectNoEvents()
             destinations.forEach { manager.navigateTo(it) }
             repeat(destinations.size) {
                 Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigationCommand.NavigateTo(NavigationDestination.PullyListFeature))
+                    .isEqualTo(NavigationCommand.NavigateTo(NavigationDestination.ItemsList))
             }
             expectNoEvents()
             cancelAndIgnoreRemainingEvents()
