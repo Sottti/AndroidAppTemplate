@@ -62,24 +62,25 @@ internal class ThemeManagerImplTest {
     }
 
     @Test
-    fun `given an active observer, when configuration changes from light to dark, then it emits dark theme`() = runTest {
-        val themedContext = context.getThemedContext(isNightMode = false)
-        val manager = ThemeManagerImpl(context = themedContext)
+    fun `given an active observer, when configuration changes from light to dark, then it emits dark theme`() =
+        runTest {
+            val themedContext = context.getThemedContext(isNightMode = false)
+            val manager = ThemeManagerImpl(context = themedContext)
 
-        manager.observeSystemTheme().test {
-            assertThat(awaitItem()).isEqualTo(LightSystemTheme)
+            manager.observeSystemTheme().test {
+                assertThat(awaitItem()).isEqualTo(LightSystemTheme)
 
-            val newConfig = Configuration(themedContext.resources.configuration)
-            newConfig.uiMode =
-                (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
-                        Configuration.UI_MODE_NIGHT_YES
+                val newConfig = Configuration(themedContext.resources.configuration)
+                newConfig.uiMode =
+                    (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
+                            Configuration.UI_MODE_NIGHT_YES
 
-            val themedRes = themedContext.resources
-            themedRes.updateConfiguration(newConfig, themedRes.displayMetrics)
+                val themedRes = themedContext.resources
+                themedRes.updateConfiguration(newConfig, themedRes.displayMetrics)
 
-            (themedContext.applicationContext as Application).onConfigurationChanged(newConfig)
+                (themedContext.applicationContext as Application).onConfigurationChanged(newConfig)
 
-            assertThat(awaitItem()).isEqualTo(DarkSystemTheme)
+                assertThat(awaitItem()).isEqualTo(DarkSystemTheme)
+            }
         }
-    }
 }

@@ -5,7 +5,6 @@ import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
-import com.sottti.android.app.template.presentation.items.list.MainDispatcherRule
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
@@ -13,16 +12,13 @@ import com.sottti.android.app.template.presentation.navigation.model.NavigationD
 import com.sottti.android.app.template.usecase.FakeObserveItems
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
-import org.junit.Rule
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ItemsListViewModelTest {
-
-    @get:Rule
-    val mainDispatcherRule = MainDispatcherRule()
 
     private val items = listOfTwoItems
     private val pagingData = PagingData.from(items)
@@ -47,6 +43,7 @@ internal class ItemsListViewModelTest {
             testScope = this,
         )
         val snapshot = viewModel.state.value.items.asSnapshot()
+        advanceUntilIdle()
         assertThat(snapshot).containsExactlyElementsIn(items.map { it.toUi() })
     }
 
@@ -61,6 +58,7 @@ internal class ItemsListViewModelTest {
         )
 
         val snapshot = viewModel.state.value.items.asSnapshot()
+        advanceUntilIdle()
         assertThat(snapshot).isEmpty()
     }
 
