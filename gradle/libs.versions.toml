@@ -33,6 +33,8 @@ testCore = "1.7.0"
 truth = "1.4.5"
 turbine = "1.2.1"
 
+mockk = "1.14.6"
+
 [libraries]
 annotations = { group = "androidx.annotation", name = "annotation", version.ref = "annotations" }
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
@@ -83,6 +85,8 @@ test-core = { group = "androidx.test", name = "core-ktx", version.ref = "testCor
 test-runner = { group = "androidx.test", name = "runner", version.ref = "test-runner" }
 truth = { group = "com.google.truth", name = "truth", version.ref = "truth" }
 turbine = { group = "app.cash.turbine", name = "turbine", version.ref = "turbine" }
+
+mockk = { group = "io.mockk", name = "mockk", version.ref = "mockk" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

@@ -1,5 +1,6 @@
 package com.sottti.android.app.template.presentation.items.list.data
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -14,6 +15,7 @@ import com.sottti.android.app.template.presentation.navigation.manager.Navigatio
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetailFeature
 import com.sottti.android.app.template.usecase.ObserveItems
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -25,12 +27,13 @@ import javax.inject.Inject
 internal class ItemsListViewModel @Inject constructor(
     private val navigationManager: NavigationManager,
     observeItems: ObserveItems,
+    @VisibleForTesting testScope: CoroutineScope? = null,
 ) : ViewModel() {
 
     private val items: Flow<PagingData<ItemUiModel>> =
         observeItems()
             .map { pagingData -> pagingData.map { item -> item.toUi() } }
-            .cachedIn(viewModelScope)
+            .let { flow -> if (testScope == null) flow.cachedIn(viewModelScope) else flow }
 
     val state: StateFlow<ItemsListState> =
         MutableStateFlow(

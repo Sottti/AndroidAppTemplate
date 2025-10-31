@@ -3,15 +3,24 @@ package com.sottti.android.app.template.usecase
 import androidx.paging.PagingData
 import com.sottti.android.app.template.model.Item
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.channels.BufferOverflow
 
 public class FakeObserveItems : ObserveItems {
 
-    private var itemsFlow: Flow<PagingData<Item>> = flowOf(PagingData.empty())
+    private val subject = MutableSharedFlow<PagingData<Item>>(replay = 1, extraBufferCapacity = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
 
-    public fun setItems(flow: Flow<PagingData<Item>>) {
-        itemsFlow = flow
+    init {
+        subject.tryEmit(PagingData.empty())
     }
 
-    override operator fun invoke(): Flow<PagingData<Item>> = itemsFlow
+    public fun tryEmit(paging: PagingData<Item>) {
+        subject.tryEmit(paging)
+    }
+
+    public suspend fun emit(paging: PagingData<Item>) {
+        subject.emit(paging)
+    }
+
+    override operator fun invoke(): Flow<PagingData<Item>> = subject
 }
