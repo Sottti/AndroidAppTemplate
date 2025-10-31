@@ -15,6 +15,12 @@ plugins {
     alias(libs.plugins.paparazzi) apply false
 }
 
+tasks.register<Delete>("cleanPaparazziSnapshots") {
+    delete(fileTree(rootDir) {
+        include("**/src/test/snapshots/images/**")
+    })
+}
+
 subprojects {
     plugins.withId("com.android.application") {
         configure<ApplicationExtension> { androidApplicationConfig() }
