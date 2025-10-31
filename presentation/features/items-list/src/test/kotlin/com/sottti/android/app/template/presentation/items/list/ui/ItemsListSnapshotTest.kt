@@ -1,9 +1,7 @@
-package com.sottti.android.app.template.presentation.items.list
+package com.sottti.android.app.template.presentation.items.list.ui
 
 import com.android.resources.NightMode
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
-import com.sottti.android.app.template.presentation.items.list.ui.ItemListUiPreview
-import com.sottti.android.app.template.presentation.items.list.ui.ItemsListUiStateProvider
 import com.sottti.android.app.template.presentation.paparazzi.nightModeParameters
 import com.sottti.android.app.template.presentation.paparazzi.paparazzi
 import org.junit.Rule

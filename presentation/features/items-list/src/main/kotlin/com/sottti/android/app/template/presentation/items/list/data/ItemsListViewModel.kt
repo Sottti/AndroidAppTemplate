@@ -24,7 +24,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class ItemsListViewModel @Inject constructor(
     private val navigationManager: NavigationManager,
-    private val observeItems: ObserveItems,
+    observeItems: ObserveItems,
 ) : ViewModel() {
 
     private val items: Flow<PagingData<ItemUiModel>> =

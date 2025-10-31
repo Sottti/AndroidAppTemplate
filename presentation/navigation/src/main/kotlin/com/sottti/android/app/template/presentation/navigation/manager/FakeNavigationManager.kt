@@ -1,13 +1,12 @@
-package com.sottti.android.app.template.presentation.navigation.impl.fakes
+package com.sottti.android.app.template.presentation.navigation.manager
 
-import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 
-internal class FakeNavigationManager : NavigationManager {
+public class FakeNavigationManager : NavigationManager {
     private val _commands = Channel<NavigationCommand>(Channel.BUFFERED)
 
     override fun commands(): Flow<NavigationCommand> = _commands.receiveAsFlow()

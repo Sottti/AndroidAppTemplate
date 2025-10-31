@@ -9,7 +9,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation3.runtime.NavKey
-import com.sottti.android.app.template.presentation.navigation.impl.fakes.FakeNavigationManager
+import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEM_DETAIL_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.PULLY_LIST_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.fakeNavigationEntries
