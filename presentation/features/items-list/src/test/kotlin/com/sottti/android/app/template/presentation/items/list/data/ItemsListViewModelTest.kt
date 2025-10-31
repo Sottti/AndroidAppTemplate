@@ -5,7 +5,7 @@ import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
-import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
+import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
@@ -72,11 +72,13 @@ internal class ItemsListViewModelTest {
             testScope = this,
         )
 
-        viewModel.onAction(ShowDetail)
+        val itemId = listOfTwoItems.first().id.value
+
+        viewModel.onAction(ShowItemDetail(itemId = itemId))
 
         navigationManager.commands().test {
             assertThat(awaitItem())
-                .isEqualTo(NavigationCommand.NavigateTo(ItemDetail))
+                .isEqualTo(NavigationCommand.NavigateTo(ItemDetail(itemId = itemId)))
             cancelAndIgnoreRemainingEvents()
         }
     }

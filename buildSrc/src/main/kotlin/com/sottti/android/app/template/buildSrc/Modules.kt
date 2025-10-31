@@ -6,7 +6,7 @@ object module {
     object presentation {
         object features {
             const val home = ":presentation:features:home"
-            const val itemDetail = ":presentation:features:item-detail"
+            const val itemDetails = ":presentation:features:item-details"
             const val itemsList = ":presentation:features:items-list"
         }
 
@@ -23,6 +23,7 @@ object module {
             const val empty = ":presentation:design-system:empty"
             const val error = ":presentation:design-system:error"
             const val iconResources = ":presentation:design-system:icon-resources"
+            const val icons = ":presentation:design-system:icons"
             const val illustrations = ":presentation:design-system:illustrations"
             const val images = ":presentation:design-system:images"
             const val informative = ":presentation:design-system:informative"

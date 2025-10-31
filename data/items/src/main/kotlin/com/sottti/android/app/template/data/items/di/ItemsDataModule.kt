@@ -5,6 +5,8 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.RemoteMediator
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceImpl
+import com.sottti.android.app.template.data.items.datasource.local.SystemTimeProvider
+import com.sottti.android.app.template.data.items.datasource.local.TimeProvider
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDao
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDatabase
 import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDao
@@ -51,6 +53,12 @@ internal abstract class ItemsDataModule {
     abstract fun bindApiCalls(
         impl: ItemsApiCallsImpl,
     ): ItemsApiCalls
+
+    @Binds
+    @Singleton
+    abstract fun bindTimeProvider(
+        impl: SystemTimeProvider,
+    ): TimeProvider
 
     @Binds
     @Singleton

@@ -55,7 +55,7 @@ internal class NavigatorTest {
             .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
-        navigationManager.navigateTo(ItemDetail)
+        navigationManager.navigateTo(ItemDetail(itemId = 1))
 
         composeTestRule
             .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
@@ -74,7 +74,7 @@ internal class NavigatorTest {
     fun given_second_screen_when_navigate_back_command_is_emitted_then_the_initial_screen_is_displayed_again() {
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
-        navigationManager.navigateTo(ItemDetail)
+        navigationManager.navigateTo(ItemDetail(itemId = 1))
 
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
@@ -122,7 +122,7 @@ internal class NavigatorTest {
     fun given_second_screen_when_navigate_to_root_command_is_emitted_then_only_the_root_screen_is_displayed() {
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
-        navigationManager.navigateTo(ItemDetail)
+        navigationManager.navigateTo(ItemDetail(itemId = 1))
 
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
@@ -179,7 +179,7 @@ internal class NavigatorTest {
 
     @Test
     fun when_command_emitted_before_composition_then_it_is_applied_after_composition() {
-        navigationManager.navigateTo(ItemDetail)
+        navigationManager.navigateTo(ItemDetail(itemId = 1))
 
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
@@ -200,7 +200,7 @@ internal class NavigatorTest {
         val newManager = FakeNavigationManager()
         composeTestRule.runOnIdle { currentNavigationManager = newManager }
 
-        composeTestRule.runOnIdle { newManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { newManager.navigateTo(ItemDetail(itemId = 1)) }
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
             .assertExists()
@@ -216,7 +216,7 @@ internal class NavigatorTest {
             }
         }
 
-        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
             .assertExists()
@@ -232,15 +232,12 @@ internal class NavigatorTest {
             .assertDoesNotExist()
     }
 
-    /////////////////////////////////////
-
-
     @Test
     fun when_burst_to_and_back_in_same_frame_then_root_is_shown() {
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
         composeTestRule.runOnIdle {
-            navigationManager.navigateTo(ItemDetail)
+            navigationManager.navigateTo(ItemDetail(itemId = 1))
             navigationManager.navigateBack()
         }
 
@@ -262,7 +259,7 @@ internal class NavigatorTest {
             }
         }
 
-        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
 
         composeTestRule
             .onAllNodesWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
@@ -280,7 +277,7 @@ internal class NavigatorTest {
             }
         }
 
-        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
             .assertExists()
@@ -305,12 +302,12 @@ internal class NavigatorTest {
     fun when_duplicate_navigate_to_on_item_then_no_duplicates() {
         composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
 
-        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
             .assertExists()
 
-        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail) }
+        composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
 
         composeTestRule
             .onAllNodesWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
@@ -327,10 +324,10 @@ internal class NavigatorTest {
 
         composeTestRule.runOnIdle {
             repeat(5) {
-                navigationManager.navigateTo(ItemDetail)
+                navigationManager.navigateTo(ItemDetail(itemId = 1))
                 navigationManager.navigateToRoot(ItemsList)
             }
-            navigationManager.navigateTo(ItemDetail)
+            navigationManager.navigateTo(ItemDetail(itemId = 1))
         }
 
         composeTestRule

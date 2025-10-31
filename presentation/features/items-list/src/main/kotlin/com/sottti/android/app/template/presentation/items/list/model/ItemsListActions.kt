@@ -5,5 +5,5 @@ import androidx.compose.runtime.Immutable
 @Immutable
 internal sealed interface ItemsListActions {
     @Immutable
-    data object ShowDetail : ItemsListActions
+    data class ShowItemDetail(val itemId : Int) : ItemsListActions
 }

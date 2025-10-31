@@ -26,7 +26,7 @@ dependencies {
     implementation(libs.navigation.ui)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))
-    implementation(project(module.presentation.features.itemDetail))
+    implementation(project(module.presentation.features.itemDetails))
     implementation(project(module.presentation.features.itemsList))
     implementation(project(module.presentation.navigation))
     ksp(libs.hilt.compiler)

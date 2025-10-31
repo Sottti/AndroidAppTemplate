@@ -4,8 +4,10 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageNu
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.core.models.Result
 import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.model.ItemId
 
-internal fun interface ItemsRemoteDataSource {
+internal interface ItemsRemoteDataSource {
+    suspend fun getItem(itemId: ItemId): Result<Item>
     suspend fun getItems(
         pageNumber: PageNumberApiModel,
         pageSize: PageSizeApiModel,

@@ -18,12 +18,15 @@ internal fun ItemRoomModel.toDomain() =
         )
     )
 
-internal fun List<Item>.toRoom() = map { it.toRoom() }
+internal fun List<Item>.toRoom(
+    nowInMillis: Long,
+) = map { it.toRoom(nowInMillis) }
 
-internal fun Item.toRoom() =
+internal fun Item.toRoom(nowInMillis: Long) =
     ItemRoomModel(
         id = id.value,
         name = name.value,
         imageUrl = image.imageUrl.value,
         imageDescription = image.description.value,
+        storedAt = nowInMillis,
     )

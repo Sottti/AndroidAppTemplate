@@ -14,7 +14,7 @@ internal const val PULLY_LIST_FEATURE_TEST_TAG = "pullyListFeatureTestTag"
 
 internal fun fakeNavigationEntries(): EntryProvider<NavKey> = { key ->
     when (key as NavigationDestination) {
-        ItemDetail -> NavEntry(key) { TaggedComposable(PULLY_LIST_FEATURE_TEST_TAG) }
         ItemsList -> NavEntry(key) { TaggedComposable(ITEM_DETAIL_FEATURE_TEST_TAG) }
+        is ItemDetail -> NavEntry(key) { TaggedComposable(PULLY_LIST_FEATURE_TEST_TAG) }
     }
 }

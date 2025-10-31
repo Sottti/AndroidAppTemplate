@@ -15,17 +15,17 @@ import com.sottti.android.app.template.presentation.items.list.model.ItemsListSt
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
 
 @Composable
-public fun ItemListUi() {
-    ItemListUi(hiltViewModel<ItemsListViewModel>())
+public fun ItemList() {
+    ItemList(hiltViewModel<ItemsListViewModel>())
 }
 
 @Composable
-private fun ItemListUi(
+private fun ItemList(
     viewModel: ItemsListViewModel,
 ) {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
-    ItemListUi(
+    ItemList(
         state = state,
         onAction = viewModel.onAction,
     )
@@ -33,7 +33,7 @@ private fun ItemListUi(
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun ItemListUi(
+private fun ItemList(
     state: ItemsListState,
     onAction: (ItemsListActions) -> Unit,
 ) {
@@ -56,7 +56,7 @@ internal fun ItemListUiPreview(
     state: ItemsListState,
 ) {
     AndroidAppTemplateTheme {
-        ItemListUi(
+        ItemList(
             state = state,
             onAction = {},
         )

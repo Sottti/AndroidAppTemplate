@@ -10,6 +10,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.navigation.runtime)
+    api(libs.navigation.runtime)
     ksp(libs.hilt.compiler)
 }

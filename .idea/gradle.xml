@@ -41,6 +41,7 @@
             <option value="$PROJECT_DIR$/presentation/design-system/empty" />
             <option value="$PROJECT_DIR$/presentation/design-system/error" />
             <option value="$PROJECT_DIR$/presentation/design-system/icon-resources" />
+            <option value="$PROJECT_DIR$/presentation/design-system/icons" />
             <option value="$PROJECT_DIR$/presentation/design-system/illustrations" />
             <option value="$PROJECT_DIR$/presentation/design-system/images" />
             <option value="$PROJECT_DIR$/presentation/design-system/informative" />
@@ -52,7 +53,7 @@
             <option value="$PROJECT_DIR$/presentation/design-system/typography" />
             <option value="$PROJECT_DIR$/presentation/features" />
             <option value="$PROJECT_DIR$/presentation/features/home" />
-            <option value="$PROJECT_DIR$/presentation/features/item-detail" />
+            <option value="$PROJECT_DIR$/presentation/features/item-details" />
             <option value="$PROJECT_DIR$/presentation/features/items-list" />
             <option value="$PROJECT_DIR$/presentation/fixtures" />
             <option value="$PROJECT_DIR$/presentation/navigation" />

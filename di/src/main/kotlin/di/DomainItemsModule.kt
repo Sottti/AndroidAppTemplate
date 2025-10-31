@@ -1,5 +1,7 @@
 package di
 
+import com.sottti.android.app.template.usecase.ObserveItem
+import com.sottti.android.app.template.usecase.ObserveItemImpl
 import com.sottti.android.app.template.usecase.ObserveItems
 import com.sottti.android.app.template.usecase.ObserveItemsImpl
 import dagger.Binds
@@ -11,6 +13,12 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 internal abstract class DomainItemsModule {
+
+    @Binds
+    @Singleton
+    abstract fun bindObserveItem(
+        impl: ObserveItemImpl,
+    ): ObserveItem
 
     @Binds
     @Singleton

@@ -9,7 +9,7 @@ import androidx.paging.map
 import com.sottti.android.app.template.presentation.items.list.R
 import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
-import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
+import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
@@ -47,6 +47,6 @@ internal class ItemsListViewModel @Inject constructor(
     private fun processAction(
         action: ItemsListActions,
     ) = when (action) {
-        ShowDetail -> navigationManager.navigateTo(ItemDetail)
+        is ShowItemDetail -> navigationManager.navigateTo(ItemDetail(action.itemId))
     }
 }

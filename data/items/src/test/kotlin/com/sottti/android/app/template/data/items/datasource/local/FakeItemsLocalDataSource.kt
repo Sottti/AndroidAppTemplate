@@ -4,6 +4,11 @@ import androidx.paging.PagingSource
 import com.sottti.android.app.template.data.items.datasource.local.mapper.FakeItemMappingPagingSource
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.model.ItemId
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.map
 
 internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
 
@@ -17,19 +22,31 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
     var upsertCalled = false
         private set
 
+    private val itemsFlow = MutableStateFlow<List<Item>>(emptyList())
+    var expiredIds: MutableSet<ItemId> = mutableSetOf()
+
+    override fun observeItem(itemId: ItemId): Flow<Item?> =
+        itemsFlow
+            .map { list -> list.firstOrNull { it.id == itemId } }
+            .distinctUntilChanged()
+
     override fun observeItems(): PagingSource<Int, Item> =
         FakeItemMappingPagingSource(saved)
+
+    override suspend fun isExpired(itemId: ItemId): Boolean = itemId in expiredIds
 
     override suspend fun clearAll() {
         clearAllCalled = true
         saved.clear()
         remoteKeys = null
+        itemsFlow.value = saved.toList()
     }
 
     override suspend fun clearAndInsert(items: List<Item>) {
         clearAndInsertCalled = true
         saved.clear()
         saved.addAll(items)
+        itemsFlow.value = saved.toList()
     }
 
     override suspend fun getNextRemotePage(): RemoteKeysRoomModel? {
@@ -48,6 +65,17 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
         )
     }
 
+    override suspend fun upsert(item: Item) {
+        upsertCalled = true
+        val index = saved.indexOfFirst { it.id == item.id }
+        if (index != -1) {
+            saved[index] = item
+        } else {
+            saved.add(item)
+        }
+        itemsFlow.value = saved.toList()
+    }
+
     override suspend fun upsert(items: List<Item>) {
         upsertCalled = true
         items.forEach { newItem ->
@@ -58,5 +86,6 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
                 saved.add(newItem)
             }
         }
+        itemsFlow.value = saved.toList()
     }
 }

@@ -3,7 +3,11 @@ package com.sottti.android.app.template.presentation.navigation.impl.manager
 import app.cash.turbine.test
 import com.google.common.truth.Truth
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination
+import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateBack
+import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateTo
+import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateToRoot
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -31,13 +35,13 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `when navigate to is called, then a navigate to command should be emitted`() = runTest {
-        val destination = NavigationDestination.ItemsList
+        val destination = ItemsList
 
         manager.commands().test {
             expectNoEvents()
             manager.navigateTo(destination)
             val emittedCommand = awaitItem()
-            Truth.assertThat(emittedCommand).isEqualTo(NavigationCommand.NavigateTo(destination))
+            Truth.assertThat(emittedCommand).isEqualTo(NavigateTo(destination))
             expectNoEvents()
             cancelAndIgnoreRemainingEvents()
         }
@@ -48,7 +52,7 @@ internal class NavigationManagerImplTest {
         manager.commands().test {
             expectNoEvents()
             manager.navigateBack()
-            Truth.assertThat(awaitItem()).isEqualTo(NavigationCommand.NavigateBack)
+            Truth.assertThat(awaitItem()).isEqualTo(NavigateBack)
             expectNoEvents()
             cancelAndIgnoreRemainingEvents()
         }
@@ -57,13 +61,13 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when navigate to root is called, then a navigate to root command should be emitted`() =
         runTest {
-            val rootDestination = NavigationDestination.ItemsList
+            val rootDestination = ItemsList
 
             manager.commands().test {
                 expectNoEvents()
                 manager.navigateToRoot(rootDestination)
                 Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigationCommand.NavigateToRoot(rootDestination))
+                    .isEqualTo(NavigateToRoot(rootDestination))
                 expectNoEvents()
                 cancelAndIgnoreRemainingEvents()
             }
@@ -72,8 +76,8 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when multiple navigation methods are called, then commands should be emitted in the correct order`() =
         runTest {
-            val firstDestination = NavigationDestination.ItemsList
-            val secondDestination = NavigationDestination.ItemDetail
+            val firstDestination = ItemsList
+            val secondDestination = ItemDetail(itemId = 1)
 
             manager.commands().test {
                 expectNoEvents()
@@ -81,11 +85,9 @@ internal class NavigationManagerImplTest {
                 manager.navigateTo(secondDestination)
                 manager.navigateBack()
 
-                Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigationCommand.NavigateTo(firstDestination))
-                Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigationCommand.NavigateTo(secondDestination))
-                Truth.assertThat(awaitItem()).isEqualTo(NavigationCommand.NavigateBack)
+                Truth.assertThat(awaitItem()).isEqualTo(NavigateTo(firstDestination))
+                Truth.assertThat(awaitItem()).isEqualTo(NavigateTo(secondDestination))
+                Truth.assertThat(awaitItem()).isEqualTo(NavigateBack)
 
                 expectNoEvents()
                 cancelAndIgnoreRemainingEvents()
@@ -94,13 +96,13 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `burst of commands preserves order`() = runTest {
-        val destinations = List(50) { NavigationDestination.ItemsList }
+        val destinations = List(50) { ItemsList }
         manager.commands().test {
             expectNoEvents()
             destinations.forEach { manager.navigateTo(it) }
             repeat(destinations.size) {
                 Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigationCommand.NavigateTo(NavigationDestination.ItemsList))
+                    .isEqualTo(NavigateTo(ItemsList))
             }
             expectNoEvents()
             cancelAndIgnoreRemainingEvents()

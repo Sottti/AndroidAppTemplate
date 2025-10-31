@@ -9,4 +9,5 @@ internal data class ItemRoomModel(
     val imageDescription: String,
     val imageUrl: String,
     val name: String,
+    val storedAt: Long,
 )

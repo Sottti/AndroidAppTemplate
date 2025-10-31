@@ -9,11 +9,19 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageNu
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.core.models.Result
 import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.model.ItemId
 import javax.inject.Inject
 
 internal class ItemsRemoteDataSourceImpl @Inject constructor(
     private val api: ItemsApiCalls,
 ) : ItemsRemoteDataSource {
+    override suspend fun getItem(itemId: ItemId): Result<Item> =
+        api
+            .getItem(itemId)
+            .mapBoth(
+                success = { itemApiModel -> Ok(itemApiModel.toDomain()) },
+                failure = { exception -> Err(exception) }
+            )
 
     override suspend fun getItems(
         pageNumber: PageNumberApiModel,

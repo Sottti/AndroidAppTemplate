@@ -41,7 +41,7 @@ import com.sottti.android.app.template.presentation.design.system.top.bars.ui.Ma
 import com.sottti.android.app.template.presentation.images.network.NetworkImage
 import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
-import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
+import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import com.sottti.android.app.template.presentation.utils.plus
 
@@ -132,7 +132,7 @@ private fun LazyGridItemScope.ItemCard(
             .aspectRatio(1f)
             .animateItem(),
         shape = shapes.roundedCorner.large,
-        onClick = { onAction(ShowDetail) },
+        onClick = { onAction(ShowItemDetail(item.id)) },
     ) {
         Column(
             modifier = Modifier.fillMaxSize(),

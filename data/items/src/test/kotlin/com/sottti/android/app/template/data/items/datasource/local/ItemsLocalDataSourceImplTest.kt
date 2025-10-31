@@ -15,6 +15,7 @@ internal class ItemsLocalDataSourceImplTest {
     private lateinit var itemsDao: FakeItemsDao
     private lateinit var localDataSource: ItemsLocalDataSource
     private lateinit var remoteKeysDao: FakeRemoteKeysDao
+    private lateinit var timeProvider: FakeTimeProvider
 
     @Before
     fun setUp() {
@@ -23,6 +24,7 @@ internal class ItemsLocalDataSourceImplTest {
         localDataSource = ItemsLocalDataSourceImpl(
             itemsDao = itemsDao,
             remoteKeysDao = remoteKeysDao,
+            timeProvider = timeProvider,
         )
     }
 
@@ -31,7 +33,7 @@ internal class ItemsLocalDataSourceImplTest {
         localDataSource.upsert(listOf(fixtureItem1))
 
         assertThat(itemsDao.upsertCalled).isTrue()
-        assertThat(itemsDao.saved.first()).isEqualTo(fixtureItem1.toRoom())
+        assertThat(itemsDao.saved.first()).isEqualTo(fixtureItem1.toRoom(timeProvider.now()))
     }
 
     @Test
@@ -41,7 +43,7 @@ internal class ItemsLocalDataSourceImplTest {
 
         assertThat(itemsDao.clearCalled).isTrue()
         assertThat(itemsDao.upsertCalled).isTrue()
-        assertThat(itemsDao.saved.first()).isEqualTo(fixtureItem1.toRoom())
+        assertThat(itemsDao.saved.first()).isEqualTo(fixtureItem1.toRoom(timeProvider.now()))
     }
 
     @Test
