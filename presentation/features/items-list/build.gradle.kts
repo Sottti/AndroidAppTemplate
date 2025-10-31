@@ -41,7 +41,6 @@ dependencies {
     ksp(libs.hilt.compiler)
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.coroutines.test)
-    testImplementation(libs.mockk)
     testImplementation(libs.paging.testing)
     testImplementation(libs.robolectric)
     testImplementation(libs.truth)

@@ -1,16 +1,14 @@
+package com.sottti.android.app.template.presentation.items.list.data
+
 import androidx.paging.PagingData
 import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
-import com.sottti.android.app.template.presentation.items.list.data.ItemsListViewModel
-import com.sottti.android.app.template.presentation.items.list.data.toUi
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
 import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
-import com.sottti.android.app.template.usecase.ObserveItems
-import io.mockk.coEvery
-import io.mockk.mockk
+import com.sottti.android.app.template.usecase.FakeObserveItems
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
@@ -30,10 +28,12 @@ internal class ItemsListViewModelTest {
     private val pagingFlow = flowOf(pagingData)
 
     private lateinit var navigationManager: FakeNavigationManager
+    private lateinit var observeItems: FakeObserveItems
 
     @Before
     fun setup() {
         navigationManager = FakeNavigationManager()
+        observeItems = FakeObserveItems()
     }
 
     @Test
@@ -41,8 +41,7 @@ internal class ItemsListViewModelTest {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
 
         try {
-            val observeItems = mockk<ObserveItems>()
-            coEvery { observeItems() } returns pagingFlow
+            observeItems.setItems(pagingFlow)
 
             val viewModel = ItemsListViewModel(
                 observeItems = observeItems,
@@ -60,8 +59,7 @@ internal class ItemsListViewModelTest {
     fun `empty paging emits empty list`() = runTest {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
         try {
-            val observeItems = mockk<ObserveItems>()
-            coEvery { observeItems() } returns flowOf(PagingData.empty())
+            observeItems.setItems(flowOf(PagingData.from(emptyList())))
 
             val viewModel = ItemsListViewModel(
                 observeItems = observeItems,
@@ -80,8 +78,7 @@ internal class ItemsListViewModelTest {
     fun `show detail navigates to ItemDetailFeature`() = runTest {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
         try {
-            val observeItems = mockk<ObserveItems>()
-            coEvery { observeItems() } returns pagingFlow
+            observeItems.setItems(pagingFlow)
 
             val viewModel = ItemsListViewModel(
                 observeItems = observeItems,
