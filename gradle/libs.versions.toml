@@ -1,4 +1,5 @@
 [versions]
+activity = "1.9.3"
 agp = "8.13.0"
 annotations = "1.9.1"
 appcompat = "1.7.1"
@@ -37,6 +38,7 @@ annotations = { group = "androidx.annotation", name = "annotation", version.ref 
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 coil-compose = { group = "io.coil-kt.coil3", name = "coil-compose", version.ref = "coil" }
 coil-network-ktor3 = { group = "io.coil-kt.coil3", name = "coil-network-ktor3", version.ref = "coil" }
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity" }
 compose-bom = { group = "androidx.compose", name = "compose-bom-alpha", version.ref = "compose-bom" }
 compose-foundation = { group = "androidx.compose.foundation", name = "foundation" }
 compose-material = { group = "androidx.compose.material3", name = "material3" }

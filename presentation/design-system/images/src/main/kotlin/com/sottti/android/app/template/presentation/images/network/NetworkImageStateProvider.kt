@@ -1,8 +1,8 @@
 package com.sottti.android.app.template.presentation.images.network
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.sottti.android.app.template.presentation.fixtures.fixtureContentDescription
-import com.sottti.android.app.template.presentation.fixtures.fixtureImageUrl
+import com.sottti.android.app.template.domain.core.fixtures.fixtureContentDescription
+import com.sottti.android.app.template.domain.core.fixtures.fixtureImageUrl
 
 internal class NetworkImageStateProvider :
     PreviewParameterProvider<NetworkImageState> {

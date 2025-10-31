@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.data.settings.repository
 
-import com.sottti.android.app.template.data.settings.datasource.SettingsLocalDataSource
+import com.sottti.android.app.template.data.settings.datasource.local.SettingsLocalDataSource
 import com.sottti.android.app.template.domain.core.models.DynamicColor
 import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import com.sottti.android.app.template.domain.core.models.SystemTheme

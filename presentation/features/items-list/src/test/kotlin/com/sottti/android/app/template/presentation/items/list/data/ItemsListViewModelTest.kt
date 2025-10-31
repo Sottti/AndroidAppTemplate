@@ -91,10 +91,10 @@ private suspend fun <T : Any> Flow<PagingData<T>>.asSnapshot(
                 oldItem == newItem
         },
         updateCallback = object : ListUpdateCallback {
-            override fun onInserted(position: Int, count: Int) {}
-            override fun onRemoved(position: Int, count: Int) {}
-            override fun onMoved(fromPosition: Int, toPosition: Int) {}
-            override fun onChanged(position: Int, count: Int, payload: Any?) {}
+            override fun onInserted(position: Int, count: Int) = Unit
+            override fun onRemoved(position: Int, count: Int) = Unit
+            override fun onMoved(fromPosition: Int, toPosition: Int) = Unit
+            override fun onChanged(position: Int, count: Int, payload: Any?) = Unit
         },
         workerDispatcher = mainDispatcherRule.testDispatcher,
     )

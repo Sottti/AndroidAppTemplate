@@ -40,7 +40,7 @@ val failingChannel = object : ByteReadChannel {
         throw kotlinx.io.IOException("Simulated body read failure")
     }
 
-    override fun cancel(cause: Throwable?) {}
+    override fun cancel(cause: Throwable?) = Unit
 }
 
 internal const val ERROR_BODY_RESPONSE = """{"error":"test error"}"""

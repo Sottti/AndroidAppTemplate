@@ -1,13 +1,13 @@
 package com.sottti.android.app.template.data.settings.di
 
 import android.content.Context
-import com.sottti.android.app.template.data.settings.managers.SystemColorContrastManager
-import com.sottti.android.app.template.data.settings.managers.SystemColorContrastManagerImpl
-import com.sottti.android.app.template.data.settings.managers.ThemeManager
-import com.sottti.android.app.template.data.settings.managers.ThemeManagerImpl
-import com.sottti.android.app.template.data.settings.managers.UiModeManager
-import com.sottti.android.app.template.data.settings.managers.UiModeManagerImpl
-import com.sottti.android.app.template.data.settings.model.AndroidUiModeManager
+import com.sottti.android.app.template.data.settings.datasource.local.managers.SystemColorContrastManager
+import com.sottti.android.app.template.data.settings.datasource.local.managers.SystemColorContrastManagerImpl
+import com.sottti.android.app.template.data.settings.datasource.local.managers.ThemeManager
+import com.sottti.android.app.template.data.settings.datasource.local.managers.ThemeManagerImpl
+import com.sottti.android.app.template.data.settings.datasource.local.managers.UiModeManager
+import com.sottti.android.app.template.data.settings.datasource.local.managers.UiModeManagerImpl
+import com.sottti.android.app.template.data.settings.datasource.local.model.AndroidUiModeManager
 import com.sottti.android.app.template.data.settings.repository.SettingsRepositoryImpl
 import com.sottti.android.app.template.domain.settings.repository.SettingsRepository
 import dagger.Binds

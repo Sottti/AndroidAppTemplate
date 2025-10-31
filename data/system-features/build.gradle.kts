@@ -15,4 +15,8 @@ dependencies {
     implementation(libs.hilt)
     implementation(project(module.domain.systemFeatures))
     ksp(libs.hilt.compiler)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.robolectric)
+    testImplementation(libs.truth)
 }
