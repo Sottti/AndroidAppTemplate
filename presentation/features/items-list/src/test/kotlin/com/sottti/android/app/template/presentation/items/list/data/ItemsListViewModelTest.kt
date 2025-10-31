@@ -1,15 +1,15 @@
 import androidx.paging.PagingData
 import androidx.paging.testing.asSnapshot
+import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
 import com.sottti.android.app.template.presentation.items.list.data.ItemsListViewModel
 import com.sottti.android.app.template.presentation.items.list.data.toUi
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowDetail
-import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetailFeature
+import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
+import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
 import com.sottti.android.app.template.usecase.ObserveItems
 import io.mockk.coEvery
-import io.mockk.coVerify
 import io.mockk.mockk
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -18,14 +18,23 @@ import kotlinx.coroutines.test.UnconfinedTestDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
+import org.junit.Before
 import org.junit.Test
 
 @OptIn(ExperimentalCoroutinesApi::class)
 internal class ItemsListViewModelTest {
 
+
     private val items = listOfTwoItems
     private val pagingData = PagingData.from(items)
     private val pagingFlow = flowOf(pagingData)
+
+    private lateinit var navigationManager: FakeNavigationManager
+
+    @Before
+    fun setup() {
+        navigationManager = FakeNavigationManager()
+    }
 
     @Test
     fun `maps domain items to ui models`() = runTest {
@@ -33,7 +42,6 @@ internal class ItemsListViewModelTest {
 
         try {
             val observeItems = mockk<ObserveItems>()
-            val navigationManager = mockk<NavigationManager>()
             coEvery { observeItems() } returns pagingFlow
 
             val viewModel = ItemsListViewModel(
@@ -53,7 +61,6 @@ internal class ItemsListViewModelTest {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
         try {
             val observeItems = mockk<ObserveItems>()
-            val navigationManager = mockk<NavigationManager>()
             coEvery { observeItems() } returns flowOf(PagingData.empty())
 
             val viewModel = ItemsListViewModel(
@@ -74,7 +81,6 @@ internal class ItemsListViewModelTest {
         Dispatchers.setMain(UnconfinedTestDispatcher(testScheduler))
         try {
             val observeItems = mockk<ObserveItems>()
-            val navigationManager = mockk<NavigationManager>(relaxed = true)
             coEvery { observeItems() } returns pagingFlow
 
             val viewModel = ItemsListViewModel(
@@ -85,7 +91,11 @@ internal class ItemsListViewModelTest {
 
             viewModel.onAction(ShowDetail)
 
-            coVerify { navigationManager.navigateTo(ItemDetailFeature) }
+            navigationManager.commands().test {
+                val command = awaitItem()
+                assertThat(command).isInstanceOf(NavigationCommand.NavigateTo::class.java)
+                cancelAndIgnoreRemainingEvents()
+            }
         } finally {
             Dispatchers.resetMain()
         }
