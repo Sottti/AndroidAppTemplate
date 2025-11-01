@@ -11,20 +11,20 @@ internal class SystemColorContrastManagerTestFake {
     @Test
     fun `when created, then it holds the provided default contrast`() {
         val defaultContrast = SystemColorContrast.HighContrast
-        val fake = SystemColorContrastManagerFake(default = defaultContrast)
+        val manager = SystemColorContrastManagerFake(default = defaultContrast)
 
-        val actual = fake.getSystemColorContrast()
+        val actual = manager.getSystemColorContrast()
 
         Truth.assertThat(actual).isEqualTo(defaultContrast)
     }
 
     @Test
     fun `when setting a new contrast, then the current contrast level is updated`() {
-        val fake = SystemColorContrastManagerFake(default = SystemColorContrast.StandardContrast)
+        val manager = SystemColorContrastManagerFake(default = SystemColorContrast.StandardContrast)
         val newContrast = SystemColorContrast.MediumContrast
 
-        fake.setContrast(newContrast)
-        val actual = fake.getSystemColorContrast()
+        manager.setContrast(newContrast)
+        val actual = manager.getSystemColorContrast()
 
         Truth.assertThat(actual).isEqualTo(newContrast)
     }
@@ -34,12 +34,12 @@ internal class SystemColorContrastManagerTestFake {
         runTest {
             val defaultContrast = SystemColorContrast.StandardContrast
             val newContrast = SystemColorContrast.LowContrast
-            val fake = SystemColorContrastManagerFake(default = defaultContrast)
+            val manager = SystemColorContrastManagerFake(default = defaultContrast)
 
-            fake.observeSystemColorContrast().test {
+            manager.observeSystemColorContrast().test {
                 Truth.assertThat(awaitItem()).isEqualTo(defaultContrast)
 
-                fake.setContrast(newContrast)
+                manager.setContrast(newContrast)
 
                 Truth.assertThat(awaitItem()).isEqualTo(newContrast)
 

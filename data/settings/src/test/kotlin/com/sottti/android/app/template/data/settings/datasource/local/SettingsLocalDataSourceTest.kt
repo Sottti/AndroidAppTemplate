@@ -14,9 +14,9 @@ import org.junit.Test
 
 internal class SettingsLocalDataSourceTest {
 
-    private lateinit var fakeSystemFeatures: SystemFeaturesFake
-    private lateinit var fakeSystemColorContrastManager: SystemColorContrastManagerFake
-    private lateinit var fakeThemeManager: ThemeManagerFake
+    private lateinit var systemFeatures: SystemFeaturesFake
+    private lateinit var systemColorContrastManager: SystemColorContrastManagerFake
+    private lateinit var themeManager: ThemeManagerFake
     private lateinit var dataSource: SettingsLocalDataSource
     private var defaultSystemColorContrast = SystemColorContrast.StandardContrast
     private var defaultSystemFeatures = true
@@ -24,21 +24,21 @@ internal class SettingsLocalDataSourceTest {
 
     @Before
     fun setUp() {
-        fakeSystemFeatures = SystemFeaturesFake(default = defaultSystemFeatures)
-        fakeSystemColorContrastManager = SystemColorContrastManagerFake(defaultSystemColorContrast)
-        fakeThemeManager = ThemeManagerFake(defaultTheme)
+        systemFeatures = SystemFeaturesFake(default = defaultSystemFeatures)
+        systemColorContrastManager = SystemColorContrastManagerFake(defaultSystemColorContrast)
+        themeManager = ThemeManagerFake(defaultTheme)
 
         dataSource = SettingsLocalDataSource(
-            features = fakeSystemFeatures,
-            systemColorContrastManager = fakeSystemColorContrastManager,
-            themeManager = fakeThemeManager,
+            features = systemFeatures,
+            systemColorContrastManager = systemColorContrastManager,
+            themeManager = themeManager,
         )
     }
 
     @Test
     fun `when getting system color contrast, then the value from the manager is returned`() {
         val expectedContrast = SystemColorContrast.HighContrast
-        fakeSystemColorContrastManager.setContrast(expectedContrast)
+        systemColorContrastManager.setContrast(expectedContrast)
         val actualContrast = dataSource.getSystemColorContrast()
         Truth.assertThat(actualContrast).isEqualTo(expectedContrast)
     }
@@ -48,7 +48,7 @@ internal class SettingsLocalDataSourceTest {
         runTest {
             dataSource.observeSystemColorContrast().test {
                 Truth.assertThat(awaitItem()).isEqualTo(defaultSystemColorContrast)
-                fakeSystemColorContrastManager.setContrast(SystemColorContrast.MediumContrast)
+                systemColorContrastManager.setContrast(SystemColorContrast.MediumContrast)
                 Truth.assertThat(awaitItem()).isEqualTo(SystemColorContrast.MediumContrast)
                 cancelAndIgnoreRemainingEvents()
             }
@@ -56,14 +56,14 @@ internal class SettingsLocalDataSourceTest {
 
     @Test
     fun `when observing dynamic color, it emits the correct state and completes`() = runTest {
-        fakeSystemFeatures.setSystemDynamicColorAvailable(true)
+        systemFeatures.setSystemDynamicColorAvailable(true)
 
         dataSource.observeDynamicColor().test {
             Truth.assertThat(awaitItem()).isEqualTo(DynamicColor(true))
             awaitComplete()
         }
 
-        fakeSystemFeatures.setSystemDynamicColorAvailable(false)
+        systemFeatures.setSystemDynamicColorAvailable(false)
         dataSource.observeDynamicColor().test {
             Truth.assertThat(awaitItem()).isEqualTo(DynamicColor(false))
             awaitComplete()
@@ -75,7 +75,7 @@ internal class SettingsLocalDataSourceTest {
     fun `when observing system theme, then the flow from the manager is returned`() = runTest {
         dataSource.observeSystemTheme().test {
             Truth.assertThat(awaitItem()).isEqualTo(defaultTheme)
-            fakeThemeManager.setTheme(SystemTheme.DarkSystemTheme)
+            themeManager.setTheme(SystemTheme.DarkSystemTheme)
             Truth.assertThat(awaitItem()).isEqualTo(SystemTheme.DarkSystemTheme)
             cancelAndIgnoreRemainingEvents()
         }
@@ -84,7 +84,7 @@ internal class SettingsLocalDataSourceTest {
     @Test
     fun `when getting system theme, then the value from the manager is returned`() {
         val expectedTheme = SystemTheme.DarkSystemTheme
-        fakeThemeManager.setTheme(expectedTheme)
+        themeManager.setTheme(expectedTheme)
         val actualTheme = dataSource.getSystemTheme()
         Truth.assertThat(actualTheme).isEqualTo(expectedTheme)
     }
