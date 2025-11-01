@@ -50,7 +50,7 @@ internal fun ItemDetails(
 
 @Composable
 @AndroidAppTemplatePreview
-internal fun ItemListUiPreview(
+internal fun ItemDetailsUiPreview(
     @PreviewParameter(ItemsDetailsUiStateProvider::class)
     state: ItemDetailsState,
 ) {
