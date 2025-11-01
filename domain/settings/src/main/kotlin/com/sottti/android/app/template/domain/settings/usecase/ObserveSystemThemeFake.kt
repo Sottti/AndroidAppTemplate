@@ -2,17 +2,18 @@ package com.sottti.android.app.template.domain.settings.usecase
 
 import com.sottti.android.app.template.domain.core.models.SystemTheme
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-internal class ObserveSystemThemeFake(
+public class ObserveSystemThemeFake(
     initialValue: SystemTheme = SystemTheme.LightSystemTheme,
 ) : ObserveSystemTheme {
 
     private val flow = MutableStateFlow(initialValue)
 
-    suspend fun emit(newTheme: SystemTheme) {
+    public suspend fun emit(newTheme: SystemTheme) {
         flow.emit(newTheme)
     }
 
-    override fun invoke() = flow.asStateFlow()
+    override fun invoke(): StateFlow<SystemTheme> = flow.asStateFlow()
 }

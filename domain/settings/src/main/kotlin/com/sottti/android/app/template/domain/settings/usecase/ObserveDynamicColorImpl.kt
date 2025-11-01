@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 internal class ObserveDynamicColorImpl @Inject constructor(
     private val settingsRepository: SettingsRepository,
-) : ObserveDynamicColor{
+) : ObserveDynamicColor {
     override operator fun invoke(): Flow<DynamicColor> =
         settingsRepository.observeDynamicColor()
 }
