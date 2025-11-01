@@ -5,9 +5,9 @@ import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.fixtureItem1
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions.NavigateBack
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
-import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
+import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
-import com.sottti.android.app.template.usecase.FakeObserveItem
+import com.sottti.android.app.template.usecase.ObserveItemFake
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -15,14 +15,14 @@ import org.junit.Test
 
 internal class ItemDetailsViewModelTest {
 
-    private lateinit var navigationManager: FakeNavigationManager
-    private lateinit var observeItem: FakeObserveItem
+    private lateinit var navigationManager: NavigationManagerFake
+    private lateinit var observeItem: ObserveItemFake
     private lateinit var viewModel: ItemDetailsViewModel
 
     @Before
     fun setUp() {
-        navigationManager = FakeNavigationManager()
-        observeItem = FakeObserveItem()
+        navigationManager = NavigationManagerFake()
+        observeItem = ObserveItemFake()
     }
 
     @Test

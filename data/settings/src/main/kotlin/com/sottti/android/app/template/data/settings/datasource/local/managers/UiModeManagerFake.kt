@@ -3,7 +3,7 @@ package com.sottti.android.app.template.data.settings.datasource.local.managers
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-internal class FakeUiModeManager : UiModeManager {
+internal class UiModeManagerFake : UiModeManager {
 
     private var contrastValue: Float? = null
 

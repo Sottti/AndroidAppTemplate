@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.items.datasource.local.database
 
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 
-internal class FakeRemoteKeysDao : RemoteKeysDao {
+internal class RemoteKeysDaoFake : RemoteKeysDao {
     var keys: RemoteKeysRoomModel? = null
     var getCalled = false
     var upsertCalled = false

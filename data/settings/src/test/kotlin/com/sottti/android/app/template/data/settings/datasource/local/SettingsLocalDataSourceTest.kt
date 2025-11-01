@@ -2,21 +2,21 @@ package com.sottti.android.app.template.data.settings.datasource.local
 
 import app.cash.turbine.test
 import com.google.common.truth.Truth
-import com.sottti.android.app.template.data.settings.datasource.local.managers.FakeSystemColorContrastManager
-import com.sottti.android.app.template.data.settings.datasource.local.managers.FakeThemeManager
+import com.sottti.android.app.template.data.settings.datasource.local.managers.SystemColorContrastManagerFake
+import com.sottti.android.app.template.data.settings.datasource.local.managers.ThemeManagerFake
 import com.sottti.android.app.template.domain.core.models.DynamicColor
 import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import com.sottti.android.app.template.domain.core.models.SystemTheme
-import com.sottti.android.app.template.domain.system.features.FakeSystemFeatures
+import com.sottti.android.app.template.domain.system.features.SystemFeaturesFake
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
 internal class SettingsLocalDataSourceTest {
 
-    private lateinit var fakeSystemFeatures: FakeSystemFeatures
-    private lateinit var fakeSystemColorContrastManager: FakeSystemColorContrastManager
-    private lateinit var fakeThemeManager: FakeThemeManager
+    private lateinit var fakeSystemFeatures: SystemFeaturesFake
+    private lateinit var fakeSystemColorContrastManager: SystemColorContrastManagerFake
+    private lateinit var fakeThemeManager: ThemeManagerFake
     private lateinit var dataSource: SettingsLocalDataSource
     private var defaultSystemColorContrast = SystemColorContrast.StandardContrast
     private var defaultSystemFeatures = true
@@ -24,9 +24,9 @@ internal class SettingsLocalDataSourceTest {
 
     @Before
     fun setUp() {
-        fakeSystemFeatures = FakeSystemFeatures(default = defaultSystemFeatures)
-        fakeSystemColorContrastManager = FakeSystemColorContrastManager(defaultSystemColorContrast)
-        fakeThemeManager = FakeThemeManager(defaultTheme)
+        fakeSystemFeatures = SystemFeaturesFake(default = defaultSystemFeatures)
+        fakeSystemColorContrastManager = SystemColorContrastManagerFake(defaultSystemColorContrast)
+        fakeThemeManager = ThemeManagerFake(defaultTheme)
 
         dataSource = SettingsLocalDataSource(
             features = fakeSystemFeatures,

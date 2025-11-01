@@ -3,7 +3,7 @@ package com.sottti.android.app.template.data.items.datasource.remote
 import com.github.michaelbull.result.onFailure
 import com.github.michaelbull.result.onSuccess
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.remote.api.FakeItemsApiCalls
+import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsFake
 import com.sottti.android.app.template.data.items.datasource.remote.fixtures.fixtureItem1ApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.mapper.toDomain
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
@@ -15,12 +15,12 @@ import org.junit.Test
 
 internal class ItemsRemoteDataSourceImplTest {
 
-    private lateinit var apiCalls: FakeItemsApiCalls
+    private lateinit var apiCalls: ItemsApiCallsFake
     private lateinit var dataSource: ItemsRemoteDataSourceImpl
 
     @Before
     fun setUp() {
-        apiCalls = FakeItemsApiCalls()
+        apiCalls = ItemsApiCallsFake()
         dataSource = ItemsRemoteDataSourceImpl(api = apiCalls)
     }
 

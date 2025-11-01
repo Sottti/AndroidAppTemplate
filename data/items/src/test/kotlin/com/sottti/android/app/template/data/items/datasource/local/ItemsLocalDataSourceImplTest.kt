@@ -1,10 +1,11 @@
 package com.sottti.android.app.template.data.items.datasource.local
 
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.local.database.FakeItemsDao
-import com.sottti.android.app.template.data.items.datasource.local.database.FakeRemoteKeysDao
+import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDaoFake
+import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDaoFake
 import com.sottti.android.app.template.data.items.datasource.local.mapper.toRoom
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
+import com.sottti.android.app.template.data.items.datasource.local.TimeProviderFake
 import com.sottti.android.app.template.fixtures.fixtureItem1
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -12,16 +13,16 @@ import org.junit.Test
 
 internal class ItemsLocalDataSourceImplTest {
 
-    private lateinit var itemsDao: FakeItemsDao
+    private lateinit var itemsDao: ItemsDaoFake
     private lateinit var localDataSource: ItemsLocalDataSource
-    private lateinit var remoteKeysDao: FakeRemoteKeysDao
-    private lateinit var timeProvider: FakeTimeProvider
+    private lateinit var remoteKeysDao: RemoteKeysDaoFake
+    private lateinit var timeProvider: TimeProviderFake
 
     @Before
     fun setUp() {
-        itemsDao = FakeItemsDao()
-        remoteKeysDao = FakeRemoteKeysDao()
-        timeProvider = FakeTimeProvider()
+        itemsDao = ItemsDaoFake()
+        remoteKeysDao = RemoteKeysDaoFake()
+        timeProvider = TimeProviderFake()
         localDataSource = ItemsLocalDataSourceImpl(
             itemsDao = itemsDao,
             remoteKeysDao = remoteKeysDao,

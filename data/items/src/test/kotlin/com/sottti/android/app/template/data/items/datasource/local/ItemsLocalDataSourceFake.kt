@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.items.datasource.local
 
 import androidx.paging.PagingSource
-import com.sottti.android.app.template.data.items.datasource.local.mapper.FakeItemMappingPagingSource
+import com.sottti.android.app.template.data.items.datasource.local.mapper.ItemMappingPagingSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.model.ItemId
@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
-internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
+internal class ItemsLocalDataSourceFake : ItemsLocalDataSource {
 
     val saved: MutableList<Item> = mutableListOf()
     var remoteKeys: RemoteKeysRoomModel? = null
@@ -31,7 +31,7 @@ internal class FakeItemsLocalDataSource : ItemsLocalDataSource {
             .distinctUntilChanged()
 
     override fun observeItems(): PagingSource<Int, Item> =
-        FakeItemMappingPagingSource(saved)
+        ItemMappingPagingSourceFake(saved)
 
     override suspend fun isExpired(itemId: ItemId): Boolean = itemId in expiredIds
 

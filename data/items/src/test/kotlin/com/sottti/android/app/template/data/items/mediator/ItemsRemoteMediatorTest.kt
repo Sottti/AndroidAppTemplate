@@ -7,9 +7,9 @@ import androidx.paging.PagingState
 import androidx.paging.RemoteMediator.MediatorResult.Error
 import androidx.paging.RemoteMediator.MediatorResult.Success
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.local.FakeItemsLocalDataSource
+import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
-import com.sottti.android.app.template.data.items.datasource.remote.FakeItemsRemoteDataSource
+import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceFake
 import com.sottti.android.app.template.fixtures.listOfMultipleItems
 import com.sottti.android.app.template.model.Item
 import kotlinx.coroutines.test.runTest
@@ -19,8 +19,8 @@ import org.junit.Test
 @OptIn(ExperimentalPagingApi::class)
 internal class ItemsRemoteMediatorTest {
 
-    private lateinit var localDataSource: FakeItemsLocalDataSource
-    private lateinit var remoteDataSource: FakeItemsRemoteDataSource
+    private lateinit var localDataSource: ItemsLocalDataSourceFake
+    private lateinit var remoteDataSource: ItemsRemoteDataSourceFake
     private lateinit var mediator: ItemsRemoteMediator
 
     private val pagingState = PagingState<Int, Item>(
@@ -32,8 +32,8 @@ internal class ItemsRemoteMediatorTest {
 
     @Before
     fun setUp() {
-        localDataSource = FakeItemsLocalDataSource()
-        remoteDataSource = FakeItemsRemoteDataSource()
+        localDataSource = ItemsLocalDataSourceFake()
+        remoteDataSource = ItemsRemoteDataSourceFake()
         mediator = ItemsRemoteMediator(
             localDataSource = localDataSource,
             remoteDataSource = remoteDataSource
