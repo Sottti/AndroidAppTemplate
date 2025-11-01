@@ -12,6 +12,15 @@ A clean, modern, and opinionated Android application template to bootstrap your 
 quickly. This template is built with a focus on modern Android development (MAD), scalability, and
 best practices.
 
+## Disclaimer
+
+This repository intentionally demonstrates a production-ready architecture suited for teams that
+need to scale quickly and collaborate across multiple features. Elements such as multi-module
+structure, repository and use-case layers, and other advanced patterns are included to showcase how
+large, collaborative projects can stay maintainable over time. They may be unnecessary for smaller
+apps or teams with different preferences. Evaluate each practice against your team's size, project
+scope, and delivery goals before adopting it wholesale.
+
 ## Overview
 
 This project serves as a starter kit for new Android applications. It's designed to save you from
