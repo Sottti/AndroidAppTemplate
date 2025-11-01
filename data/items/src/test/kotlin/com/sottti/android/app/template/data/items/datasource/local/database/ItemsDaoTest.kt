@@ -13,7 +13,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 
 @RunWith(RobolectricTestRunner::class)
-class ItemsDaoTest {
+internal class ItemsDaoTest {
     private lateinit var db: ItemsDatabase
     private lateinit var dao: ItemsDao
 
