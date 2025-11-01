@@ -4,6 +4,7 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.ItemAp
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.model.ItemDescription
 import com.sottti.android.app.template.model.ItemId
 import com.sottti.android.app.template.model.ItemImage
 import com.sottti.android.app.template.model.ItemName
@@ -16,9 +17,10 @@ internal fun ItemApiModel.toDomain(): Item =
         id = ItemId(checkedId(id, name)),
         name = ItemName(name),
         image = ItemImage(
-            description = ImageContentDescription(description),
+            description = ImageContentDescription("An image description"),
             imageUrl = createImageUrl(id),
         ),
+        description = ItemDescription(description)
     )
 
 // https://github.com/alxiw/punkapi/issues/2

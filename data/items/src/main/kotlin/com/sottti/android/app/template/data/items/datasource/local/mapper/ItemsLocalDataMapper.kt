@@ -4,6 +4,7 @@ import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoo
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.model.ItemDescription
 import com.sottti.android.app.template.model.ItemId
 import com.sottti.android.app.template.model.ItemImage
 import com.sottti.android.app.template.model.ItemName
@@ -15,7 +16,8 @@ internal fun ItemRoomModel.toDomain() =
         image = ItemImage(
             description = ImageContentDescription(imageDescription),
             imageUrl = ImageUrl(imageUrl),
-        )
+        ),
+        description = ItemDescription(description),
     )
 
 internal fun List<Item>.toRoom(
@@ -24,9 +26,10 @@ internal fun List<Item>.toRoom(
 
 internal fun Item.toRoom(nowInMillis: Long) =
     ItemRoomModel(
+        description = description.value,
         id = id.value,
-        name = name.value,
-        imageUrl = image.imageUrl.value,
         imageDescription = image.description.value,
+        imageUrl = image.imageUrl.value,
+        name = name.value,
         storedAt = nowInMillis,
     )

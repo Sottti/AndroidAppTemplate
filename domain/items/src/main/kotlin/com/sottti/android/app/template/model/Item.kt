@@ -4,4 +4,5 @@ public data class Item(
     val id: ItemId,
     val image: ItemImage,
     val name: ItemName,
+    val description : ItemDescription,
 )

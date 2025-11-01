@@ -141,7 +141,7 @@ private fun Header(@StringRes text: Int) {
 
 @Composable
 private fun IdentityDetails(state: ItemIdentityState) {
-    val items = listOfNotNull(state.name)
+    val items = listOfNotNull(state.name, state.description)
 
     DetailsCard {
         items.forEachIndexed { index, item ->

@@ -22,6 +22,7 @@ internal fun ItemDetailsState.reduce(item: Item): ItemDetailsState =
                 ),
                 identity = this.item.identity.copy(
                     name = this.item.identity.name.copy(trailing = item.name.value),
+                    description = this.item.identity.description.copy(trailing = item.description.value)
                 ),
             ),
         )
@@ -41,6 +42,10 @@ internal fun ItemDetailsState.reduce(item: Item): ItemDetailsState =
                         headline = R.string.identity_name,
                         trailing = item.name.value,
                     ),
+                    description = ItemDetailsRow(
+                        headline = R.string.identity_description,
+                        trailing = item.description.value,
+                    )
                 ),
             ),
         )

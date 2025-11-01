@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="identity_description">Description</string>
     <string name="identity_header">Identity</string>
     <string name="identity_name">Name</string>
 </resources>
