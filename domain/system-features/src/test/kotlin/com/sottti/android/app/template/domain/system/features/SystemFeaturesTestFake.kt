@@ -7,52 +7,52 @@ internal class SystemFeaturesTestFake {
 
     @Test
     fun `when created with default true, then all features are available`() {
-        val fake = SystemFeaturesFake(default = true)
+        val systemFeatures = SystemFeaturesFake(default = true)
 
-        assertThat(fake.systemColorContrastAvailable()).isTrue()
-        assertThat(fake.systemDynamicColorAvailable()).isTrue()
-        assertThat(fake.lightDarkSystemThemingAvailable()).isTrue()
+        assertThat(systemFeatures.systemColorContrastAvailable()).isTrue()
+        assertThat(systemFeatures.systemDynamicColorAvailable()).isTrue()
+        assertThat(systemFeatures.lightDarkSystemThemingAvailable()).isTrue()
     }
 
     @Test
     fun `when created with default false, then all features are unavailable`() {
-        val fake = SystemFeaturesFake(default = false)
+        val systemFeatures = SystemFeaturesFake(default = false)
 
-        assertThat(fake.systemColorContrastAvailable()).isFalse()
-        assertThat(fake.systemDynamicColorAvailable()).isFalse()
-        assertThat(fake.lightDarkSystemThemingAvailable()).isFalse()
+        assertThat(systemFeatures.systemColorContrastAvailable()).isFalse()
+        assertThat(systemFeatures.systemDynamicColorAvailable()).isFalse()
+        assertThat(systemFeatures.lightDarkSystemThemingAvailable()).isFalse()
     }
 
     @Test
     fun `when updating contrast availability, then only the contrast feature is updated`() {
-        val fake = SystemFeaturesFake(default = true)
+        val systemFeatures = SystemFeaturesFake(default = true)
 
-        fake.setSystemColorContrastAvailable(false)
+        systemFeatures.setSystemColorContrastAvailable(false)
 
-        assertThat(fake.systemColorContrastAvailable()).isFalse()
-        assertThat(fake.systemDynamicColorAvailable()).isTrue()
-        assertThat(fake.lightDarkSystemThemingAvailable()).isTrue()
+        assertThat(systemFeatures.systemColorContrastAvailable()).isFalse()
+        assertThat(systemFeatures.systemDynamicColorAvailable()).isTrue()
+        assertThat(systemFeatures.lightDarkSystemThemingAvailable()).isTrue()
     }
 
     @Test
     fun `when updating dynamic color availability, then only the dynamic color feature is updated`() {
-        val fake = SystemFeaturesFake(default = false)
+        val systemFeatures = SystemFeaturesFake(default = false)
 
-        fake.setSystemDynamicColorAvailable(true)
+        systemFeatures.setSystemDynamicColorAvailable(true)
 
-        assertThat(fake.systemColorContrastAvailable()).isFalse()
-        assertThat(fake.systemDynamicColorAvailable()).isTrue()
-        assertThat(fake.lightDarkSystemThemingAvailable()).isFalse()
+        assertThat(systemFeatures.systemColorContrastAvailable()).isFalse()
+        assertThat(systemFeatures.systemDynamicColorAvailable()).isTrue()
+        assertThat(systemFeatures.lightDarkSystemThemingAvailable()).isFalse()
     }
 
     @Test
     fun `when updating theming availability, then only the theming feature is updated`() {
-        val fake = SystemFeaturesFake(default = true)
+        val systemFeatures = SystemFeaturesFake(default = true)
 
-        fake.setLightDarkSystemThemingAvailable(false)
+        systemFeatures.setLightDarkSystemThemingAvailable(false)
 
-        assertThat(fake.systemColorContrastAvailable()).isTrue()
-        assertThat(fake.systemDynamicColorAvailable()).isTrue()
-        assertThat(fake.lightDarkSystemThemingAvailable()).isFalse()
+        assertThat(systemFeatures.systemColorContrastAvailable()).isTrue()
+        assertThat(systemFeatures.systemDynamicColorAvailable()).isTrue()
+        assertThat(systemFeatures.lightDarkSystemThemingAvailable()).isFalse()
     }
 }
