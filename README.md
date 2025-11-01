@@ -61,12 +61,18 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Dynamic system theming:** The `presentation` layer streams system theme and contrast updates,
   maps them through the `data/system-features` module, and applies them across the Compose UI while
   synchronizing system bars for a fully adaptive experience.
+* **Offline-first paging:** The `data:items` module layers Room DAOs, Paging 3, and a
+  `RemoteMediator` on top of the Ktor client so item feeds stay cached and transparently refresh
+  whenever the network is available.
 * **Navigation infrastructure:** A dedicated Compose Navigation 3 stack coordinates screen changes
   via a `NavigationManager`, with `Navigator` components observing command channels and handling
   saveable state, back stack pops, and simultaneous navigation requests.
 * **Snapshot tooling:** The `presentation` module includes a Paparazzi test toolkit featuring a
   custom Pixel 10 Pro XL device profile and helpers that generate day/night parameter sets for rich
   screenshot coverage.
+* **Preview ergonomics:** `presentation:previews` packages reusable Compose `@Preview` annotations
+  so feature teams can opt into consistent device sizes, light/dark themes, and dynamic color
+  toggles without re-declaring boilerplate in every screen file.
 * **Coroutine utilities:** The `utils` module ships reusable coroutine extensions such as
   `stateInWhileSubscribed` and `observeConfigurationChanges` for concise and lifecycle-aware state
   management in ViewModels.
@@ -82,6 +88,23 @@ This template is packed with the latest libraries and tools from the Android eco
 
 This project follows a standard multi-module setup, which is highly recommended for separation of
 concerns and build speed.
+
+### 🗺️ Module Overview
+
+The template is organized into focused Gradle modules so you can jump straight to the layer you need:
+
+* **App shell:** `app` hosts the Android entry points and wires the feature graph together.
+* **Data layer:** `data:items`, `data:network`, `data:settings`, and `data:system-features` expose
+  repositories, remote clients, and system capability gates.
+* **Domain layer:** `domain:core-models`, `domain:items`, `domain:settings`, and
+  `domain:system-features` keep business logic and models independent from platform code.
+* **Dependency injection:** `di` centralizes Hilt bindings shared across modules.
+* **Presentation layer:** The `presentation` namespace splits into `design-system` slices, feature
+  modules such as `presentation:features:items-list` and `presentation:features:item-details`, plus
+  supporting utilities like `presentation:navigation`, `presentation:navigation-impl`,
+  `presentation:paparazzi`, `presentation:previews`, and `presentation:utils`.
+* **Utilities:** `utils:lifecycle` collects lifecycle-aware coroutine helpers shared throughout the
+  app.
 
 ## 🏛️ Architecture (MVVM + Clean)
 
