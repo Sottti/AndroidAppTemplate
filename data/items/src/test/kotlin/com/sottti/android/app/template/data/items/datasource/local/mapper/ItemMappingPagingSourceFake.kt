@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sottti.android.app.template.model.Item
 
-internal class FakeItemMappingPagingSource(
+internal class ItemMappingPagingSourceFake(
     private val saved: MutableList<Item>,
 ) : PagingSource<Int, Item>() {
 

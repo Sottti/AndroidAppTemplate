@@ -5,7 +5,7 @@ import com.sottti.android.app.template.model.Item
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 
-public class FakeObserveItems : ObserveItems {
+public class ObserveItemsFake : ObserveItems {
 
     private var itemsFlow: Flow<PagingData<Item>> = flowOf(PagingData.empty())
 

@@ -6,7 +6,7 @@ import com.sottti.android.app.template.model.ItemId
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 
-public class FakeObserveItem : ObserveItem {
+public class ObserveItemFake : ObserveItem {
     private var itemFlow: Flow<Item> = emptyFlow()
     private var lastCalledItemId: ItemId? = null
 

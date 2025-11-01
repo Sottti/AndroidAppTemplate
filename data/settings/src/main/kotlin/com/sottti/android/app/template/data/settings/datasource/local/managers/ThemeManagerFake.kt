@@ -4,7 +4,7 @@ import com.sottti.android.app.template.domain.core.models.SystemTheme
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-internal class FakeThemeManager(
+internal class ThemeManagerFake(
     default: SystemTheme,
 ) : ThemeManager {
 

@@ -6,12 +6,12 @@ import com.sottti.android.app.template.domain.core.models.SystemTheme
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-internal class FakeThemeManagerTest {
+internal class ThemeManagerTestFake {
 
     @Test
     fun `when created, then it holds the provided default theme`() {
         val defaultTheme = SystemTheme.DarkSystemTheme
-        val fake = FakeThemeManager(default = defaultTheme)
+        val fake = ThemeManagerFake(default = defaultTheme)
 
         val actual = fake.getSystemTheme()
 
@@ -20,7 +20,7 @@ internal class FakeThemeManagerTest {
 
     @Test
     fun `when setting a new theme, then the current theme is updated`() {
-        val fake = FakeThemeManager(default = SystemTheme.DarkSystemTheme)
+        val fake = ThemeManagerFake(default = SystemTheme.DarkSystemTheme)
         val newTheme = SystemTheme.LightSystemTheme
 
         fake.setTheme(newTheme)
@@ -34,7 +34,7 @@ internal class FakeThemeManagerTest {
         runTest {
             val defaultTheme = SystemTheme.LightSystemTheme
             val newTheme = SystemTheme.DarkSystemTheme
-            val fake = FakeThemeManager(default = defaultTheme)
+            val fake = ThemeManagerFake(default = defaultTheme)
 
             fake.observeSystemTheme().test {
                 Truth.assertThat(awaitItem()).isEqualTo(defaultTheme)

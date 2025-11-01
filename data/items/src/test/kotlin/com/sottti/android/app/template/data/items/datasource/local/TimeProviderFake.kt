@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.items.datasource.local
 
 import java.time.Instant
 
-internal class FakeTimeProvider(
+internal class TimeProviderFake(
     initialTime: Long = Instant.EPOCH.toEpochMilli(),
 ) : TimeProvider {
 

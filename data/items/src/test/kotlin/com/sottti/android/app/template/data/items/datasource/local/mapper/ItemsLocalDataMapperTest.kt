@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.items.datasource.local.mapper
 
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.data.items.datasource.local.FakeTimeProvider
+import com.sottti.android.app.template.data.items.datasource.local.TimeProviderFake
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem2RoomModel
 import com.sottti.android.app.template.fixtures.fixtureItem1
@@ -9,7 +9,7 @@ import com.sottti.android.app.template.fixtures.fixtureItem2
 import com.sottti.android.app.template.model.Item
 import org.junit.Test
 
-private val now = FakeTimeProvider().now()
+private val now = TimeProviderFake().now()
 
 internal class ItemsLocalDataMapperTest {
 

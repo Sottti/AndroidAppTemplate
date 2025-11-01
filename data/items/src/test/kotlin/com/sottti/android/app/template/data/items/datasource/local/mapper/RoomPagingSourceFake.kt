@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
 
-internal class FakeRoomPagingSource(
+internal class RoomPagingSourceFake(
     private val loader: suspend (LoadParams<Int>) -> LoadResult<Int, ItemRoomModel>,
 ) : PagingSource<Int, ItemRoomModel>() {
     override fun getRefreshKey(state: PagingState<Int, ItemRoomModel>): Int? = null

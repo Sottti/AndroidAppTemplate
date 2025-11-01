@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.domain.system.features
 
-public class FakeSystemFeatures(
+public class SystemFeaturesFake(
     default: Boolean,
 ) : SystemFeatures {
 
