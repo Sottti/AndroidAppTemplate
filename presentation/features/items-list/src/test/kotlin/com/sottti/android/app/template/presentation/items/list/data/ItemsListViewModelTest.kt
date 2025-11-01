@@ -5,11 +5,11 @@ import androidx.paging.testing.asSnapshot
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.domain.items.fixtures.listOfTwoItems
+import com.sottti.android.app.template.domain.items.usecase.ObserveItemsFake
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
-import com.sottti.android.app.template.domain.items.usecase.ObserveItemsFake
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceUntilIdle

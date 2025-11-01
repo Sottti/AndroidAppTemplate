@@ -5,7 +5,6 @@ import androidx.paging.testing.asSnapshot
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.domain.items.fixtures.listOfTwoItems
 import com.sottti.android.app.template.domain.items.model.Item
-import com.sottti.android.app.template.domain.items.usecase.ObserveItemsFake
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before

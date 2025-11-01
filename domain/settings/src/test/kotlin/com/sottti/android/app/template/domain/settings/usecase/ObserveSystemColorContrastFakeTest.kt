@@ -21,7 +21,8 @@ internal class ObserveSystemColorContrastFakeTest {
 
     @Test
     fun `when emit is called, then the flow emits the new value`() = runTest {
-        val fake = ObserveSystemColorContrastFake(initialValue = SystemColorContrast.StandardContrast)
+        val fake =
+            ObserveSystemColorContrastFake(initialValue = SystemColorContrast.StandardContrast)
         val newValue = SystemColorContrast.HighContrast
 
         fake().test {

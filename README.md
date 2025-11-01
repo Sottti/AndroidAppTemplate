@@ -91,7 +91,8 @@ concerns and build speed.
 
 ### 🗺️ Module Overview
 
-The template is organized into focused Gradle modules so you can jump straight to the layer you need:
+The template is organized into focused Gradle modules so you can jump straight to the layer you
+need:
 
 * **App shell:** `app` hosts the Android entry points and wires the feature graph together.
 * **Data layer:** `data:items`, `data:network`, `data:settings`, and `data:system-features` expose

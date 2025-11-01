@@ -3,11 +3,11 @@ package com.sottti.android.app.template.presentation.item.details.data
 import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.usecase.ObserveItemFake
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions.NavigateBack
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
-import com.sottti.android.app.template.domain.items.usecase.ObserveItemFake
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
