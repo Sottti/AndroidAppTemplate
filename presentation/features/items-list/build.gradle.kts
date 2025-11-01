@@ -14,7 +14,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.compose.ui.tooling)

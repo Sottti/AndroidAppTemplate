@@ -28,6 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.images.network.NetworkImage
@@ -36,6 +37,9 @@ import com.sottti.android.app.template.presentation.item.details.model.ItemDetai
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsRow
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsSectionState
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
+import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Error
+import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loaded
+import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loading
 import com.sottti.android.app.template.presentation.item.details.model.ItemIdentityState
 import com.sottti.android.app.template.presentation.item.details.model.ItemState
 import com.sottti.android.app.template.presentation.utils.Spacer
@@ -58,25 +62,20 @@ internal fun ItemDetailsContent(
         }
     ) { padding: PaddingValues ->
         when (state) {
-            is ItemDetailsState.Loading -> ProgressIndicator(
+            is Loading -> ProgressIndicator(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(padding)
             )
 
-            is ItemDetailsState.Error -> {}
-//                ErrorUi(
-//                    modifier = Modifier.padding(padding),
-//                    button = ErrorButton {}
-//                )
+            is Error -> ErrorUi(modifier = Modifier.padding(padding))
 
-            is ItemDetailsState.Loaded ->
-                LoadedState(
-                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
-                    onAction = onAction,
-                    padding = padding,
-                    state = state.item,
-                )
+            is Loaded -> LoadedState(
+                nestedScrollConnection = scrollBehavior.nestedScrollConnection,
+                onAction = onAction,
+                padding = padding,
+                state = state.item,
+            )
         }
     }
 }

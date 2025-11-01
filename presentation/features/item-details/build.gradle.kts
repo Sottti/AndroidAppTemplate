@@ -14,8 +14,9 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
+    implementation(libs.compose.foundation)
     implementation(libs.compose.material)
+    implementation(libs.compose.ui.tooling)
     implementation(libs.hilt)
     implementation(libs.hilt.navigation.compose)
     implementation(libs.lifecycle.viewModel)
@@ -23,6 +24,7 @@ dependencies {
     implementation(project(module.domain.items))
     implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.designSystem.dimensions))
+    implementation(project(module.presentation.designSystem.error))
     implementation(project(module.presentation.designSystem.icons))
     implementation(project(module.presentation.designSystem.images))
     implementation(project(module.presentation.designSystem.progressIndicators))
@@ -30,6 +32,7 @@ dependencies {
     implementation(project(module.presentation.designSystem.themes))
     implementation(project(module.presentation.designSystem.topBars))
     implementation(project(module.presentation.navigation))
+    implementation(project(module.presentation.previews))
     implementation(project(module.presentation.utils))
     ksp(libs.hilt.compiler)
     testImplementation(project(module.presentation.paparazzi))
