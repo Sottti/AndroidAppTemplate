@@ -11,20 +11,20 @@ internal class ThemeManagerTestFake {
     @Test
     fun `when created, then it holds the provided default theme`() {
         val defaultTheme = SystemTheme.DarkSystemTheme
-        val fake = ThemeManagerFake(default = defaultTheme)
+        val themeManager = ThemeManagerFake(default = defaultTheme)
 
-        val actual = fake.getSystemTheme()
+        val actual = themeManager.getSystemTheme()
 
         Truth.assertThat(actual).isEqualTo(defaultTheme)
     }
 
     @Test
     fun `when setting a new theme, then the current theme is updated`() {
-        val fake = ThemeManagerFake(default = SystemTheme.DarkSystemTheme)
+        val themeManager = ThemeManagerFake(default = SystemTheme.DarkSystemTheme)
         val newTheme = SystemTheme.LightSystemTheme
 
-        fake.setTheme(newTheme)
-        val actual = fake.getSystemTheme()
+        themeManager.setTheme(newTheme)
+        val actual = themeManager.getSystemTheme()
 
         Truth.assertThat(actual).isEqualTo(newTheme)
     }
@@ -34,12 +34,12 @@ internal class ThemeManagerTestFake {
         runTest {
             val defaultTheme = SystemTheme.LightSystemTheme
             val newTheme = SystemTheme.DarkSystemTheme
-            val fake = ThemeManagerFake(default = defaultTheme)
+            val themeManager = ThemeManagerFake(default = defaultTheme)
 
-            fake.observeSystemTheme().test {
+            themeManager.observeSystemTheme().test {
                 Truth.assertThat(awaitItem()).isEqualTo(defaultTheme)
 
-                fake.setTheme(newTheme)
+                themeManager.setTheme(newTheme)
 
                 Truth.assertThat(awaitItem()).isEqualTo(newTheme)
 
