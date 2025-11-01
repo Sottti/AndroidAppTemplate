@@ -11,6 +11,9 @@ internal data class ItemApiModel(
     @SerialName("name")
     val name: String,
 
-    @SerialName("description")
-    val description: String,
+    @SerialName("tagline")
+    val tagline: String,
+
+    @SerialName("first_brewed")
+    val year: String,
 )

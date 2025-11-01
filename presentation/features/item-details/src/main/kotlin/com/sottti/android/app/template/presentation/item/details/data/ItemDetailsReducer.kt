@@ -11,42 +11,52 @@ import com.sottti.android.app.template.presentation.item.details.model.ItemDetai
 import com.sottti.android.app.template.presentation.item.details.model.ItemIdentityState
 import com.sottti.android.app.template.presentation.item.details.model.ItemState
 
-internal fun ItemDetailsState.reduce(item: Item): ItemDetailsState =
-    when (this) {
+internal fun ItemDetailsState.reduce(item: Item): ItemDetailsState {
+    val updatedTopBar = topBarState.copy(title = item.name.value)
+    return when (this) {
         is Loaded -> copy(
-            topBarState = topBarState.copy(title = item.name.value),
-            item = this.item.copy(
-                imageState = this.item.imageState.copy(
-                    imageDescription = item.image.description,
-                    imageUrl = item.image.imageUrl,
-                ),
-                identity = this.item.identity.copy(
-                    name = this.item.identity.name.copy(trailing = item.name.value),
-                    description = this.item.identity.description.copy(trailing = item.description.value)
-                ),
-            ),
+            topBarState = updatedTopBar,
+            item = item.toItemState(existing = this.item)
         )
 
-        is Error,
-        is Loading,
-            -> Loaded(
-            topBarState = topBarState.copy(title = item.name.value),
-            item = ItemState(
-                imageState = ImageState(
-                    imageDescription = item.image.description,
-                    imageUrl = item.image.imageUrl,
-                ),
-                identity = ItemIdentityState(
-                    header = R.string.identity_name,
-                    name = ItemDetailsRow(
-                        headline = R.string.identity_name,
-                        trailing = item.name.value,
-                    ),
-                    description = ItemDetailsRow(
-                        headline = R.string.identity_description,
-                        trailing = item.description.value,
-                    )
-                ),
-            ),
+        is Error, is Loading -> Loaded(
+            topBarState = updatedTopBar,
+            item = item.toItemState()
         )
     }
+}
+
+private fun Item.toItemState(
+    existing: ItemState? = null,
+): ItemState = existing?.copy(
+    imageState = existing.imageState.copy(
+        imageDescription = image.description,
+        imageUrl = image.imageUrl
+    ),
+    identity = existing.identity.copy(
+        name = existing.identity.name.copy(trailing = name.value),
+        tagline = existing.identity.tagline.copy(trailing = tagline.value),
+        year = existing.identity.year.copy(trailing = year.value.toString())
+    )
+)
+    ?: ItemState(
+        imageState = ImageState(
+            imageDescription = image.description,
+            imageUrl = image.imageUrl
+        ),
+        identity = ItemIdentityState(
+            header = R.string.identity_name,
+            name = ItemDetailsRow(
+                headline = R.string.identity_name,
+                trailing = name.value
+            ),
+            tagline = ItemDetailsRow(
+                headline = R.string.identity_tagline,
+                trailing = tagline.value
+            ),
+            year = ItemDetailsRow(
+                headline = R.string.identity_year,
+                trailing = year.value.toString()
+            )
+        )
+    )

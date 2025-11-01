@@ -8,6 +8,7 @@ import com.sottti.android.app.template.model.ItemDescription
 import com.sottti.android.app.template.model.ItemId
 import com.sottti.android.app.template.model.ItemImage
 import com.sottti.android.app.template.model.ItemName
+import com.sottti.android.app.template.model.ItemYear
 
 internal fun List<ItemApiModel>.toDomain(): List<Item> =
     map { itemApiModel -> itemApiModel.toDomain() }
@@ -20,7 +21,8 @@ internal fun ItemApiModel.toDomain(): Item =
             description = ImageContentDescription("An image description"),
             imageUrl = createImageUrl(id),
         ),
-        description = ItemDescription(description)
+        tagline = ItemDescription(tagline),
+        year = ItemYear(year)
     )
 
 // https://github.com/alxiw/punkapi/issues/2

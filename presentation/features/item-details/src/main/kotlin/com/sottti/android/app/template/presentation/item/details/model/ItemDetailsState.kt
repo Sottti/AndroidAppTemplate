@@ -55,8 +55,9 @@ internal data class ImageState(
 @Immutable
 internal data class ItemIdentityState(
     override val header: Int,
+    val year: ItemDetailsRow,
     val name: ItemDetailsRow,
-    val description: ItemDetailsRow,
+    val tagline: ItemDetailsRow,
 ) : ItemDetailsSectionState
 
 @Immutable

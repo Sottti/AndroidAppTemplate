@@ -24,6 +24,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
@@ -141,7 +142,7 @@ private fun Header(@StringRes text: Int) {
 
 @Composable
 private fun IdentityDetails(state: ItemIdentityState) {
-    val items = listOfNotNull(state.name, state.description)
+    val items = listOfNotNull(state.name, state.tagline, state.year)
 
     DetailsCard {
         items.forEachIndexed { index, item ->
@@ -194,7 +195,8 @@ private fun Trailing(
         Text.Body.Large(
             text = trailing,
             textColor = colors.onSurface,
-            modifier = Modifier.widthIn(max = screenWidth * 0.5f)
+            modifier = Modifier.widthIn(max = screenWidth * 0.5f),
+            textAlign = TextAlign.End,
         )
     }
 }

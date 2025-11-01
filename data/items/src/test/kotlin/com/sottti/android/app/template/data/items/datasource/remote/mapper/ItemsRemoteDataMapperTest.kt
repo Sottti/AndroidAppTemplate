@@ -1,6 +1,9 @@
 package com.sottti.android.app.template.data.items.datasource.remote.mapper
 
 import com.google.common.truth.Truth.assertThat
+import com.sottti.android.app.template.data.items.datasource.remote.fixtures.fixtureItem1ApiModel
+import com.sottti.android.app.template.data.items.datasource.remote.fixtures.fixtureItem2ApiModel
+import com.sottti.android.app.template.data.items.datasource.remote.fixtures.listOfTwoApiModels
 import com.sottti.android.app.template.data.items.datasource.remote.model.ItemApiModel
 import org.junit.Test
 
@@ -8,18 +11,16 @@ internal class ItemsRemoteDataMapperTest {
 
     @Test
     fun `given a standard API model, when mapped to domain, then it should map all fields correctly`() {
-        val apiModel = ItemApiModel(
-            id = 1,
-            name = "Test Beer",
-            description = "A standard test beer."
-        )
+        val apiModel = fixtureItem1ApiModel
 
         val domainModel = apiModel.toDomain()
 
-        assertThat(domainModel.id.value).isEqualTo(1)
-        assertThat(domainModel.name.value).isEqualTo("Test Beer")
-        assertThat(domainModel.image.description.value).isEqualTo("A standard test beer.")
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/1/400")
+        assertThat(domainModel.id.value).isEqualTo(apiModel.id)
+        assertThat(domainModel.name.value).isEqualTo(apiModel.name)
+        assertThat(domainModel.tagline.value).isEqualTo(apiModel.tagline)
+        assertThat(domainModel.year.value).isEqualTo(apiModel.year)
+        assertThat(domainModel.image.description.value).isEqualTo("An image description")
+        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/${apiModel.id}/600")
     }
 
     @Test
@@ -27,13 +28,14 @@ internal class ItemsRemoteDataMapperTest {
         val limeZephyrApiModel = ItemApiModel(
             id = 331,
             name = "Lime Zephyr V2 (Fanzine)",
-            description = "A special case beer."
+            tagline = "A special case beer.",
+            year = "2023",
         )
 
         val domainModel = limeZephyrApiModel.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(331)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/400")
+        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/600")
     }
 
     @Test
@@ -41,13 +43,14 @@ internal class ItemsRemoteDataMapperTest {
         val otherItemWithId331 = ItemApiModel(
             id = 331,
             name = "Not Lime Zephyr",
-            description = "Another beer with a conflicting ID."
+            tagline = "Another beer with a conflicting ID.",
+            year = "2024",
         )
 
         val domainModel = otherItemWithId331.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(332)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/400")
+        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/600")
     }
 
     @Test
@@ -55,27 +58,25 @@ internal class ItemsRemoteDataMapperTest {
         val highIdApiModel = ItemApiModel(
             id = 400,
             name = "High ID Beer",
-            description = "A beer with a high ID."
+            tagline = "A beer with a high ID.",
+            year = "2025",
         )
 
         val domainModel = highIdApiModel.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(401)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/400/400")
+        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/400/600")
     }
 
     @Test
     fun `given a list of API models, when mapped to domain, then it should map all items in the list`() {
-        val apiModelList = listOf(
-            ItemApiModel(id = 1, name = "Item 1", description = "Desc 1"),
-            ItemApiModel(id = 2, name = "Item 2", description = "Desc 2")
-        )
+        val apiModelList = listOfTwoApiModels
 
         val domainList = apiModelList.toDomain()
 
         assertThat(domainList).hasSize(2)
-        assertThat(domainList[0].id.value).isEqualTo(1)
-        assertThat(domainList[1].id.value).isEqualTo(2)
-        assertThat(domainList[1].name.value).isEqualTo("Item 2")
+        assertThat(domainList[0].id.value).isEqualTo(fixtureItem1ApiModel.id)
+        assertThat(domainList[1].id.value).isEqualTo(fixtureItem2ApiModel.id)
+        assertThat(domainList[1].name.value).isEqualTo(fixtureItem2ApiModel.name)
     }
 }
