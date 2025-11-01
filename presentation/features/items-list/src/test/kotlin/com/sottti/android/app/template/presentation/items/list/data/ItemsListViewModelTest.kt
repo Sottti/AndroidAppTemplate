@@ -6,10 +6,10 @@ import app.cash.turbine.test
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
-import com.sottti.android.app.template.presentation.navigation.manager.FakeNavigationManager
+import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
-import com.sottti.android.app.template.usecase.FakeObserveItems
+import com.sottti.android.app.template.usecase.ObserveItemsFake
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -24,13 +24,13 @@ internal class ItemsListViewModelTest {
     private val pagingData = PagingData.from(items)
     private val pagingFlow = flowOf(pagingData)
 
-    private lateinit var navigationManager: FakeNavigationManager
-    private lateinit var observeItems: FakeObserveItems
+    private lateinit var navigationManager: NavigationManagerFake
+    private lateinit var observeItems: ObserveItemsFake
 
     @Before
     fun setup() {
-        navigationManager = FakeNavigationManager()
-        observeItems = FakeObserveItems()
+        navigationManager = NavigationManagerFake()
+        observeItems = ObserveItemsFake()
     }
 
     @Test

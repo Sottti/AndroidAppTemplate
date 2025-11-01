@@ -1,38 +1,38 @@
-package com.sottti.android.app.template.data.items.datasource.remote.api
+package com.sottti.android.app.template.data.items.datasource.remote
 
 import com.github.michaelbull.result.Err
 import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.annotation.UnsafeResultErrorAccess
 import com.github.michaelbull.result.annotation.UnsafeResultValueAccess
-import com.sottti.android.app.template.data.items.datasource.remote.model.ItemApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ExceptionApiModel.Unknown
-import com.sottti.android.app.template.data.network.model.ResultApiModel
+import com.sottti.android.app.template.domain.core.models.Result
+import com.sottti.android.app.template.model.Item
 import com.sottti.android.app.template.model.ItemId
 
-internal class FakeItemsApiCalls : ItemsApiCalls {
+internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
 
-    private var response: ResultApiModel<List<ItemApiModel>>? = null
+    private var response: Result<List<Item>>? = null
 
     var lastCalledPageNumber: PageNumberApiModel? = null
     var lastCalledPageSize: PageSizeApiModel? = null
 
-    fun setSuccessResponse(items: List<ItemApiModel>) {
+    fun setSuccessResponse(items: List<Item>) {
         response = Ok(items)
     }
 
-    fun setErrorResponse(exception: Throwable) {
-        response = Err(Unknown(exception.message ?: "Unknown"))
+    fun setErrorResponse(exception: Exception) {
+        response = Err(exception)
     }
 
     @OptIn(UnsafeResultValueAccess::class, UnsafeResultErrorAccess::class)
-    override suspend fun getItem(itemId: ItemId): ResultApiModel<ItemApiModel> {
+    override suspend fun getItem(itemId: ItemId): Result<Item> {
         val listResult = response
         return when {
             listResult == null -> throw IllegalStateException("Test response was not set in fake")
             listResult.isOk -> {
-                val item = listResult.value.firstOrNull { it.id == itemId.value }
+                val item = listResult.value.firstOrNull { it.id.value == itemId.value }
                     ?: return Err(Unknown("Item with id ${itemId.value} not found"))
                 Ok(item)
             }
@@ -45,10 +45,10 @@ internal class FakeItemsApiCalls : ItemsApiCalls {
     override suspend fun getItems(
         pageNumber: PageNumberApiModel,
         pageSize: PageSizeApiModel,
-    ): ResultApiModel<List<ItemApiModel>> {
+    ): Result<List<Item>> {
         lastCalledPageNumber = pageNumber
         lastCalledPageSize = pageSize
 
-        return response ?: throw IllegalStateException("Test response was not set in fake")
+        return response ?: throw IllegalStateException("Test response was not set in the fake")
     }
 }

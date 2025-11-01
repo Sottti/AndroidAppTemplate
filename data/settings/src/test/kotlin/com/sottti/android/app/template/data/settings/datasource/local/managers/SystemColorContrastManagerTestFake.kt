@@ -6,12 +6,12 @@ import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 
-internal class FakeSystemColorContrastManagerTest {
+internal class SystemColorContrastManagerTestFake {
 
     @Test
     fun `when created, then it holds the provided default contrast`() {
         val defaultContrast = SystemColorContrast.HighContrast
-        val fake = FakeSystemColorContrastManager(default = defaultContrast)
+        val fake = SystemColorContrastManagerFake(default = defaultContrast)
 
         val actual = fake.getSystemColorContrast()
 
@@ -20,7 +20,7 @@ internal class FakeSystemColorContrastManagerTest {
 
     @Test
     fun `when setting a new contrast, then the current contrast level is updated`() {
-        val fake = FakeSystemColorContrastManager(default = SystemColorContrast.StandardContrast)
+        val fake = SystemColorContrastManagerFake(default = SystemColorContrast.StandardContrast)
         val newContrast = SystemColorContrast.MediumContrast
 
         fake.setContrast(newContrast)
@@ -34,7 +34,7 @@ internal class FakeSystemColorContrastManagerTest {
         runTest {
             val defaultContrast = SystemColorContrast.StandardContrast
             val newContrast = SystemColorContrast.LowContrast
-            val fake = FakeSystemColorContrastManager(default = defaultContrast)
+            val fake = SystemColorContrastManagerFake(default = defaultContrast)
 
             fake.observeSystemColorContrast().test {
                 Truth.assertThat(awaitItem()).isEqualTo(defaultContrast)

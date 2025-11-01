@@ -27,7 +27,7 @@ internal class ItemMappingPagingSourceTest {
             itemsBefore = itemsBefore,
             itemsAfter = itemsAfter,
         )
-        val roomPagingSource = FakeRoomPagingSource { roomPage }
+        val roomPagingSource = RoomPagingSourceFake { roomPage }
 
         val page = ItemMappingPagingSource(roomPagingSource).load(
             PagingSource.LoadParams.Refresh(
@@ -52,7 +52,7 @@ internal class ItemMappingPagingSourceTest {
     @Test
     fun `get refresh key mirrors anchor logic`() {
         val mapper = ItemMappingPagingSource(
-            FakeRoomPagingSource { PagingSource.LoadResult.Invalid() }
+            RoomPagingSourceFake { PagingSource.LoadResult.Invalid() }
         )
 
         val page1 = PagingSource.LoadResult.Page(
@@ -84,7 +84,7 @@ internal class ItemMappingPagingSourceTest {
     @Test
     fun `propagates error`() = runTest {
         val boom = IllegalStateException("boom")
-        val roomPagingSource = FakeRoomPagingSource { PagingSource.LoadResult.Error(boom) }
+        val roomPagingSource = RoomPagingSourceFake { PagingSource.LoadResult.Error(boom) }
 
         val result = ItemMappingPagingSource(roomPagingSource).load(
             PagingSource.LoadParams.Refresh(key = null, loadSize = 10, placeholdersEnabled = false)
@@ -95,7 +95,7 @@ internal class ItemMappingPagingSourceTest {
 
     @Test
     fun `propagates invalid`() = runTest {
-        val roomPagingSource = FakeRoomPagingSource { PagingSource.LoadResult.Invalid() }
+        val roomPagingSource = RoomPagingSourceFake { PagingSource.LoadResult.Invalid() }
 
         val result = ItemMappingPagingSource(roomPagingSource).load(
             PagingSource.LoadParams.Refresh(key = null, loadSize = 10, placeholdersEnabled = false)
@@ -106,7 +106,7 @@ internal class ItemMappingPagingSourceTest {
 
     @Test
     fun `when underlying source is invalid, then load returns invalid`() = runTest {
-        val roomPagingSource = FakeRoomPagingSource {
+        val roomPagingSource = RoomPagingSourceFake {
             PagingSource.LoadResult.Page(emptyList(), null, null, 0, 0)
         }
         val mapper = ItemMappingPagingSource(roomPagingSource)
@@ -124,7 +124,7 @@ internal class ItemMappingPagingSourceTest {
     @Test
     fun `getRefreshKey falls back to nextKey - 1 when prevKey null`() {
         val mapper = ItemMappingPagingSource(
-            FakeRoomPagingSource { PagingSource.LoadResult.Invalid() }
+            RoomPagingSourceFake { PagingSource.LoadResult.Invalid() }
         )
         val page = PagingSource.LoadResult.Page(
             data = listOf(fixtureItem1),

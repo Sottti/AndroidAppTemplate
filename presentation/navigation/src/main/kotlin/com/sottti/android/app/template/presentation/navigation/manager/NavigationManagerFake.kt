@@ -6,7 +6,7 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 
-public class FakeNavigationManager : NavigationManager {
+public class NavigationManagerFake : NavigationManager {
     private val _commands = Channel<NavigationCommand>(Channel.BUFFERED)
 
     override fun commands(): Flow<NavigationCommand> = _commands.receiveAsFlow()

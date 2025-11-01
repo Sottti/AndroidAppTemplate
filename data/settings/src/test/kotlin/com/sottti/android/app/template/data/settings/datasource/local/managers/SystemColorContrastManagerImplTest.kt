@@ -11,7 +11,7 @@ import com.sottti.android.app.template.data.settings.datasource.local.mapper.HIG
 import com.sottti.android.app.template.data.settings.datasource.local.mapper.MEDIUM_CONTRAST_THRESHOLD
 import com.sottti.android.app.template.data.settings.datasource.local.mapper.STANDARD_CONTRAST_THRESHOLD
 import com.sottti.android.app.template.domain.core.models.SystemColorContrast
-import com.sottti.android.app.template.domain.system.features.FakeSystemFeatures
+import com.sottti.android.app.template.domain.system.features.SystemFeaturesFake
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -28,15 +28,15 @@ internal class SystemColorContrastManagerImplTest {
     private lateinit var context: Context
     private lateinit var manager: SystemColorContrastManager
     private lateinit var shadowApplication: ShadowApplication
-    private lateinit var systemFeatures: FakeSystemFeatures
-    private lateinit var uiModeManager: FakeUiModeManager
+    private lateinit var systemFeatures: SystemFeaturesFake
+    private lateinit var uiModeManager: UiModeManagerFake
 
     @Before
     fun setUp() {
         context = ApplicationProvider.getApplicationContext()
         shadowApplication = Shadows.shadowOf(context.applicationContext as Application)
-        systemFeatures = FakeSystemFeatures(default = true)
-        uiModeManager = FakeUiModeManager()
+        systemFeatures = SystemFeaturesFake(default = true)
+        uiModeManager = UiModeManagerFake()
         manager = SystemColorContrastManagerImpl(
             context = context,
             systemFeatures = systemFeatures,

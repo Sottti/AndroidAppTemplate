@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.items.datasource.local.database
 
 import androidx.paging.PagingSource
-import com.sottti.android.app.template.data.items.datasource.local.mapper.FakeItemMappingPagingSource
+import com.sottti.android.app.template.data.items.datasource.local.mapper.ItemMappingPagingSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.mapper.toDomain
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
 import kotlinx.coroutines.flow.Flow
@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.map
 
-internal class FakeItemsDao : ItemsDao {
+internal class ItemsDaoFake : ItemsDao {
     val saved = mutableListOf<ItemRoomModel>()
     var clearCalled = false
     var upsertCalled = false
@@ -17,7 +17,7 @@ internal class FakeItemsDao : ItemsDao {
     private val itemsFlow = MutableStateFlow<List<ItemRoomModel>>(emptyList())
 
     override fun observeItems(): PagingSource<Int, ItemRoomModel> {
-        return FakeItemMappingPagingSource(saved.map { it.toDomain() }.toMutableList())
+        return ItemMappingPagingSourceFake(saved.map { it.toDomain() }.toMutableList())
             .let { it as PagingSource<Int, ItemRoomModel> }
     }
 

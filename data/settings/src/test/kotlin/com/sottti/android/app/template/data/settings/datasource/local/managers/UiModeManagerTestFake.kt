@@ -10,13 +10,13 @@ import org.robolectric.annotation.Config
 
 @RunWith(RobolectricTestRunner::class)
 @Config(sdk = [Build.VERSION_CODES.UPSIDE_DOWN_CAKE])
-internal class FakeUiModeManagerTest {
+internal class UiModeManagerTestFake {
 
-    private lateinit var uiModeManager: FakeUiModeManager
+    private lateinit var uiModeManager: UiModeManagerFake
 
     @Before
     fun setUp() {
-        uiModeManager = FakeUiModeManager()
+        uiModeManager = UiModeManagerFake()
     }
 
     @Test

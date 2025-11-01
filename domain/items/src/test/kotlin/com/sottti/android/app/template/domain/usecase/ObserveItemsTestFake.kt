@@ -5,19 +5,19 @@ import androidx.paging.testing.asSnapshot
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.fixtures.listOfTwoItems
 import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.usecase.FakeObserveItems
+import com.sottti.android.app.template.usecase.ObserveItemsFake
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
-internal class FakeObserveItemsTest {
+internal class ObserveItemsTestFake {
 
-    private lateinit var observeItems: FakeObserveItems
+    private lateinit var observeItems: ObserveItemsFake
 
     @Before
     fun setUp() {
-        observeItems = FakeObserveItems()
+        observeItems = ObserveItemsFake()
     }
 
     @Test

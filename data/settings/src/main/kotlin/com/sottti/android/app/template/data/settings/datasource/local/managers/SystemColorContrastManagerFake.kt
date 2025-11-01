@@ -4,7 +4,7 @@ import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 
-internal class FakeSystemColorContrastManager(
+internal class SystemColorContrastManagerFake(
     default: SystemColorContrast,
 ) : SystemColorContrastManager {
 
