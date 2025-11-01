@@ -11,5 +11,5 @@ internal data class ItemRoomModel(
     val name: String,
     val storedAt: Long,
     val tagline: String,
-    val year : String,
+    val year: String,
 )

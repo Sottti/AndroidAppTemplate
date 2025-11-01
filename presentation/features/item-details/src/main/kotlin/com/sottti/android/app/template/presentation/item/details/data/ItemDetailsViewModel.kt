@@ -23,7 +23,7 @@ private typealias ItemDetailsReducer = (ItemDetailsState) -> ItemDetailsState
 internal class ItemDetailsViewModel @AssistedInject constructor(
     @Assisted val itemId: ItemId,
     private val navigationManager: NavigationManager,
-    private val observeItem: ObserveItem,
+    observeItem: ObserveItem,
 ) : ViewModel() {
 
     @AssistedFactory

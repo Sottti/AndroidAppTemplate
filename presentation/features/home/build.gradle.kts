@@ -27,4 +27,6 @@ dependencies {
     implementation(project(module.presentation.navigationImpl))
     implementation(project(module.presentation.utils))
     ksp(libs.hilt.compiler)
+    testImplementation(libs.junit)
+    testImplementation(libs.truth)
 }

@@ -105,7 +105,7 @@ from Clean Architecture.
 
 3. **Rename Package Name:**
    The current package name is `com.sottti.android.app.template`. To rename it:
-    * In Android Studio, right-click the root `com.sostti.android.app.template` package in the
+    * In Android Studio, right-click the root `com.sottti.android.app.template` package in the
       `kotlin` directory.
     * Select **Refactor > Rename**.
     * In the dialog, choose **Rename package**.
