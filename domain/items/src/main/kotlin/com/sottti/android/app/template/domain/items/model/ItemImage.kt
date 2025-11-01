@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.model
+package com.sottti.android.app.template.domain.items.model
 
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl

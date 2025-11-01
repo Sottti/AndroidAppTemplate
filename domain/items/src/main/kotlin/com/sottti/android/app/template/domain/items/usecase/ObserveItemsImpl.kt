@@ -1,8 +1,8 @@
-package com.sottti.android.app.template.usecase
+package com.sottti.android.app.template.domain.items.usecase
 
 import androidx.paging.PagingData
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.repository.ItemsRepository
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.repository.ItemsRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

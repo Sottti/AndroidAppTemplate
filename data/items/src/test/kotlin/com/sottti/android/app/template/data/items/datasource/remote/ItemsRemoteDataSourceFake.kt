@@ -8,8 +8,8 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageNu
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ExceptionApiModel.Unknown
 import com.sottti.android.app.template.domain.core.models.Result
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
 
 internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
 

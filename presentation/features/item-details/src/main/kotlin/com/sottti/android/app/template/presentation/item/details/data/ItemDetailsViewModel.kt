@@ -1,14 +1,14 @@
 package com.sottti.android.app.template.presentation.item.details.data
 
 import androidx.lifecycle.ViewModel
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions.NavigateBack
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.utils.stateInWhileSubscribed
-import com.sottti.android.app.template.usecase.ObserveItem
+import com.sottti.android.app.template.domain.items.usecase.ObserveItem
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject

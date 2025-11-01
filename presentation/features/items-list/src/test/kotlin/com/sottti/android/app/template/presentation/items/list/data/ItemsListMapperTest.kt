@@ -1,8 +1,9 @@
 package com.sottti.android.app.template.presentation.items.list.data
 
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.fixtures.fixtureItem1
-import com.sottti.android.app.template.fixtures.listOfTwoItems
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.listOfTwoItems
+import com.sottti.android.app.template.domain.items.model.Item
 import org.junit.Test
 
 internal class ItemsListMapperTest {
@@ -36,7 +37,7 @@ internal class ItemsListMapperTest {
 
     @Test
     fun `given an empty list of domain Items, when mapped to UI models, then it should return an empty list`() {
-        val emptyDomainList = emptyList<com.sottti.android.app.template.model.Item>()
+        val emptyDomainList = emptyList<Item>()
 
         val uiModelList = emptyDomainList.toUi()
 

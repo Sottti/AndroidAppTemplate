@@ -8,9 +8,9 @@ import com.github.michaelbull.result.onSuccess
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.mediator.ItemsRemoteMediator
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
-import com.sottti.android.app.template.repository.ItemsRepository
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
+import com.sottti.android.app.template.domain.items.repository.ItemsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.onEach

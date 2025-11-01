@@ -2,8 +2,8 @@ package com.sottti.android.app.template.data.items.datasource.local
 
 import androidx.paging.PagingSource
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
 import kotlinx.coroutines.flow.Flow
 
 internal interface ItemsLocalDataSource {

@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.presentation.items.list.data
 
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.model.Item
 import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
 
 

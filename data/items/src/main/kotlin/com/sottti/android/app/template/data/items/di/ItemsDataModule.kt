@@ -16,8 +16,8 @@ import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApi
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsImpl
 import com.sottti.android.app.template.data.items.mediator.ItemsRemoteMediator
 import com.sottti.android.app.template.data.items.repository.ItemsRepositoryImpl
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.repository.ItemsRepository
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.repository.ItemsRepository
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.presentation.item.details.ui
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.sottti.android.app.template.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
 import com.sottti.android.app.template.presentation.item.details.data.initialState
 import com.sottti.android.app.template.presentation.item.details.data.reduce
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState

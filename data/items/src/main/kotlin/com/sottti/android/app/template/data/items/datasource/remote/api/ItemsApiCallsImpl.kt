@@ -5,7 +5,7 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageNu
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ResultApiModel
 import com.sottti.android.app.template.data.network.safeApiCall
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.ItemId
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get

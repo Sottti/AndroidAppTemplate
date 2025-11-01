@@ -10,8 +10,8 @@ import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceFake
-import com.sottti.android.app.template.fixtures.listOfMultipleItems
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.fixtures.listOfMultipleItems
+import com.sottti.android.app.template.domain.items.model.Item
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

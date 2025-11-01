@@ -13,7 +13,7 @@ import com.sottti.android.app.template.presentation.items.list.model.ItemsListAc
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
-import com.sottti.android.app.template.usecase.ObserveItems
+import com.sottti.android.app.template.domain.items.usecase.ObserveItems
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow

@@ -2,7 +2,7 @@ package com.sottti.android.app.template.data.items.datasource.local.mapper
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.model.Item
 
 internal class ItemMappingPagingSourceFake(
     private val saved: MutableList<Item>,

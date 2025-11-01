@@ -1,8 +1,8 @@
-package com.sottti.android.app.template.repository
+package com.sottti.android.app.template.domain.items.repository
 
 import androidx.paging.PagingData
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
 import kotlinx.coroutines.flow.Flow
 
 public interface ItemsRepository {

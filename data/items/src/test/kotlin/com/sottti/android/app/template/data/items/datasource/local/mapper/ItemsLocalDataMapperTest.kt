@@ -4,9 +4,9 @@ import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.TimeProviderFake
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem2RoomModel
-import com.sottti.android.app.template.fixtures.fixtureItem1
-import com.sottti.android.app.template.fixtures.fixtureItem2
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem2
+import com.sottti.android.app.template.domain.items.model.Item
 import org.junit.Test
 
 private val now = TimeProviderFake().now()

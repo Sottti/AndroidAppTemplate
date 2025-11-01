@@ -1,8 +1,8 @@
 package com.sottti.android.app.template.data.items.datasource.remote.fixtures
 
 import com.sottti.android.app.template.data.items.datasource.remote.model.ItemApiModel
-import com.sottti.android.app.template.fixtures.fixtureItem1
-import com.sottti.android.app.template.fixtures.fixtureItem2
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem2
 
 internal val fixtureItem1ApiModel = ItemApiModel(
     id = fixtureItem1.id.value,

@@ -5,8 +5,7 @@ import com.sottti.android.app.template.data.items.datasource.local.database.Item
 import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDaoFake
 import com.sottti.android.app.template.data.items.datasource.local.mapper.toRoom
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
-import com.sottti.android.app.template.data.items.datasource.local.TimeProviderFake
-import com.sottti.android.app.template.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test

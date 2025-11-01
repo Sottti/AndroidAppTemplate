@@ -8,8 +8,8 @@ import com.sottti.android.app.template.data.items.datasource.remote.mapper.toDom
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.core.models.Result
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemId
 import javax.inject.Inject
 
 internal class ItemsRemoteDataSourceImpl @Inject constructor(

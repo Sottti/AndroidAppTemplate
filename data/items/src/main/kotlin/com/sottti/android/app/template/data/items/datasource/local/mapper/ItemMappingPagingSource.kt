@@ -6,7 +6,7 @@ import androidx.paging.PagingSource.LoadResult.Invalid
 import androidx.paging.PagingSource.LoadResult.Page
 import androidx.paging.PagingState
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.model.Item
 
 internal class ItemMappingPagingSource(
     private val roomPagingSource: PagingSource<Int, ItemRoomModel>,

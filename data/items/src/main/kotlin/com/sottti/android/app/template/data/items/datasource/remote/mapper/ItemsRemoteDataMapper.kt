@@ -3,12 +3,12 @@ package com.sottti.android.app.template.data.items.datasource.remote.mapper
 import com.sottti.android.app.template.data.items.datasource.remote.model.ItemApiModel
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemDescription
-import com.sottti.android.app.template.model.ItemId
-import com.sottti.android.app.template.model.ItemImage
-import com.sottti.android.app.template.model.ItemName
-import com.sottti.android.app.template.model.ItemYear
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemDescription
+import com.sottti.android.app.template.domain.items.model.ItemId
+import com.sottti.android.app.template.domain.items.model.ItemImage
+import com.sottti.android.app.template.domain.items.model.ItemName
+import com.sottti.android.app.template.domain.items.model.ItemYear
 
 internal fun List<ItemApiModel>.toDomain(): List<Item> =
     map { itemApiModel -> itemApiModel.toDomain() }

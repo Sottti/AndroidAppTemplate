@@ -1,8 +1,8 @@
 package com.sottti.android.app.template.presentation.item.details.data
 
 import com.google.common.truth.Truth.assertThat
-import com.sottti.android.app.template.fixtures.fixtureItem1
-import com.sottti.android.app.template.fixtures.fixtureItem2
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem2
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
 import org.junit.Test
 

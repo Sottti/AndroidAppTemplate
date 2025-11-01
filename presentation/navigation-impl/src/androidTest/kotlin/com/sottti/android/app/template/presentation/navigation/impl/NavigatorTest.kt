@@ -11,7 +11,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation3.runtime.NavKey
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEM_DETAIL_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.PULLY_LIST_FEATURE_TEST_TAG
-import com.sottti.android.app.template.presentation.navigation.impl.fakes.fakeNavigationEntries
+import com.sottti.android.app.template.presentation.navigation.impl.fakes.navigationEntriesFake
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
@@ -26,7 +26,7 @@ internal class NavigatorTest {
 
     private lateinit var navigationManager: NavigationManagerFake
 
-    private val entryProvider: EntryProvider<NavKey> = fakeNavigationEntries()
+    private val entryProvider: EntryProvider<NavKey> = navigationEntriesFake()
 
 
     @Before

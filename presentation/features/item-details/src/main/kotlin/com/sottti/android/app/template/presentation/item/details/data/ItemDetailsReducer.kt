@@ -1,6 +1,6 @@
 package com.sottti.android.app.template.presentation.item.details.data
 
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.model.Item
 import com.sottti.android.app.template.presentation.item.details.R
 import com.sottti.android.app.template.presentation.item.details.model.ImageState
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsRow

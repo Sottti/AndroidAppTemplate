@@ -9,7 +9,7 @@ import com.sottti.android.app.template.data.items.datasource.remote.model.PageNu
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ExceptionApiModel.Unknown
 import com.sottti.android.app.template.data.network.model.ResultApiModel
-import com.sottti.android.app.template.model.ItemId
+import com.sottti.android.app.template.domain.items.model.ItemId
 
 internal class ItemsApiCallsFake : ItemsApiCalls {
 

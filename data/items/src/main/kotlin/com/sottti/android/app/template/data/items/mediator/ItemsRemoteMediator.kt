@@ -10,7 +10,7 @@ import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDat
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
-import com.sottti.android.app.template.model.Item
+import com.sottti.android.app.template.domain.items.model.Item
 import io.ktor.client.plugins.ResponseException
 import kotlinx.io.IOException
 import javax.inject.Inject

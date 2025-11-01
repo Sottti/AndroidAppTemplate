@@ -6,8 +6,8 @@ import androidx.paging.PagingState
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem2RoomModel
-import com.sottti.android.app.template.fixtures.fixtureItem1
-import com.sottti.android.app.template.fixtures.fixtureItem2
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.items.fixtures.fixtureItem2
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 

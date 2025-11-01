@@ -1,9 +1,9 @@
-package di
+package com.sottti.android.app.template.domain.items.di
 
-import com.sottti.android.app.template.usecase.ObserveItem
-import com.sottti.android.app.template.usecase.ObserveItemImpl
-import com.sottti.android.app.template.usecase.ObserveItems
-import com.sottti.android.app.template.usecase.ObserveItemsImpl
+import com.sottti.android.app.template.domain.items.usecase.ObserveItem
+import com.sottti.android.app.template.domain.items.usecase.ObserveItemImpl
+import com.sottti.android.app.template.domain.items.usecase.ObserveItems
+import com.sottti.android.app.template.domain.items.usecase.ObserveItemsImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

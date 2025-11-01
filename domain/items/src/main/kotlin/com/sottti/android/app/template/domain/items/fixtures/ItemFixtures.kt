@@ -1,13 +1,13 @@
-package com.sottti.android.app.template.fixtures
+package com.sottti.android.app.template.domain.items.fixtures
 
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
-import com.sottti.android.app.template.model.Item
-import com.sottti.android.app.template.model.ItemDescription
-import com.sottti.android.app.template.model.ItemId
-import com.sottti.android.app.template.model.ItemImage
-import com.sottti.android.app.template.model.ItemName
-import com.sottti.android.app.template.model.ItemYear
+import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemDescription
+import com.sottti.android.app.template.domain.items.model.ItemId
+import com.sottti.android.app.template.domain.items.model.ItemImage
+import com.sottti.android.app.template.domain.items.model.ItemName
+import com.sottti.android.app.template.domain.items.model.ItemYear
 
 public val fixtureItem1: Item =
     Item(
