@@ -214,6 +214,9 @@ contributions are welcome!
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see
 the [LICENSE](LICENSE) file for details.
 
+## Contact
+If you feel like saying hi, have any comments, suggestions or questions, [open an issue](https://github.com/Sottti/AndroidAppTemplate/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) or say [hi 👋 on X](https://x.com/Sotttti).
+
 ## 📷 Screenshots
 
 <p align="center">   
