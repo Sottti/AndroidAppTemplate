@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-10-31T21:38:13.433604Z">
+        <DropdownSelection timestamp="2025-11-02T09:12:11.856607Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sotti/.android/avd/Pixel_9_Pro_XL.avd" />
+              <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sotti/.android/avd/Pixel_9_Pro.avd" />
             </handle>
           </Target>
         </DropdownSelection>
@@ -20,7 +20,7 @@
             </Target>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sotti/.android/avd/Pixel_9_Pro_XL.avd" />
+                <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sotti/.android/avd/Pixel_Tablet.avd" />
               </handle>
             </Target>
             <Target type="DEFAULT_BOOT">
@@ -30,7 +30,7 @@
             </Target>
             <Target type="DEFAULT_BOOT">
               <handle>
-                <DeviceId pluginId="LocalEmulator" identifier="path=/Users/sotti/.android/avd/Pixel_Tablet.avd" />
+                <DeviceId pluginId="Default" identifier="serial=emulator-5554;connection=248c7afd" />
               </handle>
             </Target>
           </targets>

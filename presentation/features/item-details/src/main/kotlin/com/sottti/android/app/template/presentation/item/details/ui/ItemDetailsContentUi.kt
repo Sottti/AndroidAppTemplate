@@ -1,10 +1,14 @@
 package com.sottti.android.app.template.presentation.item.details.ui
 
 import androidx.annotation.StringRes
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -22,6 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -43,6 +48,7 @@ import com.sottti.android.app.template.presentation.item.details.model.ItemDetai
 import com.sottti.android.app.template.presentation.item.details.model.ItemIdentityState
 import com.sottti.android.app.template.presentation.item.details.model.ItemState
 import com.sottti.android.app.template.presentation.utils.Spacer
+import com.sottti.android.app.template.presentation.utils.isPortraitOrientation
 import androidx.compose.material3.ListItem as MaterialListItem
 
 @Composable
@@ -70,19 +76,29 @@ internal fun ItemDetailsContent(
 
             is Error -> ErrorUi(modifier = Modifier.padding(padding))
 
-            is Loaded -> LoadedState(
-                nestedScrollConnection = scrollBehavior.nestedScrollConnection,
-                onAction = onAction,
-                padding = padding,
-                state = state.item,
-            )
+            is Loaded -> when (isPortraitOrientation()) {
+                true -> LoadedStatePortrait(
+                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
+                    onAction = onAction,
+                    padding = padding,
+                    state = state.item,
+                )
+
+                false -> LoadedStateLandscape(
+                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
+                    onAction = onAction,
+                    padding = padding,
+                    state = state.item,
+                )
+
+            }
         }
     }
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun LoadedState(
+private fun LoadedStatePortrait(
     onAction: (ItemDetailsActions) -> Unit,
     padding: PaddingValues,
     nestedScrollConnection: NestedScrollConnection,
@@ -98,23 +114,69 @@ private fun LoadedState(
         contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
         verticalArrangement = Arrangement.spacedBy(dimensions.spacing.mediumLarge),
     ) {
-        item(key = "image") { Image(state.imageState) }
+        item(key = "image") {
+            Image(
+                state = state.imageState,
+                modifier = Modifier
+                    .padding(horizontal = dimensions.spacing.medium)
+                    .fillMaxWidth()
+                    .aspectRatio(1.75f)
+            )
+        }
         item(key = "identity") { DetailsSection(state.identity) }
+        item(key = "identity2") { DetailsSection(state.identity) }
+        item(key = "identity3") { DetailsSection(state.identity) }
+        item(key = "identity4") { DetailsSection(state.identity) }
+    }
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+private fun LoadedStateLandscape(
+    onAction: (ItemDetailsActions) -> Unit,
+    padding: PaddingValues,
+    nestedScrollConnection: NestedScrollConnection,
+    state: ItemState,
+) {
+    val topPadding = padding.calculateTopPadding() + dimensions.spacing.medium
+    val bottomPadding = padding.calculateBottomPadding() + dimensions.spacing.medium
+    val startPadding = padding.calculateStartPadding(LocalLayoutDirection.current)
+    val endPadding = padding.calculateEndPadding(LocalLayoutDirection.current)
+    Row(modifier = Modifier.padding(start = startPadding, end = endPadding)) {
+        Image(
+            state = state.imageState,
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxSize()
+                .padding(top = topPadding, bottom = bottomPadding)
+                .padding(horizontal = dimensions.spacing.medium)
+        )
+        LazyColumn(
+            modifier = Modifier
+                .nestedScroll(nestedScrollConnection)
+                .weight(1f)
+                .fillMaxSize(),
+            contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
+            verticalArrangement = Arrangement.spacedBy(dimensions.spacing.mediumLarge),
+        ) {
+            item(key = "identity") { DetailsSection(state.identity) }
+            item(key = "identity2") { DetailsSection(state.identity) }
+            item(key = "identity3") { DetailsSection(state.identity) }
+            item(key = "identity4") { DetailsSection(state.identity) }
+        }
     }
 }
 
 @Composable
 private fun Image(
     state: ImageState,
+    modifier: Modifier,
 ) {
     NetworkImage(
         url = state.imageUrl,
         contentDescription = state.imageDescription,
         roundedCorners = true,
-        modifier = Modifier
-            .padding(horizontal = dimensions.spacing.medium)
-            .fillMaxWidth()
-            .aspectRatio(1.75f),
+        modifier = modifier,
     )
 }
 
