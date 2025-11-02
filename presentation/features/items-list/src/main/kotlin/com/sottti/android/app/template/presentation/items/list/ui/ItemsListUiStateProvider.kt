@@ -53,15 +53,15 @@ internal val loadedStateAppendPrependBothEndsReached = itemsListState(
     prependState = NotLoading(endOfPaginationReached = true)
 )
 
+internal val loadedStateLoadsOfItems = itemsListState(
+    appendState = NotLoading(endOfPaginationReached = true),
+    data = listOfMultipleItemsUiModels,
+)
+
 internal val loadedStateLoadsOfItemsRefreshing = itemsListState(
     refreshState = Loading,
     appendState = NotLoading(endOfPaginationReached = true),
     prependState = NotLoading(endOfPaginationReached = true),
-    data = listOfMultipleItemsUiModels,
-)
-
-internal val loadedStateLoadsOfItems = itemsListState(
-    appendState = NotLoading(endOfPaginationReached = true),
     data = listOfMultipleItemsUiModels,
 )
 

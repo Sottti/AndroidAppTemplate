@@ -42,6 +42,9 @@
       <SelectionState runConfigName="givenStateIsPrependLoading_whenUiIsRendered_thenPrependIndicatorAndItemsAreVisible()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="givenStateIsLoadedNoPagination_whenUiIsRendered_thenItemsAreVisible()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

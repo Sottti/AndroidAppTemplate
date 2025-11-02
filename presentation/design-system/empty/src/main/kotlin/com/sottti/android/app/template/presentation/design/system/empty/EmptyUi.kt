@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.illustrations.data.Illustrations
@@ -23,7 +24,7 @@ public fun EmptyUi(
         illustration = illustration,
         primaryText = primaryText,
         secondaryText = secondaryText,
-        modifier = modifier,
+        modifier = modifier.testTag(EMPTY_TEST_TAG),
     )
 }
 
