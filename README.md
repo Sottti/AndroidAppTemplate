@@ -42,16 +42,14 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:
-      ** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
+    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:
-  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronicity:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
@@ -64,13 +62,11 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Testing:**
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
-    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
+    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing) testing both screen orientations and multiple font scales.
     * **Integration Tests:** Instrumented Compose flows cover the full stack—from
-      navigation orchestration (e.g., the `NavigatorTest` exercising navigation
-      commands) to feature screens (`AppE2ETest`, `ItemsListUiTest`, and
-      `ItemDetailsUiTest`) using Hilt-enabled end-to-end journeys and
+      navigation orchestration to feature screens using Hilt-enabled end-to-end journeys and
       parameterized scenarios that sweep multiple font scales and orientations
-      via the shared `BaseUiTest` harness.
+      via the shared harness.
 
 ### 🌟 Additional Highlights
 
@@ -140,7 +136,7 @@ from Clean Architecture.
   source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
   consume.
 
-  ## 🚀 How to Use This Template
+## 🚀 How to Use This Template
 
 1. **Create Your Repository:**
    Click the "Use this template" button on the GitHub repository page. This will create a new
