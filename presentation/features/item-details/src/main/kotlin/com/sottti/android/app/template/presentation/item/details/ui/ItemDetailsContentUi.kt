@@ -91,9 +91,6 @@ private fun LoadedState(
 ) {
     val lazyListContent: LazyListScope.() -> Unit = {
         item(key = "identity") { DetailsSection(state.identity) }
-        item(key = "identity2") { DetailsSection(state.identity) }
-        item(key = "identity3") { DetailsSection(state.identity) }
-        item(key = "identity4") { DetailsSection(state.identity) }
     }
 
     when {
