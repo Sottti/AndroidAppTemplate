@@ -119,7 +119,7 @@ from Clean Architecture.
   Handles business logic for the screen. It consumes `Actions`, interacts with
   UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
 * **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
-  `GetUserProfileUseCase`). This makes logic reusable and easier to test.
+  `GetItem`). This makes logic reusable and easier to test.
 * **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
   source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
   consume.
