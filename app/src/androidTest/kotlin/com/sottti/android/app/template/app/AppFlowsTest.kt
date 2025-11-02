@@ -19,7 +19,7 @@ internal class AppFlowsTest(
 ) : IntegrationTest(orientation) {
 
     @Test
-    fun fullUserJourney_scrollList_clickItem_navigateBack() {
+    fun itemList_clickItem_itemDetails_navigateBack() {
         with(rule) {
             waitUntil() {
                 onAllNodes(hasText(fixtureItem1.name.value))
