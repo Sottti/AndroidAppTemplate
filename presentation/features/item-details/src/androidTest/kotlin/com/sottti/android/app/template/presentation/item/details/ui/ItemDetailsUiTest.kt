@@ -2,7 +2,6 @@ package com.sottti.android.app.template.presentation.item.details.ui
 
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.hasTestTag
-import androidx.compose.ui.test.isDisplayed
 import androidx.compose.ui.test.onNodeWithTag
 import com.sottti.android.app.template.presentation.design.system.error.ERROR_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.PROGRESS_INDICATOR_TEST_TAG

@@ -27,7 +27,7 @@ internal class ItemDetailsViewModel @AssistedInject constructor(
 ) : ViewModel() {
 
     @AssistedFactory
-    interface Factory {
+    fun interface Factory {
         fun create(id: ItemId): ItemDetailsViewModel
     }
 

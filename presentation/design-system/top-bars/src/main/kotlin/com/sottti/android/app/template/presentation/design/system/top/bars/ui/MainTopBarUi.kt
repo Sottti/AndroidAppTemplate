@@ -30,6 +30,7 @@ public fun MainTopBar(
 ) {
     val titleText = titleResId?.let { stringResource(id = it) }
     MainTopBar(
+        navigationIcon = navigationIcon,
         scrollBehavior = scrollBehavior,
         showTitle = showTitle,
         title = titleText,
