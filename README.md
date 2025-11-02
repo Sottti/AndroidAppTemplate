@@ -111,8 +111,6 @@ This template is packed with the latest libraries and tools from the Android eco
 
 * **Multipane large-screen layouts:** Adaptive list-detail experiences that keep the item catalog
   and the selected detail visible side by side on tablets, foldables, and landscape desktops.
-* **Performance guardrails:** Baseline Profiles and Macrobenchmark coverage to lock in fast startup
-  times and scroll performance as features scale.
 
 ## 🏛️ Architecture (MVVM + Clean)
 
