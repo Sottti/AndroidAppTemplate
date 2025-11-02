@@ -42,16 +42,14 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:
-      ** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
+    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:
-  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronicity:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
@@ -64,11 +62,9 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Testing:**
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
-    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
+    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing) testing both screen orientations and multiple font scales.
     * **Integration Tests:** Instrumented Compose flows cover the full stack—from
-      navigation orchestration (e.g., the `NavigatorTest` exercising navigation
-      commands) to feature screens (`AppE2ETest`, `ItemsListUiTest`, and
-      `ItemDetailsUiTest`) using Hilt-enabled end-to-end journeys and
+      navigation orchestration to feature screens using Hilt-enabled end-to-end journeys and
       parameterized scenarios that sweep multiple font scales and orientations
       via the shared `BaseUiTest` harness.
     * **Test Doubles Philosophy:** The template deliberately avoids runtime
@@ -79,6 +75,7 @@ This template is packed with the latest libraries and tools from the Android eco
       and deterministic, encourages explicit collaboration boundaries, and
       allows your team to reuse the same fakes across unit, integration, and
       end-to-end scenarios without the brittleness often introduced by mocks.
+      via the shared harness.
 
 ### 🌟 Additional Highlights
 
@@ -90,7 +87,9 @@ This template is packed with the latest libraries and tools from the Android eco
   whenever the network is available.
 * **Navigation infrastructure:** A dedicated Compose Navigation 3 stack coordinates screen changes
   via a `NavigationManager`, with `Navigator` components observing command channels and handling
-  saveable state, back stack pops, and simultaneous navigation requests.
+  saveable state, back stack pops, and simultaneous navigation requests. All routing code lives in
+  the dedicated `presentation:navigation` module so feature modules stay navigation-agnostic and
+  decoupled from the implementation details.
 * **Snapshot tooling:** The `presentation` module includes a Paparazzi test toolkit featuring a
   custom Pixel 10 Pro XL device profile and helpers that generate day/night parameter sets for rich
   screenshot coverage.
@@ -107,29 +106,53 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
   `HomeActivity` combine with the navigation manager to launch directly into themed Compose content
   with minimal boilerplate.
+* **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
+  managed centrally so features automatically inherit full-height layouts.
 
 ## 🏗️ Project Structure
 
-This project follows a standard multi-module setup, which is highly recommended for separation of
-concerns and build speed.
+The repository is laid out as a layered, multi-module Gradle project. Each directory below maps to a
+distinct slice of the architecture so teams can develop features independently while keeping
+dependencies explicit.
+
+```
+├── app/                     # Android entry point and app-level configuration
+├── data/                    # Repository implementations, remote clients, and system services
+├── domain/                  # Business rules, models, and use cases shared by features
+├── di/                      # Centralized Hilt bindings that wire modules together
+├── presentation/            # Compose UI, navigation stack, previews, and design system
+├── utils/                   # Cross-cutting helpers (coroutines, lifecycle, etc.)
+├── buildSrc/                # Gradle convention plugins and dependency catalogs
+└── gradle/, *.gradle.kts    # Build logic, settings, and version configuration
+```
 
 ### 🗺️ Module Overview
 
-The template is organized into focused Gradle modules so you can jump straight to the layer you
-need:
+Every Gradle module has a single responsibility. Use the table below to find the code you need:
 
-* **App shell:** `app` hosts the Android entry points and wires the feature graph together.
-* **Data layer:** `data:items`, `data:network`, `data:settings`, and `data:system-features` expose
-  repositories, remote clients, and system capability gates.
-* **Domain layer:** `domain:core-models`, `domain:items`, `domain:settings`, and
-  `domain:system-features` keep business logic and models independent from platform code.
-* **Dependency injection:** `di` centralizes Hilt bindings shared across modules.
-* **Presentation layer:** The `presentation` namespace splits into `design-system` slices, feature
-  modules such as `presentation:features:items-list` and `presentation:features:item-details`, plus
-  supporting utilities like `presentation:navigation`, `presentation:navigation-impl`,
-  `presentation:paparazzi`, `presentation:previews`, and `presentation:utils`.
-* **Utilities:** `utils:lifecycle` collects lifecycle-aware coroutine helpers shared throughout the
-  app.
+* **Application shell**
+  * `app`: Hosts the `Application`, activities, and wires the dependency graph at runtime.
+* **Presentation layer**
+  * `presentation:design-system`: Shared Compose theming, typography, and reusable components.
+  * `presentation:features:*`: Feature-specific screens such as `items-list`, `item-details`, and
+    `home`.
+  * `presentation:navigation` & `presentation:navigation-impl`: Navigation contracts and their
+    Compose Navigation 3 implementation.
+  * `presentation:paparazzi`, `presentation:previews`, `presentation:utils`, `presentation:fixtures`:
+    Tooling for previews, snapshot tests, and sample data.
+* **Domain layer**
+  * `domain:core-models`: Canonical models exchanged between layers.
+  * `domain:items`, `domain:settings`, `domain:system-features`: Use cases and business logic per
+    feature area.
+* **Data layer**
+  * `data:items`: Paging, Room cache, and remote mediator for list and detail flows.
+  * `data:network`: Ktor client configuration and API definitions.
+  * `data:settings`: Persistence for user preferences and configuration toggles.
+  * `data:system-features`: Abstractions over device capabilities with test fakes.
+* **Dependency injection**
+  * `di`: Shared Hilt modules and component wiring consumed across the app.
+* **Shared utilities**
+  * `utils:lifecycle`: Lifecycle-aware coroutine helpers and Flow extensions reused in ViewModels.
 
 ## 🏛️ Architecture (MVVM + Clean)
 
@@ -148,7 +171,7 @@ from Clean Architecture.
   source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
   consume.
 
-  ## 🚀 How to Use This Template
+## 🚀 How to Use This Template
 
 1. **Create Your Repository:**
    Click the "Use this template" button on the GitHub repository page. This will create a new
