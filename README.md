@@ -51,7 +51,9 @@ This template is packed with the latest libraries and tools from the Android eco
   communication.
 * **Serialization:** [Kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) (used
   with Ktor) for fast and modern JSON parsing.
-* **Build Configuration:** Kotlin [explicit API mode](https://kotlinlang.org/docs/whatsnew15.html#explicit-api-mode) is enabled across modules to keep public APIs intentional and well-documented.
+* **Build Configuration:**
+  Kotlin [explicit API mode](https://kotlinlang.org/docs/whatsnew15.html#explicit-api-mode) is
+  enabled across modules to keep public APIs intentional and well-documented.
 * **Testing:**
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)

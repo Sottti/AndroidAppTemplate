@@ -3,6 +3,9 @@ package com.sottti.android.app.template.data.items.datasource.remote.api
 import com.sottti.android.app.template.data.items.datasource.remote.model.ItemApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
+import com.sottti.android.app.template.data.network.API_PATH_BEERS
+import com.sottti.android.app.template.data.network.API_QUERY_PARAM_ITEMS_PER_PAGE
+import com.sottti.android.app.template.data.network.API_QUERY_PARAM_PAGE_NUMBER
 import com.sottti.android.app.template.data.network.model.ResultApiModel
 import com.sottti.android.app.template.data.network.safeApiCall
 import com.sottti.android.app.template.domain.items.model.ItemId
@@ -35,7 +38,3 @@ internal class ItemsApiCallsImpl @Inject constructor(
             }.body()
         }
 }
-
-internal const val API_PATH_BEERS = "beers"
-internal const val API_QUERY_PARAM_PAGE_NUMBER = "page"
-internal const val API_QUERY_PARAM_ITEMS_PER_PAGE = "per_page"

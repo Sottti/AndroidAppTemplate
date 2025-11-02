@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.layout.Box
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
@@ -16,6 +17,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
+import com.sottti.android.app.template.presentation.design.system.icons.data.Icons
+import com.sottti.android.app.template.presentation.design.system.icons.ui.Icon
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
@@ -24,13 +27,13 @@ import com.sottti.android.app.template.presentation.previews.AndroidAppTemplateP
 @OptIn(ExperimentalMaterial3Api::class)
 public fun MainTopBar(
     @StringRes titleResId: Int? = null,
-    navigationIcon: @Composable () -> Unit = {},
+    onNavigationIconClick: (() -> Unit)? = null,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     showTitle: Boolean = true,
 ) {
     val titleText = titleResId?.let { stringResource(id = it) }
     MainTopBar(
-        navigationIcon = navigationIcon,
+        onNavigationIconClick = onNavigationIconClick,
         scrollBehavior = scrollBehavior,
         showTitle = showTitle,
         title = titleText,
@@ -40,7 +43,7 @@ public fun MainTopBar(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 public fun MainTopBar(
-    navigationIcon: @Composable () -> Unit = {},
+    onNavigationIconClick: (() -> Unit)?,
     scrollBehavior: TopAppBarScrollBehavior? = null,
     showTitle: Boolean = true,
     title: String? = null,
@@ -54,9 +57,22 @@ public fun MainTopBar(
         colors = colors,
         scrollBehavior = scrollBehavior,
         title = { Title(title, showTitle) },
-        navigationIcon = navigationIcon,
+        navigationIcon = { onNavigationIconClick?.let { NavigationIcon(it) } },
         modifier = Modifier.testTag(MAIN_TOP_BAR_TEST_TAG),
     )
+}
+
+@Composable
+private fun NavigationIcon(
+    onBackNavigation: () -> Unit,
+) {
+    Box(modifier = Modifier.testTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG)){
+        Icon(
+            modifier = Modifier.testTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG),
+            iconState = Icons.Arrow.Back.filled,
+            onClick = { onBackNavigation() },
+        )
+    }
 }
 
 @Composable

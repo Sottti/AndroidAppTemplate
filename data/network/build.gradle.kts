@@ -13,6 +13,7 @@ dependencies {
     api(libs.ktor.client.core)
     api(libs.result)
     implementation(libs.hilt)
+    implementation(libs.hilt.android.testing)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
     implementation(libs.ktor.client.logging)

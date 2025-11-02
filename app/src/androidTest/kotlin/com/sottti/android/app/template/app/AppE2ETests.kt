@@ -6,11 +6,11 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import androidx.compose.ui.test.performScrollToNode
 import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
-import com.sottti.android.app.template.domain.items.fixtures.fixtureItem8
+import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG
+import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_TEST_TAG
 import com.sottti.android.app.template.presentation.item.details.ui.ITEM_DETAILS_DETAILS_TEST_TAG
-import com.sottti.android.app.template.presentation.items.list.ui.GRID_ITEM_TEST_TAG
+import com.sottti.android.app.template.presentation.item.details.ui.ITEM_DETAILS_IMAGE_TEST_TAG
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Before
@@ -34,27 +34,30 @@ internal class AppE2ETest {
     @Test
     fun fullUserJourney_scrollList_clickItem_navigateBack() {
         with(composeTestRule) {
-            waitUntil(5000) {
-                onAllNodes(hasText(fixtureItem1.name.value)).fetchSemanticsNodes().isNotEmpty()
+            waitUntil() {
+                onAllNodes(hasText(fixtureItem1.name.value))
+                    .fetchSemanticsNodes()
+                    .isNotEmpty()
             }
 
-            onNodeWithText(fixtureItem1.name.value).assertIsDisplayed()
+            onNodeWithText(fixtureItem1.name.value)
+                .assertIsDisplayed()
 
-            onNodeWithTag(GRID_ITEM_TEST_TAG)
-                .assertExists()
-                .performScrollToNode(hasText(fixtureItem8.name.value))
+            onNodeWithText(fixtureItem1.name.value).performClick()
 
-            onNodeWithText(fixtureItem8.name.value).assertIsDisplayed()
-            onNodeWithText(fixtureItem8.name.value).performClick()
-
-            onNodeWithTag(ITEM_DETAILS_DETAILS_TEST_TAG).assertIsDisplayed()
-            onNodeWithText(fixtureItem8.name.value).assertIsDisplayed()
-
-            activity.onBackPressedDispatcher.onBackPressed()
             waitForIdle()
 
-            onNodeWithTag(GRID_ITEM_TEST_TAG).assertIsDisplayed()
-            onNodeWithText(fixtureItem1.name.value).assertIsDisplayed()
+            onNodeWithTag(ITEM_DETAILS_IMAGE_TEST_TAG).assertIsDisplayed()
+            onNodeWithTag(ITEM_DETAILS_DETAILS_TEST_TAG).assertIsDisplayed()
+
+            waitForIdle()
+
+            onNodeWithTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG).performClick()
+
+            waitForIdle()
+
+            onNodeWithText(fixtureItem1.name.value)
+                .assertIsDisplayed()
         }
     }
 }

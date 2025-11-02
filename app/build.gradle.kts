@@ -48,6 +48,7 @@ dependencies {
     implementation(project(module.domain.items))
     implementation(project(module.presentation.designSystem.iconResources))
     implementation(project(module.presentation.designSystem.themes))
+    implementation(project(module.presentation.designSystem.topBars))
     implementation(project(module.presentation.features.home))
     implementation(project(module.presentation.features.itemDetails))
     implementation(project(module.presentation.features.itemsList))
