@@ -78,7 +78,9 @@ This template is packed with the latest libraries and tools from the Android eco
   whenever the network is available.
 * **Navigation infrastructure:** A dedicated Compose Navigation 3 stack coordinates screen changes
   via a `NavigationManager`, with `Navigator` components observing command channels and handling
-  saveable state, back stack pops, and simultaneous navigation requests.
+  saveable state, back stack pops, and simultaneous navigation requests. All routing code lives in
+  the dedicated `presentation:navigation` module so feature modules stay navigation-agnostic and
+  decoupled from the implementation details.
 * **Snapshot tooling:** The `presentation` module includes a Paparazzi test toolkit featuring a
   custom Pixel 10 Pro XL device profile and helpers that generate day/night parameter sets for rich
   screenshot coverage.
@@ -95,6 +97,8 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
   `HomeActivity` combine with the navigation manager to launch directly into themed Compose content
   with minimal boilerplate.
+* **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
+  managed centrally so features automatically inherit full-height layouts.
 
 ## 🏗️ Project Structure
 
