@@ -65,6 +65,12 @@ This template is packed with the latest libraries and tools from the Android eco
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
     * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
+    * **Integration Tests:** Instrumented Compose flows cover the full stack—from
+      navigation orchestration (e.g., the `NavigatorTest` exercising navigation
+      commands) to feature screens (`AppE2ETest`, `ItemsListUiTest`, and
+      `ItemDetailsUiTest`) using Hilt-enabled end-to-end journeys and
+      parameterized scenarios that sweep multiple font scales and orientations
+      via the shared `BaseUiTest` harness.
 
 ### 🌟 Additional Highlights
 
