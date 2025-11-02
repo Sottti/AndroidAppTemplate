@@ -32,7 +32,7 @@ scope, and delivery goals before adopting it wholesale.
 
 This project serves as a starter kit for new Android applications. It's designed to save you from
 the repetitive setup process of configuring dependencies, setting up architecture, and implementing
-common utilities. Just clone or use this template, rename the package, and start building your app's
+common utilities. Just clone or use this template, rename the packages, features... and start building your app's
 features immediately.
 
 ## ✨ Features
