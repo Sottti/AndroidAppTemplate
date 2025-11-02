@@ -87,26 +87,6 @@ This template is packed with the latest libraries and tools from the Android eco
   `HomeActivity` combine with the navigation manager to launch directly into themed Compose content
   with minimal boilerplate.
 
-## 📷 Screenshots
-
-<p align="center">   
-   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" width="24%"/>
-</p>
-
-<p align="center">
-    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" width="48%"/>
-</p>
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" width="48%"/>
-</p>
-
-
-
 ## 🏗️ Project Structure
 
 This project follows a standard multi-module setup, which is highly recommended for separation of
@@ -191,3 +171,25 @@ contributions are welcome!
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see
 the [LICENSE](LICENSE) file for details.
+
+## 📷 Screenshots
+
+<p align="center">   
+   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" width="24%"/>
+</p>
+
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" width="48%"/>
+</p>
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" width="48%"/>
+</p>
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/8cdab79c-c894-468f-8cbc-36301fe813fe" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/0da05dbf-795f-4fca-990b-d035c47aa34f" width="48%"/>
+</p>
