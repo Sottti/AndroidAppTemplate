@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
@@ -19,7 +20,7 @@ public fun ProgressIndicator(
     modifier: Modifier = Modifier,
     size: ProgressIndicatorSize = ProgressIndicatorSize.Medium,
 ) {
-    Box(modifier = modifier) {
+    Box(modifier = modifier.testTag(PROGRESS_INDICATOR_TEST_TAG)) {
         CircularProgressIndicator(
             strokeWidth = strokeWidth(size),
             modifier = Modifier

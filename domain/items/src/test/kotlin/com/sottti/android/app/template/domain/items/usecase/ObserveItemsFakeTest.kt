@@ -10,7 +10,7 @@ import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
 
-internal class ObserveItemsTestFake {
+internal class ObserveItemsFakeTest {
 
     private lateinit var observeItems: ObserveItemsFake
 

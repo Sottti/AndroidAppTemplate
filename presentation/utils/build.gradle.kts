@@ -9,6 +9,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.compose.ui.test.junit4)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.compose.ui)

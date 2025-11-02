@@ -27,45 +27,53 @@ internal class ItemsListUiStateProvider : PreviewParameterProvider<ItemsListStat
             yield(loadedStatePrependEndReached)
             yield(loadedStateAppendPrependBothEndsReached)
             yield(loadedStateLoadsOfItems)
+            yield(loadedStateLoadsOfItemsRefreshing)
             yield(emptyState)
             yield(errorState)
         }
 }
 
-private val loadingState = itemsListState(
+internal val loadingState = itemsListState(
     refreshState = Loading,
     data = emptyList(),
 )
-private val loadedStateAppendLoading = itemsListState(appendState = Loading)
-private val loadedStatePrependLoading = itemsListState(prependState = Loading)
-private val loadedStateAppendPrependBothLoading =
+internal val loadedStateAppendLoading = itemsListState(appendState = Loading)
+internal val loadedStatePrependLoading = itemsListState(prependState = Loading)
+internal val loadedStateAppendPrependBothLoading =
     itemsListState(appendState = Loading, prependState = Loading)
-private val loadedStateNoPagination = itemsListState()
-private val loadedStateAppendEndReached = itemsListState(
+internal val loadedStateNoPagination = itemsListState()
+internal val loadedStateAppendEndReached = itemsListState(
     appendState = NotLoading(endOfPaginationReached = true),
 )
-private val loadedStatePrependEndReached = itemsListState(
+internal val loadedStatePrependEndReached = itemsListState(
     prependState = NotLoading(endOfPaginationReached = true)
 )
-private val loadedStateAppendPrependBothEndsReached = itemsListState(
+internal val loadedStateAppendPrependBothEndsReached = itemsListState(
     appendState = NotLoading(endOfPaginationReached = true),
     prependState = NotLoading(endOfPaginationReached = true)
 )
 
-private val loadedStateLoadsOfItems = itemsListState(
+internal val loadedStateLoadsOfItemsRefreshing = itemsListState(
+    refreshState = Loading,
+    appendState = NotLoading(endOfPaginationReached = true),
+    prependState = NotLoading(endOfPaginationReached = true),
+    data = listOfMultipleItemsUiModels,
+)
+
+internal val loadedStateLoadsOfItems = itemsListState(
     appendState = NotLoading(endOfPaginationReached = true),
     data = listOfMultipleItemsUiModels,
 )
 
 
-private val emptyState = itemsListState(
+internal val emptyState = itemsListState(
     refreshState = NotLoading(endOfPaginationReached = true),
     appendState = NotLoading(endOfPaginationReached = true),
     prependState = NotLoading(endOfPaginationReached = true),
     data = emptyList(),
 )
 
-private val errorState = itemsListState(
+internal val errorState = itemsListState(
     refreshState = LoadState.Error(kotlin.Exception()),
     data = emptyList(),
 )

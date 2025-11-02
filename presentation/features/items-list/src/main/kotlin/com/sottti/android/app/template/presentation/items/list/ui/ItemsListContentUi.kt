@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
@@ -60,7 +61,7 @@ internal fun ItemsListContent(
         val items = state.items.collectAsLazyPagingItems()
         PullToRefreshBox(
             isRefreshing = items.loadState.refresh is Loading,
-            modifier = Modifier.padding(padding),
+            modifier = Modifier.padding(padding).testTag(PULL_TO_REFRESH_TEST_TAG),
             onRefresh = { items.refresh() },
         ) {
             Items(
@@ -189,5 +190,9 @@ private fun ProgressIndicatorFillMaxSize(
 
 @Composable
 private fun ProgressIndicatorGridItem() {
-    ProgressIndicator(modifier = Modifier.size(dimensions.components.cardInGrid.small))
+    ProgressIndicator(
+        modifier = Modifier
+            .testTag(PROGRESS_INDICATOR_GRID_TEST_TAG)
+            .size(dimensions.components.cardInGrid.small)
+    )
 }

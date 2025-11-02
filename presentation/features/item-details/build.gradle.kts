@@ -14,6 +14,9 @@ android {
 }
 
 dependencies {
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.truth)
+    debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.compose.ui.tooling)
