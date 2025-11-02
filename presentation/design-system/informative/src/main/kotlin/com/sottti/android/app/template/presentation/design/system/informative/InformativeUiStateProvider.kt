@@ -8,7 +8,9 @@ internal class InformativeUiStateProvider : PreviewParameterProvider<Informative
     override val values: Sequence<InformativeState> =
         sequence {
             yield(informativeWithButton)
+            yield(informativeWithButtonLongText)
             yield(informativeWithoutButton)
+            yield(informativeWithoutButtonLongText)
         }
 }
 
@@ -19,9 +21,23 @@ private val informativeWithButton = InformativeState(
     buttonText = FixturesR.fixture_button_text,
 )
 
+private val informativeWithButtonLongText = InformativeState(
+    illustration = Illustrations.FamilyBeachSunset.state,
+    primaryText = FixturesR.fixture_primary_text_long,
+    secondaryText = FixturesR.fixture_secondary_text_long,
+    buttonText = FixturesR.fixture_button_text_long,
+)
+
 private val informativeWithoutButton = InformativeState(
     illustration = Illustrations.FamilyBeachSunset.state,
     primaryText = FixturesR.fixture_primary_text,
     secondaryText = FixturesR.fixture_secondary_text,
+    buttonText = null,
+)
+
+private val informativeWithoutButtonLongText = InformativeState(
+    illustration = Illustrations.FamilyBeachSunset.state,
+    primaryText = FixturesR.fixture_primary_text_long,
+    secondaryText = FixturesR.fixture_secondary_text_long,
     buttonText = null,
 )

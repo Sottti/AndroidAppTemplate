@@ -1,9 +1,10 @@
 package com.sottti.android.app.template.presentation.previews
 
-import androidx.compose.ui.tooling.preview.Devices
-
 internal const val DARK_THEME_GROUP = "Dark Theme"
-internal const val DARK_THEME_NAME = "2. Dark"
-internal const val DEVICE = Devices.PIXEL_9_PRO_XL
+internal const val DARK_THEME_LANDSCAPE_NAME = "3. Dark - Landscape"
+internal const val DARK_THEME_PORTRAIT_NAME = "4. Dark - Portrait"
+internal const val DEVICE_LANDSCAPE = "spec:width=2400px,height=1080px,dpi=480"
+internal const val DEVICE_PORTRAIT = "spec:width=1080px,height=2400px,dpi=480"
 internal const val LIGHT_THEME_GROUP = "Light Theme"
-internal const val LIGHT_THEME_NAME = "1. Light"
+internal const val LIGHT_THEME_LANDSCAPE_NAME = "1. Light - Landscape"
+internal const val LIGHT_THEME_PORTRAIT_NAME = "2. Light - Portrait"

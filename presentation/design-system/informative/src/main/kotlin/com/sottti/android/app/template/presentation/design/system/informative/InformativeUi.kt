@@ -3,7 +3,9 @@ package com.sottti.android.app.template.presentation.design.system.informative
 import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -23,9 +25,37 @@ import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
 import com.sottti.android.app.template.presentation.utils.Spacer
+import com.sottti.android.app.template.presentation.utils.isPortraitOrientation
 
 @Composable
 public fun InformativeUi(
+    illustration: IllustrationState,
+    @StringRes primaryText: Int,
+    @StringRes secondaryText: Int,
+    modifier: Modifier = Modifier,
+    button: InformativeButton? = null,
+) {
+    when (isPortraitOrientation()) {
+        true -> PortraitLayout(
+            button = button,
+            illustration = illustration,
+            modifier = modifier,
+            primaryText = primaryText,
+            secondaryText = secondaryText,
+        )
+
+        false -> LandscapeLayout(
+            button = button,
+            illustration = illustration,
+            modifier = modifier,
+            primaryText = primaryText,
+            secondaryText = secondaryText,
+        )
+    }
+}
+
+@Composable
+private fun PortraitLayout(
     illustration: IllustrationState,
     @StringRes primaryText: Int,
     @StringRes secondaryText: Int,
@@ -43,7 +73,8 @@ public fun InformativeUi(
         CircledIllustration(
             state = illustration,
             modifier = Modifier
-                .fillMaxWidth(fraction = 0.8f),
+                .padding(horizontal = dimensions.spacing.medium)
+                .fillMaxWidth(),
         )
         Spacer(weight = 0.5f)
         Text.Headline.Medium(
@@ -69,6 +100,71 @@ public fun InformativeUi(
         }
     }
 }
+
+@Composable
+private fun LandscapeLayout(
+    illustration: IllustrationState,
+    @StringRes primaryText: Int,
+    @StringRes secondaryText: Int,
+    modifier: Modifier = Modifier,
+    button: InformativeButton? = null,
+) {
+
+    Row(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(dimensions.spacing.medium)
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxSize()
+        ) {
+            CircledIllustration(
+                state = illustration,
+                modifier = Modifier.align(Alignment.Center),
+            )
+        }
+        Box(
+            modifier = Modifier
+                .weight(1f)
+                .fillMaxSize()
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(horizontal = dimensions.spacing.medium)
+                    .fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Spacer(weight = 1f)
+                Text.Headline.Medium(
+                    text = stringResource(primaryText),
+                    textColor = colors.onBackground,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(size = dimensions.spacing.small)
+                Text.Body.Medium(
+                    text = stringResource(secondaryText),
+                    textColor = colors.onBackground,
+                    textAlign = TextAlign.Center,
+                )
+                Spacer(weight = 1f)
+                button?.let {
+                    Button(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = button.onClick
+                    ) {
+                        Text.Vanilla(
+                            textResId = button.text,
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
 
 @Composable
 @AndroidAppTemplatePreview
