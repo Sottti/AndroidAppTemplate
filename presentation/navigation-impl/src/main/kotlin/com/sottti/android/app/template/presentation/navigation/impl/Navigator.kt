@@ -1,5 +1,6 @@
 package com.sottti.android.app.template.presentation.navigation.impl
 
+import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
@@ -47,21 +48,20 @@ public fun Navigator(
             rememberSaveableStateHolderNavEntryDecorator(),
             rememberViewModelStoreNavEntryDecorator()
         ),
+        transitionSpec = { pushTransition() },
+        popTransitionSpec = { popTransition() },
+        predictivePopTransitionSpec = { popTransition() },
         entryProvider = entryProvider ?: navigationEntries(),
-        transitionSpec = {
-            slideInHorizontally(initialOffsetX = { it }) togetherWith
-                    slideOutHorizontally(targetOffsetX = { -it })
-        },
-        popTransitionSpec = {
-            slideInHorizontally(initialOffsetX = { -it }) togetherWith
-                    slideOutHorizontally(targetOffsetX = { it })
-        },
-        predictivePopTransitionSpec = {
-            slideInHorizontally(initialOffsetX = { -it }) togetherWith
-                    slideOutHorizontally(targetOffsetX = { it })
-        },
     )
 }
+
+private fun pushTransition(): ContentTransform =
+    slideInHorizontally(initialOffsetX = { it }) togetherWith
+            slideOutHorizontally(targetOffsetX = { -it })
+
+private fun popTransition(): ContentTransform =
+    slideInHorizontally(initialOffsetX = { -it }) togetherWith
+            slideOutHorizontally(targetOffsetX = { it })
 
 private fun observeCommandsInScope(
     backStack: NavBackStack<NavKey>,
