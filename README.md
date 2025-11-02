@@ -12,6 +12,13 @@ A clean, modern, and opinionated Android application template to bootstrap your 
 quickly. This template is built with a focus on modern Android development (MAD), scalability, and
 best practices.
 
+<p align="center">   
+   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" width="24%"/>
+</p>
+
 ## Disclaimer
 
 This repository intentionally demonstrates a production-ready architecture suited for teams that
