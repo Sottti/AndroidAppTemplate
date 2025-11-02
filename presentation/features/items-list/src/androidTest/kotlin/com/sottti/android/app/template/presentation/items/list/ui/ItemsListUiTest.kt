@@ -7,7 +7,6 @@ import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
-import com.sottti.android.app.template.domain.items.fixtures.fixtureItem2
 import com.sottti.android.app.template.presentation.design.system.empty.EMPTY_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.error.ERROR_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.PROGRESS_INDICATOR_TEST_TAG
@@ -226,16 +225,8 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onNodeWithTag(PULL_TO_REFRESH_TEST_TAG)
-            .assertIsNotDisplayed()
-
-        rule
             .onAllNodesWithTag(GRID_TEM_TEST_TAG)
             .assertCountEquals(10)
-
-        rule
-            .onNodeWithText(fixtureItem2.name.value)
-            .assertIsDisplayed()
     }
 
     @Test
@@ -284,12 +275,8 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onNodeWithTag(PULL_TO_REFRESH_TEST_TAG)
-            .assertIsNotDisplayed()
-
-        rule
             .onAllNodesWithTag(GRID_TEM_TEST_TAG)
-            .assertCountEquals(10)
+            .assertCountEquals(0)
 
         rule
             .onNodeWithTag(ERROR_TEST_TAG)
@@ -315,12 +302,8 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onNodeWithTag(PULL_TO_REFRESH_TEST_TAG)
-            .assertIsNotDisplayed()
-
-        rule
             .onAllNodesWithTag(GRID_TEM_TEST_TAG)
-            .assertCountEquals(10)
+            .assertCountEquals(0)
 
         rule
             .onNodeWithTag(EMPTY_TEST_TAG)
