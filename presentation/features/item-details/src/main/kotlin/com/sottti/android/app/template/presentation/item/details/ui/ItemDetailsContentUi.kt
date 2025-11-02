@@ -1,7 +1,6 @@
 package com.sottti.android.app.template.presentation.item.details.ui
 
 import androidx.annotation.StringRes
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -14,6 +13,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
@@ -68,41 +68,57 @@ internal fun ItemDetailsContent(
         }
     ) { padding: PaddingValues ->
         when (state) {
-            is Loading -> ProgressIndicator(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(padding)
-            )
-
+            is Loading -> ProgressIndicator(modifier = Modifier
+                .fillMaxSize()
+                .padding(padding))
             is Error -> ErrorUi(modifier = Modifier.padding(padding))
-
-            is Loaded -> when (isPortraitOrientation()) {
-                true -> LoadedStatePortrait(
-                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
-                    onAction = onAction,
-                    padding = padding,
+            is Loaded -> {
+                LoadedState(
                     state = state.item,
-                )
-
-                false -> LoadedStateLandscape(
-                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
-                    onAction = onAction,
                     padding = padding,
-                    state = state.item,
+                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
                 )
-
             }
         }
     }
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
-private fun LoadedStatePortrait(
-    onAction: (ItemDetailsActions) -> Unit,
-    padding: PaddingValues,
+private fun LoadedState(
     nestedScrollConnection: NestedScrollConnection,
+    padding: PaddingValues,
     state: ItemState,
+) {
+    val lazyListContent: LazyListScope.() -> Unit = {
+        item(key = "identity") { DetailsSection(state.identity) }
+        item(key = "identity2") { DetailsSection(state.identity) }
+        item(key = "identity3") { DetailsSection(state.identity) }
+        item(key = "identity4") { DetailsSection(state.identity) }
+    }
+
+    when {
+        isPortraitOrientation() -> LoadedStatePortrait(
+            nestedScrollConnection = nestedScrollConnection,
+            padding = padding,
+            state = state,
+            lazyListContent = lazyListContent,
+        )
+
+        else -> LoadedStateLandscape(
+            nestedScrollConnection = nestedScrollConnection,
+            padding = padding,
+            state = state,
+            lazyListContent = lazyListContent,
+        )
+    }
+}
+
+@Composable
+private fun LoadedStatePortrait(
+    nestedScrollConnection: NestedScrollConnection,
+    padding: PaddingValues,
+    state: ItemState,
+    lazyListContent: LazyListScope.() -> Unit,
 ) {
     val topPadding = padding.calculateTopPadding() + dimensions.spacing.medium
     val bottomPadding = padding.calculateBottomPadding() + dimensions.spacing.medium
@@ -123,25 +139,22 @@ private fun LoadedStatePortrait(
                     .aspectRatio(1.75f)
             )
         }
-        item(key = "identity") { DetailsSection(state.identity) }
-        item(key = "identity2") { DetailsSection(state.identity) }
-        item(key = "identity3") { DetailsSection(state.identity) }
-        item(key = "identity4") { DetailsSection(state.identity) }
+        lazyListContent()
     }
 }
 
 @Composable
-@OptIn(ExperimentalMaterial3Api::class)
 private fun LoadedStateLandscape(
-    onAction: (ItemDetailsActions) -> Unit,
-    padding: PaddingValues,
     nestedScrollConnection: NestedScrollConnection,
+    padding: PaddingValues,
     state: ItemState,
+    lazyListContent: LazyListScope.() -> Unit,
 ) {
-    val topPadding = padding.calculateTopPadding() + dimensions.spacing.medium
     val bottomPadding = padding.calculateBottomPadding() + dimensions.spacing.medium
-    val startPadding = padding.calculateStartPadding(LocalLayoutDirection.current)
     val endPadding = padding.calculateEndPadding(LocalLayoutDirection.current)
+    val startPadding = padding.calculateStartPadding(LocalLayoutDirection.current)
+    val topPadding = padding.calculateTopPadding() + dimensions.spacing.medium
+
     Row(modifier = Modifier.padding(start = startPadding, end = endPadding)) {
         Image(
             state = state.imageState,
@@ -159,13 +172,11 @@ private fun LoadedStateLandscape(
             contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
             verticalArrangement = Arrangement.spacedBy(dimensions.spacing.mediumLarge),
         ) {
-            item(key = "identity") { DetailsSection(state.identity) }
-            item(key = "identity2") { DetailsSection(state.identity) }
-            item(key = "identity3") { DetailsSection(state.identity) }
-            item(key = "identity4") { DetailsSection(state.identity) }
+            lazyListContent()
         }
     }
 }
+
 
 @Composable
 private fun Image(
