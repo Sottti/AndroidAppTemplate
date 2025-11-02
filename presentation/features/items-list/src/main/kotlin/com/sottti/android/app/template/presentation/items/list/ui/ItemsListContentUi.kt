@@ -137,7 +137,7 @@ private fun LazyGridItemScope.ItemCard(
 ) {
     Card(
         modifier = Modifier
-            .testTag(GRID_TEM_TEST_TAG)
+            .testTag(GRID_ITEM_TEST_TAG)
             .aspectRatio(1f)
             .animateItem(),
         shape = shapes.roundedCorner.large,

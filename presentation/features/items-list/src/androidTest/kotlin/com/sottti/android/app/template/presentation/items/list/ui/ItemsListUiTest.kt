@@ -6,7 +6,6 @@ import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
-import androidx.compose.ui.test.onNodeWithText
 import com.sottti.android.app.template.presentation.design.system.empty.EMPTY_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.error.ERROR_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.PROGRESS_INDICATOR_TEST_TAG
@@ -58,7 +57,7 @@ internal class ItemsListUiTest(
             .assertIsDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -82,7 +81,7 @@ internal class ItemsListUiTest(
             .assertIsDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -106,7 +105,7 @@ internal class ItemsListUiTest(
             .assertCountEquals(2)
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -130,7 +129,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -154,7 +153,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -178,7 +177,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -202,7 +201,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(2)
     }
 
@@ -225,7 +224,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(10)
     }
 
@@ -252,7 +251,7 @@ internal class ItemsListUiTest(
             .assertIsDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(10)
     }
 
@@ -275,7 +274,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(0)
 
         rule
@@ -302,7 +301,7 @@ internal class ItemsListUiTest(
             .assertIsNotDisplayed()
 
         rule
-            .onAllNodesWithTag(GRID_TEM_TEST_TAG)
+            .onAllNodesWithTag(GRID_ITEM_TEST_TAG)
             .assertCountEquals(0)
 
         rule
