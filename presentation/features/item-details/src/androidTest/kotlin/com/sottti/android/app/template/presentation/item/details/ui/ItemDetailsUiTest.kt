@@ -46,5 +46,4 @@ internal class ItemDetailsUiTest(
             onNodeWithTag(ITEM_DETAILS_IMAGE_TEST_TAG).assertIsDisplayed()
             onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
-
 }

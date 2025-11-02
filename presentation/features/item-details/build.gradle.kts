@@ -11,6 +11,9 @@ plugins {
 
 android {
     namespace = "com.sottti.android.app.template.presentation.item.details"
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
 }
 
 dependencies {
