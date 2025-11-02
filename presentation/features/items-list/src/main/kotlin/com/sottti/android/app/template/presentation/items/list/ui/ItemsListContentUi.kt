@@ -61,7 +61,9 @@ internal fun ItemsListContent(
         val items = state.items.collectAsLazyPagingItems()
         PullToRefreshBox(
             isRefreshing = items.loadState.refresh is Loading,
-            modifier = Modifier.padding(padding).testTag(PULL_TO_REFRESH_TEST_TAG),
+            modifier = Modifier
+                .padding(top = padding.calculateTopPadding())
+                .testTag(PULL_TO_REFRESH_TEST_TAG),
             onRefresh = { items.refresh() },
         ) {
             Items(

@@ -69,9 +69,12 @@ internal fun ItemDetailsContent(
         }
     ) { padding: PaddingValues ->
         when (state) {
-            is Loading -> ProgressIndicator(modifier = Modifier
-                .fillMaxSize()
-                .padding(padding))
+            is Loading -> ProgressIndicator(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(padding)
+            )
+
             is Error -> ErrorUi(modifier = Modifier.padding(padding))
             is Loaded -> {
                 LoadedState(
@@ -92,6 +95,10 @@ private fun LoadedState(
 ) {
     val lazyListContent: LazyListScope.() -> Unit = {
         item(key = "identity") { DetailsSection(state.identity) }
+        item(key = "identity2") { DetailsSection(state.identity) }
+        item(key = "identity3") { DetailsSection(state.identity) }
+        item(key = "identity4") { DetailsSection(state.identity) }
+        item(key = "identity5") { DetailsSection(state.identity) }
     }
 
     when {
