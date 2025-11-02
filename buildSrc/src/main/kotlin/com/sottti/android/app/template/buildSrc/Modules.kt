@@ -3,6 +3,10 @@
 package com.sottti.android.app.template.buildSrc
 
 object module {
+    const val app = ":app"
+
+    const val di = ":di"
+
     object presentation {
         object features {
             const val home = ":presentation:features:home"
@@ -53,6 +57,4 @@ object module {
     object utils {
         const val lifecycle = ":utils:lifecycle"
     }
-
-    const val di = ":di"
 }
