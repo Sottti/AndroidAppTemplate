@@ -107,6 +107,23 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
   managed centrally so features automatically inherit full-height layouts.
 
+## 🏛️ Architecture (MVVM + Clean)
+
+This template uses a state-driven MVVM (Model-View-ViewModel) architecture combined with principles
+from Clean Architecture.
+
+* **UI (Compose)**: Observes `State` from the `ViewModel` and sends `Actions` (user actions) to it.
+  It is passive and dumb.
+* **ViewModel**: Follows
+  a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
+  Handles business logic for the screen. It consumes `Actions`, interacts with
+  UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
+* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
+  `GetUserProfileUseCase`). This makes logic reusable and easier to test.
+* **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
+  source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
+  consume.
+
 ## 🏗️ Project Structure
 
 The repository is laid out as a layered, multi-module Gradle project. Each directory below maps to a
@@ -151,23 +168,6 @@ Every Gradle module has a single responsibility. Use the table below to find the
   * `di`: Shared Hilt modules and component wiring consumed across the app.
 * **Shared utilities**
   * `utils:lifecycle`: Lifecycle-aware coroutine helpers and Flow extensions reused in ViewModels.
-
-## 🏛️ Architecture (MVVM + Clean)
-
-This template uses a state-driven MVVM (Model-View-ViewModel) architecture combined with principles
-from Clean Architecture.
-
-* **UI (Compose)**: Observes `State` from the `ViewModel` and sends `Actions` (user actions) to it.
-  It is passive and dumb.
-* **ViewModel**: Follows
-  a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
-  Handles business logic for the screen. It consumes `Actions`, interacts with
-  UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
-* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
-  `GetUserProfileUseCase`). This makes logic reusable and easier to test.
-* **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
-  source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
-  consume.
 
 ## 🚀 How to Use This Template
 
