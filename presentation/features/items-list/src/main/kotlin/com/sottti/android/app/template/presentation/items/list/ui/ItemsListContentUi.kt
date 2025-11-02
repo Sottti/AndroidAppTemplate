@@ -81,15 +81,15 @@ private fun Items(
     onAction: (ItemsListActions) -> Unit,
 ) {
     val isInitialLoad = items.loadState.refresh is Loading && items.itemCount == 0
+    val isError = items.loadState.refresh is Error && items.itemCount == 0
+    val isListEmpty = items.loadState.refresh is NotLoading &&
+            items.loadState.append.endOfPaginationReached &&
+            items.itemCount == 0
 
     when {
         isInitialLoad -> ProgressIndicatorFillMaxSize()
-        items.loadState.refresh is Error && items.itemCount == 0 ->
-            ErrorUi(modifier = Modifier.padding())
-
-        items.loadState.refresh is NotLoading && items.itemCount == 0 ->
-            EmptyUi(modifier = Modifier.padding())
-
+        isError -> ErrorUi(modifier = Modifier.padding())
+        isListEmpty -> EmptyUi(modifier = Modifier.padding())
         else -> ItemsLoaded(
             items = items,
             listState = listState,
