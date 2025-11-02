@@ -11,7 +11,9 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.text.Text
@@ -21,9 +23,26 @@ import com.sottti.android.app.template.presentation.previews.AndroidAppTemplateP
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 public fun MainTopBar(
+    @StringRes titleResId: Int? = null,
+    navigationIcon: @Composable () -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior? = null,
     showTitle: Boolean = true,
-    titleResId: Int? = null,
+) {
+    val titleText = titleResId?.let { stringResource(id = it) }
+    MainTopBar(
+        scrollBehavior = scrollBehavior,
+        showTitle = showTitle,
+        title = titleText,
+    )
+}
+
+@Composable
+@OptIn(ExperimentalMaterial3Api::class)
+public fun MainTopBar(
+    navigationIcon: @Composable () -> Unit = {},
+    scrollBehavior: TopAppBarScrollBehavior? = null,
+    showTitle: Boolean = true,
+    title: String? = null,
 ) {
     val colors = when (scrollBehavior) {
         null -> TopAppBarDefaults.topAppBarColors(containerColor = Color.Transparent)
@@ -33,19 +52,21 @@ public fun MainTopBar(
     TopAppBar(
         colors = colors,
         scrollBehavior = scrollBehavior,
-        title = { Title(titleResId, showTitle) },
+        title = { Title(title, showTitle) },
+        navigationIcon = navigationIcon,
+        modifier = Modifier.testTag(MAIN_TOP_BAR_TEST_TAG),
     )
 }
 
 @Composable
 private fun Title(
-    @StringRes titleResId: Int?,
+    title: String?,
     showTitle: Boolean,
 ) {
-    titleResId ?: return
-    val title = stringResource(titleResId)
+    if (title.isNullOrBlank()) return
+
     AnimatedVisibility(
-        visible = title.isNotEmpty() && showTitle,
+        visible = showTitle,
         enter = fadeIn() + slideInVertically(initialOffsetY = { it / 2 }),
         exit = fadeOut() + slideOutVertically(targetOffsetY = { it / 2 })
     ) {

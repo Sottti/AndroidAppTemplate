@@ -1,12 +1,11 @@
 package com.sottti.android.app.template.presentation.item.details.ui
 
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
 import com.sottti.android.app.template.presentation.design.system.icons.ui.Icon
-import com.sottti.android.app.template.presentation.design.system.text.Text
+import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MainTopBar
 import com.sottti.android.app.template.presentation.item.details.model.TopBarState
 
 @Composable
@@ -16,9 +15,9 @@ internal fun TopBar(
     scrollBehavior: TopAppBarScrollBehavior,
     state: TopBarState,
 ) {
-    TopAppBar(
-        title = { state.title?.let { Text.Vanilla(state.title) } },
+    MainTopBar(
         scrollBehavior = scrollBehavior,
+        title = state.title,
         navigationIcon = { NavigationIcon(state.navigationIcon, onBackNavigation) },
     )
 }

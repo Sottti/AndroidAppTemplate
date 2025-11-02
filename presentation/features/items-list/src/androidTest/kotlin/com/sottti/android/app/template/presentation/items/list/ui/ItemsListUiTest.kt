@@ -7,6 +7,7 @@ import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import com.sottti.android.app.template.presentation.design.system.empty.EMPTY_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.error.ERROR_TEST_TAG
+import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_TEST_TAG
 import com.sottti.android.app.template.presentation.utils.test.BaseUiTest
 import com.sottti.android.app.template.presentation.utils.test.FontScalesTest
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
@@ -24,6 +25,7 @@ internal class ItemsListUiTest(
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
 
             onNodeWithTag(PULL_TO_REFRESH_TEST_TAG).assertIsDisplayed()
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -32,6 +34,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertIsDisplayed()
 
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
         }
 
@@ -41,6 +44,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertIsDisplayed()
 
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
         }
 
@@ -50,6 +54,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onAllNodes(gridIndicatorMatcher()).assertCountEquals(2)
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -58,6 +63,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -66,6 +72,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -74,6 +81,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -82,6 +90,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -90,6 +99,7 @@ internal class ItemsListUiTest(
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(10)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -100,6 +110,7 @@ internal class ItemsListUiTest(
 
             onNodeWithTag(PULL_TO_REFRESH_TEST_TAG).assertIsDisplayed()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(10)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -109,6 +120,7 @@ internal class ItemsListUiTest(
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(0)
             onNodeWithTag(EMPTY_TEST_TAG).assertIsDisplayed()
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 
     @Test
@@ -118,5 +130,6 @@ internal class ItemsListUiTest(
             onNode(gridIndicatorMatcher()).assertDoesNotExist()
             onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(0)
             onNodeWithTag(ERROR_TEST_TAG).assertIsDisplayed()
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
         }
 }

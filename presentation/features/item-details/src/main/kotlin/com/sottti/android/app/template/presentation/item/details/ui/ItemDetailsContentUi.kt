@@ -28,6 +28,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
@@ -122,6 +123,7 @@ private fun LoadedStatePortrait(
 
     LazyColumn(
         modifier = Modifier
+            .testTag(ITEM_DETAILS_DETAILS_TEST_TAG)
             .nestedScroll(nestedScrollConnection)
             .fillMaxSize(),
         contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
@@ -163,6 +165,7 @@ private fun LoadedStateLandscape(
         )
         LazyColumn(
             modifier = Modifier
+                .testTag(ITEM_DETAILS_DETAILS_TEST_TAG)
                 .nestedScroll(nestedScrollConnection)
                 .weight(1f)
                 .fillMaxSize(),
@@ -184,7 +187,7 @@ private fun Image(
         url = state.imageUrl,
         contentDescription = state.imageDescription,
         roundedCorners = true,
-        modifier = modifier,
+        modifier = modifier.testTag(ITEM_DETAILS_IMAGE_TEST_TAG),
     )
 }
 

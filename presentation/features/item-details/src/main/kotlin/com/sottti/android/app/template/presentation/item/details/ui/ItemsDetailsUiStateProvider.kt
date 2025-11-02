@@ -16,6 +16,6 @@ internal class ItemsDetailsUiStateProvider : PreviewParameterProvider<ItemDetail
 }
 
 private val topBarState = initialState.topBarState
-private val loadingState = ItemDetailsState.Loading(topBarState)
-private val errorState = ItemDetailsState.Error(topBarState)
-private val loadedState = loadingState.reduce(fixtureItem1)
+internal val loadingState = ItemDetailsState.Loading(topBarState)
+internal val errorState = ItemDetailsState.Error(topBarState)
+internal val loadedState = loadingState.reduce(fixtureItem1)

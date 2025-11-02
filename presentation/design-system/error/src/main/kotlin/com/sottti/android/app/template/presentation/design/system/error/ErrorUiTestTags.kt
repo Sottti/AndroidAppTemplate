@@ -1,3 +1,3 @@
 package com.sottti.android.app.template.presentation.design.system.error
 
-public const val ERROR_TEST_TAG: String = "Error"
+public const val ERROR_TEST_TAG: String = "Error Test Tag"
