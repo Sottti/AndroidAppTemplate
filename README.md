@@ -70,12 +70,10 @@ This template is packed with the latest libraries and tools from the Android eco
     * **Test Doubles Philosophy:** The template deliberately avoids runtime
       mocking frameworks. Instead, it ships purpose-built *fakes* that behave
       like lightweight in-memory implementations of production contracts.
-      Examples include the fake repositories under `data` modules and the
-      fake managers in `data/system-features`. This approach keeps tests fast
-      and deterministic, encourages explicit collaboration boundaries, and
-      allows your team to reuse the same fakes across unit, integration, and
-      end-to-end scenarios without the brittleness often introduced by mocks.
-      via the shared harness.
+      This approach keeps tests fast and deterministic, encourages explicit
+      collaboration boundaries, and allows your team to reuse the same fakes
+      across unit, integration, and end-to-end scenarios without the brittleness
+      often introduced by mocks.
 
 ### 🌟 Additional Highlights
 
