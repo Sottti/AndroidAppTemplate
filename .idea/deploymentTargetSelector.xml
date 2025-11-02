@@ -39,9 +39,6 @@
       <SelectionState runConfigName="ItemsListUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
-      <SelectionState runConfigName="givenStateIsPrependLoading_whenUiIsRendered_thenPrependIndicatorAndItemsAreVisible()">
-        <option name="selectionMode" value="DROPDOWN" />
-      </SelectionState>
       <SelectionState runConfigName="ItemDetailsUiTest">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
@@ -58,6 +55,9 @@
           </Target>
         </DropdownSelection>
         <DialogSelection />
+      </SelectionState>
+      <SelectionState runConfigName="AppFlowsTest">
+        <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
     </selectionStates>
   </component>

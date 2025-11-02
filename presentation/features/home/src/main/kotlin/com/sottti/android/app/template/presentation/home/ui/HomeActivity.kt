@@ -16,12 +16,12 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-internal open class HomeActivity : ComponentActivity() {
+public open class HomeActivity : ComponentActivity() {
 
     private val viewModel: HomeViewModel by viewModels()
 
     @Inject
-    lateinit var navigationManager: NavigationManager
+    internal lateinit var navigationManager: NavigationManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()

@@ -54,4 +54,8 @@ dependencies {
     implementation(project(module.presentation.features.itemsList))
     ksp(libs.hilt.compiler)
     kspAndroidTest(libs.hilt.compiler)
+
+
+
+    implementation(project(module.presentation.utils))
 }

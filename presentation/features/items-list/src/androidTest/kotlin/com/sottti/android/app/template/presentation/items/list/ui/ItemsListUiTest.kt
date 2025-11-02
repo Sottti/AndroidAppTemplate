@@ -8,7 +8,7 @@ import androidx.compose.ui.test.onNodeWithTag
 import com.sottti.android.app.template.presentation.design.system.empty.EMPTY_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.error.ERROR_TEST_TAG
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_TEST_TAG
-import com.sottti.android.app.template.presentation.utils.test.BaseUiTest
+import com.sottti.android.app.template.presentation.utils.test.ComposeUiTest
 import com.sottti.android.app.template.presentation.utils.test.FontScalesTest
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
 import org.junit.Test
@@ -16,7 +16,7 @@ import org.junit.Test
 internal class ItemsListUiTest(
     fontScale: FontScalesTest,
     orientation: OrientationTest,
-) : BaseUiTest(fontScale, orientation) {
+) : ComposeUiTest(fontScale, orientation) {
 
     @Test
     fun givenStateIsInitialLoad_thenFullScreenProgressBarsAreVisible() =

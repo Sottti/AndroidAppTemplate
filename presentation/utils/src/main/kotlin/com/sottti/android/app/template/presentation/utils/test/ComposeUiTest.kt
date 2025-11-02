@@ -15,13 +15,12 @@ private typealias UiTestRule =
         AndroidComposeTestRule<ActivityScenarioRule<ComponentActivity>, ComponentActivity>
 
 @RunWith(Parameterized::class)
-public abstract class BaseUiTest(
+public abstract class ComposeUiTest(
     public val fontScale: FontScalesTest,
     public val orientation: OrientationTest,
 ) {
     @get:Rule
-    public val rule: UiTestRule =
-        createAndroidComposeRule<ComponentActivity>()
+    public val rule: UiTestRule = createAndroidComposeRule<ComponentActivity>()
 
     public inline fun runUiTest(
         noinline content: (@Composable () -> Unit),
@@ -36,7 +35,7 @@ public abstract class BaseUiTest(
         rule.block()
     }
 
-    public companion object {
+    public companion object Companion {
         @JvmStatic
         @Parameterized.Parameters(name = "fontScale={0}, orientation={1}")
         public fun data(): Collection<Array<Any>> = listOf(
