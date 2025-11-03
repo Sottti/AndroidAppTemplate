@@ -27,6 +27,7 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.paging.LoadState.Error
 import androidx.paging.LoadState.Loading
 import androidx.paging.LoadState.NotLoading
@@ -74,6 +75,7 @@ internal fun ItemsListContent(
             onRefresh = { items.refresh() },
         ) {
             Items(
+                bottomPadding = padding.calculateBottomPadding(),
                 items = items,
                 listState = lazyListState,
                 onAction = onAction,
@@ -86,10 +88,11 @@ internal fun ItemsListContent(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun Items(
+    bottomPadding: Dp,
     items: LazyPagingItems<ItemUiModel>,
     listState: LazyGridState,
-    scrollBehavior: TopAppBarScrollBehavior,
     onAction: (ItemsListActions) -> Unit,
+    scrollBehavior: TopAppBarScrollBehavior,
 ) {
     val isInitialLoad = items.loadState.refresh is Loading && items.itemCount == 0
     val isError = items.loadState.refresh is Error && items.itemCount == 0
@@ -98,13 +101,13 @@ private fun Items(
             items.itemCount == 0
 
     when {
-        isInitialLoad -> ProgressIndicatorFillMaxSize()
+        isInitialLoad -> ProgressIndicatorFillMaxSize(bottomPadding)
         isError -> ErrorUi(
-            modifier = Modifier.padding(),
+            modifier = Modifier.padding(bottom = bottomPadding),
             button = ErrorButton { items.retry() },
         )
 
-        isListEmpty -> EmptyUi(modifier = Modifier.padding())
+        isListEmpty -> EmptyUi(modifier = Modifier.padding(bottom = bottomPadding))
         else -> ItemsLoaded(
             items = items,
             listState = listState,
@@ -200,8 +203,11 @@ private fun CardText(text: String) {
 
 @Composable
 private fun ProgressIndicatorFillMaxSize(
+    bottomPadding: Dp,
 ) {
-    ProgressIndicator(modifier = Modifier.fillMaxSize())
+    ProgressIndicator(modifier = Modifier
+        .fillMaxSize()
+        .padding(bottom = bottomPadding))
 }
 
 @Composable
