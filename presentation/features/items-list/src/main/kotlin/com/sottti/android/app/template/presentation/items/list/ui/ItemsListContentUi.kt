@@ -37,6 +37,7 @@ import com.sottti.android.app.template.domain.core.models.ImageContentDescriptio
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.empty.EmptyUi
+import com.sottti.android.app.template.presentation.design.system.error.ErrorButton
 import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
@@ -98,7 +99,11 @@ private fun Items(
 
     when {
         isInitialLoad -> ProgressIndicatorFillMaxSize()
-        isError -> ErrorUi(modifier = Modifier.padding())
+        isError -> ErrorUi(
+            modifier = Modifier.padding(),
+            button = ErrorButton { items.retry() },
+        )
+
         isListEmpty -> EmptyUi(modifier = Modifier.padding())
         else -> ItemsLoaded(
             items = items,
