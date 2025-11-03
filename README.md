@@ -75,6 +75,17 @@ This template is packed with the latest libraries and tools from the Android eco
       across unit, integration, and end-to-end scenarios without the brittleness
       often introduced by mocks.
 
+### ▶️ Running the test suites
+
+Execute the following Gradle tasks from the project root to run the automated test suites locally:
+
+| Suite | Command | Description |
+|-------|---------|-------------|
+| Local/unit tests | `./gradlew testDebug` | Executes JVM-based tests located under `src/test` for the `debug` build variant. |
+| Instrumented Android tests | `./gradlew connectedDebugAndroidTest` | Launches Espresso/Compose instrumentation tests in `src/androidTest` on a connected emulator or device. |
+
+> ℹ️ Ensure that an Android emulator or physical device is connected before running the instrumentation suite.
+
 ### 🌟 Additional Highlights
 
 * **Dynamic system theming:** The `presentation` layer streams system theme and contrast updates,
