@@ -41,6 +41,7 @@ internal class ItemDetailsViewModel @AssistedInject constructor(
     private fun processAction(action: ItemDetailsActions) =
         when (action) {
             NavigateBack -> navigationManager.navigateBack()
+            ItemDetailsActions.Retry -> {}
         }
 
     private val reducer: (item: Item) -> ItemDetailsReducer =
