@@ -23,7 +23,6 @@ import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.platform.testTag
@@ -76,18 +75,19 @@ internal fun ItemsListContent(
             Items(
                 items = items,
                 listState = lazyListState,
-                nestedScrollConnection = scrollBehavior.nestedScrollConnection,
                 onAction = onAction,
+                scrollBehavior = scrollBehavior,
             )
         }
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun Items(
     items: LazyPagingItems<ItemUiModel>,
     listState: LazyGridState,
-    nestedScrollConnection: NestedScrollConnection,
+    scrollBehavior: TopAppBarScrollBehavior,
     onAction: (ItemsListActions) -> Unit,
 ) {
     val isInitialLoad = items.loadState.refresh is Loading && items.itemCount == 0
@@ -103,24 +103,25 @@ private fun Items(
         else -> ItemsLoaded(
             items = items,
             listState = listState,
-            nestedScrollConnection = nestedScrollConnection,
             onAction = onAction,
+            scrollBehavior = scrollBehavior,
         )
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun ItemsLoaded(
     items: LazyPagingItems<ItemUiModel>,
     listState: LazyGridState,
-    nestedScrollConnection: NestedScrollConnection,
+    scrollBehavior: TopAppBarScrollBehavior,
     onAction: (ItemsListActions) -> Unit,
 ) {
     LazyVerticalGrid(
         columns = GridCells.Adaptive(minSize = dimensions.components.cardInGrid.small),
         contentPadding = PaddingValues(dimensions.spacing.medium),
         horizontalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
-        modifier = Modifier.nestedScroll(nestedScrollConnection),
+        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
         state = listState,
         verticalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
     ) {

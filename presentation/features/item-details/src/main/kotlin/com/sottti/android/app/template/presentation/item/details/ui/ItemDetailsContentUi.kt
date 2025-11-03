@@ -23,7 +23,6 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -78,9 +77,9 @@ internal fun ItemDetailsContent(
             is Error -> ErrorUi(modifier = Modifier.padding(padding))
             is Loaded -> {
                 LoadedState(
-                    state = state.item,
                     padding = padding,
-                    nestedScrollConnection = scrollBehavior.nestedScrollConnection,
+                    scrollBehavior = scrollBehavior,
+                    state = state.item,
                 )
             }
         }
@@ -88,9 +87,10 @@ internal fun ItemDetailsContent(
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun LoadedState(
-    nestedScrollConnection: NestedScrollConnection,
     padding: PaddingValues,
+    scrollBehavior: TopAppBarScrollBehavior,
     state: ItemState,
 ) {
     val lazyListContent: LazyListScope.() -> Unit = {
@@ -99,24 +99,25 @@ private fun LoadedState(
 
     when {
         isPortraitOrientation() -> LoadedStatePortrait(
-            nestedScrollConnection = nestedScrollConnection,
-            padding = padding,
-            state = state,
             lazyListContent = lazyListContent,
+            padding = padding,
+            scrollBehavior = scrollBehavior,
+            state = state,
         )
 
         else -> LoadedStateLandscape(
-            nestedScrollConnection = nestedScrollConnection,
-            padding = padding,
-            state = state,
             lazyListContent = lazyListContent,
+            padding = padding,
+            scrollBehavior = scrollBehavior,
+            state = state,
         )
     }
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun LoadedStatePortrait(
-    nestedScrollConnection: NestedScrollConnection,
+    scrollBehavior: TopAppBarScrollBehavior,
     padding: PaddingValues,
     state: ItemState,
     lazyListContent: LazyListScope.() -> Unit,
@@ -127,7 +128,7 @@ private fun LoadedStatePortrait(
     LazyColumn(
         modifier = Modifier
             .testTag(ITEM_DETAILS_DETAILS_TEST_TAG)
-            .nestedScroll(nestedScrollConnection)
+            .nestedScroll(scrollBehavior.nestedScrollConnection)
             .fillMaxSize(),
         contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
         verticalArrangement = Arrangement.spacedBy(dimensions.spacing.mediumLarge),
@@ -146,11 +147,12 @@ private fun LoadedStatePortrait(
 }
 
 @Composable
+@OptIn(ExperimentalMaterial3Api::class)
 private fun LoadedStateLandscape(
-    nestedScrollConnection: NestedScrollConnection,
-    padding: PaddingValues,
-    state: ItemState,
     lazyListContent: LazyListScope.() -> Unit,
+    padding: PaddingValues,
+    scrollBehavior: TopAppBarScrollBehavior,
+    state: ItemState,
 ) {
     val bottomPadding = padding.calculateBottomPadding() + dimensions.spacing.medium
     val endPadding = padding.calculateEndPadding(LocalLayoutDirection.current)
@@ -169,7 +171,7 @@ private fun LoadedStateLandscape(
         LazyColumn(
             modifier = Modifier
                 .testTag(ITEM_DETAILS_DETAILS_TEST_TAG)
-                .nestedScroll(nestedScrollConnection)
+                .nestedScroll(scrollBehavior.nestedScrollConnection)
                 .weight(1f)
                 .fillMaxSize(),
             contentPadding = PaddingValues(bottom = bottomPadding, top = topPadding),
