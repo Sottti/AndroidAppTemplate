@@ -1,11 +1,9 @@
 package com.sottti.android.app.template.app
 
-import androidx.compose.ui.test.junit4.AndroidComposeTestRule
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import androidx.test.ext.junit.rules.ActivityScenarioRule
+import com.sottti.android.app.template.presentation.home.ui.HomeActivity
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
 import com.sottti.android.app.template.presentation.utils.test.setOrientation
-import com.sottti.android.app.template.presentation.home.ui.HomeActivity
 import dagger.hilt.android.testing.HiltAndroidRule
 import org.junit.Before
 import org.junit.Rule
@@ -14,10 +12,12 @@ import org.junit.runners.Parameterized
 
 @RunWith(Parameterized::class)
 internal abstract class IntegrationTest(
-    private val orientation: OrientationTest
+    private val orientation: OrientationTest,
 ) {
-    @get:Rule(order = 0) val hilt = HiltAndroidRule(this)
-    @get:Rule(order = 1) val rule = createAndroidComposeRule<HomeActivity>()
+    @get:Rule(order = 0)
+    val hilt = HiltAndroidRule(this)
+    @get:Rule(order = 1)
+    val rule = createAndroidComposeRule<HomeActivity>()
 
     @Before
     fun setup() {

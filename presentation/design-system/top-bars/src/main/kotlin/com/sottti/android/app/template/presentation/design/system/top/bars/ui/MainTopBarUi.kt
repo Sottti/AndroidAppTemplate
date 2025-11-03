@@ -66,7 +66,7 @@ public fun MainTopBar(
 private fun NavigationIcon(
     onBackNavigation: () -> Unit,
 ) {
-    Box(modifier = Modifier.testTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG)){
+    Box(modifier = Modifier.testTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG)) {
         Icon(
             modifier = Modifier.testTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG),
             iconState = Icons.Arrow.Back.filled,
