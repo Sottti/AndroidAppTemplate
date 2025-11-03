@@ -205,9 +205,11 @@ private fun CardText(text: String) {
 private fun ProgressIndicatorFillMaxSize(
     bottomPadding: Dp,
 ) {
-    ProgressIndicator(modifier = Modifier
-        .fillMaxSize()
-        .padding(bottom = bottomPadding))
+    ProgressIndicator(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(bottom = bottomPadding)
+    )
 }
 
 @Composable

@@ -6,4 +6,7 @@ import androidx.compose.runtime.Immutable
 internal sealed interface ItemDetailsActions {
     @Immutable
     data object NavigateBack : ItemDetailsActions
+
+    @Immutable
+    data object Retry : ItemDetailsActions
 }

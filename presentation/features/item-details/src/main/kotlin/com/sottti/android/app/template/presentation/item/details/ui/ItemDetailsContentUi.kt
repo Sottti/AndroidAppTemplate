@@ -33,6 +33,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.error.ErrorButton
 import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.text.Text
@@ -74,14 +75,16 @@ internal fun ItemDetailsContent(
                     .padding(padding)
             )
 
-            is Error -> ErrorUi(modifier = Modifier.padding(padding))
-            is Loaded -> {
-                LoadedState(
-                    padding = padding,
-                    scrollBehavior = scrollBehavior,
-                    state = state.item,
-                )
-            }
+            is Error -> ErrorUi(
+                modifier = Modifier.padding(padding),
+                button = ErrorButton { onAction(ItemDetailsActions.Retry) }
+            )
+
+            is Loaded -> LoadedState(
+                padding = padding,
+                scrollBehavior = scrollBehavior,
+                state = state.item,
+            )
         }
     }
 }
