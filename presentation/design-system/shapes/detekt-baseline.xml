@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:ShapesLocalProvider.kt$@Composable public fun ShapesLocalProvider( content: @Composable () -&gt; Unit, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

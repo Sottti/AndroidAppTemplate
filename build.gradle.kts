@@ -6,6 +6,7 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 plugins {
     alias(libs.plugins.android.application) apply false
     alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.detekt) apply true
     alias(libs.plugins.hilt) apply false
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
@@ -15,13 +16,41 @@ plugins {
     alias(libs.plugins.paparazzi) apply false
 }
 
+detekt {
+    toolVersion = libs.versions.detekt.get()
+    config.from("$rootDir/detekt.yml")
+    buildUponDefaultConfig = true
+    autoCorrect = true
+}
+
+dependencies {
+    detektPlugins(libs.detekt.formatting)
+}
+
+tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+    reports {
+        html.required.set(true)
+        xml.required.set(true)
+        sarif.required.set(true)
+        txt.required.set(false)
+    }
+}
+
+dependencies {
+    detektPlugins(libs.detekt.formatting)
+}
+
 tasks.register<Delete>("cleanPaparazziSnapshots") {
-    delete(fileTree(rootDir) {
-        include("**/src/test/snapshots/images/**")
-    })
+    delete(
+        fileTree(rootDir) {
+            include("**/src/test/snapshots/images/**")
+        }
+    )
 }
 
 subprojects {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+
     plugins.withId("com.android.application") {
         configure<ApplicationExtension> { androidApplicationConfig() }
     }

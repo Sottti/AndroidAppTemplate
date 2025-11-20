@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) internal fun ItemsListContent( lazyListState: LazyGridState, onAction: (ItemsListActions) -&gt; Unit, scrollBehavior: TopAppBarScrollBehavior, state: ItemsListState, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun Items( bottomPadding: Dp, items: LazyPagingItems&lt;ItemUiModel&gt;, listState: LazyGridState, onAction: (ItemsListActions) -&gt; Unit, scrollBehavior: TopAppBarScrollBehavior, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun ItemsLoaded( items: LazyPagingItems&lt;ItemUiModel&gt;, listState: LazyGridState, scrollBehavior: TopAppBarScrollBehavior, onAction: (ItemsListActions) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable private fun CardText(text: String)</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable private fun ColumnScope.CardImage( description: ImageContentDescription, imageUrl: ImageUrl, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable private fun LazyGridItemScope.ItemCard( item: ItemUiModel, onAction: (ItemsListActions) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable private fun ProgressIndicatorFillMaxSize( bottomPadding: Dp, )</ID>
+    <ID>FunctionNaming:ItemsListContentUi.kt$@Composable private fun ProgressIndicatorGridItem()</ID>
+    <ID>FunctionNaming:ItemsListUi.kt$@Composable @AndroidAppTemplatePreview internal fun ItemListUiPreview( @PreviewParameter(ItemsListUiStateProvider::class) state: ItemsListState, )</ID>
+    <ID>FunctionNaming:ItemsListUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun ItemList( state: ItemsListState, onAction: (ItemsListActions) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemsListUi.kt$@Composable private fun ItemList( viewModel: ItemsListViewModel, )</ID>
+    <ID>FunctionNaming:ItemsListUi.kt$@Composable public fun ItemList()</ID>
+    <ID>FunctionOnlyReturningConstant:ItemsListModule.kt$ItemsListModule$@Provides fun provideCoroutineScope(): CoroutineScope?</ID>
+    <ID>MaxLineLength:ItemsListMapperTest.kt$ItemsListMapperTest$fun</ID>
+    <ID>ThrowingExceptionsWithoutMessageOrCause:ItemsListUiStateProvider.kt$Exception()</ID>
+  </CurrentIssues>
+</SmellBaseline>

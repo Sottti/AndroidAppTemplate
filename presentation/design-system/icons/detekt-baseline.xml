@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:Icon.kt$@Composable @AndroidAppTemplatePreview internal fun IconPreview( @PreviewParameter(IconStateProvider::class) state: com.sottti.android.app.template.presentation.design.system.icons.ui.IconState, )</ID>
+    <ID>FunctionNaming:Icon.kt$@Composable fun RenderIcon(state: IconState)</ID>
+    <ID>FunctionNaming:Icon.kt$@Composable public fun Icon( iconState: IconState, modifier: Modifier = Modifier, crossfade: Boolean = false, tint: Color? = null, onClick: (() -&gt; Unit)? = null, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

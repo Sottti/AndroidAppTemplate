@@ -1,0 +1,8 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:EmptyUi.kt$@Composable @AndroidAppTemplatePreview internal fun EmptyUiPreview( @PreviewParameter(EmptyUiStateProvider::class) state: EmptyState?, )</ID>
+    <ID>FunctionNaming:EmptyUi.kt$@Composable public fun EmptyUi( modifier: Modifier = Modifier, illustration: IllustrationState = Illustrations.FamilyBeachSunset.state, @StringRes primaryText: Int = R.string.empty_primary_text_default, @StringRes secondaryText: Int = R.string.empty_secondary_text_default, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>MagicNumber:PIXEL_10_PRO_XL.kt$560</ID>
+  </CurrentIssues>
+</SmellBaseline>

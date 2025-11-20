@@ -1,0 +1,26 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) internal fun ItemDetailsContent( state: ItemDetailsState, scrollBehavior: TopAppBarScrollBehavior, onAction: (ItemDetailsActions) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun LoadedState( padding: PaddingValues, scrollBehavior: TopAppBarScrollBehavior, state: ItemState, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun LoadedStateLandscape( lazyListContent: LazyListScope.() -&gt; Unit, padding: PaddingValues, scrollBehavior: TopAppBarScrollBehavior, state: ItemState, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) private fun LoadedStatePortrait( scrollBehavior: TopAppBarScrollBehavior, padding: PaddingValues, state: ItemState, lazyListContent: LazyListScope.() -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun DetailsCard(content: @Composable () -&gt; Unit)</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun DetailsSection( state: ItemDetailsSectionState, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun Header(@StringRes text: Int)</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun Headline( screenWidth: Dp, state: ItemDetailsRow, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun IdentityDetails(state: ItemIdentityState)</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun Image( state: ImageState, modifier: Modifier, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun ListItem( state: ItemDetailsRow, showBottomDivider: Boolean = true, )</ID>
+    <ID>FunctionNaming:ItemDetailsContentUi.kt$@Composable private fun Trailing( screenWidth: Dp, state: ItemDetailsRow, )</ID>
+    <ID>FunctionNaming:ItemDetailsUi.kt$@Composable @AndroidAppTemplatePreview internal fun ItemDetailsUiPreview( @PreviewParameter(ItemsDetailsUiStateProvider::class) state: ItemDetailsState, )</ID>
+    <ID>FunctionNaming:ItemDetailsUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) internal fun ItemDetails( state: ItemDetailsState, onAction: (ItemDetailsActions) -&gt; Unit, )</ID>
+    <ID>FunctionNaming:ItemDetailsUi.kt$@Composable internal fun ItemDetails( viewModel: ItemDetailsViewModel, )</ID>
+    <ID>FunctionNaming:ItemDetailsUi.kt$@Composable public fun ItemDetails(id: Int)</ID>
+    <ID>FunctionNaming:ItemDetailsUiTopBarUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) internal fun TopBar( onBackNavigation: () -&gt; Unit, scrollBehavior: TopAppBarScrollBehavior, state: TopBarState, )</ID>
+    <ID>MagicNumber:ItemDetailsContentUi.kt$1.75f</ID>
+    <ID>MatchingDeclarationName:ItemDetailsUiStateProvider.kt$ItemsDetailsUiStateProvider : PreviewParameterProvider</ID>
+    <ID>TooManyFunctions:ItemDetailsContentUi.kt$com.sottti.android.app.template.presentation.item.details.ui.ItemDetailsContentUi.kt</ID>
+  </CurrentIssues>
+</SmellBaseline>

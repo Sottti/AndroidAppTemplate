@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:Image.kt$@Composable @AndroidAppTemplatePreview internal fun ImagePreview( @PreviewParameter(ImageStateProvider::class) state: ImagePreviewState, )</ID>
+    <ID>FunctionNaming:Image.kt$@Composable public fun Image( state: ImageState, modifier: Modifier = Modifier, roundedCorners: Boolean = true, )</ID>
+    <ID>FunctionNaming:NetworkImage.kt$@Composable @AndroidAppTemplatePreview internal fun NetworkImagePreview( @PreviewParameter(NetworkImageStateProvider::class) state: NetworkImageState, )</ID>
+    <ID>FunctionNaming:NetworkImage.kt$@Composable public fun NetworkImage( url: ImageUrl, contentDescription: ImageContentDescription, modifier: Modifier = Modifier, roundedCorners: Boolean = false, foreverLoading: Boolean = false, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

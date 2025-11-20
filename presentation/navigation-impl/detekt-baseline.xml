@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:Navigator.kt$@Composable public fun Navigator( navigationManager: NavigationManager, entryProvider: EntryProvider&lt;NavKey&gt;? = null, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

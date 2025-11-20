@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:AndroidAppTemplateTheme.kt$@Composable private fun DefaultThemeVariant( colorContrast: SystemColorContrast, dynamicColor: DynamicColor, systemTheme: SystemTheme, content: @Composable () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:AndroidAppTemplateTheme.kt$@Composable private fun UpdateSystemBars( systemTheme: SystemTheme, )</ID>
+    <ID>FunctionNaming:AndroidAppTemplateTheme.kt$@Composable public fun AndroidAppTemplateTheme( colorContrast: SystemColorContrast = SystemColorContrast.StandardContrast, dynamicColor: DynamicColor = DynamicColor(false), systemTheme: SystemTheme = if (isSystemInDarkTheme()) DarkSystemTheme else LightSystemTheme, themeVariant: AndroidAppTemplateThemeVariant = AndroidAppTemplateThemeVariant.Default, content: @Composable () -&gt; Unit, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

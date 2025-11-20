@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:ProgressIndicator.kt$@Composable @AndroidAppTemplatePreview internal fun ProgressIndicatorPreview( @PreviewParameter(ProgressIndicatorStateProvider::class) modifier: Modifier, )</ID>
+    <ID>FunctionNaming:ProgressIndicator.kt$@Composable public fun ProgressIndicator( modifier: Modifier = Modifier, size: ProgressIndicatorSize = ProgressIndicatorSize.Medium, )</ID>
+    <ID>MagicNumber:ProgressIndicator.kt$0.75f</ID>
+  </CurrentIssues>
+</SmellBaseline>

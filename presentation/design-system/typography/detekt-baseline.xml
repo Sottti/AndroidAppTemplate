@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:TypographyLocalProvider.kt$@Composable public fun TypographyLocalProvider( content: @Composable () -&gt; Unit, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

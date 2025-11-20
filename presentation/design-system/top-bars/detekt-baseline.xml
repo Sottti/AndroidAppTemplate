@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:MainTopBarUi.kt$@Composable @AndroidAppTemplatePreview @OptIn(ExperimentalMaterial3Api::class) internal fun MainTopBarPreview( @PreviewParameter(MainTopBarUiStateProvider::class) state: MainTopBarState, )</ID>
+    <ID>FunctionNaming:MainTopBarUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) public fun MainTopBar( @StringRes titleResId: Int? = null, onNavigationIconClick: (() -&gt; Unit)? = null, scrollBehavior: TopAppBarScrollBehavior? = null, showTitle: Boolean = true, )</ID>
+    <ID>FunctionNaming:MainTopBarUi.kt$@Composable @OptIn(ExperimentalMaterial3Api::class) public fun MainTopBar( onNavigationIconClick: (() -&gt; Unit)?, scrollBehavior: TopAppBarScrollBehavior? = null, showTitle: Boolean = true, title: String? = null, )</ID>
+    <ID>FunctionNaming:MainTopBarUi.kt$@Composable private fun NavigationIcon( onBackNavigation: () -&gt; Unit, )</ID>
+    <ID>FunctionNaming:MainTopBarUi.kt$@Composable private fun Title( title: String?, showTitle: Boolean, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

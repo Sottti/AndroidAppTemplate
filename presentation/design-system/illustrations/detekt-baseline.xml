@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:CircledIllustration.kt$@Composable @AndroidAppTemplatePreview internal fun CircledIllustrationPreview()</ID>
+    <ID>FunctionNaming:CircledIllustration.kt$@Composable public fun CircledIllustration( state: IllustrationState, modifier: Modifier = Modifier, )</ID>
+    <ID>FunctionNaming:Illustration.kt$@Composable @AndroidAppTemplatePreview internal fun IllustrationPreview( @PreviewParameter(IllustrationUiStateProvider::class) state: IllustrationPreviewState, )</ID>
+    <ID>FunctionNaming:Illustration.kt$@Composable public fun Illustration( state: IllustrationState, modifier: Modifier = Modifier, circled: Boolean = false, )</ID>
+    <ID>MatchingDeclarationName:IllustrationsUiStateProvider.kt$IllustrationUiStateProvider : PreviewParameterProvider</ID>
+  </CurrentIssues>
+</SmellBaseline>

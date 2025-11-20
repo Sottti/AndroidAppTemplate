@@ -1,0 +1,10 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>FunctionNaming:InformativeUi.kt$@Composable @AndroidAppTemplatePreview internal fun InformativeUiPreview( @PreviewParameter(InformativeUiStateProvider::class) state: InformativeState, )</ID>
+    <ID>FunctionNaming:InformativeUi.kt$@Composable private fun LandscapeLayout( illustration: IllustrationState, @StringRes primaryText: Int, @StringRes secondaryText: Int, modifier: Modifier = Modifier, button: InformativeButton? = null, )</ID>
+    <ID>FunctionNaming:InformativeUi.kt$@Composable private fun PortraitLayout( illustration: IllustrationState, @StringRes primaryText: Int, @StringRes secondaryText: Int, modifier: Modifier = Modifier, button: InformativeButton? = null, )</ID>
+    <ID>FunctionNaming:InformativeUi.kt$@Composable public fun InformativeUi( illustration: IllustrationState, @StringRes primaryText: Int, @StringRes secondaryText: Int, modifier: Modifier = Modifier, button: InformativeButton? = null, )</ID>
+  </CurrentIssues>
+</SmellBaseline>

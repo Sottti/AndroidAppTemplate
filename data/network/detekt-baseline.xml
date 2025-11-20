@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>TooGenericExceptionCaught:SafeApiCall.kt$exception: Exception</ID>
+    <ID>TooGenericExceptionThrown:SafeApiCallTest.kt$SafeApiCallTest$throw RuntimeException()</ID>
+    <ID>TooGenericExceptionThrown:SafeApiCallTest.kt$SafeApiCallTest$throw RuntimeException(unexpectedErrorMessage)</ID>
+  </CurrentIssues>
+</SmellBaseline>
