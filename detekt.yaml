@@ -42,14 +42,14 @@ style:
   active: true
   MagicNumber:
     active: true
-    ignorePropertyDeclaration: true
-    ignoreAnnotation: true
-    ignoreEnums: true
-    ignoreNumbers: [ '-1', '0', '1', '2', '100', '1000' ]
+#    ignorePropertyDeclaration: true
+#    ignoreAnnotation: true
+#    ignoreEnums: true
+#    ignoreNumbers: [ '-1', '0', '1', '2', '100', '1000' ]
   MaxLineLength:
     active: true
-    maxLineLength: 150
-    excludeCommentStatements: true
+    maxLineLength: 120
+    excludeCommentStatements: false
 
 # Comment rules: control how comments and documentation should appear
 comments:
@@ -101,9 +101,9 @@ error-prone:
 exceptions:
   active: true
   TooGenericExceptionCaught:
-    active: false  # avoid noise
+    active: true
   TooGenericExceptionThrown:
-    active: false  # avoid noise
+    active: true
   SwallowedException:
     active: true
   InstanceOfCheckForException:

@@ -41,6 +41,9 @@ dependencies {
 }
 
 tasks.register<Delete>("cleanPaparazziSnapshots") {
+    group = "verification"
+    description = "Deletes all Paparazzi snapshot images across the project."
+
     delete(
         fileTree(rootDir) {
             include("**/src/test/snapshots/images/**")
