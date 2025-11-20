@@ -9,8 +9,9 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithTag
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.navigation3.runtime.NavKey
+import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
+import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEMS_LIST_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.ITEM_DETAIL_FEATURE_TEST_TAG
-import com.sottti.android.app.template.presentation.navigation.impl.fakes.PULLY_LIST_FEATURE_TEST_TAG
 import com.sottti.android.app.template.presentation.navigation.impl.fakes.navigationEntriesFake
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
@@ -36,10 +37,14 @@ internal class NavigatorTest {
 
     @Test
     fun when_navigator_is_created_then_the_initial_screen_is_displayed() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -49,16 +54,20 @@ internal class NavigatorTest {
 
     @Test
     fun given_initial_screen_when_navigate_to_command_is_emitted_then_the_new_screen_is_displayed() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         navigationManager.navigateTo(ItemDetail(itemId = 1))
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
 
         composeTestRule
@@ -72,7 +81,11 @@ internal class NavigatorTest {
 
     @Test
     fun given_second_screen_when_navigate_back_command_is_emitted_then_the_initial_screen_is_displayed_again() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         navigationManager.navigateTo(ItemDetail(itemId = 1))
 
@@ -81,13 +94,13 @@ internal class NavigatorTest {
             .assertExists()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
 
         navigationManager.navigateBack()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -97,10 +110,14 @@ internal class NavigatorTest {
 
     @Test
     fun given_initial_screen_when_navigate_back_command_is_emitted_then_the_initial_screen_remains_displayed() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -110,7 +127,7 @@ internal class NavigatorTest {
         navigationManager.navigateBack()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -120,7 +137,11 @@ internal class NavigatorTest {
 
     @Test
     fun given_second_screen_when_navigate_to_root_command_is_emitted_then_only_the_root_screen_is_displayed() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         navigationManager.navigateTo(ItemDetail(itemId = 1))
 
@@ -131,7 +152,7 @@ internal class NavigatorTest {
         navigationManager.navigateToRoot(ItemsList)
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -141,20 +162,24 @@ internal class NavigatorTest {
 
     @Test
     fun when_navigate_to_same_screen_command_is_emitted_then_screen_remains_displayed_without_duplicates() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         navigationManager.navigateTo(ItemsList)
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
-            .onAllNodesWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onAllNodesWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertCountEquals(1)
 
         composeTestRule
@@ -164,16 +189,20 @@ internal class NavigatorTest {
 
     @Test
     fun given_root_when_navigate_to_root_then_root_remains_and_no_duplicates() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule.runOnIdle { navigationManager.navigateToRoot(ItemsList) }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
-            .onAllNodesWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onAllNodesWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertCountEquals(1)
     }
 
@@ -181,21 +210,29 @@ internal class NavigatorTest {
     fun when_command_emitted_before_composition_then_it_is_applied_after_composition() {
         navigationManager.navigateTo(ItemDetail(itemId = 1))
 
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule
             .onNodeWithTag(ITEM_DETAIL_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
     }
 
     @Test
     fun when_manager_instance_changes_observer_reattaches() {
         var currentNavigationManager by mutableStateOf(navigationManager)
-        composeTestRule.setContent { Navigator(currentNavigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(currentNavigationManager, entryProvider)
+            }
+        }
 
         val newManager = NavigationManagerFake()
         composeTestRule.runOnIdle { currentNavigationManager = newManager }
@@ -210,9 +247,11 @@ internal class NavigatorTest {
     fun when_recomposed_state_changes_then_current_screen_persists() {
         var flip by mutableStateOf(false)
         composeTestRule.setContent {
-            Column {
-                if (flip) TaggedComposable("dummy") else TaggedComposable("dummy2")
-                Navigator(navigationManager, entryProvider)
+            AndroidAppTemplateTheme {
+                Column {
+                    if (flip) TaggedComposable("dummy") else TaggedComposable("dummy2")
+                    Navigator(navigationManager, entryProvider)
+                }
             }
         }
 
@@ -228,13 +267,17 @@ internal class NavigatorTest {
             .assertExists()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
     }
 
     @Test
     fun when_burst_to_and_back_in_same_frame_then_root_is_shown() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule.runOnIdle {
             navigationManager.navigateTo(ItemDetail(itemId = 1))
@@ -242,7 +285,7 @@ internal class NavigatorTest {
         }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -253,9 +296,11 @@ internal class NavigatorTest {
     @Test
     fun when_two_navigators_listen_then_only_one_handles_single_event() {
         composeTestRule.setContent {
-            Column {
-                TaggedComposable("nav1") { Navigator(navigationManager, entryProvider) }
-                TaggedComposable("nav2") { Navigator(navigationManager, entryProvider) }
+            AndroidAppTemplateTheme {
+                Column {
+                    TaggedComposable("nav1") { Navigator(navigationManager, entryProvider) }
+                    TaggedComposable("nav2") { Navigator(navigationManager, entryProvider) }
+                }
             }
         }
 
@@ -271,9 +316,11 @@ internal class NavigatorTest {
         var show by mutableStateOf(true)
 
         composeTestRule.setContent {
-            when {
-                show -> Navigator(navigationManager, entryProvider)
-                else -> TaggedComposable("disposed")
+            AndroidAppTemplateTheme {
+                when {
+                    show -> Navigator(navigationManager, entryProvider)
+                    else -> TaggedComposable("disposed")
+                }
             }
         }
 
@@ -290,7 +337,7 @@ internal class NavigatorTest {
         composeTestRule.runOnIdle { show = true }
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertExists()
 
         composeTestRule
@@ -300,7 +347,11 @@ internal class NavigatorTest {
 
     @Test
     fun when_duplicate_navigate_to_on_item_then_no_duplicates() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule.runOnIdle { navigationManager.navigateTo(ItemDetail(itemId = 1)) }
         composeTestRule
@@ -314,13 +365,17 @@ internal class NavigatorTest {
             .assertCountEquals(1)
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
     }
 
     @Test
     fun when_alternating_burst_then_last_command_wins() {
-        composeTestRule.setContent { Navigator(navigationManager, entryProvider) }
+        composeTestRule.setContent {
+            AndroidAppTemplateTheme {
+                Navigator(navigationManager, entryProvider)
+            }
+        }
 
         composeTestRule.runOnIdle {
             repeat(5) {
@@ -335,7 +390,7 @@ internal class NavigatorTest {
             .assertExists()
 
         composeTestRule
-            .onNodeWithTag(PULLY_LIST_FEATURE_TEST_TAG)
+            .onNodeWithTag(ITEMS_LIST_FEATURE_TEST_TAG)
             .assertDoesNotExist()
     }
 }
