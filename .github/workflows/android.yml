@@ -2,7 +2,7 @@ name: Android CI
 
 on:
   push:
-    branches: ["main"]
+    branches: [ "main" ]
   pull_request:
 
 permissions:
@@ -10,9 +10,16 @@ permissions:
   pull-requests: write
   security-events: write
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
+    name: Build & Validate
     runs-on: ubuntu-latest
+    env:
+      GRADLE_OPTS: -Dkotlin.incremental=true
 
     steps:
       # -----------------------------
@@ -99,7 +106,7 @@ jobs:
       # POST KOVER COVERAGE SUMMARY AS PR COMMENT
       # -----------------------------
       - name: Comment Kover Coverage on PR
-        if: github.event.pull_request
+        if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
         with:
           script: |
@@ -134,26 +141,23 @@ jobs:
             const total = missed + covered;
             const pct = ((covered / total) * 100).toFixed(2);
 
-            const summary = `
-### 🧪 Test Coverage Report (Kover)
-  **Coverage:** ${pct}%
+            const summary =
+              "### 🧪 Test Coverage Report (Kover)\n" +
+              "**Coverage:** " + pct + "%\n\n" +
+              "- **Covered:** " + covered + "\n" +
+              "- **Missed:** " + missed + "\n" +
+              "- **Total:** " + total + "\n\n" +
+              "⬆ Add more tests to improve coverage!\n";
+            
+            await github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: summary,
+            });
 
-- **Covered:** ${covered}
-- **Missed:** ${missed}
-- **Total:** ${total}
-  
-  ⬆ Add more tests to improve coverage!
-  `;
-  
-  await github.rest.issues.createComment({
-issue_number: context.issue.number,
-owner: context.repo.owner,
-repo: context.repo.repo,
-body: summary,
-});
-
-# -----------------------------
-# BUILD DEBUG APK
-# -----------------------------
-- name: Build Debug APK
-  run: ./gradlew assembleDebug
+      # -----------------------------
+      # BUILD DEBUG APK
+      # -----------------------------
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
