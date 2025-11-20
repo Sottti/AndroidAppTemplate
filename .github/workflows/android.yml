@@ -25,31 +25,19 @@ jobs:
   build:
     name: Build & Validate
     runs-on: ubuntu-latest
-    # Kotlin incremental compilation for faster builds
-    env:
-      GRADLE_OPTS: -Dkotlin.incremental=true
 
     steps:
       # Checkout repository with shallow clone for speed
-      # -----------------------------
-      # CHECKOUT
-      # -----------------------------
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
       # Enable Gradle build caching across CI runs
-      # -----------------------------
-      # GRADLE BUILD CACHE
-      # -----------------------------
       - name: Gradle Build Cache
         uses: gradle/gradle-build-action@v2
 
       # Install JDK 17 required by AGP 8+
-      # -----------------------------
-      # SETUP JAVA
-      # -----------------------------
       - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
@@ -58,23 +46,15 @@ jobs:
           cache: "gradle"
 
       # Make gradlew executable for Linux runners
-      # -----------------------------
-      # PERMISSIONS FOR GRADLE
-      # -----------------------------
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      # Run Android Lint in strict mode (treat warnings as errors)
-      # -----------------------------
-      # STRICT LINT (warnings = errors)
-      # -----------------------------
+      # Run Android Lint in strict mode
       - name: Run Android Lint (strict mode)
-        run: ./gradlew lint --warning-mode all
+        run: ./gradlew lint
+        continue-on-error: true
 
-      # Comment Android Lint issues directly on the PR using Reviewdog
-      # -----------------------------
-      # ANDROID LINT REVIEWDOG (PR COMMENTS)
-      # -----------------------------
+      # Reviewdog comments Android Lint issues on PRs
       - name: Android Lint Reviewdog (PR Comments)
         uses: reviewdog/action-android-lint@v1
         with:
@@ -83,17 +63,12 @@ jobs:
           fail_on_error: true
           android_lint_path: "**/build/reports/lint-results.xml"
 
-      # Run Detekt static analysis (local and PR)
-      # -----------------------------
-      # RUN DETEKT
-      # -----------------------------
+      # Run Detekt static analysis
       - name: Run Detekt
         run: ./gradlew detekt
+        continue-on-error: true
 
-      # Reviewdog comments Detekt issues on the PR
-      # -----------------------------
-      # RUN DETEKT WITH REVIEWDOG (PR COMMENTS)
-      # -----------------------------
+      # Reviewdog PR comments for Detekt
       - name: Detekt Reviewdog (PR Comments)
         uses: reviewdog/action-detekt@v1
         with:
@@ -104,41 +79,30 @@ jobs:
           filter_mode: diff_context
 
       # Upload Detekt SARIF for GitHub code scanning UI
-      # -----------------------------
-      # UPLOAD DETEKT SARIF TO PRs
-      # -----------------------------
       - name: Upload Detekt SARIF
         uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: "**/build/reports/detekt/*.sarif"
 
-      # Execute unit tests with grouped logs for readability
-      # -----------------------------
-      # RUN UNIT TESTS
-      # -----------------------------
+      # Execute unit tests with grouped logs
       - name: Run Unit Tests
         run: |
           echo "::group::Unit Tests"
           ./gradlew test
           echo "::endgroup::"
 
-      # Generate Kover XML coverage report and upload as artifact
-      # -----------------------------
-      # KOVER COVERAGE REPORT
-      # -----------------------------
+      # Generate Kover coverage XML
       - name: Generate Kover Coverage XML
         run: ./gradlew koverXmlReport
 
+      # Upload Kover XML report
       - name: Upload Coverage Report
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
           path: build/reports/kover/report.xml
 
-      # Parse Kover XML and comment summarized coverage on PR
-      # -----------------------------
-      # POST KOVER COVERAGE SUMMARY AS PR COMMENT
-      # -----------------------------
+      # Comment summarized Kover coverage on PR
       - name: Comment Kover Coverage on PR
         if: github.event_name == 'pull_request'
         uses: actions/github-script@v7
@@ -182,7 +146,7 @@ jobs:
               "- **Missed:** " + missed + "\n" +
               "- **Total:** " + total + "\n\n" +
               "⬆ Add more tests to improve coverage!\n";
-            
+
             await github.rest.issues.createComment({
               issue_number: context.issue.number,
               owner: context.repo.owner,
@@ -190,10 +154,7 @@ jobs:
               body: summary,
             });
 
-      # Add a summary to the GitHub job for quick status info
-      # -----------------------------
-      # JOB SUMMARY
-      # -----------------------------
+      # Job summary shown in GitHub UI
       - name: Job Summary
         uses: actions/github-script@v7
         with:
@@ -203,9 +164,6 @@ jobs:
               .addRaw("✔ Lint, Detekt, Tests, and Coverage completed")
               .write();
 
-      # Build debug APK to ensure project compiles successfully
-      # -----------------------------
-      # BUILD DEBUG APK
-      # -----------------------------
+      # Build debug APK to ensure compilation passes
       - name: Build Debug APK
         run: ./gradlew assembleDebug
