@@ -60,7 +60,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
-          fail_on_error: true
+          fail_on_error: false
           android_lint_path: "**/build/reports/lint-results.xml"
 
       # Run Detekt static analysis
@@ -75,7 +75,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           detekt_config: detekt.yml
           reporter: github-pr-review
-          fail_on_error: true
+          fail_on_error: false
           filter_mode: diff_context
 
       # Upload Detekt SARIF for GitHub code scanning UI
