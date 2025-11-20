@@ -16,6 +16,7 @@ internal abstract class IntegrationTest(
 ) {
     @get:Rule(order = 0)
     val hilt = HiltAndroidRule(this)
+
     @get:Rule(order = 1)
     val rule = createAndroidComposeRule<HomeActivity>()
 

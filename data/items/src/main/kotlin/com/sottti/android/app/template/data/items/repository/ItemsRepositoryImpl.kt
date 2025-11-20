@@ -21,6 +21,7 @@ internal class ItemsRepositoryImpl @Inject constructor(
     private val remoteDataSource: ItemsRemoteDataSource,
     private val remoteMediator: ItemsRemoteMediator,
 ) : ItemsRepository {
+
     override fun observeItem(itemId: ItemId): Flow<Item> =
         localDataSource
             .observeItem(itemId)
