@@ -3,6 +3,8 @@ package com.sottti.android.app.template.presentation.images.network
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.BoxWithConstraintsScope
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.shape.ZeroCornerSize
 import androidx.compose.runtime.Composable
@@ -38,31 +40,14 @@ public fun NetworkImage(
     roundedCorners: Boolean = false,
     foreverLoading: Boolean = false,
 ) {
-    val isPreview = LocalInspectionMode.current
-    val model = if (isPreview) R.drawable.img_android_statue else imageRequest(url)
-    val painter = rememberAsyncImagePainter(model)
+    val painter = rememberAsyncImagePainter(model(url))
     val painterState by painter.state.collectAsStateWithLifecycle()
-    val cornerRadius = when {
-        roundedCorners -> shapes.roundedCorner.medium
-        else -> RoundedCornerShape(ZeroCornerSize)
-    }
-
-    BoxWithConstraints(modifier = modifier.clip(cornerRadius)) {
+    BoxWithConstraints(modifier = modifier.clip(cornerRadius(roundedCorners))) {
         val imageModifier = Modifier.matchParentSize()
-
-        val indicatorSize = when {
-            min(maxWidth, maxHeight) < dimensions.components.cardInGrid.medium ->
-                ProgressIndicatorSize.Small
-
-            min(maxWidth, maxHeight) < dimensions.components.cardInGrid.large ->
-                ProgressIndicatorSize.Medium
-
-            else -> ProgressIndicatorSize.Large
-        }
 
         when {
             foreverLoading || painterState is AsyncImagePainter.State.Loading ->
-                ProgressIndicator(modifier = imageModifier, size = indicatorSize)
+                ProgressIndicator(modifier = imageModifier, size = indicatorSize())
 
             painterState is AsyncImagePainter.State.Success ->
                 Image(
@@ -78,6 +63,13 @@ public fun NetworkImage(
 }
 
 @Composable
+private fun model(url: ImageUrl): Any =
+    when {
+        LocalInspectionMode.current -> R.drawable.img_android_statue
+        else -> imageRequest(url)
+    }
+
+@Composable
 private fun imageRequest(url: ImageUrl): ImageRequest {
     val context = LocalContext.current
     return remember(url.value, context) {
@@ -88,6 +80,24 @@ private fun imageRequest(url: ImageUrl): ImageRequest {
             .build()
     }
 }
+
+@Composable
+private fun cornerRadius(roundedCorners: Boolean): CornerBasedShape = when {
+    roundedCorners -> shapes.roundedCorner.medium
+    else -> RoundedCornerShape(ZeroCornerSize)
+}
+
+@Composable
+private fun BoxWithConstraintsScope.indicatorSize(): ProgressIndicatorSize =
+    when {
+        min(maxWidth, maxHeight) < dimensions.components.cardInGrid.medium ->
+            ProgressIndicatorSize.Small
+
+        min(maxWidth, maxHeight) < dimensions.components.cardInGrid.large ->
+            ProgressIndicatorSize.Medium
+
+        else -> ProgressIndicatorSize.Large
+    }
 
 @Composable
 @AndroidAppTemplatePreview
