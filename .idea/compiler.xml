@@ -2,6 +2,7 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="17">
+      <module name="Android_App_Template.buildSrc" target="21" />
       <module name="Roller_Coasters.buildSrc" target="21" />
     </bytecodeTargetLevel>
   </component>

@@ -10,11 +10,11 @@ import com.sottti.android.app.template.presentation.navigation.model.NavigationD
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
 
 internal const val ITEM_DETAIL_FEATURE_TEST_TAG = "itemDetailFeatureTestTag"
-internal const val PULLY_LIST_FEATURE_TEST_TAG = "pullyListFeatureTestTag"
+internal const val ITEMS_LIST_FEATURE_TEST_TAG = "itemsListFeatureTestTag"
 
 internal fun navigationEntriesFake(): EntryProvider<NavKey> = { key ->
     when (key as NavigationDestination) {
-        ItemsList -> NavEntry(key) { TaggedComposable(ITEM_DETAIL_FEATURE_TEST_TAG) }
-        is ItemDetail -> NavEntry(key) { TaggedComposable(PULLY_LIST_FEATURE_TEST_TAG) }
+        ItemsList -> NavEntry(key) { TaggedComposable(ITEMS_LIST_FEATURE_TEST_TAG) }
+        is ItemDetail -> NavEntry(key) { TaggedComposable(ITEM_DETAIL_FEATURE_TEST_TAG) }
     }
 }
