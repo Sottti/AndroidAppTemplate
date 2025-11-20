@@ -12,7 +12,7 @@ import javax.inject.Singleton
 
 @Module
 @TestInstallIn(components = [SingletonComponent::class], replaces = [NetworkDataModule::class])
-internal object NetworkDataFake {
+internal object NetworkDataModuleFake {
 
     @Provides
     @Singleton
