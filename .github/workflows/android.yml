@@ -1,0 +1,159 @@
+name: Android CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # -----------------------------
+      # CHECKOUT
+      # -----------------------------
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      # -----------------------------
+      # GRADLE BUILD CACHE
+      # -----------------------------
+      - name: Gradle Build Cache
+        uses: gradle/gradle-build-action@v2
+
+      # -----------------------------
+      # SETUP JAVA
+      # -----------------------------
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+          cache: "gradle"
+
+      # -----------------------------
+      # PERMISSIONS FOR GRADLE
+      # -----------------------------
+      - name: Make gradlew executable
+        run: chmod +x gradlew
+
+      # -----------------------------
+      # STRICT LINT (warnings = errors)
+      # -----------------------------
+      - name: Run Android Lint (strict mode)
+        run: ./gradlew lint --warning-mode all
+
+      # -----------------------------
+      # RUN DETEKT
+      # -----------------------------
+      - name: Run Detekt
+        run: ./gradlew detekt
+
+      # -----------------------------
+      # RUN DETEKT WITH REVIEWDOG (PR COMMENTS)
+      # -----------------------------
+      - name: Detekt Reviewdog (PR Comments)
+        uses: reviewdog/action-detekt@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          detekt_config: detekt.yml
+          reporter: github-pr-review
+          fail_on_error: true
+          filter_mode: diff_context
+
+      # -----------------------------
+      # UPLOAD DETEKT SARIF TO PRs
+      # -----------------------------
+      - name: Upload Detekt SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "**/build/reports/detekt/*.sarif"
+
+      # -----------------------------
+      # RUN UNIT TESTS
+      # -----------------------------
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+      # -----------------------------
+      # KOVER COVERAGE REPORT
+      # -----------------------------
+      - name: Generate Kover Coverage XML
+        run: ./gradlew koverXmlReport
+
+      - name: Upload Coverage Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: build/reports/kover/report.xml
+
+      # -----------------------------
+      # POST KOVER COVERAGE SUMMARY AS PR COMMENT
+      # -----------------------------
+      - name: Comment Kover Coverage on PR
+        if: github.event.pull_request
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const xmlPath = 'build/reports/kover/report.xml';
+
+            if (!fs.existsSync(xmlPath)) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: "⚠️ Kover coverage report was not found."
+              });
+              return;
+            }
+
+            const xml = fs.readFileSync(xmlPath, 'utf8');
+            const match = xml.match(/<counter type="INSTRUCTION" missed="(\d+)" covered="(\d+)"/);
+
+            if (!match) {
+              await github.rest.issues.createComment({
+                issue_number: context.issue.number,
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                body: "⚠️ Could not parse Kover coverage report."
+              });
+              return;
+            }
+
+            const missed = parseInt(match[1]);
+            const covered = parseInt(match[2]);
+            const total = missed + covered;
+            const pct = ((covered / total) * 100).toFixed(2);
+
+            const summary = `
+### 🧪 Test Coverage Report (Kover)
+  **Coverage:** ${pct}%
+
+- **Covered:** ${covered}
+- **Missed:** ${missed}
+- **Total:** ${total}
+  
+  ⬆ Add more tests to improve coverage!
+  `;
+  
+  await github.rest.issues.createComment({
+issue_number: context.issue.number,
+owner: context.repo.owner,
+repo: context.repo.repo,
+body: summary,
+});
+
+# -----------------------------
+# BUILD DEBUG APK
+# -----------------------------
+- name: Build Debug APK
+  run: ./gradlew assembleDebug
