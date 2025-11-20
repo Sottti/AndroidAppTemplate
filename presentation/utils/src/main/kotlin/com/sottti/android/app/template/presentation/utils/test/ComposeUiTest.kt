@@ -2,6 +2,8 @@ package com.sottti.android.app.template.presentation.utils.test
 
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.test.DeviceConfigurationOverride
 import androidx.compose.ui.test.FontScale
 import androidx.compose.ui.test.junit4.AndroidComposeTestRule
@@ -29,7 +31,9 @@ public abstract class ComposeUiTest(
         rule.setOrientation(orientation)
         rule.setContent {
             DeviceConfigurationOverride(DeviceConfigurationOverride.FontScale(fontScale.scale)) {
-                content()
+                CompositionLocalProvider(LocalInspectionMode provides true) {
+                    content()
+                }
             }
         }
         rule.block()
