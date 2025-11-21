@@ -26,6 +26,8 @@ detekt {
 }
 
 dependencies {
+    detektPlugins(libs.detekt.compose)
+    detektPlugins(libs.detekt.errorprone)
     detektPlugins(libs.detekt.formatting)
 }
 
