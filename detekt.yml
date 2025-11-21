@@ -1,11 +1,6 @@
 # Build settings
 build:
   maxIssues: 10
-  weights:
-    complexity: 2
-    LongParameterList: 1
-    style: 1
-    comments: 1
 
 # Naming rules
 naming:
@@ -13,8 +8,7 @@ naming:
   FunctionNaming:
     active: true
     functionPattern: '^[a-z][a-zA-Z0-9]*'
-    excludeClassPattern: '$^'
-    ignoreAnnotated: [ 'Composable' ]
+    ignoreAnnotated: ['Composable']
   TopLevelPropertyNaming:
     active: true
     constantPattern: '[A-Z][A-Z0-9_]*'
@@ -45,31 +39,34 @@ style:
   MaxLineLength:
     active: true
     maxLineLength: 120
-    excludeCommentStatements: false
 
-# Comment rules
+# Comments rules
 comments:
   active: true
-  CommentOverPrivateFunction:
-    active: false
-  UndocumentedPublicClass:
-    active: false
 
-# Compose rules (correct name)
-android-compose:
+# 💡 N-LOPEZ COMPOSE RULES
+Compose:
   active: true
-  ComposableModifierMissing:
+  ComposableNaming:
+    active: true
+  CompositionLocalNaming:
     active: true
   MissingRemember:
     active: true
-  ComposableNaming:
+  ModifierMissing:
     active: true
 
-# Coroutines rules
-coroutines:
+# Error-prone rules
+error-prone:
   active: true
+  UnsafeCast:
+    active: true
+  InvalidRange:
+    active: true
+  IteratorNotThrowsNoSuchElementException:
+    active: true
 
-# Potential bugs
+# Potential bugs (Detekt built-ins)
 potential-bugs:
   active: true
   NullableToStringCall:
@@ -80,30 +77,10 @@ potential-bugs:
     active: true
   MissingWhenCase:
     active: false # deprecated
-  UnsafeCallOnNullableType:
-    active: true
 
-# Error-prone rules (correct name)
-errorprone:
-  active: true
-  UnsafeCast:
-    active: true
-  InvalidRange:
-    active: true
-  IteratorNotThrowsNoSuchElementException:
-    active: true
-
-# Exceptions rules
+# Exceptions
 exceptions:
   active: true
-  TooGenericExceptionCaught:
-    active: true
-  TooGenericExceptionThrown:
-    active: true
-  SwallowedException:
-    active: true
-  InstanceOfCheckForException:
-    active: true
 
 # Formatting rules
 formatting:
@@ -116,7 +93,7 @@ formatting:
     active: true
 
 # Unused code rules
-unused:
+unused-code:
   active: true
   UnusedPrivateMember:
     active: true
