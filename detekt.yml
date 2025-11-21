@@ -1,4 +1,4 @@
-# Build settings: define issue limits and rule weights
+# Build settings
 build:
   maxIssues: 10
   weights:
@@ -7,7 +7,7 @@ build:
     style: 1
     comments: 1
 
-# Naming rules: enforce consistent naming conventions across the project
+# Naming rules
 naming:
   active: true
   FunctionNaming:
@@ -21,7 +21,7 @@ naming:
     propertyPattern: '[a-z][A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
 
-# Complexity rules: prevent overly complex or long functions/classes
+# Complexity rules
 complexity:
   active: true
   LongMethod:
@@ -37,21 +37,17 @@ complexity:
     ignoreDeprecated: true
     ignorePrivate: true
 
-# Style rules: enforce code style and formatting conventions
+# Style rules
 style:
   active: true
   MagicNumber:
     active: true
-#    ignorePropertyDeclaration: true
-#    ignoreAnnotation: true
-#    ignoreEnums: true
-#    ignoreNumbers: [ '-1', '0', '1', '2', '100', '1000' ]
   MaxLineLength:
     active: true
     maxLineLength: 120
     excludeCommentStatements: false
 
-# Comment rules: control how comments and documentation should appear
+# Comment rules
 comments:
   active: true
   CommentOverPrivateFunction:
@@ -59,8 +55,8 @@ comments:
   UndocumentedPublicClass:
     active: false
 
-# Compose rules: enforce best practices for Jetpack Compose functions
-compose:
+# Compose rules (correct name)
+android-compose:
   active: true
   ComposableModifierMissing:
     active: true
@@ -69,11 +65,11 @@ compose:
   ComposableNaming:
     active: true
 
-# Coroutines rules: enforce best practices and prevent coroutine misuse
+# Coroutines rules
 coroutines:
   active: true
 
-# Potential bug checks: detect code patterns that may lead to runtime errors
+# Potential bugs
 potential-bugs:
   active: true
   NullableToStringCall:
@@ -83,12 +79,12 @@ potential-bugs:
   UnreachableCatchBlock:
     active: true
   MissingWhenCase:
-    active: true
+    active: false # deprecated
   UnsafeCallOnNullableType:
     active: true
 
-# Error-prone rules: detect dangerous or ambiguous code patterns
-error-prone:
+# Error-prone rules (correct name)
+errorprone:
   active: true
   UnsafeCast:
     active: true
@@ -97,7 +93,7 @@ error-prone:
   IteratorNotThrowsNoSuchElementException:
     active: true
 
-# Exceptions rules: control how exceptions should be handled
+# Exceptions rules
 exceptions:
   active: true
   TooGenericExceptionCaught:
@@ -109,7 +105,7 @@ exceptions:
   InstanceOfCheckForException:
     active: true
 
-# Formatting rules: enforce whitespace, indentation, and newline consistency
+# Formatting rules
 formatting:
   active: true
   Indentation:
@@ -119,7 +115,7 @@ formatting:
   NoTrailingSpaces:
     active: true
 
-# Unused code rules: detect dead code, unused variables, and unused parameters
+# Unused code rules
 unused:
   active: true
   UnusedPrivateMember:
@@ -129,10 +125,10 @@ unused:
   UnusedParameter:
     active: true
 
-# Empty block rules: flag empty code blocks that should usually contain logic
+# Empty blocks
 empty-blocks:
   active: true
 
-# Performance rules: detect inefficient patterns that may harm runtime performance
+# Performance rules
 performance:
   active: true
