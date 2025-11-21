@@ -34,7 +34,7 @@ jobs:
           fetch-depth: 1
 
       # Enable Gradle build caching across CI runs
-      - name: Gradle Build Cache
+      - name: Enable Gradle Build Cache
         uses: gradle/gradle-build-action@v2
 
       # Install JDK 17 required by AGP 8+
@@ -50,18 +50,8 @@ jobs:
         run: chmod +x gradlew
 
       # Run Android Lint in strict mode
-      - name: Run Android Lint (strict mode)
+      - name: Run Android Lint (Strict Mode)
         run: ./gradlew lint
-        continue-on-error: true
-
-      # Reviewdog comments Android Lint issues on PRs
-      - name: Android Lint Reviewdog (PR Comments)
-        uses: ilyaGulya/android-lint-action@v0.12.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          reporter: github-pr-review
-          fail_on_error: false
-          lint_xml_file: "**/build/reports/lint-results.xml"
 
       # Run Detekt static analysis
       - name: Run Detekt
