@@ -27,7 +27,9 @@ detekt {
 
 dependencies {
     detektPlugins(libs.detekt.compose)
+    detektPlugins(libs.detekt.compose.rules)
     detektPlugins(libs.detekt.errorprone)
+    detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.formatting)
 }
 
@@ -38,10 +40,6 @@ tasks.withType<Detekt>().configureEach {
         sarif.required.set(true)
         txt.required.set(false)
     }
-}
-
-dependencies {
-    detektPlugins(libs.detekt.formatting)
 }
 
 tasks.register<Delete>("cleanPaparazziSnapshots") {
