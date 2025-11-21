@@ -56,12 +56,12 @@ jobs:
 
       # Reviewdog comments Android Lint issues on PRs
       - name: Android Lint Reviewdog (PR Comments)
-        uses: IlyaGulya/android-lint-action@v2.0
+        uses: ilyagulya/android-lint-action@v1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: github-pr-review
           fail_on_error: false
-          android_lint_path: "**/build/reports/lint-results.xml"
+          lint_xml_file: "**/build/reports/lint-results.xml"
 
       # Run Detekt static analysis
       - name: Run Detekt
