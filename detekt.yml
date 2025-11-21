@@ -1,27 +1,21 @@
-# Build settings: define issue limits and rule weights
+# Build settings
 build:
   maxIssues: 10
-  weights:
-    complexity: 2
-    LongParameterList: 1
-    style: 1
-    comments: 1
 
-# Naming rules: enforce consistent naming conventions across the project
+# Naming rules
 naming:
   active: true
   FunctionNaming:
     active: true
     functionPattern: '^[a-z][a-zA-Z0-9]*'
-    excludeClassPattern: '$^'
-    ignoreAnnotated: [ 'Composable' ]
+    ignoreAnnotated: ['Composable']
   TopLevelPropertyNaming:
     active: true
     constantPattern: '[A-Z][A-Z0-9_]*'
     propertyPattern: '[a-z][A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
 
-# Complexity rules: prevent overly complex or long functions/classes
+# Complexity rules
 complexity:
   active: true
   LongMethod:
@@ -37,57 +31,32 @@ complexity:
     ignoreDeprecated: true
     ignorePrivate: true
 
-# Style rules: enforce code style and formatting conventions
+# Style rules
 style:
   active: true
   MagicNumber:
     active: true
-#    ignorePropertyDeclaration: true
-#    ignoreAnnotation: true
-#    ignoreEnums: true
-#    ignoreNumbers: [ '-1', '0', '1', '2', '100', '1000' ]
   MaxLineLength:
     active: true
     maxLineLength: 120
-    excludeCommentStatements: false
 
-# Comment rules: control how comments and documentation should appear
+# Comments rules
 comments:
   active: true
-  CommentOverPrivateFunction:
-    active: false
-  UndocumentedPublicClass:
-    active: false
 
-# Compose rules: enforce best practices for Jetpack Compose functions
-compose:
+# 💡 N-LOPEZ COMPOSE RULES
+Compose:
   active: true
-  ComposableModifierMissing:
+  ComposableNaming:
+    active: true
+  CompositionLocalNaming:
     active: true
   MissingRemember:
     active: true
-  ComposableNaming:
+  ModifierMissing:
     active: true
 
-# Coroutines rules: enforce best practices and prevent coroutine misuse
-coroutines:
-  active: true
-
-# Potential bug checks: detect code patterns that may lead to runtime errors
-potential-bugs:
-  active: true
-  NullableToStringCall:
-    active: true
-  ImplicitDefaultLocale:
-    active: true
-  UnreachableCatchBlock:
-    active: true
-  MissingWhenCase:
-    active: true
-  UnsafeCallOnNullableType:
-    active: true
-
-# Error-prone rules: detect dangerous or ambiguous code patterns
+# Error-prone rules
 error-prone:
   active: true
   UnsafeCast:
@@ -97,19 +66,23 @@ error-prone:
   IteratorNotThrowsNoSuchElementException:
     active: true
 
-# Exceptions rules: control how exceptions should be handled
+# Potential bugs (Detekt built-ins)
+potential-bugs:
+  active: true
+  NullableToStringCall:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+  UnreachableCatchBlock:
+    active: true
+  MissingWhenCase:
+    active: false # deprecated
+
+# Exceptions
 exceptions:
   active: true
-  TooGenericExceptionCaught:
-    active: true
-  TooGenericExceptionThrown:
-    active: true
-  SwallowedException:
-    active: true
-  InstanceOfCheckForException:
-    active: true
 
-# Formatting rules: enforce whitespace, indentation, and newline consistency
+# Formatting rules
 formatting:
   active: true
   Indentation:
@@ -119,8 +92,8 @@ formatting:
   NoTrailingSpaces:
     active: true
 
-# Unused code rules: detect dead code, unused variables, and unused parameters
-unused:
+# Unused code rules
+unused-code:
   active: true
   UnusedPrivateMember:
     active: true
@@ -129,10 +102,10 @@ unused:
   UnusedParameter:
     active: true
 
-# Empty block rules: flag empty code blocks that should usually contain logic
+# Empty blocks
 empty-blocks:
   active: true
 
-# Performance rules: detect inefficient patterns that may harm runtime performance
+# Performance rules
 performance:
   active: true

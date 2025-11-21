@@ -1,5 +1,6 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -25,20 +26,20 @@ detekt {
 }
 
 dependencies {
+    detektPlugins(libs.detekt.compose)
+    detektPlugins(libs.detekt.compose.rules)
+    detektPlugins(libs.detekt.errorprone)
+    detektPlugins(libs.detekt.formatting)
     detektPlugins(libs.detekt.formatting)
 }
 
-tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
+tasks.withType<Detekt>().configureEach {
     reports {
         html.required.set(true)
         xml.required.set(true)
         sarif.required.set(true)
         txt.required.set(false)
     }
-}
-
-dependencies {
-    detektPlugins(libs.detekt.formatting)
 }
 
 tasks.register<Delete>("cleanPaparazziSnapshots") {
