@@ -32,7 +32,11 @@ android {
 }
 
 dependencies {
-    androidTestImplementation(libs.compose.ui.test.junit4)
+    androidTestImplementation(libs.compose.ui.test.junit4) {
+        // Exclude the transitive 'runner:1.5.0' which imposes a strict version constraint,
+        // blocking our upgrade to runner:1.7.0'.
+        exclude(group = "androidx.test", module = "runner")
+    }
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.test.core)
