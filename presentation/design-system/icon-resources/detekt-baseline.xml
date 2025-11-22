@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>Filename:IconResourcesR.kt$com.sottti.android.app.template.presentation.design.system.icon.resources.IconResourcesR.kt</ID>
+  </CurrentIssues>
+</SmellBaseline>

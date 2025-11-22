@@ -63,7 +63,7 @@ internal fun IconPreview(
     @PreviewParameter(IconStateProvider::class)
     state: com.sottti.android.app.template.presentation.design.system.icons.ui.IconState,
 ) {
-    AndroidAppTemplateTheme() {
+    AndroidAppTemplateTheme {
         Icon(
             crossfade = state.crossfade,
             onClick = state.onClick,

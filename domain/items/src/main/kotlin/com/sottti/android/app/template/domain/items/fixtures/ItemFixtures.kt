@@ -143,7 +143,6 @@ public val listOfMultipleItems: List<Item> = listOf(
     fixtureItem10,
 )
 
-
 internal const val FIXTURE_ITEM_10_IMAGE_DESCRIPTION = "Description for test image 10"
 internal const val FIXTURE_ITEM_10_IMAGE_URL = "http://example.com/image10.png"
 internal const val FIXTURE_ITEM_10_ITEM_DESCRIPTION = "Test Item Description 10"

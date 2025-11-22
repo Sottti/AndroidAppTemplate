@@ -141,5 +141,4 @@ internal class ItemMappingPagingSourceTest {
         )
         assertThat(mapper.getRefreshKey(state)).isEqualTo(4)
     }
-
 }

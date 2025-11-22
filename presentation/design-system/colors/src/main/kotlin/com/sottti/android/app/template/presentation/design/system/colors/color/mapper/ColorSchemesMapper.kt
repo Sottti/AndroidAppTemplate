@@ -25,7 +25,6 @@ internal fun dynamicColorScheme(
     SystemTheme.LightSystemTheme -> dynamicLightColorScheme(LocalContext.current)
 }
 
-
 internal fun SystemColorContrast.darkColorScheme(): ColorScheme =
     when (this) {
         HighContrast -> ColorSchemes.Dark.highContrast

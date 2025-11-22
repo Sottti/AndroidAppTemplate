@@ -8,7 +8,6 @@ import androidx.compose.ui.tooling.preview.Wallpapers.GREEN_DOMINATED_EXAMPLE
 import androidx.compose.ui.tooling.preview.Wallpapers.RED_DOMINATED_EXAMPLE
 import androidx.compose.ui.tooling.preview.Wallpapers.YELLOW_DOMINATED_EXAMPLE
 
-
 @Preview(
     group = LIGHT_THEME_GROUP,
     device = DEVICE_PORTRAIT,
@@ -33,7 +32,6 @@ import androidx.compose.ui.tooling.preview.Wallpapers.YELLOW_DOMINATED_EXAMPLE
     name = "Yellow",
     wallpaper = YELLOW_DOMINATED_EXAMPLE,
 )
-
 @Preview(
     group = DARK_THEME_GROUP,
     device = DEVICE_PORTRAIT,

@@ -48,7 +48,6 @@ private fun ItemList(
     )
 }
 
-
 @Composable
 @AndroidAppTemplatePreview
 internal fun ItemListUiPreview(

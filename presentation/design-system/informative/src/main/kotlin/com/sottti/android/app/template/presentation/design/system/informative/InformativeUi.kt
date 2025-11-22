@@ -109,7 +109,6 @@ private fun LandscapeLayout(
     modifier: Modifier = Modifier,
     button: InformativeButton? = null,
 ) {
-
     Row(
         modifier = modifier
             .fillMaxSize()
@@ -164,7 +163,6 @@ private fun LandscapeLayout(
         }
     }
 }
-
 
 @Composable
 @AndroidAppTemplatePreview

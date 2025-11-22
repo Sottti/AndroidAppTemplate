@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -18,34 +19,9 @@ plugins {
     alias(libs.plugins.paparazzi) apply false
 }
 
-detekt {
-    toolVersion = libs.versions.detekt.get()
-    config.from("$rootDir/detekt.yml")
-    buildUponDefaultConfig = true
-    autoCorrect = true
-}
-
-dependencies {
-    detektPlugins(libs.detekt.compose)
-    detektPlugins(libs.detekt.compose.rules)
-    detektPlugins(libs.detekt.errorprone)
-    detektPlugins(libs.detekt.formatting)
-    detektPlugins(libs.detekt.formatting)
-}
-
-tasks.withType<Detekt>().configureEach {
-    reports {
-        html.required.set(true)
-        xml.required.set(true)
-        sarif.required.set(true)
-        txt.required.set(false)
-    }
-}
-
 tasks.register<Delete>("cleanPaparazziSnapshots") {
     group = "verification"
     description = "Deletes all Paparazzi snapshot images across the project."
-
     delete(
         fileTree(rootDir) {
             include("**/src/test/snapshots/images/**")
@@ -53,8 +29,45 @@ tasks.register<Delete>("cleanPaparazziSnapshots") {
     )
 }
 
+val libraries = the<org.gradle.accessors.dm.LibrariesForLibs>()
+
 subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
+
+    dependencies {
+        "detektPlugins"(libraries.detekt.compose)
+        "detektPlugins"(libraries.detekt.formatting)
+    }
+
+    detekt {
+        toolVersion = libraries.versions.detekt.get()
+        config.setFrom(files("$rootDir/detekt.yml"))
+        buildUponDefaultConfig = true
+        autoCorrect = true
+        parallel = true
+        baseline = file("detekt-baseline.xml")
+    }
+
+    tasks.withType<Detekt>().configureEach {
+        jvmTarget = "17"
+
+        // This is causing issues to Detekt
+        exclude("**/StateInViewModelWhileSubscribed.kt")
+
+        reports {
+            html.required.set(true)
+            xml.required.set(true)
+            sarif.required.set(true)
+            txt.required.set(false)
+        }
+    }
+
+    tasks.withType<DetektCreateBaselineTask>().configureEach {
+        jvmTarget = "17"
+
+        // This is causing issues to Detekt
+        exclude("**/StateInViewModelWhileSubscribed.kt")
+    }
 
     plugins.withId("com.android.application") {
         configure<ApplicationExtension> { androidApplicationConfig() }
@@ -94,13 +107,30 @@ private fun ApplicationExtension.androidApplicationConfig() {
         minSdk = minSdk()
         targetSdk = targetSdk()
     }
+
+    lint {
+        baseline = file("lint-baseline.xml")
+        abortOnError = true
+        checkReleaseBuilds = false
+        xmlReport = true
+        htmlReport = true
+        sarifReport = true
+    }
 }
 
 private fun Project.androidLibraryConfig() {
     extensions.configure<LibraryExtension> {
         compileSdk = compileSdk()
         defaultConfig { minSdk = minSdk() }
-        lint { targetSdk = targetSdk() }
+
+        lint {
+            targetSdk = targetSdk()
+            baseline = file("lint-baseline.xml")
+            abortOnError = true
+            xmlReport = true
+            htmlReport = true
+            sarifReport = true
+        }
     }
 }
 

@@ -1,8 +1,5 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
   <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>FunctionNaming:ErrorUi.kt$@Composable @AndroidAppTemplatePreview internal fun ErrorUiPreview( @PreviewParameter(ErrorUiStateProvider::class) state: ErrorState?, )</ID>
-    <ID>FunctionNaming:ErrorUi.kt$@Composable public fun ErrorUi( modifier: Modifier = Modifier, button: ErrorButton? = null, illustration: IllustrationState = Illustrations.AndroidRobotMatrix.state, @StringRes primaryText: Int = R.string.error_primary_text_default, @StringRes secondaryText: Int = R.string.error_secondary_text_default, )</ID>
-  </CurrentIssues>
+  <CurrentIssues/>
 </SmellBaseline>

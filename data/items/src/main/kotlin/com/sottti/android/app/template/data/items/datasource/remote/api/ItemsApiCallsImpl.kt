@@ -24,7 +24,6 @@ internal class ItemsApiCallsImpl @Inject constructor(
             httpClient.get {
                 url { path(API_PATH_BEERS, itemId.value.toString()) }
             }.body()
-
         }
 
     override suspend fun getItems(

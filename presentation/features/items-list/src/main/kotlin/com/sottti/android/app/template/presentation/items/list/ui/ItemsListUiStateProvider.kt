@@ -65,7 +65,6 @@ internal val loadedStateLoadsOfItemsRefreshing = itemsListState(
     data = listOfMultipleItemsUiModels,
 )
 
-
 internal val emptyState = itemsListState(
     refreshState = NotLoading(endOfPaginationReached = true),
     appendState = NotLoading(endOfPaginationReached = true),

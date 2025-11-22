@@ -22,9 +22,10 @@ public fun Illustration(
 ) {
     val modifier: Modifier =
         when {
-            circled -> modifier
-                .aspectRatio(1f)
-                .clip(CircleShape)
+            circled ->
+                modifier
+                    .aspectRatio(1f)
+                    .clip(CircleShape)
 
             else -> modifier
         }

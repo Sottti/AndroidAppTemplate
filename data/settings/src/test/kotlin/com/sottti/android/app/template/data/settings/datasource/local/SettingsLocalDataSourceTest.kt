@@ -70,7 +70,6 @@ internal class SettingsLocalDataSourceTest {
         }
     }
 
-
     @Test
     fun `when observing system theme, then the flow from the manager is returned`() = runTest {
         dataSource.observeSystemTheme().test {

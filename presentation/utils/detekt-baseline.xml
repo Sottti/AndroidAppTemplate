@@ -2,8 +2,6 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>FunctionNaming:Spacer.kt$@Composable public fun ColumnScope.Spacer(weight: Float)</ID>
-    <ID>FunctionNaming:Spacer.kt$@Composable public fun RowScope.Spacer(weight: Float)</ID>
-    <ID>FunctionNaming:Spacer.kt$@Composable public fun Spacer(size: Dp)</ID>
+    <ID>ModifierMissing:Spacer.kt$Spacer</ID>
   </CurrentIssues>
 </SmellBaseline>

@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>FunctionNaming:ColorsLocalProvider.kt$@Composable public fun ColorsLocalProvider( colorContrast: SystemColorContrast, dynamicColor: DynamicColor, systemTheme: SystemTheme, content: @Composable () -&gt; Unit, )</ID>
+    <ID>CompositionLocalAllowlist:LocalColors.kt$LocalColors</ID>
+    <ID>TopLevelPropertyNaming:LocalColors.kt$internal val LocalColors = staticCompositionLocalOf&lt;ColorScheme&gt; { error("No colors provided. Make sure to wrap your composables in a custom theme.") }</ID>
   </CurrentIssues>
 </SmellBaseline>

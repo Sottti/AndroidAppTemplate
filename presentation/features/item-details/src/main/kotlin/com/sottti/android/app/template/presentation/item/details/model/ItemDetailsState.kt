@@ -10,7 +10,6 @@ import com.sottti.android.app.template.presentation.design.system.icons.model.Ic
 internal sealed class ItemDetailsState {
     abstract val topBarState: TopBarState
 
-
     @Immutable
     data class Loading(
         override val topBarState: TopBarState,

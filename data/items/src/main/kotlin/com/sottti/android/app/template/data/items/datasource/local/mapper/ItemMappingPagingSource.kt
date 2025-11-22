@@ -33,7 +33,6 @@ internal class ItemMappingPagingSource(
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
         }
 
-
     init {
         roomPagingSource.registerInvalidatedCallback(::invalidate)
     }

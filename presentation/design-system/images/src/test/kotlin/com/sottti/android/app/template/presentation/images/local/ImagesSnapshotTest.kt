@@ -30,6 +30,5 @@ internal class ImagesSnapshotTest(
         @Parameterized.Parameters
         fun data(): Collection<Array<Any?>> =
             nightModeParameters(ImageStateProvider().values)
-
     }
 }

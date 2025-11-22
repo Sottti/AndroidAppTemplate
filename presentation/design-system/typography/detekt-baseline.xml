@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>FunctionNaming:TypographyLocalProvider.kt$@Composable public fun TypographyLocalProvider( content: @Composable () -&gt; Unit, )</ID>
+    <ID>CompositionLocalAllowlist:LocalTypography.kt$LocalTypography</ID>
+    <ID>TopLevelPropertyNaming:LocalTypography.kt$internal val LocalTypography = staticCompositionLocalOf&lt;Typography&gt; { error("No typography provided. Make sure to wrap your composables in a custom theme.") }</ID>
   </CurrentIssues>
 </SmellBaseline>
