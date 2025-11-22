@@ -1,15 +1,23 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>MagicNumber:ItemsRemoteDataMapper.kt$331</ID>
-    <ID>MagicNumber:ItemsRemoteDataMapper.kt$332</ID>
-    <ID>MaxLineLength:ItemsRemoteDataMapperTest.kt$ItemsRemoteDataMapperTest$fun</ID>
-    <ID>MaximumLineLength:ItemsRemoteDataMapperTest.kt$ItemsRemoteDataMapperTest$ </ID>
-    <ID>ReturnCount:ItemsRemoteMediator.kt$ItemsRemoteMediator$override suspend fun load( loadType: LoadType, state: PagingState&lt;Int, Item&gt;, ): MediatorResult</ID>
-    <ID>TooGenericExceptionCaught:ItemsRemoteMediator.kt$ItemsRemoteMediator$e: Exception</ID>
-    <ID>UseCheckOrError:ItemsApiCallsFake.kt$ItemsApiCallsFake$throw IllegalStateException("Test response was not set in fake")</ID>
-    <ID>UseCheckOrError:ItemsRemoteDataSourceFake.kt$ItemsRemoteDataSourceFake$throw IllegalStateException("Test response was not set in fake")</ID>
-    <ID>UseCheckOrError:ItemsRemoteDataSourceFake.kt$ItemsRemoteDataSourceFake$throw IllegalStateException("Test response was not set in the fake")</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>MagicNumber:ItemsRemoteDataMapper.kt$331</ID>
+        <ID>MagicNumber:ItemsRemoteDataMapper.kt$332</ID>
+        <ID>MaxLineLength:ItemsRemoteDataMapperTest.kt$ItemsRemoteDataMapperTest$fun</ID>
+        <ID>MaximumLineLength:ItemsRemoteDataMapperTest.kt$ItemsRemoteDataMapperTest$</ID>
+        <ID>ReturnCount:ItemsRemoteMediator.kt$ItemsRemoteMediator$override suspend fun load(
+            loadType: LoadType, state: PagingState&lt;Int, Item&gt;, ): MediatorResult
+        </ID>
+        <ID>TooGenericExceptionCaught:ItemsRemoteMediator.kt$ItemsRemoteMediator$e: Exception</ID>
+        <ID>UseCheckOrError:ItemsApiCallsFake.kt$ItemsApiCallsFake$throw IllegalStateException("Test
+            response was not set in fake")
+        </ID>
+        <ID>UseCheckOrError:ItemsRemoteDataSourceFake.kt$ItemsRemoteDataSourceFake$throw
+            IllegalStateException("Test response was not set in fake")
+        </ID>
+        <ID>UseCheckOrError:ItemsRemoteDataSourceFake.kt$ItemsRemoteDataSourceFake$throw
+            IllegalStateException("Test response was not set in the fake")
+        </ID>
+    </CurrentIssues>
 </SmellBaseline>

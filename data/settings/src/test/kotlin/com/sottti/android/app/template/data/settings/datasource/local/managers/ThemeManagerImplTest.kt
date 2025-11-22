@@ -73,7 +73,7 @@ internal class ThemeManagerImplTest {
                 val newConfig = Configuration(themedContext.resources.configuration)
                 newConfig.uiMode =
                     (newConfig.uiMode and Configuration.UI_MODE_NIGHT_MASK.inv()) or
-                    Configuration.UI_MODE_NIGHT_YES
+                            Configuration.UI_MODE_NIGHT_YES
 
                 val themedRes = themedContext.resources
                 themedRes.updateConfiguration(newConfig, themedRes.displayMetrics)

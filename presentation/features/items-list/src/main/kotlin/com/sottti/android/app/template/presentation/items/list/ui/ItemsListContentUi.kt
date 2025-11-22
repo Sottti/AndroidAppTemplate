@@ -97,8 +97,8 @@ private fun Items(
     val isInitialLoad = items.loadState.refresh is Loading && items.itemCount == 0
     val isError = items.loadState.refresh is Error && items.itemCount == 0
     val isListEmpty = items.loadState.refresh is NotLoading &&
-        items.loadState.append.endOfPaginationReached &&
-        items.itemCount == 0
+            items.loadState.append.endOfPaginationReached &&
+            items.itemCount == 0
 
     when {
         isInitialLoad -> ProgressIndicatorFillMaxSize(bottomPadding)

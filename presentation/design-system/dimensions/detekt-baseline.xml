@@ -1,8 +1,11 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>CompositionLocalAllowlist:LocalDimensions.kt$LocalDimensions</ID>
-    <ID>TopLevelPropertyNaming:LocalDimensions.kt$internal val LocalDimensions = staticCompositionLocalOf&lt;Dimensions&gt; { error("No dimensions provided. Make sure to wrap your composables in a custom theme.") }</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>CompositionLocalAllowlist:LocalDimensions.kt$LocalDimensions</ID>
+        <ID>TopLevelPropertyNaming:LocalDimensions.kt$internal val LocalDimensions =
+            staticCompositionLocalOf&lt;Dimensions&gt; { error("No dimensions provided. Make sure to
+            wrap your composables in a custom theme.") }
+        </ID>
+    </CurrentIssues>
 </SmellBaseline>

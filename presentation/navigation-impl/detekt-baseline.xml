@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>ModifierMissing:Navigator.kt$Navigator</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>ModifierMissing:Navigator.kt$Navigator</ID>
+    </CurrentIssues>
 </SmellBaseline>

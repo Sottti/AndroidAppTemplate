@@ -1,7 +1,9 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>MatchingDeclarationName:ObserveConfigurationChangeTestHelpers.kt$CapturingContext : ContextWrapper</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>MatchingDeclarationName:ObserveConfigurationChangeTestHelpers.kt$CapturingContext :
+            ContextWrapper
+        </ID>
+    </CurrentIssues>
 </SmellBaseline>
