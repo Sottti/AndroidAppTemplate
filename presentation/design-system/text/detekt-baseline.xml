@@ -1,41 +1,5 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
   <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>FunctionNaming:Text.kt$Text$@Composable private fun ThemedText( text: AnnotatedString, textStyle: TextStyle, textColor: Color, modifier: Modifier = Modifier, textAlign: TextAlign? = null, )</ID>
-    <ID>FunctionNaming:Text.kt$Text$@Composable private fun ThemedText( text: String, textStyle: TextStyle, modifier: Modifier = Modifier, textColor: Color = Color.Unspecified, textAlign: TextAlign? = null, )</ID>
-    <ID>FunctionNaming:Text.kt$Text$@Composable public fun Vanilla( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, )</ID>
-    <ID>FunctionNaming:Text.kt$Text$@Composable public fun Vanilla( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Large( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Large( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Medium( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Medium( text: AnnotatedString, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Medium( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Small( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Body$@Composable public fun Small( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Large( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Large( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Medium( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Medium( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Small( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Display$@Composable public fun Small( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Large( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Large( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Medium( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Medium( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Small( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Headline$@Composable public fun Small( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Large( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Large( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Medium( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Medium( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Small( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Label$@Composable public fun Small( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Large( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Large( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Medium( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Medium( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Small( @StringRes textResId: Int, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-    <ID>FunctionNaming:Text.kt$Text.Title$@Composable public fun Small( text: String, modifier: Modifier = Modifier, textAlign: TextAlign? = null, textColor: Color = Color.Unspecified, )</ID>
-  </CurrentIssues>
+  <CurrentIssues/>
 </SmellBaseline>

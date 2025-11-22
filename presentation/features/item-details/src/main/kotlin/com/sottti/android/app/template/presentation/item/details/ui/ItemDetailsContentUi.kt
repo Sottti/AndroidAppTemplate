@@ -185,7 +185,6 @@ private fun LoadedStateLandscape(
     }
 }
 
-
 @Composable
 private fun Image(
     state: ImageState,

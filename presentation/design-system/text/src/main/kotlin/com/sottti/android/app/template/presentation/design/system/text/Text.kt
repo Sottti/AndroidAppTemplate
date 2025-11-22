@@ -364,7 +364,6 @@ public object Text {
             )
         }
 
-
         @Composable
         public fun Medium(
             @StringRes textResId: Int,

@@ -2,6 +2,7 @@
 <SmellBaseline>
   <ManuallySuppressedIssues/>
   <CurrentIssues>
-    <ID>FunctionNaming:DimensionsLocalProvider.kt$@Composable public fun DimensionsLocalProvider( content: @Composable () -&gt; Unit, )</ID>
+    <ID>CompositionLocalAllowlist:LocalDimensions.kt$LocalDimensions</ID>
+    <ID>TopLevelPropertyNaming:LocalDimensions.kt$internal val LocalDimensions = staticCompositionLocalOf&lt;Dimensions&gt; { error("No dimensions provided. Make sure to wrap your composables in a custom theme.") }</ID>
   </CurrentIssues>
 </SmellBaseline>

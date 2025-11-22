@@ -6,7 +6,6 @@ import com.sottti.android.app.template.presentation.design.system.icons.model.Ic
 
 public object Icons {
 
-
     public object Arrow {
         public object Back {
             private val description: Int = R.string.description_icon_arrow_back

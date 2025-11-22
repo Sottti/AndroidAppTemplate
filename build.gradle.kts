@@ -1,6 +1,7 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -41,7 +42,6 @@ subprojects {
     detekt {
         toolVersion = libraries.versions.detekt.get()
         config.setFrom(files("$rootDir/detekt.yml"))
-
         buildUponDefaultConfig = true
         autoCorrect = true
         parallel = true
@@ -51,7 +51,7 @@ subprojects {
     tasks.withType<Detekt>().configureEach {
         jvmTarget = "17"
 
-        // ⬇️ ADD THIS LINE HERE ⬇️
+        // This is causing issues to Detekt
         exclude("**/StateInViewModelWhileSubscribed.kt")
 
         reports {
@@ -60,6 +60,13 @@ subprojects {
             sarif.required.set(true)
             txt.required.set(false)
         }
+    }
+
+    tasks.withType<DetektCreateBaselineTask>().configureEach {
+        jvmTarget = "17"
+
+        // This is causing issues to Detekt
+        exclude("**/StateInViewModelWhileSubscribed.kt")
     }
 
     plugins.withId("com.android.application") {
@@ -105,8 +112,6 @@ private fun ApplicationExtension.androidApplicationConfig() {
         baseline = file("lint-baseline.xml")
         abortOnError = true
         checkReleaseBuilds = false
-
-        // Enable reports for CI
         xmlReport = true
         htmlReport = true
         sarifReport = true
