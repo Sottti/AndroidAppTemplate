@@ -9,8 +9,10 @@ on:
 
 permissions:
   contents: read
+  # Required for Reviewdog to post comments on PRs
   pull-requests: write
   security-events: write
+  checks: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -25,9 +27,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          fetch-depth: 0 # Fetch depth 0 is often safer for Detekt diffs
 
-      # Updated to v3 (Standard recommendation)
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
 
@@ -36,118 +37,59 @@ jobs:
         with:
           distribution: temurin
           java-version: "17"
-          cache: gradle
+          # Removed redundant 'cache: gradle'
 
       - name: Make gradlew executable
         run: chmod +x gradlew
 
-      - name: Run Android Lint (Strict Mode)
+      # Check compilation first to fail fast on syntax errors
+      - name: Compilation Check
+        run: ./gradlew assembleDebug
+
+      - name: Run Android Lint
         run: ./gradlew lint
 
-      # Step 1: Run Detekt via Gradle (Generates the reports for artifacts)
-      - name: Run Detekt (Gradle)
+      # 1. Run Detekt via Gradle (Source of Truth)
+      # This generates build/reports/detekt/detekt.xml and detekt.sarif
+      - name: Run Detekt
         run: ./gradlew detekt
         continue-on-error: true
 
-      # Step 2: Download the missing Compose plugin JAR
-      - name: Download Detekt Compose Plugin
-        run: |
-          curl -sSLO https://github.com/mrmans0n/compose-rules/releases/download/v0.4.22/detekt-compose-0.4.22-all.jar
-          mv detekt-compose-0.4.22-all.jar detekt-compose.jar
-
-      # Step 3: Run Detekt via Action (For Reviewdog PR comments)
-      - name: Detekt Reviewdog (PR Comments)
-        uses: alaegin/Detekt-Action@v1.23.5
+      # 2. Process the XML report and post comments
+      - name: Detekt Reviewdog Report
+        uses: reviewdog/action-setup@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          detekt_config: detekt.yml
-          reviewdog_reporter: github-pr-review
-          fail_on_error: false
-          reviewdog_filter: diff_context
-          # Point to the local file we just downloaded
-          detekt_plugins: "./detekt-compose.jar"
+          reviewdog_version: latest
+      - name: Run Reviewdog
+        env:
+          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          cat build/reports/detekt/detekt.xml | reviewdog -f=checkstyle \
+            -name="Detekt" \
+            -reporter=github-pr-review \
+            -filter=diff_context \
+            -level=warning \
+            -fail-on-error=false
 
       - name: Upload Detekt SARIF
         uses: github/codeql-action/upload-sarif@v3
         with:
-          sarif_file: "**/build/reports/detekt/*.sarif"
+          sarif_file: build/reports/detekt/detekt.sarif
+          # Ensure your detekt.yml outputs sarif: true
 
       - name: Run Unit Tests
-        run: |
-          echo "::group::Unit Tests"
-          ./gradlew test
-          echo "::endgroup::"
+        run: ./gradlew test
 
-      - name: Generate Kover Coverage XML
+      - name: Generate Kover Coverage
         run: ./gradlew koverXmlReport
 
-      - name: Upload Coverage Report
-        uses: actions/upload-artifact@v4
+      # Using a dedicated action is safer for parsing than the JS script
+      - name: Kover Report
+        uses: mi-kas/kover-report@v1
         with:
-          name: coverage-report
           path: build/reports/kover/report.xml
-
-      - name: Comment Kover Coverage on PR
-        if: github.event_name == 'pull_request'
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const xmlPath = 'build/reports/kover/report.xml';
-
-            // Check if file exists
-            if (!fs.existsSync(xmlPath)) {
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: "⚠️ Kover coverage report was not found at " + xmlPath
-              });
-              return;
-            }
-
-            const xml = fs.readFileSync(xmlPath, 'utf8');
-            const match = xml.match(/<counter type="INSTRUCTION" missed="(\d+)" covered="(\d+)"/);
-
-            if (!match) {
-              await github.rest.issues.createComment({
-                issue_number: context.issue.number,
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                body: "⚠️ Could not parse Kover coverage report structure."
-              });
-              return;
-            }
-
-            const missed = parseInt(match[1]);
-            const covered = parseInt(match[2]);
-            const total = missed + covered;
-            // Protect against divide by zero
-            const pct = total === 0 ? 0 : ((covered / total) * 100).toFixed(2);
-
-            const summary =
-              "### 🧪 Test Coverage Report (Kover)\n" +
-              "**Coverage:** " + pct + "%\n\n" +
-              "- **Covered:** " + covered + "\n" +
-              "- **Missed:** " + missed + "\n" +
-              "- **Total:** " + total + "\n\n" +
-              "⬆ Add more tests to improve coverage!\n";
-
-            await github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: summary,
-            });
-
-      - name: Job Summary
-        uses: actions/github-script@v7
-        with:
-          script: |
-            await core.summary
-              .addHeading("Android CI Summary")
-              .addRaw("✔ Lint, Detekt, Tests, and Coverage completed")
-              .write();
-
-      - name: Build Debug APK
-        run: ./gradlew assembleDebug
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Code Coverage
+          update-comment: true
+          min-coverage-overall: 0
+          min-coverage-changed-files: 0
