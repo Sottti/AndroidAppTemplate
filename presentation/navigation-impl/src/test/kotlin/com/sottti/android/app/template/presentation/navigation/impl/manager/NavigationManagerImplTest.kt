@@ -32,7 +32,6 @@ internal class NavigationManagerImplTest {
         }
     }
 
-
     @Test
     fun `when navigate to is called, then a navigate to command should be emitted`() = runTest {
         val destination = ItemsList

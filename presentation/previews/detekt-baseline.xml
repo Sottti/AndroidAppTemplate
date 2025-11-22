@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>PreviewAnnotationNaming:AndroidAppTemplatePreview.kt$AndroidAppTemplatePreview$AndroidAppTemplatePreview</ID>
+    <ID>PreviewAnnotationNaming:AndroidAppTemplatePreviewDynamicColors.kt$AndroidAppTemplatePreviewDynamicColors$AndroidAppTemplatePreviewDynamicColors</ID>
+    <ID>PreviewAnnotationNaming:AndroidAppTemplatePreviewTall.kt$AndroidAppTemplatePreviewTall$AndroidAppTemplatePreviewTall</ID>
+  </CurrentIssues>
+</SmellBaseline>

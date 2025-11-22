@@ -29,21 +29,24 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+
+    // compose.ui.test.junit4 forces runner 1.5.0 with BoM version 2025.11.01
+    configurations.all {
+        resolutionStrategy {
+            force("androidx.test:runner:1.7.0")
+        }
+    }
 }
 
 dependencies {
-    androidTestImplementation(libs.compose.ui.test.junit4) {
-        // Exclude the transitive 'runner:1.5.0' which imposes a strict version constraint,
-        // blocking our upgrade to runner:1.7.0'.
-        exclude(group = "androidx.test", module = "runner")
-    }
+    androidTestImplementation(libs.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.test.core)
     androidTestImplementation(libs.test.runner)
     debugImplementation(libs.compose.ui.test.manifest)
-    implementation(libs.compose.runtime)
     implementation(libs.appcompat)
+    implementation(libs.compose.runtime)
     implementation(libs.hilt)
     implementation(libs.material)
     implementation(libs.splashscreen)
@@ -58,8 +61,5 @@ dependencies {
     implementation(project(module.presentation.features.itemsList))
     ksp(libs.hilt.compiler)
     kspAndroidTest(libs.hilt.compiler)
-
-
-
     implementation(project(module.presentation.utils))
 }

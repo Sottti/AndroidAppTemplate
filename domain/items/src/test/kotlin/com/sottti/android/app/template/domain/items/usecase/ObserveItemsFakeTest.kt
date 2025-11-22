@@ -22,7 +22,6 @@ internal class ObserveItemsFakeTest {
     @Test
     fun `given no items are set, when invoked, then it should return an empty paging data flow`() =
         runTest {
-
             val resultFlow = observeItems()
             val snapshot = resultFlow.asSnapshot()
 

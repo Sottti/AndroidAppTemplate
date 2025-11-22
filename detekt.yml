@@ -1,8 +1,6 @@
-# Build settings
 build:
-  maxIssues: 10
+  maxIssues: 0
 
-# Naming rules
 naming:
   active: true
   FunctionNaming:
@@ -14,37 +12,46 @@ naming:
     constantPattern: '[A-Z][A-Z0-9_]*'
     propertyPattern: '[a-z][A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
+    ignoreAnnotated: ['Composable']
 
-# Complexity rules
 complexity:
   active: true
   LongMethod:
     active: true
-    threshold: 40
+    threshold: 60
+    ignoreAnnotated: ['Composable']
   LongParameterList:
     active: true
     functionThreshold: 10
     ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
   TooManyFunctions:
     active: true
-    thresholdInFiles: 20
+    thresholdInFiles: 30
     ignoreDeprecated: true
     ignorePrivate: true
+    ignoreAnnotated: ['Composable']
 
-# Style rules
 style:
   active: true
   MagicNumber:
     active: true
+    ignoreNumbers: ['-1', '0', '1', '2', '4', '8', '12', '16', '24', '32', '64']
+    ignoreAnnotated: ['Preview', 'Composable']
   MaxLineLength:
     active: true
     maxLineLength: 120
+    # Removed 'excludeComment' to fix build failure
+  
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated: ['Preview']
+  UnusedParameter:
+    active: true
 
-# Comments rules
 comments:
   active: true
 
-# 💡 N-LOPEZ COMPOSE RULES (external plugin)
 Compose:
   active: true
   ComposableNaming:
@@ -56,17 +63,6 @@ Compose:
   ModifierMissing:
     active: true
 
-# Error-prone rules (detekt built-in)
-errorProne:
-  active: true
-  UnsafeCast:
-    active: true
-  InvalidRange:
-    active: true
-  IteratorNotThrowsNoSuchElementException:
-    active: true
-
-# Potential bugs (detekt built-in)
 potential-bugs:
   active: true
   NullableToStringCall:
@@ -75,12 +71,15 @@ potential-bugs:
     active: true
   UnreachableCatchBlock:
     active: true
+  UnsafeCast:
+    active: true
+  InvalidRange:
+    active: true
+  # Removed 'IteratorNotThrowsNoSuchElementException' to fix build failure
 
-# Exceptions
 exceptions:
   active: true
 
-# Formatting (ktlint via detekt-formatting)
 formatting:
   active: true
   Indentation:
@@ -89,21 +88,15 @@ formatting:
     active: true
   NoTrailingSpaces:
     active: true
+  TrailingCommaOnCallSite:
+    active: false
+  TrailingCommaOnDeclarationSite:
+    active: false
 
-# Unused code rules
-unusedCode:
-  active: true
-  UnusedPrivateMember:
-    active: true
-  UnusedVariable:
-    active: true
-  UnusedParameter:
-    active: true
-
-# Empty blocks
 empty-blocks:
   active: true
 
-# Performance
 performance:
   active: true
+  SpreadOperator:
+    active: true

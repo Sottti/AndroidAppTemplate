@@ -111,5 +111,4 @@ internal class ItemsLocalDataSourceImplTest {
     fun `runTransaction propagates exception from block`() = runTest {
         localDataSource.runTransaction { throw IllegalStateException("boom") }
     }
-
 }

@@ -116,7 +116,10 @@ internal class RemoteKeysDaoTest {
         dao.upsert(RemoteKeysRoomModel("items", nextPage = 3, prevPage = 1))
         val count = db
             .query("SELECT COUNT(*) FROM remote_keys", null)
-            .use { it.moveToFirst(); it.getInt(0) }
+            .use {
+                it.moveToFirst()
+                it.getInt(0)
+            }
         assertThat(count).isEqualTo(1)
     }
 

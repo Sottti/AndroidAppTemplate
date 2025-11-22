@@ -178,7 +178,6 @@ internal class SafeApiCallTest {
             assertThat(error?.message).isEqualTo(UNKNOWN_ERROR_MESSAGE)
         }
 
-
     @Test
     fun `returns unknown error when deserialization fails`() = runTest {
         val client = createMockClient {
@@ -203,7 +202,6 @@ internal class SafeApiCallTest {
 
     @Test
     fun `returns unknown error when reading client error body fails`() = runTest {
-
         val client = createMockClient {
             // Respond with 400 and the channel that will throw on read attempt
             respond(

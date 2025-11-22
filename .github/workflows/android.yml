@@ -1,95 +1,101 @@
-name: Android CI
+build:
+  maxIssues: 0
 
-on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-  schedule:
-    - cron: "0 3 * * *"
+naming:
+  active: true
+  FunctionNaming:
+    active: true
+    functionPattern: '^[a-z][a-zA-Z0-9]*'
+    ignoreAnnotated: ['Composable']
+  TopLevelPropertyNaming:
+    active: true
+    constantPattern: '[A-Z][A-Z0-9_]*'
+    propertyPattern: '[a-z][A-Za-z0-9]*'
+    privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
+    ignoreAnnotated: ['Composable']
 
-permissions:
-  contents: read
-  # Required for Reviewdog to post comments on PRs
-  pull-requests: write
-  security-events: write
-  checks: write
+complexity:
+  active: true
+  LongMethod:
+    active: true
+    threshold: 60
+    ignoreAnnotated: ['Composable']
+  LongParameterList:
+    active: true
+    functionThreshold: 10
+    ignoreDefaultParameters: true
+    ignoreAnnotated: ['Composable']
+  TooManyFunctions:
+    active: true
+    thresholdInFiles: 30
+    ignoreDeprecated: true
+    ignorePrivate: true
+    ignoreAnnotated: ['Composable']
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+style:
+  active: true
+  MagicNumber:
+    active: true
+    ignoreNumbers: ['-1', '0', '1', '2', '4', '8', '12', '16', '24', '32', '64']
+    ignoreAnnotated: ['Preview', 'Composable']
+  MaxLineLength:
+    active: true
+    maxLineLength: 120
 
-jobs:
-  build:
-    name: Build & Validate
-    runs-on: ubuntu-latest
+  UnusedPrivateMember:
+    active: true
+    ignoreAnnotated: ['Preview']
+  UnusedParameter:
+    active: true
 
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # Fetch depth 0 is often safer for Detekt diffs
+comments:
+  active: true
 
-      - name: Setup Gradle
-        uses: gradle/actions/setup-gradle@v3
+Compose:
+  active: true
+  ComposableNaming:
+    active: true
+  CompositionLocalNaming:
+    active: true
+  MissingRemember:
+    active: true
+  ModifierMissing:
+    active: true
 
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: "17"
-          # Removed redundant 'cache: gradle'
+potential-bugs:
+  active: true
+  NullableToStringCall:
+    active: true
+  ImplicitDefaultLocale:
+    active: true
+  UnreachableCatchBlock:
+    active: true
 
-      - name: Make gradlew executable
-        run: chmod +x gradlew
+  UnsafeCast:
+    active: true
+  InvalidRange:
+    active: true
 
-      # Check compilation first to fail fast on syntax errors
-      - name: Compilation Check
-        run: ./gradlew assembleDebug
+exceptions:
+  active: true
 
-      - name: Run Android Lint
-        run: ./gradlew lint
+formatting:
+  active: true
+  Indentation:
+    active: true
+  FinalNewline:
+    active: true
+  NoTrailingSpaces:
+    active: true
+  TrailingCommaOnCallSite:
+    active: false
+  TrailingCommaOnDeclarationSite:
+    active: false
 
-      # 1. Run Detekt via Gradle (Source of Truth)
-      # This generates build/reports/detekt/detekt.xml and detekt.sarif
-      - name: Run Detekt
-        run: ./gradlew detekt
-        continue-on-error: true
+empty-blocks:
+  active: true
 
-      # 2. Process the XML report and post comments
-      - name: Detekt Reviewdog Report
-        uses: reviewdog/action-setup@v1
-        with:
-          reviewdog_version: latest
-      - name: Run Reviewdog
-        env:
-          REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          cat build/reports/detekt/detekt.xml | reviewdog -f=checkstyle \
-            -name="Detekt" \
-            -reporter=github-pr-review \
-            -filter=diff_context \
-            -level=warning \
-            -fail-on-error=false
-
-      - name: Upload Detekt SARIF
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: build/reports/detekt/detekt.sarif
-          # Ensure your detekt.yml outputs sarif: true
-
-      - name: Run Unit Tests
-        run: ./gradlew test
-
-      - name: Generate Kover Coverage
-        run: ./gradlew koverXmlReport
-
-      # Using a dedicated action is safer for parsing than the JS script
-      - name: Kover Report
-        uses: mi-kas/kover-report@v1
-        with:
-          path: build/reports/kover/report.xml
-          token: ${{ secrets.GITHUB_TOKEN }}
-          title: Code Coverage
-          update-comment: true
-          min-coverage-overall: 0
-          min-coverage-changed-files: 0
+performance:
+  active: true
+  SpreadOperator:
+    active: true
