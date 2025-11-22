@@ -55,6 +55,7 @@ jobs:
           reviewdog_reporter: github-pr-review
           fail_on_error: false
           reviewdog_filter: diff_context
+          detekt_plugins: "/opt/detekt-formatting.jar,/opt/detekt-compose.jar"
 
       - name: Upload Detekt SARIF
         uses: github/codeql-action/upload-sarif@v3

@@ -45,7 +45,7 @@ comments:
   active: true
 
 # 💡 N-LOPEZ COMPOSE RULES (external plugin)
-compose:
+Compose:
   active: true
   ComposableNaming:
     active: true
@@ -57,7 +57,7 @@ compose:
     active: true
 
 # Error-prone rules (detekt built-in)
-error-prone:
+errorProne:
   active: true
   UnsafeCast:
     active: true
@@ -75,8 +75,6 @@ potential-bugs:
     active: true
   UnreachableCatchBlock:
     active: true
-  MissingWhenCase:
-    active: false # deprecated
 
 # Exceptions
 exceptions:
@@ -93,7 +91,7 @@ formatting:
     active: true
 
 # Unused code rules
-unused:
+unusedCode:
   active: true
   UnusedPrivateMember:
     active: true
