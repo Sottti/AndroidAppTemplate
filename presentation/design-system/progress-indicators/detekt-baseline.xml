@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>ModifierWithoutDefault:ProgressIndicator.kt$modifier</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>ModifierWithoutDefault:ProgressIndicator.kt$modifier</ID>
+    </CurrentIssues>
 </SmellBaseline>

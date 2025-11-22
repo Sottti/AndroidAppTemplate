@@ -11,9 +11,11 @@ internal fun TaggedComposable(
     tag: String,
     content: @Composable () -> Unit = {},
 ) {
-    Box(modifier = Modifier
-        .fillMaxSize()
-        .testTag(tag)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .testTag(tag)
+    ) {
         content()
     }
 }

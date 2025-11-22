@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>ModifierNotUsedAtRoot:Icon.kt$modifier = iconModifier</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>ModifierNotUsedAtRoot:Icon.kt$modifier = iconModifier</ID>
+    </CurrentIssues>
 </SmellBaseline>

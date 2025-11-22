@@ -1,101 +1,99 @@
-build:
-  maxIssues: 0
+name: Android CI
 
-naming:
-  active: true
-  FunctionNaming:
-    active: true
-    functionPattern: '^[a-z][a-zA-Z0-9]*'
-    ignoreAnnotated: ['Composable']
-  TopLevelPropertyNaming:
-    active: true
-    constantPattern: '[A-Z][A-Z0-9_]*'
-    propertyPattern: '[a-z][A-Za-z0-9]*'
-    privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
-    ignoreAnnotated: ['Composable']
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+  schedule:
+    - cron: "0 3 * * *"
 
-complexity:
-  active: true
-  LongMethod:
-    active: true
-    threshold: 60
-    ignoreAnnotated: ['Composable']
-  LongParameterList:
-    active: true
-    functionThreshold: 10
-    ignoreDefaultParameters: true
-    ignoreAnnotated: ['Composable']
-  TooManyFunctions:
-    active: true
-    thresholdInFiles: 30
-    ignoreDeprecated: true
-    ignorePrivate: true
-    ignoreAnnotated: ['Composable']
+permissions:
+  contents: read
+  pull-requests: write
+  security-events: write
+  checks: write
 
-style:
-  active: true
-  MagicNumber:
-    active: true
-    ignoreNumbers: ['-1', '0', '1', '2', '4', '8', '12', '16', '24', '32', '64']
-    ignoreAnnotated: ['Preview', 'Composable']
-  MaxLineLength:
-    active: true
-    maxLineLength: 120
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
-  UnusedPrivateMember:
-    active: true
-    ignoreAnnotated: ['Preview']
-  UnusedParameter:
-    active: true
+jobs:
+  build:
+    name: Build & Validate
+    runs-on: ubuntu-latest
 
-comments:
-  active: true
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-Compose:
-  active: true
-  ComposableNaming:
-    active: true
-  CompositionLocalNaming:
-    active: true
-  MissingRemember:
-    active: true
-  ModifierMissing:
-    active: true
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
 
-potential-bugs:
-  active: true
-  NullableToStringCall:
-    active: true
-  ImplicitDefaultLocale:
-    active: true
-  UnreachableCatchBlock:
-    active: true
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
 
-  UnsafeCast:
-    active: true
-  InvalidRange:
-    active: true
+      - name: Make gradlew executable
+        run: chmod +x gradlew
 
-exceptions:
-  active: true
+      - name: Run Android Lint (Strict Mode)
+        run: ./gradlew lint
 
-formatting:
-  active: true
-  Indentation:
-    active: true
-  FinalNewline:
-    active: true
-  NoTrailingSpaces:
-    active: true
-  TrailingCommaOnCallSite:
-    active: false
-  TrailingCommaOnDeclarationSite:
-    active: false
+      - name: Run Detekt (Gradle)
+        run: ./gradlew detekt
+        continue-on-error: true
 
-empty-blocks:
-  active: true
+      - name: Download Detekt Compose Plugin
+        run: |
+          curl -sSLO https://github.com/mrmans0n/compose-rules/releases/download/v0.4.22/detekt-compose-0.4.22-all.jar
+          mv detekt-compose-0.4.22-all.jar detekt-compose.jar
 
-performance:
-  active: true
-  SpreadOperator:
-    active: true
+      - name: Detekt Reviewdog (PR Comments)
+        uses: alaegin/Detekt-Action@v1.23.5
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          detekt_config: detekt.yml
+          reviewdog_reporter: github-pr-review
+          fail_on_error: false
+          reviewdog_filter: diff_context
+          detekt_plugins: "./detekt-compose.jar"
+
+      - name: Upload Detekt SARIF
+        uses: github/codeql-action/upload-sarif@v3
+        with:
+          sarif_file: "**/build/reports/detekt/*.sarif"
+
+      - name: Run Unit Tests
+        run: |
+          echo "::group::Unit Tests"
+          ./gradlew test
+          echo "::endgroup::"
+
+      - name: Generate Kover Coverage XML
+        run: ./gradlew koverXmlReport
+
+      - name: Kover Report
+        uses: mi-kas/kover-report@v1
+        with:
+          path: build/reports/kover/report.xml
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: Code Coverage
+          update-comment: true
+          min-coverage-overall: 0
+          min-coverage-changed-files: 0
+
+      - name: Job Summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await core.summary
+              .addHeading("Android CI Summary")
+              .addRaw("✔ Lint, Detekt, Tests, and Coverage completed")
+              .write();
+
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug

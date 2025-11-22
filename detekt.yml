@@ -6,38 +6,38 @@ naming:
   FunctionNaming:
     active: true
     functionPattern: '^[a-z][a-zA-Z0-9]*'
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable' ]
   TopLevelPropertyNaming:
     active: true
     constantPattern: '[A-Z][A-Z0-9_]*'
     propertyPattern: '[a-z][A-Za-z0-9]*'
     privatePropertyPattern: '(_)?[a-z][A-Za-z0-9]*'
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable' ]
 
 complexity:
   active: true
   LongMethod:
     active: true
     threshold: 60
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable' ]
   LongParameterList:
     active: true
     functionThreshold: 10
     ignoreDefaultParameters: true
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable' ]
   TooManyFunctions:
     active: true
     thresholdInFiles: 30
     ignoreDeprecated: true
     ignorePrivate: true
-    ignoreAnnotated: ['Composable']
+    ignoreAnnotated: [ 'Composable' ]
 
 style:
   active: true
   MagicNumber:
     active: true
-    ignoreNumbers: ['-1', '0', '1', '2', '4', '8', '12', '16', '24', '32', '64']
-    ignoreAnnotated: ['Preview', 'Composable']
+    ignoreNumbers: [ '-1', '0', '1', '2', '4', '8', '12', '16', '24', '32', '64' ]
+    ignoreAnnotated: [ 'Preview', 'Composable' ]
   MaxLineLength:
     active: true
     maxLineLength: 120
@@ -45,7 +45,7 @@ style:
   
   UnusedPrivateMember:
     active: true
-    ignoreAnnotated: ['Preview']
+    ignoreAnnotated: [ 'Preview' ]
   UnusedParameter:
     active: true
 
