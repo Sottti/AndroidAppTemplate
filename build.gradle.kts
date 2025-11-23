@@ -2,7 +2,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
-import io.gitlab.arturbosch.detekt.report.ReportMergeTask
+import org.gradle.accessors.dm.LibrariesForLibs
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -20,7 +20,13 @@ plugins {
     alias(libs.plugins.paparazzi) apply false
 }
 
-val libraries = the<org.gradle.accessors.dm.LibrariesForLibs>()
+tasks.register<Delete>("cleanPaparazziSnapshots") {
+    group = "verification"
+    description = "Deletes all Paparazzi snapshot images across the project."
+    delete(fileTree(rootDir) { include("**/src/test/snapshots/images/**") })
+}
+
+val libraries = the<LibrariesForLibs>()
 
 subprojects {
     apply(plugin = "io.gitlab.arturbosch.detekt")
@@ -41,32 +47,18 @@ subprojects {
 
     tasks.withType<Detekt>().configureEach {
         jvmTarget = "17"
-
-        // Ensure the build continues so the merge task can run later
-        ignoreFailures = true
-
-        // This is causing issues to Detekt
+        ignoreFailures = false
         exclude("**/StateInViewModelWhileSubscribed.kt")
-
         reports {
-            html.required.set(true)
-            xml.required.set(true)
-            sarif.required.set(true)
+            html.required.set(true) // Human readable (open in browser)
+            xml.required.set(true) // Machine readable (Checkstyle format)
+            sarif.required.set(false) // Not needed locally
             txt.required.set(false)
-        }
-
-        val detektTask = this
-        rootProject.tasks.withType<ReportMergeTask>().configureEach {
-            if (name == "mergeDetektSarif") {
-                input.from(detektTask.reports.sarif.outputLocation)
-            }
         }
     }
 
     tasks.withType<DetektCreateBaselineTask>().configureEach {
         jvmTarget = "17"
-
-        // This is causing issues to Detekt
         exclude("**/StateInViewModelWhileSubscribed.kt")
     }
 
@@ -103,19 +95,16 @@ subprojects {
 
 private fun ApplicationExtension.androidApplicationConfig() {
     compileSdk = compileSdk()
-
     defaultConfig {
         minSdk = minSdk()
         targetSdk = targetSdk()
     }
-
     lint {
         baseline = file("lint-baseline.xml")
         abortOnError = true
         checkReleaseBuilds = false
         xmlReport = true
         htmlReport = true
-        sarifReport = true
     }
 }
 
@@ -123,14 +112,12 @@ private fun Project.androidLibraryConfig() {
     extensions.configure<LibraryExtension> {
         compileSdk = compileSdk()
         defaultConfig { minSdk = minSdk() }
-
         lint {
             targetSdk = targetSdk()
             baseline = file("lint-baseline.xml")
             abortOnError = true
             xmlReport = true
             htmlReport = true
-            sarifReport = true
         }
     }
 }
@@ -138,15 +125,3 @@ private fun Project.androidLibraryConfig() {
 private fun compileSdk() = libs.versions.compileSdk.get().toInt()
 private fun minSdk() = libs.versions.minSdk.get().toInt()
 private fun targetSdk() = libs.versions.targetSdk.get().toInt()
-
-tasks.register<Delete>("cleanPaparazziSnapshots") {
-    group = "verification"
-    description = "Deletes all Paparazzi snapshot images across the project."
-    delete(fileTree(rootDir) { include("**/src/test/snapshots/images/**") })
-}
-
-tasks.register<ReportMergeTask>("mergeDetektSarif") {
-    group = "verification"
-    description = "Merges all subproject SARIF reports into one."
-    output.set(layout.buildDirectory.file("reports/detekt/merge.sarif"))
-}
