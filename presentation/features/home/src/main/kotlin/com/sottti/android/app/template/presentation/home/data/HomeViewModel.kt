@@ -49,7 +49,8 @@ internal class HomeViewModel @Inject constructor(
         systemTheme: SystemTheme,
     ) -> (HomeState) -> HomeState =
         { dynamicColor, systemColorContrast, systemTheme ->
-            { previous ->
+            {
+                    previous ->
                 previous.reduce(
                     dynamicColor = dynamicColor,
                     systemColorContrast = systemColorContrast,
