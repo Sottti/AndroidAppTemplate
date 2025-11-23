@@ -33,6 +33,6 @@ internal class ItemDetailsSnapshotTest(
         @JvmStatic
         @Parameterized.Parameters
         fun data(): Collection<Array<Any?>> =
-            nightModeParameters(ItemsDetailsUiStateProvider().values)
+            nightModeParameters(ItemDetailsUiStateProvider().values)
     }
 }

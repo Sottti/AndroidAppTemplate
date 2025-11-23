@@ -57,11 +57,11 @@ public fun Navigator(
 
 private fun pushTransition(): ContentTransform =
     slideInHorizontally(initialOffsetX = { it }) togetherWith
-            slideOutHorizontally(targetOffsetX = { -it })
+        slideOutHorizontally(targetOffsetX = { -it })
 
 private fun popTransition(): ContentTransform =
     slideInHorizontally(initialOffsetX = { -it }) togetherWith
-            slideOutHorizontally(targetOffsetX = { it })
+        slideOutHorizontally(targetOffsetX = { it })
 
 private fun observeCommandsInScope(
     backStack: NavBackStack<NavKey>,

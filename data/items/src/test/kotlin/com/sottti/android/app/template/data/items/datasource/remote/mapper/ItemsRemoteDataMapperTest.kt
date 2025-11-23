@@ -54,7 +54,7 @@ internal class ItemsRemoteDataMapperTest {
     }
 
     @Test
-    fun `given an API model with an ID greater than 331, when mapped to domain, then its ID should be incremented by one`() {
+    fun `given an API model with an ID greater than 331, when mapped to domain, ID should be incremented by one`() {
         val highIdApiModel = ItemApiModel(
             id = 400,
             name = "High ID Beer",

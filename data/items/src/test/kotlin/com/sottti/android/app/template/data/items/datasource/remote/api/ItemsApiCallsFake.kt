@@ -28,9 +28,8 @@ internal class ItemsApiCallsFake : ItemsApiCalls {
 
     @OptIn(UnsafeResultValueAccess::class, UnsafeResultErrorAccess::class)
     override suspend fun getItem(itemId: ItemId): ResultApiModel<ItemApiModel> {
-        val listResult = response
+        val listResult = checkNotNull(response) { "Test response was not set in fake" }
         return when {
-            listResult == null -> throw IllegalStateException("Test response was not set in fake")
             listResult.isOk -> {
                 val item = listResult.value.firstOrNull { it.id == itemId.value }
                     ?: return Err(Unknown("Item with id ${itemId.value} not found"))
@@ -38,7 +37,7 @@ internal class ItemsApiCallsFake : ItemsApiCalls {
             }
 
             listResult.isErr -> Err(listResult.error)
-            else -> throw IllegalStateException("Test response was not set in fake")
+            else -> error("Test response was not set in fake")
         }
     }
 
@@ -49,6 +48,6 @@ internal class ItemsApiCallsFake : ItemsApiCalls {
         lastCalledPageNumber = pageNumber
         lastCalledPageSize = pageSize
 
-        return response ?: throw IllegalStateException("Test response was not set in fake")
+        return response ?: error("Test response was not set in fake")
     }
 }

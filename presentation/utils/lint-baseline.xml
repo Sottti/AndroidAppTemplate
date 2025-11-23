@@ -6,9 +6,9 @@
         errorLine2="    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~"
         id="SourceLockedOrientationActivity"
         message="You should not lock orientation of your activities, so that you can support a good user experience for any device or orientation">
-        <location
-            column="5"
-            file="src/main/kotlin/com/sottti/android/app/template/presentation/utils/test/SetOrientationTest.kt" line="18" />
+        <location column="5"
+            file="src/main/kotlin/com/sottti/android/app/template/presentation/utils/test/SetOrientationTest.kt"
+            line="18" />
     </issue>
 
 </issues>

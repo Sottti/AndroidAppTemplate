@@ -1,6 +1,5 @@
 package com.sottti.android.app.template.presentation.items.list.data
 
-import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
@@ -27,7 +26,7 @@ import javax.inject.Inject
 internal class ItemsListViewModel @Inject constructor(
     private val navigationManager: NavigationManager,
     observeItems: ObserveItems,
-    @VisibleForTesting testScope: CoroutineScope? = null,
+    testScope: CoroutineScope? = null,
 ) : ViewModel() {
 
     private val items: Flow<PagingData<ItemUiModel>> =

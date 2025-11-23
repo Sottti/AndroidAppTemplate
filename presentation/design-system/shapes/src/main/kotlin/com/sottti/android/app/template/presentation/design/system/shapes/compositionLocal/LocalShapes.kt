@@ -3,6 +3,7 @@ package com.sottti.android.app.template.presentation.design.system.shapes.compos
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.sottti.android.app.template.presentation.design.system.shapes.model.Shapes
 
+@Suppress("TopLevelPropertyNaming")
 internal val LocalShapes = staticCompositionLocalOf<Shapes> {
     error("No shapes provided. Make sure to wrap your composables in a custom theme.")
 }

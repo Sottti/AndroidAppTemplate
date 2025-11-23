@@ -11,7 +11,7 @@ import com.sottti.android.app.template.presentation.design.system.illustrations.
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
 import com.sottti.android.app.template.presentation.design.system.illustrations.ui.default.Illustration
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun CircledIllustration(
@@ -31,7 +31,7 @@ public fun CircledIllustration(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun CircledIllustrationPreview() {
     AndroidAppTemplateTheme {
         CircledIllustration(

@@ -12,7 +12,7 @@ import com.sottti.android.app.template.presentation.design.system.illustrations.
 import com.sottti.android.app.template.presentation.design.system.informative.InformativeButton
 import com.sottti.android.app.template.presentation.design.system.informative.InformativeUi
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun ErrorUi(
@@ -37,7 +37,7 @@ public fun ErrorUi(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun ErrorUiPreview(
     @PreviewParameter(ErrorUiStateProvider::class)
     state: ErrorState?,

@@ -1,3 +1,5 @@
+@file:Suppress("MatchingDeclarationName")
+
 package com.sottti.android.app.template.utils.lifecycle
 
 import android.app.Application

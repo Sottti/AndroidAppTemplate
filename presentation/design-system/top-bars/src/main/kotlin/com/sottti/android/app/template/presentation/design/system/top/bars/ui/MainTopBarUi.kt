@@ -21,7 +21,7 @@ import com.sottti.android.app.template.presentation.design.system.icons.data.Ico
 import com.sottti.android.app.template.presentation.design.system.icons.ui.Icon
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
@@ -92,7 +92,7 @@ private fun Title(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 @OptIn(ExperimentalMaterial3Api::class)
 internal fun MainTopBarPreview(
     @PreviewParameter(MainTopBarUiStateProvider::class)

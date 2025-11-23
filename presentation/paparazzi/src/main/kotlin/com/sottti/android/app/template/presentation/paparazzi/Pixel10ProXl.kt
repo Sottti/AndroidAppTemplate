@@ -13,7 +13,9 @@ import com.android.resources.ScreenSize
 import com.android.resources.TouchScreen
 import com.android.resources.UiMode
 
-internal val PIXEL_10_PRO_XL: DeviceConfig =
+private const val PIXEL_10_PRO_XL_DPI = 560
+
+internal val pixel10ProXl: DeviceConfig =
     DeviceConfig(
         screenHeight = 2992,
         screenWidth = 1344,
@@ -22,7 +24,7 @@ internal val PIXEL_10_PRO_XL: DeviceConfig =
         orientation = ScreenOrientation.PORTRAIT,
         uiMode = UiMode.NORMAL,
         nightMode = NightMode.NOTNIGHT,
-        density = Density.create(560),
+        density = Density.create(PIXEL_10_PRO_XL_DPI),
         fontScale = 1f,
         layoutDirection = LayoutDirection.LTR,
         locale = null,

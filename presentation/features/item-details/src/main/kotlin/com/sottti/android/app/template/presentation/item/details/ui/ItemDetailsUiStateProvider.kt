@@ -6,7 +6,7 @@ import com.sottti.android.app.template.presentation.item.details.data.initialSta
 import com.sottti.android.app.template.presentation.item.details.data.reduce
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
 
-internal class ItemsDetailsUiStateProvider : PreviewParameterProvider<ItemDetailsState> {
+internal class ItemDetailsUiStateProvider : PreviewParameterProvider<ItemDetailsState> {
     override val values: Sequence<ItemDetailsState>
         get() = sequence {
             yield(loadingState)

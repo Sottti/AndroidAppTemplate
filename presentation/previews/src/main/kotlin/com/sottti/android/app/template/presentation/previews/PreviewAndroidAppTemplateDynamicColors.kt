@@ -62,4 +62,4 @@ import androidx.compose.ui.tooling.preview.Wallpapers.YELLOW_DOMINATED_EXAMPLE
 )
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
-public annotation class AndroidAppTemplatePreviewDynamicColors
+public annotation class PreviewAndroidAppTemplateDynamicColors

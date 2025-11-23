@@ -42,13 +42,14 @@ internal class HomeViewModel @Inject constructor(
         .drop(1)
         .stateInWhileSubscribed(initialValue = initialState)
 
+    @Suppress("Wrapping", "Indentation")
     private val reducer: (
         dynamicColor: DynamicColor,
         systemColorContrast: SystemColorContrast,
         systemTheme: SystemTheme,
     ) -> (HomeState) -> HomeState =
         { dynamicColor, systemColorContrast, systemTheme ->
-            { previous: HomeState ->
+            { previous ->
                 previous.reduce(
                     dynamicColor = dynamicColor,
                     systemColorContrast = systemColorContrast,

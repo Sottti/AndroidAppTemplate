@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 import org.junit.runners.Parameterized
 
 private typealias UiTestRule =
-        AndroidComposeTestRule<ActivityScenarioRule<ComponentActivity>, ComponentActivity>
+    AndroidComposeTestRule<ActivityScenarioRule<ComponentActivity>, ComponentActivity>
 
 @RunWith(Parameterized::class)
 public abstract class ComposeUiTest(
