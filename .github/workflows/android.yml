@@ -44,7 +44,8 @@ jobs:
         run: ./gradlew lint
 
       - name: Run Detekt (Gradle)
-        run: ./gradlew detekt
+        # Run detekt on all modules, THEN run the merge task
+        run: ./gradlew detekt mergeDetektSarif
         continue-on-error: true
 
       - name: Download Detekt Compose Plugin
@@ -64,8 +65,10 @@ jobs:
 
       - name: Upload Detekt SARIF
         uses: github/codeql-action/upload-sarif@v3
+        if: always() # Ensure this runs even if Detekt found issues
         with:
-          sarif_file: "**/build/reports/detekt/*.sarif"
+            # Point strictly to the single merged file we just created
+            sarif_file: build/reports/detekt/merge.sarif
 
       - name: Run Unit Tests
         run: |

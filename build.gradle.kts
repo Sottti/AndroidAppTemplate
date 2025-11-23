@@ -2,6 +2,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import io.gitlab.arturbosch.detekt.report.ReportMergeTask
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -17,16 +18,6 @@ plugins {
     alias(libs.plugins.kotlin.serialization) apply false
     alias(libs.plugins.kover) apply true
     alias(libs.plugins.paparazzi) apply false
-}
-
-tasks.register<Delete>("cleanPaparazziSnapshots") {
-    group = "verification"
-    description = "Deletes all Paparazzi snapshot images across the project."
-    delete(
-        fileTree(rootDir) {
-            include("**/src/test/snapshots/images/**")
-        }
-    )
 }
 
 val libraries = the<org.gradle.accessors.dm.LibrariesForLibs>()
@@ -50,6 +41,9 @@ subprojects {
 
     tasks.withType<Detekt>().configureEach {
         jvmTarget = "17"
+
+        // Ensure the build continues so the merge task can run later
+        ignoreFailures = true
 
         // This is causing issues to Detekt
         exclude("**/StateInViewModelWhileSubscribed.kt")
@@ -137,3 +131,22 @@ private fun Project.androidLibraryConfig() {
 private fun compileSdk() = libs.versions.compileSdk.get().toInt()
 private fun minSdk() = libs.versions.minSdk.get().toInt()
 private fun targetSdk() = libs.versions.targetSdk.get().toInt()
+
+tasks.register<Delete>("cleanPaparazziSnapshots") {
+    group = "verification"
+    description = "Deletes all Paparazzi snapshot images across the project."
+    delete(fileTree(rootDir) { include("**/src/test/snapshots/images/**") })
+}
+
+tasks.register<ReportMergeTask>("mergeDetektSarif") {
+    group = "verification"
+    description = "Merges all subproject SARIF reports into one."
+    output.set(layout.buildDirectory.file("reports/detekt/merge.sarif"))
+
+    // Collect the SARIF output from every subproject that has the Detekt task
+    input.from(
+        subprojects.flatMap { subproject ->
+            subproject.tasks.withType<Detekt>().map { it.reports.sarif.outputLocation }
+        }
+    )
+}
