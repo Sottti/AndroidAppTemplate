@@ -67,8 +67,8 @@ jobs:
         uses: github/codeql-action/upload-sarif@v3
         if: always() # Ensure this runs even if Detekt found issues
         with:
-            # Point strictly to the single merged file we just created
-            sarif_file: build/reports/detekt/merge.sarif
+          # Point strictly to the single merged file we just created
+          sarif_file: build/reports/detekt/merge.sarif
 
       - name: Run Unit Tests
         run: |
