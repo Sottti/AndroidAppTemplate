@@ -8,7 +8,7 @@ public fun paparazzi(
     nightMode: NightMode,
     renderingMode: SessionParams.RenderingMode = SessionParams.RenderingMode.NORMAL,
 ): Paparazzi = Paparazzi(
-    deviceConfig = PIXEL_10_PRO_XL.copy(nightMode = nightMode),
+    deviceConfig = pixel10ProXl.copy(nightMode = nightMode),
     renderingMode = renderingMode,
     showSystemUi = false,
     theme = "Theme.AndroidAppTemplate",

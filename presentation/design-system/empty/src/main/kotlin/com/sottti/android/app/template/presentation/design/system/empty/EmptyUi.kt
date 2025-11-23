@@ -11,7 +11,7 @@ import com.sottti.android.app.template.presentation.design.system.illustrations.
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
 import com.sottti.android.app.template.presentation.design.system.informative.InformativeUi
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun EmptyUi(
@@ -29,7 +29,7 @@ public fun EmptyUi(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun EmptyUiPreview(
     @PreviewParameter(EmptyUiStateProvider::class)
     state: EmptyState?,

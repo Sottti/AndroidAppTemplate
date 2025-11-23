@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun ProgressIndicator(
@@ -50,7 +50,7 @@ private fun progressIndicatorSize(size: ProgressIndicatorSize): Dp =
     }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun ProgressIndicatorPreview(
     @PreviewParameter(ProgressIndicatorStateProvider::class)
     modifier: Modifier,

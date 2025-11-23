@@ -30,7 +30,7 @@ import com.sottti.android.app.template.presentation.design.system.progress.indic
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.images.R
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun NetworkImage(
@@ -100,7 +100,7 @@ private fun BoxWithConstraintsScope.indicatorSize(): ProgressIndicatorSize =
     }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun NetworkImagePreview(
     @PreviewParameter(NetworkImageStateProvider::class)
     state: NetworkImageState,

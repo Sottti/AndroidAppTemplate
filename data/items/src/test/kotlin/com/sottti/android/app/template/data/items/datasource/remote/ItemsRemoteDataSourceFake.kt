@@ -28,9 +28,9 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
 
     @OptIn(UnsafeResultValueAccess::class, UnsafeResultErrorAccess::class)
     override suspend fun getItem(itemId: ItemId): Result<Item> {
-        val listResult = response
+        val listResult = checkNotNull(response) { "Test response was not set in fake" }
+
         return when {
-            listResult == null -> throw IllegalStateException("Test response was not set in fake")
             listResult.isOk -> {
                 val item = listResult.value.firstOrNull { it.id.value == itemId.value }
                     ?: return Err(Unknown("Item with id ${itemId.value} not found"))
@@ -38,7 +38,7 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
             }
 
             listResult.isErr -> Err(listResult.error)
-            else -> throw IllegalStateException("Test response was not set in fake")
+            else -> error("Unexpected result state")
         }
     }
 
@@ -49,6 +49,6 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
         lastCalledPageNumber = pageNumber
         lastCalledPageSize = pageSize
 
-        return response ?: throw IllegalStateException("Test response was not set in the fake")
+        return checkNotNull(response) { "Test response was not set in the fake" }
     }
 }

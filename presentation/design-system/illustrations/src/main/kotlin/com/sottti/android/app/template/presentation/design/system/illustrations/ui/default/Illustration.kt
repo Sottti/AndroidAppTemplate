@@ -11,7 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 import androidx.compose.foundation.Image as MaterialImage
 
 @Composable
@@ -38,7 +38,7 @@ public fun Illustration(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun IllustrationPreview(
     @PreviewParameter(IllustrationUiStateProvider::class)
     state: IllustrationPreviewState,

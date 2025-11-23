@@ -32,7 +32,8 @@ scope, and delivery goals before adopting it wholesale.
 
 This project serves as a starter kit for new Android applications. It's designed to save you from
 the repetitive setup process of configuring dependencies, setting up architecture, and implementing
-common utilities. Just clone or use this template, rename the packages, features... and start building your app's
+common utilities. Just clone or use this template, rename the packages, features... and start
+building your app's
 features immediately.
 
 ## ✨ Features
@@ -42,14 +43,16 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
+    * **Navigation:
+      ** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronicity:
+  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
@@ -62,7 +65,8 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Testing:**
     * **Unit Tests:** [JUnit 4](https://junit.org/junit4/)
     * **Screenshot Tests:** [Paparazzi](https://github.com/cashapp/paparazzi)
-    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing) testing both screen orientations and multiple font scales.
+    * **UI Tests:** [Compose Test Rules](https://developer.android.com/jetpack/compose/testing)
+      testing both screen orientations and multiple font scales.
     * **Integration Tests:** Instrumented Compose flows cover the full stack—from
       navigation orchestration to feature screens using Hilt-enabled end-to-end journeys and
       parameterized scenarios that sweep multiple font scales and orientations
@@ -79,12 +83,13 @@ This template is packed with the latest libraries and tools from the Android eco
 
 Execute the following Gradle tasks from the project root to run the automated test suites locally:
 
-| Suite | Command | Description |
-|-------|---------|-------------|
-| Local/unit tests | `./gradlew testDebug` | Executes JVM-based tests located under `src/test` for the `debug` build variant. |
+| Suite                      | Command                               | Description                                                                                             |
+|----------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------|
+| Local/unit tests           | `./gradlew testDebug`                 | Executes JVM-based tests located under `src/test` for the `debug` build variant.                        |
 | Instrumented Android tests | `./gradlew connectedDebugAndroidTest` | Launches Espresso/Compose instrumentation tests in `src/androidTest` on a connected emulator or device. |
 
-> ℹ️ Ensure that an Android emulator or physical device is connected before running the instrumentation suite.
+> ℹ️ Ensure that an Android emulator or physical device is connected before running the
+> instrumentation suite.
 
 ### 🌟 Additional Highlights
 
@@ -162,28 +167,29 @@ dependencies explicit.
 Every Gradle module has a single responsibility. Use the table below to find the code you need:
 
 * **Application shell**
-  * `app`: Hosts the `Application`, activities, and wires the dependency graph at runtime.
+    * `app`: Hosts the `Application`, activities, and wires the dependency graph at runtime.
 * **Presentation layer**
-  * `presentation:design-system`: Shared Compose theming, typography, and reusable components.
-  * `presentation:features:*`: Feature-specific screens such as `items-list`, `item-details`, and
-    `home`.
-  * `presentation:navigation` & `presentation:navigation-impl`: Navigation contracts and their
-    Compose Navigation 3 implementation.
-  * `presentation:paparazzi`, `presentation:previews`, `presentation:utils`, `presentation:fixtures`:
-    Tooling for previews, snapshot tests, and sample data.
+    * `presentation:design-system`: Shared Compose theming, typography, and reusable components.
+    * `presentation:features:*`: Feature-specific screens such as `items-list`, `item-details`, and
+      `home`.
+    * `presentation:navigation` & `presentation:navigation-impl`: Navigation contracts and their
+      Compose Navigation 3 implementation.
+    * `presentation:paparazzi`, `presentation:previews`, `presentation:utils`,
+      `presentation:fixtures`:
+      Tooling for previews, snapshot tests, and sample data.
 * **Domain layer**
-  * `domain:core-models`: Canonical models exchanged between layers.
-  * `domain:items`, `domain:settings`, `domain:system-features`: Use cases and business logic per
-    feature area.
+    * `domain:core-models`: Canonical models exchanged between layers.
+    * `domain:items`, `domain:settings`, `domain:system-features`: Use cases and business logic per
+      feature area.
 * **Data layer**
-  * `data:items`: Paging, Room cache, and remote mediator for list and detail flows.
-  * `data:network`: Ktor client configuration and API definitions.
-  * `data:settings`: Persistence for user preferences and configuration toggles.
-  * `data:system-features`: Abstractions over device capabilities with test fakes.
+    * `data:items`: Paging, Room cache, and remote mediator for list and detail flows.
+    * `data:network`: Ktor client configuration and API definitions.
+    * `data:settings`: Persistence for user preferences and configuration toggles.
+    * `data:system-features`: Abstractions over device capabilities with test fakes.
 * **Dependency injection**
-  * `di`: Shared Hilt modules and component wiring consumed across the app.
+    * `di`: Shared Hilt modules and component wiring consumed across the app.
 * **Shared utilities**
-  * `utils:lifecycle`: Lifecycle-aware coroutine helpers and Flow extensions reused in ViewModels.
+    * `utils:lifecycle`: Lifecycle-aware coroutine helpers and Flow extensions reused in ViewModels.
 
 ## 🚀 How to Use This Template
 
@@ -231,7 +237,10 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 the [LICENSE](LICENSE) file for details.
 
 ## 👋 Contact
-If you feel like saying hi, have any comments, suggestions or questions, [open an issue](https://github.com/Sottti/AndroidAppTemplate/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen) or say [hi 👋 on X](https://x.com/Sotttti).
+
+If you feel like saying hi, have any comments, suggestions or
+questions, [open an issue](https://github.com/Sottti/AndroidAppTemplate/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen)
+or say [hi 👋 on X](https://x.com/Sotttti).
 
 ## 📷 Screenshots
 

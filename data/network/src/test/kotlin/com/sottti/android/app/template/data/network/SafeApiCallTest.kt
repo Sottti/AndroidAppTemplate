@@ -157,7 +157,7 @@ internal class SafeApiCallTest {
     @Test
     fun `returns unknown error when engine throws generic exception`() = runTest {
         val unexpectedErrorMessage = "Unexpected Error"
-        val client = createMockClient { throw RuntimeException(unexpectedErrorMessage) }
+        val client = createMockClient { throw IllegalStateException(unexpectedErrorMessage) }
         val result = client.fetchAsText()
 
         assertThat(result.isErr).isTrue()
@@ -169,7 +169,7 @@ internal class SafeApiCallTest {
     @Test
     fun `returns unknown error with default message when generic exception message is null`() =
         runTest {
-            val client = createMockClient { throw RuntimeException() }
+            val client = createMockClient { throw IllegalStateException() }
             val result = client.fetchAsText()
 
             assertThat(result.isErr).isTrue()

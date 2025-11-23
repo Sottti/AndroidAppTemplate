@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.images.local.model.ImageState
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 import androidx.compose.foundation.Image as MaterialImage
 
 @Composable
@@ -29,7 +29,7 @@ public fun Image(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun ImagePreview(
     @PreviewParameter(ImageStateProvider::class)
     state: ImagePreviewState,

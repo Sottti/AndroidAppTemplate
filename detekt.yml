@@ -61,7 +61,7 @@ Compose:
   MissingRemember:
     active: true
   ModifierMissing:
-    active: true
+    active: false
 
 potential-bugs:
   active: true

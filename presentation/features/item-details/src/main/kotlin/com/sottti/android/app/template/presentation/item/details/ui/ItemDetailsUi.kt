@@ -12,7 +12,7 @@ import com.sottti.android.app.template.presentation.design.system.themes.Android
 import com.sottti.android.app.template.presentation.item.details.data.ItemDetailsViewModel
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun ItemDetails(id: Int) {
@@ -49,9 +49,9 @@ internal fun ItemDetails(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun ItemDetailsUiPreview(
-    @PreviewParameter(ItemsDetailsUiStateProvider::class)
+    @PreviewParameter(ItemDetailsUiStateProvider::class)
     state: ItemDetailsState,
 ) {
     AndroidAppTemplateTheme {

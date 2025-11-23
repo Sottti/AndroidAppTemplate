@@ -11,5 +11,6 @@ import kotlinx.coroutines.CoroutineScope
 internal object ItemsListModule {
 
     @Provides
+    @Suppress("FunctionOnlyReturningConstant")
     fun provideCoroutineScope(): CoroutineScope? = null
 }

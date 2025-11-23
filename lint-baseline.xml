@@ -2,16 +2,16 @@
 <issues name="AGP (8.13.1)" by="lint 8.13.1" client="gradle" dependencies="false" format="6"
     type="baseline" variant="all" version="8.13.1">
 
-    <issue errorLine1="navigation = &quot;1.0.0&quot;"
-        errorLine2="             ~~~~~~~"
-        id="GradleDependency" message="A newer version of androidx.lifecycle:lifecycle-viewmodel-navigation3 than 1.0.0 is available: 2.10.0">
+    <issue errorLine1="navigation = &quot;1.0.0&quot;" errorLine2="             ~~~~~~~"
+        id="GradleDependency"
+        message="A newer version of androidx.lifecycle:lifecycle-viewmodel-navigation3 than 1.0.0 is available: 2.10.0">
         <location column="14" file="$HOME/Projects/AndroidAppTemplate/gradle/libs.versions.toml"
             line="24" />
     </issue>
 
-    <issue errorLine1="composeRules = &quot;0.4.22&quot;"
-        errorLine2="               ~~~~~~~~"
-        id="NewerVersionAvailable" message="A newer version of io.nlopez.compose.rules:detekt than 0.4.22 is available: 0.4.28">
+    <issue errorLine1="composeRules = &quot;0.4.22&quot;" errorLine2="               ~~~~~~~~"
+        id="NewerVersionAvailable"
+        message="A newer version of io.nlopez.compose.rules:detekt than 0.4.22 is available: 0.4.28">
         <location column="16" file="$HOME/Projects/AndroidAppTemplate/gradle/libs.versions.toml"
             line="9" />
     </issue>

@@ -12,7 +12,7 @@ import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.dp
 import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 import androidx.compose.material3.Icon as MaterialIcon
 
 @Composable
@@ -58,7 +58,7 @@ public fun Icon(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun IconPreview(
     @PreviewParameter(IconStateProvider::class)
     state: com.sottti.android.app.template.presentation.design.system.icons.ui.IconState,

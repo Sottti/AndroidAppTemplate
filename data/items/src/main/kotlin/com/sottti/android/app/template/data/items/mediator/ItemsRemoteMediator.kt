@@ -27,16 +27,18 @@ internal class ItemsRemoteMediator @Inject constructor(
     ): MediatorResult {
         return try {
             val pageSize = state.config.pageSize
-            var page: Int
 
-            when (loadType) {
-                LoadType.REFRESH -> page = 1
-                LoadType.PREPEND -> return Success(endOfPaginationReached = true)
+            val page = when (loadType) {
+                LoadType.REFRESH -> 1
+                LoadType.PREPEND -> null
                 LoadType.APPEND -> {
                     val keys = localDataSource.getNextRemotePage()
-                    val next = keys?.nextPage ?: return Success(endOfPaginationReached = true)
-                    page = next
+                    keys?.nextPage
                 }
+            }
+
+            if (page == null) {
+                return Success(endOfPaginationReached = true)
             }
 
             val items = remoteDataSource.getItems(
@@ -67,8 +69,6 @@ internal class ItemsRemoteMediator @Inject constructor(
         } catch (e: IOException) {
             MediatorResult.Error(e)
         } catch (e: ResponseException) {
-            MediatorResult.Error(e)
-        } catch (e: Exception) {
             MediatorResult.Error(e)
         }
     }

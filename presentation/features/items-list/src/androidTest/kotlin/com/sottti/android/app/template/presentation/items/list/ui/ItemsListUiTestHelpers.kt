@@ -6,7 +6,7 @@ import com.sottti.android.app.template.presentation.design.system.progress.indic
 
 internal fun fullscreenIndicatorMatcher(): SemanticsMatcher =
     hasTestTag(PROGRESS_INDICATOR_TEST_TAG) and
-            hasTestTag(PROGRESS_INDICATOR_GRID_TEST_TAG).not()
+        hasTestTag(PROGRESS_INDICATOR_GRID_TEST_TAG).not()
 
 internal fun gridIndicatorMatcher(): SemanticsMatcher =
     hasTestTag(PROGRESS_INDICATOR_GRID_TEST_TAG)

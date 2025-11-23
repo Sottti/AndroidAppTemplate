@@ -28,4 +28,4 @@ import androidx.compose.ui.tooling.preview.Preview
 )
 @Retention(AnnotationRetention.BINARY)
 @Target(AnnotationTarget.ANNOTATION_CLASS, AnnotationTarget.FUNCTION)
-public annotation class AndroidAppTemplatePreview
+public annotation class PreviewAndroidAppTemplate

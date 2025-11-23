@@ -12,7 +12,7 @@ import com.sottti.android.app.template.presentation.design.system.themes.Android
 import com.sottti.android.app.template.presentation.items.list.data.ItemsListViewModel
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 
 @Composable
 public fun ItemList() {
@@ -49,7 +49,7 @@ private fun ItemList(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun ItemListUiPreview(
     @PreviewParameter(ItemsListUiStateProvider::class)
     state: ItemsListState,

@@ -23,7 +23,7 @@ import com.sottti.android.app.template.presentation.design.system.illustrations.
 import com.sottti.android.app.template.presentation.design.system.illustrations.ui.cricled.CircledIllustration
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
-import com.sottti.android.app.template.presentation.previews.AndroidAppTemplatePreview
+import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 import com.sottti.android.app.template.presentation.utils.Spacer
 import com.sottti.android.app.template.presentation.utils.isPortraitOrientation
 
@@ -165,7 +165,7 @@ private fun LandscapeLayout(
 }
 
 @Composable
-@AndroidAppTemplatePreview
+@PreviewAndroidAppTemplate
 internal fun InformativeUiPreview(
     @PreviewParameter(InformativeUiStateProvider::class)
     state: InformativeState,

@@ -21,7 +21,7 @@ internal class ItemsListMapperTest {
     }
 
     @Test
-    fun `given a list of domain Items, when mapped to UI models, then it should return a list of correctly mapped models`() {
+    fun `given a list of domain items, when mapped to UI models, it should return a list of correctly mapped models`() {
         val domainList = listOfTwoItems
 
         val uiModelList = domainList.toUi()
