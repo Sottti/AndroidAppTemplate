@@ -54,6 +54,13 @@ subprojects {
             sarif.required.set(true)
             txt.required.set(false)
         }
+
+        val detektTask = this
+        rootProject.tasks.withType<ReportMergeTask>().configureEach {
+            if (name == "mergeDetektSarif") {
+                input.from(detektTask.reports.sarif.outputLocation)
+            }
+        }
     }
 
     tasks.withType<DetektCreateBaselineTask>().configureEach {
@@ -142,11 +149,4 @@ tasks.register<ReportMergeTask>("mergeDetektSarif") {
     group = "verification"
     description = "Merges all subproject SARIF reports into one."
     output.set(layout.buildDirectory.file("reports/detekt/merge.sarif"))
-
-    // Collect the SARIF output from every subproject that has the Detekt task
-    input.from(
-        subprojects.flatMap { subproject ->
-            subproject.tasks.withType<Detekt>().map { it.reports.sarif.outputLocation }
-        }
-    )
 }
