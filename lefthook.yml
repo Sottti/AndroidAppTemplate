@@ -1,0 +1,24 @@
+# PRE-COMMIT: Fast checks on CHANGED files only
+pre-commit:
+  parallel: true
+  commands:
+    detekt:
+      # 1. Only run if Kotlin files changed
+      glob: "*.kt"
+      # 2. The Magic: Use Gradle daemon + the script we added above
+      # {staged_files} is a Lefthook template that inserts the file list
+      # We use tr to replace spaces with commas for Gradle
+      run: ./gradlew detekt -Pdetekt.input="$(echo '{staged_files}' | tr ' ' ',')" --daemon
+
+# PRE-PUSH: Heavy checks on the WHOLE project
+pre-push:
+  parallel: true
+  commands:
+    # Android Lint is very heavy (needs full compile).
+    # Better to run it before pushing than before committing.
+    android-lint:
+      run: ./gradlew lintDebug
+
+    # Optional: Run full Detekt here just in case single-file context missed something
+    detekt-full:
+      run: ./gradlew detekt
