@@ -12,7 +12,6 @@ android {
 dependencies {
     api(libs.ktor.client.core)
     api(libs.result)
-    implementation(libs.coil.network.ktor3)
     implementation(libs.hilt)
     implementation(libs.hilt.android.testing)
     implementation(libs.ktor.client.cio)
