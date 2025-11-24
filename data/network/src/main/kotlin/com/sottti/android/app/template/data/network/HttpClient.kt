@@ -7,15 +7,17 @@ import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.takeFrom
 
-private const val API_BASE_URL = "https://punkapi.online/v3/"
+internal const val API_BASE_URL = "https://punkapi.online/v3/"
 
-internal fun createHttpClient() = HttpClient(CIO) {
+internal fun createBaseHttpClient() = HttpClient(CIO) {
     installJson()
-
-    defaultRequest {
-        url.takeFrom(API_BASE_URL)
-        contentType(ContentType.Application.Json)
-    }
-
     installLogging()
 }
+
+internal fun createApiHttpClient() =
+    createBaseHttpClient().config {
+        defaultRequest {
+            url.takeFrom(API_BASE_URL)
+            contentType(ContentType.Application.Json)
+        }
+    }
