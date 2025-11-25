@@ -17,7 +17,7 @@ import kotlinx.serialization.json.jsonObject
 
 public fun createMockHttpClient(context: Context): HttpClient {
     val json = Json { ignoreUnknownKeys = true }
-    val itemsJson = context.loadJsonAsset("items.json")
+    val itemsJson = context.loadJsonAsset("fake_api_response.json")
     val itemsById = buildItemsById(itemsJson, json)
     val engine = mockEngineForJson(API_PATH_BEERS, itemsJson, itemsById)
 

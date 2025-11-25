@@ -11,8 +11,6 @@ import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteD
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.items.model.Item
-import io.ktor.client.plugins.ResponseException
-import kotlinx.io.IOException
 import javax.inject.Inject
 
 @OptIn(ExperimentalPagingApi::class)
@@ -21,6 +19,7 @@ internal class ItemsRemoteMediator @Inject constructor(
     val remoteDataSource: ItemsRemoteDataSource,
 ) : RemoteMediator<Int, Item>() {
 
+    @Suppress("TooGenericExceptionCaught")
     override suspend fun load(
         loadType: LoadType,
         state: PagingState<Int, Item>,
@@ -66,9 +65,7 @@ internal class ItemsRemoteMediator @Inject constructor(
             }
 
             Success(endOfPaginationReached = endReached)
-        } catch (e: IOException) {
-            MediatorResult.Error(e)
-        } catch (e: ResponseException) {
+        } catch (e: Exception) {
             MediatorResult.Error(e)
         }
     }

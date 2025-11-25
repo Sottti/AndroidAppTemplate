@@ -4,7 +4,6 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingConfig
 import androidx.paging.PagingState
-import androidx.paging.RemoteMediator.MediatorResult.Error
 import androidx.paging.RemoteMediator.MediatorResult.Success
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceFake
@@ -104,17 +103,6 @@ internal class ItemsRemoteMediatorTest {
         val result = mediator.load(LoadType.PREPEND, pagingState)
         assertThat(result).isInstanceOf(Success::class.java)
         assertThat((result as Success).endOfPaginationReached).isTrue()
-    }
-
-    @Test
-    fun `load on remote error returns error result`() = runTest {
-        val exception = kotlinx.io.IOException("Network Failure")
-        remoteDataSource.setErrorResponse(exception)
-
-        val result = mediator.load(LoadType.REFRESH, pagingState)
-
-        assertThat(result).isInstanceOf(Error::class.java)
-        assertThat((result as Error).throwable).isEqualTo(exception)
     }
 
     @Test

@@ -10,12 +10,12 @@ android {
 }
 
 dependencies {
-    api(libs.ktor.client.core)
     api(libs.result)
     implementation(libs.hilt)
     implementation(libs.hilt.android.testing)
     implementation(libs.ktor.client.cio)
     implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.logging)
     implementation(libs.ktor.client.mock)
     implementation(libs.ktor.serialization.kotlinx.json)

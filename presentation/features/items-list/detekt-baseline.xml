@@ -1,12 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-    <ManuallySuppressedIssues />
-    <CurrentIssues>
-        <ID>FunctionOnlyReturningConstant:ItemsListModule.kt$ItemsListModule$@Provides fun
-            provideCoroutineScope(): CoroutineScope?
-        </ID>
-        <ID>MaxLineLength:ItemsListMapperTest.kt$ItemsListMapperTest$fun</ID>
-        <ID>MaximumLineLength:ItemsListMapperTest.kt$ItemsListMapperTest$</ID>
-        <ID>ThrowingExceptionsWithoutMessageOrCause:ItemsListUiStateProvider.kt$Exception()</ID>
-    </CurrentIssues>
+  <ManuallySuppressedIssues/>
+  <CurrentIssues>
+    <ID>ThrowingExceptionsWithoutMessageOrCause:ItemsListUiStateProvider.kt$Exception()</ID>
+  </CurrentIssues>
 </SmellBaseline>

@@ -15,7 +15,9 @@ import io.ktor.client.plugins.RedirectResponseException
 import io.ktor.client.plugins.ServerResponseException
 import io.ktor.client.statement.bodyAsText
 import java.net.UnknownHostException
+import kotlin.coroutines.cancellation.CancellationException
 
+@Suppress("TooGenericExceptionCaught")
 public suspend fun <T> safeApiCall(
     apiCall: suspend () -> T,
 ): Result<T, ExceptionApiModel> = try {
@@ -42,6 +44,8 @@ public suspend fun <T> safeApiCall(
             code = exception.response.status.value,
         ),
     )
+} catch (exception: CancellationException) {
+    throw exception
 } catch (exception: Exception) {
     Err(Unknown(exception.message ?: UNKNOWN_ERROR_MESSAGE))
 }

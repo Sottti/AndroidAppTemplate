@@ -16,6 +16,7 @@ javax-inject = "1"
 junit = "4.13.2"
 kotlin = "2.2.21"
 kotlin-ksp = "2.3.3"
+kotlin-serialization = "1.9.0"
 kover = "0.9.3"
 ktor = "3.3.3"
 lifecycle = "2.10.0"
@@ -60,6 +61,7 @@ junit = { group = "junit", name = "junit", version.ref = "junit" }
 kotlin-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlin-coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlin-test = { group = "org.jetbrains.kotlin", name = "kotlin-test", version.ref = "kotlin" }
+kotlinx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version = "kotlin-serialization" }
 ktor-client-cio = { group = "io.ktor", name = "ktor-client-cio", version.ref = "ktor" }
 ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
 ktor-client-core = { group = "io.ktor", name = "ktor-client-core", version.ref = "ktor" }
