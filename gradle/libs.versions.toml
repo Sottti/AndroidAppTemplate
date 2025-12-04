@@ -1,11 +1,11 @@
 [versions]
-activity = "1.12.0"
+activity = "1.12.1"
 agp = "8.13.1"
 annotations = "1.9.1"
 appcompat = "1.7.1"
 coil = "3.3.0"
 compileSdk = "36"
-compose-bom = "2025.11.01"
+compose-bom = "2025.12.00"
 composeRules = "0.4.28"
 core = "1.17.0"
 coroutines = "1.10.2"
