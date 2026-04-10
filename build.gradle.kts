@@ -3,6 +3,7 @@ import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.tasks.testing.Test
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -11,7 +12,6 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.detekt) apply true
     alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.ksp) apply false
@@ -64,31 +64,29 @@ subprojects {
 
     plugins.withId("com.android.application") {
         configure<ApplicationExtension> { androidApplicationConfig() }
+        configureAndroidKotlin()
     }
 
     plugins.withId("com.android.library") {
         androidLibraryConfig()
-    }
-
-    plugins.withId("org.jetbrains.kotlin.android") {
-        extensions.configure<KotlinAndroidProjectExtension> {
-            explicitApi()
-            jvmToolchain(17)
-            compilerOptions {
-                freeCompilerArgs.add("-Xwhen-guards")
-                freeCompilerArgs.add("-Xcontext-parameters")
-                freeCompilerArgs.add("-Xannotation-default-target=param-property")
-            }
-        }
+        configureAndroidKotlin()
     }
 
     plugins.withId("org.jetbrains.kotlin.jvm") {
         extensions.configure<KotlinJvmProjectExtension> {
             explicitApi()
-            jvmToolchain(17)
+            jvmToolchain(21)
             compilerOptions {
                 freeCompilerArgs.add("-Xcontext-parameters")
             }
+        }
+    }
+
+    plugins.withId("app.cash.paparazzi") {
+        tasks.withType<Test>().configureEach {
+            // Paparazzi generates its own HTML report; disabling Gradle's default one
+            // avoids an upstream Paparazzi/Gradle 9 compatibility issue.
+            reports.html.required.set(false)
         }
     }
 }
@@ -105,6 +103,17 @@ private fun ApplicationExtension.androidApplicationConfig() {
         checkReleaseBuilds = false
         xmlReport = true
         htmlReport = true
+    }
+}
+
+private fun Project.configureAndroidKotlin() {
+    extensions.configure<KotlinAndroidProjectExtension> {
+        explicitApi()
+        jvmToolchain(21)
+        compilerOptions {
+            freeCompilerArgs.add("-Xcontext-parameters")
+            freeCompilerArgs.add("-Xannotation-default-target=param-property")
+        }
     }
 }
 

@@ -81,7 +81,7 @@ This template is packed with the latest libraries and tools from the Android eco
 
 ### ▶️ Running the test suites
 
-Execute the following Gradle tasks from the project root to run the automated test suites locally:
+Use JDK 21 when running Gradle locally, then execute the following tasks from the project root:
 
 | Suite                      | Command                               | Description                                                                                             |
 |----------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------|
