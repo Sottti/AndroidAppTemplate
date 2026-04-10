@@ -35,10 +35,10 @@ import com.sottti.android.app.template.presentation.design.system.colors.color.c
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.error.ErrorButton
 import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
+import com.sottti.android.app.template.presentation.design.system.images.local.Image
+import com.sottti.android.app.template.presentation.design.system.images.network.NetworkImage
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.text.Text
-import com.sottti.android.app.template.presentation.images.network.NetworkImage
-import com.sottti.android.app.template.presentation.item.details.model.ImageState
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsActions
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsRow
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsSectionState
@@ -47,6 +47,9 @@ import com.sottti.android.app.template.presentation.item.details.model.ItemDetai
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loaded
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loading
 import com.sottti.android.app.template.presentation.item.details.model.ItemIdentityState
+import com.sottti.android.app.template.presentation.item.details.model.ItemImageState
+import com.sottti.android.app.template.presentation.item.details.model.ItemImageState.NetworkImage
+import com.sottti.android.app.template.presentation.item.details.model.ItemImageState.PlaceholderImage
 import com.sottti.android.app.template.presentation.item.details.model.ItemState
 import com.sottti.android.app.template.presentation.utils.Spacer
 import com.sottti.android.app.template.presentation.utils.isPortraitOrientation
@@ -138,7 +141,7 @@ private fun LoadedStatePortrait(
     ) {
         item(key = "image") {
             Image(
-                state = state.imageState,
+                state = state.image,
                 modifier = Modifier
                     .padding(horizontal = dimensions.spacing.medium)
                     .fillMaxWidth()
@@ -164,7 +167,7 @@ private fun LoadedStateLandscape(
 
     Row(modifier = Modifier.padding(start = startPadding, end = endPadding)) {
         Image(
-            state = state.imageState,
+            state = state.image,
             modifier = Modifier
                 .weight(1f)
                 .fillMaxSize()
@@ -187,15 +190,22 @@ private fun LoadedStateLandscape(
 
 @Composable
 private fun Image(
-    state: ImageState,
+    state: ItemImageState,
     modifier: Modifier,
 ) {
-    NetworkImage(
-        url = state.imageUrl,
-        contentDescription = state.imageDescription,
-        roundedCorners = true,
-        modifier = modifier.testTag(ITEM_DETAILS_IMAGE_TEST_TAG),
-    )
+    when (state) {
+        is NetworkImage -> NetworkImage(
+            url = state.url,
+            contentDescription = state.description,
+            roundedCorners = true,
+            modifier = modifier.testTag(ITEM_DETAILS_IMAGE_TEST_TAG),
+        )
+
+        is PlaceholderImage -> Image(
+            state = state.state,
+            modifier = modifier.testTag(ITEM_DETAILS_IMAGE_TEST_TAG),
+        )
+    }
 }
 
 @Composable
@@ -221,7 +231,7 @@ private fun Header(@StringRes text: Int) {
 
 @Composable
 private fun IdentityDetails(state: ItemIdentityState) {
-    val items = listOfNotNull(state.name, state.tagline, state.year)
+    val items = listOfNotNull(state.name)
 
     DetailsCard {
         items.forEachIndexed { index, item ->
@@ -270,12 +280,10 @@ private fun Trailing(
     screenWidth: Dp,
     state: ItemDetailsRow,
 ) {
-    state.trailing?.let { trailing ->
-        Text.Body.Large(
-            text = trailing,
-            textColor = colors.onSurface,
-            modifier = Modifier.widthIn(max = screenWidth * 0.5f),
-            textAlign = TextAlign.End,
-        )
-    }
+    Text.Body.Large(
+        text = state.trailing.orEmpty(),
+        textColor = colors.onSurface,
+        modifier = Modifier.widthIn(max = screenWidth * 0.5f),
+        textAlign = TextAlign.End,
+    )
 }

@@ -40,7 +40,7 @@ internal class ObserveItemsFakeTest {
 
             assertThat(resultFlow).isEqualTo(specificFlow)
             assertThat(snapshot).hasSize(2)
-            assertThat(snapshot[0].name.value).isEqualTo(listOfTwoItems[0].name.value)
+            assertThat(snapshot[0].name?.value).isEqualTo(listOfTwoItems[0].name?.value)
         }
 
     @Test

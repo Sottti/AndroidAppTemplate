@@ -37,9 +37,9 @@ internal class ItemsRepositoryImpl @Inject constructor(
     override fun observeItems(): Flow<PagingData<Item>> {
         return Pager(
             config = PagingConfig(
-                pageSize = 50,
+                pageSize = ItemsRemoteDataSource.PAGE_SIZE,
                 prefetchDistance = 10,
-                initialLoadSize = 50,
+                initialLoadSize = ItemsRemoteDataSource.PAGE_SIZE,
                 enablePlaceholders = true,
             ),
             pagingSourceFactory = { localDataSource.observeItems() },

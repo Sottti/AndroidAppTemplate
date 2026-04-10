@@ -25,6 +25,7 @@ import io.ktor.http.HttpHeaders
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.headersOf
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.test.runTest
 import org.junit.Test
 import java.net.UnknownHostException
@@ -125,24 +126,20 @@ internal class SafeApiCallTest {
 
     @Test
     fun `returns redirect error when server returns 3xx and redirects are off`() = runTest {
-        // This test needs a client configured specifically *not* to follow redirects.
-        // We bypass the standard createMockClient helper here.
         val client = HttpClient(MockEngine) {
             engine {
                 addHandler {
-                    respondError(
-                        HttpStatusCode.MovedPermanently,
+                    respond(
+                        content = "",
+                        status = HttpStatusCode.MovedPermanently,
                         headers = headersOf(HttpHeaders.Location, TEST_URL),
                     )
                 }
             }
             install(ContentNegotiation) { json() }
-            followRedirects = false // The crucial setting for this test
-            expectSuccess = true // Ensure exception is expected
+            expectSuccess = true // Mandatory: Forces Ktor to check status codes
+            followRedirects = false // Mandatory: Prevents auto-redirect, ensuring 3xx causes error
         }
-
-        // Ktor throws RedirectResponseException on 3xx if followRedirects = false and expectSuccess = true
-        // However, this seems unreliable with MockEngine. Test is removed.
 
         val result = client.fetchAsText()
 
@@ -190,8 +187,6 @@ internal class SafeApiCallTest {
                 ),
             )
         }
-        // The apiCall block must attempt deserialization to trigger the exception
-        // safeApiCall no longer catches SerializationException specifically
         val result = safeApiCall { client.get(TEST_URL).body<TestData>() }
 
         assertThat(result.isErr).isTrue()
@@ -209,18 +204,19 @@ internal class SafeApiCallTest {
                 status = HttpStatusCode.BadRequest
             )
         }
-
-        // Ktor throws ClientRequestException (expectSuccess=true).
-        // safeApiCall catches it.
-        // Inside the catch, it calls exception.response.bodyAsText().
-        // bodyAsText calls awaitContent(), which throws IOException.
-        // Since there's no inner try-catch, the IOException propagates up.
-        // The final catch (exception: Exception) catches the IOException.
         val result = client.fetchAsText()
 
         assertThat(result.isErr).isTrue()
         val error = result.getError()
         assertThat(error).isInstanceOf(ExceptionApiModel.Unknown::class.java)
         assertThat(error?.message).isEqualTo("Simulated body read failure")
+    }
+
+    @Test(expected = CancellationException::class)
+    fun `re-throws cancellation exception`() = runTest {
+        val client = createMockClient { throw CancellationException("Job Cancelled") }
+
+        // This should NOT return a Result.Err, but throw the exception upwards
+        safeApiCall { client.get(TEST_URL) }
     }
 }

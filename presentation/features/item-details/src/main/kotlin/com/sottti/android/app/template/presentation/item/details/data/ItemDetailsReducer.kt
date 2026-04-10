@@ -1,62 +1,41 @@
 package com.sottti.android.app.template.presentation.item.details.data
 
 import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.domain.items.model.ItemImage
+import com.sottti.android.app.template.domain.items.model.ItemName
+import com.sottti.android.app.template.presentation.design.system.images.local.data.Images
 import com.sottti.android.app.template.presentation.item.details.R
-import com.sottti.android.app.template.presentation.item.details.model.ImageState
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsRow
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
-import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Error
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loaded
-import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState.Loading
 import com.sottti.android.app.template.presentation.item.details.model.ItemIdentityState
+import com.sottti.android.app.template.presentation.item.details.model.ItemImageState
 import com.sottti.android.app.template.presentation.item.details.model.ItemState
 
-internal fun ItemDetailsState.reduce(item: Item): ItemDetailsState {
-    val updatedTopBar = topBarState.copy(title = item.name.value)
-    return when (this) {
-        is Loaded -> copy(
-            topBarState = updatedTopBar,
-            item = item.toItemState(existing = this.item)
-        )
+internal fun ItemDetailsState.reduce(
+    update: Item,
+): ItemDetailsState =
+    Loaded(
+        topBarState = topBarState.copy(title = update.name.value),
+        item = update.toItemState(),
+    )
 
-        is Error, is Loading -> Loaded(
-            topBarState = updatedTopBar,
-            item = item.toItemState()
+private fun Item.toItemState(): ItemState =
+    ItemState(
+        image = image.toState(),
+        identity = ItemIdentityState(
+            header = R.string.identity_header,
+            name = name.toIdentityRow(),
         )
-    }
+    )
+
+private fun ItemImage?.toState(): ItemImageState = when (this) {
+    null -> ItemImageState.PlaceholderImage(Images.AvatarPlaceholder.state)
+    else -> ItemImageState.NetworkImage(description = description, url = url)
 }
 
-private fun Item.toItemState(
-    existing: ItemState? = null,
-): ItemState = existing?.copy(
-    imageState = existing.imageState.copy(
-        imageDescription = image.description,
-        imageUrl = image.imageUrl
-    ),
-    identity = existing.identity.copy(
-        name = existing.identity.name.copy(trailing = name.value),
-        tagline = existing.identity.tagline.copy(trailing = tagline.value),
-        year = existing.identity.year.copy(trailing = year.value.toString())
-    )
-)
-    ?: ItemState(
-        imageState = ImageState(
-            imageDescription = image.description,
-            imageUrl = image.imageUrl
-        ),
-        identity = ItemIdentityState(
-            header = R.string.identity_name,
-            name = ItemDetailsRow(
-                headline = R.string.identity_name,
-                trailing = name.value
-            ),
-            tagline = ItemDetailsRow(
-                headline = R.string.identity_tagline,
-                trailing = tagline.value
-            ),
-            year = ItemDetailsRow(
-                headline = R.string.identity_year,
-                trailing = year.value.toString()
-            )
-        )
+private fun ItemName.toIdentityRow() =
+    ItemDetailsRow(
+        headline = R.string.identity_name,
+        trailing = value,
     )

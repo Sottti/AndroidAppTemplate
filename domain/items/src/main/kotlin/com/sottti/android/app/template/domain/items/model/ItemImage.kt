@@ -5,5 +5,5 @@ import com.sottti.android.app.template.domain.core.models.ImageUrl
 
 public data class ItemImage(
     val description: ImageContentDescription,
-    val imageUrl: ImageUrl,
+    val url: ImageUrl,
 )

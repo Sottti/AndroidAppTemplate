@@ -34,18 +34,20 @@ import androidx.paging.LoadState.NotLoading
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.paging.compose.itemKey
-import com.sottti.android.app.template.domain.core.models.ImageContentDescription
-import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
 import com.sottti.android.app.template.presentation.design.system.empty.EmptyUi
 import com.sottti.android.app.template.presentation.design.system.error.ErrorButton
 import com.sottti.android.app.template.presentation.design.system.error.ErrorUi
+import com.sottti.android.app.template.presentation.design.system.images.local.Image
+import com.sottti.android.app.template.presentation.design.system.images.network.NetworkImage
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MainTopBar
-import com.sottti.android.app.template.presentation.images.network.NetworkImage
-import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
+import com.sottti.android.app.template.presentation.items.list.model.ItemImageState
+import com.sottti.android.app.template.presentation.items.list.model.ItemImageState.NetworkImage
+import com.sottti.android.app.template.presentation.items.list.model.ItemImageState.PlaceholderImage
+import com.sottti.android.app.template.presentation.items.list.model.ItemState
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
@@ -89,7 +91,7 @@ internal fun ItemsListContent(
 @OptIn(ExperimentalMaterial3Api::class)
 private fun Items(
     bottomPadding: Dp,
-    items: LazyPagingItems<ItemUiModel>,
+    items: LazyPagingItems<ItemState>,
     listState: LazyGridState,
     onAction: (ItemsListActions) -> Unit,
     scrollBehavior: TopAppBarScrollBehavior,
@@ -120,7 +122,7 @@ private fun Items(
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
 private fun ItemsLoaded(
-    items: LazyPagingItems<ItemUiModel>,
+    items: LazyPagingItems<ItemState>,
     listState: LazyGridState,
     scrollBehavior: TopAppBarScrollBehavior,
     onAction: (ItemsListActions) -> Unit,
@@ -150,7 +152,7 @@ private fun ItemsLoaded(
 
 @Composable
 private fun LazyGridItemScope.ItemCard(
-    item: ItemUiModel,
+    item: ItemState,
     onAction: (ItemsListActions) -> Unit,
 ) {
     Card(
@@ -165,10 +167,7 @@ private fun LazyGridItemScope.ItemCard(
             modifier = Modifier.fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            CardImage(
-                description = item.description,
-                imageUrl = item.imageUrl,
-            )
+            CardImage(state = item.image)
             CardText(text = item.name)
         }
     }
@@ -176,18 +175,21 @@ private fun LazyGridItemScope.ItemCard(
 
 @Composable
 private fun ColumnScope.CardImage(
-    description: ImageContentDescription,
-    imageUrl: ImageUrl,
+    state: ItemImageState,
 ) {
-    NetworkImage(
-        modifier = Modifier
-            .fillMaxWidth()
-            .weight(1f)
-            .padding(dimensions.spacing.small),
-        url = imageUrl,
-        contentDescription = description,
-        roundedCorners = true,
-    )
+    when (state) {
+        is NetworkImage -> NetworkImage(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(1f)
+                .padding(dimensions.spacing.small),
+            url = state.url,
+            contentDescription = state.description,
+            roundedCorners = true,
+        )
+
+        is PlaceholderImage -> Image(state = state.state)
+    }
 }
 
 @Composable

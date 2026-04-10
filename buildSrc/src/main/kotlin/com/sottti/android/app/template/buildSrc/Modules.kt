@@ -19,6 +19,7 @@ object module {
         const val navigationImpl = ":presentation:navigation-impl"
         const val paparazzi = ":presentation:paparazzi"
         const val previews = ":presentation:previews"
+        const val stringProvider = ":presentation:string-provider"
         const val utils = ":presentation:utils"
 
         object designSystem {

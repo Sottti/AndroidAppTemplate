@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>CompositionLocalAllowlist:LocalTypography.kt$LocalTypography</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>CompositionLocalAllowlist:LocalTypography.kt$LocalTypography</ID>
+    </CurrentIssues>
 </SmellBaseline>

@@ -4,14 +4,14 @@ import android.content.Context
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.RemoteMediator
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
-import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceImpl
+import com.sottti.android.app.template.data.items.datasource.local.ItemsRoomDataSource
 import com.sottti.android.app.template.data.items.datasource.local.SystemTimeProvider
 import com.sottti.android.app.template.data.items.datasource.local.TimeProvider
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDao
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDatabase
 import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDao
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
-import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceImpl
+import com.sottti.android.app.template.data.items.datasource.remote.ItemsApiDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCalls
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsImpl
 import com.sottti.android.app.template.data.items.mediator.ItemsRemoteMediator
@@ -33,13 +33,13 @@ internal abstract class ItemsDataModule {
     @Binds
     @Singleton
     abstract fun bindLocalDataSource(
-        impl: ItemsLocalDataSourceImpl,
+        impl: ItemsRoomDataSource,
     ): ItemsLocalDataSource
 
     @Binds
     @Singleton
     abstract fun bindRemoteDataSource(
-        impl: ItemsRemoteDataSourceImpl,
+        impl: ItemsApiDataSource,
     ): ItemsRemoteDataSource
 
     @Binds

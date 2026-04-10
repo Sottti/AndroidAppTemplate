@@ -10,7 +10,7 @@ import androidx.paging.PagingData
 import com.sottti.android.app.template.presentation.items.list.R
 import com.sottti.android.app.template.presentation.items.list.fixtures.listOfMultipleItemsUiModels
 import com.sottti.android.app.template.presentation.items.list.fixtures.listOfTwoItemsUiModels
-import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
+import com.sottti.android.app.template.presentation.items.list.model.ItemState
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -82,7 +82,7 @@ private fun itemsListState(
     refreshState: LoadState = NotLoading(endOfPaginationReached = false),
     appendState: LoadState = NotLoading(endOfPaginationReached = false),
     prependState: LoadState = NotLoading(endOfPaginationReached = false),
-    data: List<ItemUiModel> = listOfTwoItemsUiModels,
+    data: List<ItemState> = listOfTwoItemsUiModels,
 ) = ItemsListState(
     titleResId = R.string.items_list_title,
     items = itemsPagingDataFlow(
@@ -97,8 +97,8 @@ private fun itemsPagingDataFlow(
     refreshState: LoadState,
     appendState: LoadState,
     prependState: LoadState,
-    data: List<ItemUiModel>,
-): Flow<PagingData<ItemUiModel>> =
+    data: List<ItemState>,
+): Flow<PagingData<ItemState>> =
     MutableStateFlow(
         PagingData.from(
             data = data,

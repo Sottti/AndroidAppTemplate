@@ -113,7 +113,6 @@ internal class ItemsRemoteMediatorTest {
         assertThat(result.endOfPaginationReached).isFalse()
 
         assertThat(remoteDataSource.lastCalledPageNumber?.value).isEqualTo(1)
-        assertThat(remoteDataSource.lastCalledPageSize?.value).isEqualTo(10)
 
         assertThat(localDataSource.remoteKeys?.prevPage).isNull()
         assertThat(localDataSource.remoteKeys?.nextPage).isEqualTo(2)

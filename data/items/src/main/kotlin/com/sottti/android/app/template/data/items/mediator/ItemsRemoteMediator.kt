@@ -9,7 +9,6 @@ import com.github.michaelbull.result.getOrThrow
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
-import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.domain.items.model.Item
 import javax.inject.Inject
 
@@ -42,7 +41,6 @@ internal class ItemsRemoteMediator @Inject constructor(
 
             val items = remoteDataSource.getItems(
                 pageNumber = PageNumberApiModel(page),
-                pageSize = PageSizeApiModel(pageSize),
             ).getOrThrow()
 
             val endReached = items.size < pageSize || items.isEmpty()

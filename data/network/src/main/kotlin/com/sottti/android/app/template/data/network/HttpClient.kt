@@ -1,15 +1,22 @@
 package com.sottti.android.app.template.data.network
 
 import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.defaultRequest
 import io.ktor.http.ContentType
 import io.ktor.http.contentType
 import io.ktor.http.takeFrom
 
-private const val API_BASE_URL = "https://punkapi.online/v3/"
+internal fun createHttpClientEngine(): HttpClientEngine = CIO.create()
 
-internal fun createHttpClient() = HttpClient(CIO) {
+internal fun createCoilHttpClient(
+    engine: HttpClientEngine,
+) = HttpClient(engine) { installLogging() }
+
+internal fun createApiHttpClient(
+    engine: HttpClientEngine,
+) = HttpClient(engine) {
     installJson()
 
     defaultRequest {

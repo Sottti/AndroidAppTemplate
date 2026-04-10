@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
+import com.sottti.android.app.template.data.items.datasource.local.mapper.StringListConverter
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 
@@ -12,6 +14,7 @@ import com.sottti.android.app.template.data.items.datasource.local.model.RemoteK
     version = 1,
     exportSchema = false,
 )
+@TypeConverters(StringListConverter::class)
 internal abstract class ItemsDatabase : RoomDatabase() {
     companion object {
         const val ITEMS_DATABASE_NAME: String = "items.db"

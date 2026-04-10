@@ -7,7 +7,7 @@ import androidx.paging.cachedIn
 import androidx.paging.map
 import com.sottti.android.app.template.domain.items.usecase.ObserveItems
 import com.sottti.android.app.template.presentation.items.list.R
-import com.sottti.android.app.template.presentation.items.list.model.ItemUiModel
+import com.sottti.android.app.template.presentation.items.list.model.ItemState
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListActions.ShowItemDetail
 import com.sottti.android.app.template.presentation.items.list.model.ItemsListState
@@ -29,7 +29,7 @@ internal class ItemsListViewModel @Inject constructor(
     testScope: CoroutineScope? = null,
 ) : ViewModel() {
 
-    private val items: Flow<PagingData<ItemUiModel>> =
+    private val items: Flow<PagingData<ItemState>> =
         observeItems()
             .map { pagingData -> pagingData.map { item -> item.toUi() } }
             .let { flow -> if (testScope == null) flow.cachedIn(viewModelScope) else flow }

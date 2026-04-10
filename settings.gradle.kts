@@ -51,6 +51,7 @@ include(
     ":presentation:navigation-impl",
     ":presentation:paparazzi",
     ":presentation:previews",
+    ":presentation:string-provider",
     ":presentation:utils",
     ":utils:lifecycle",
 )

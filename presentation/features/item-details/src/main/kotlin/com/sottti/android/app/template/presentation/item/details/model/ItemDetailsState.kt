@@ -5,6 +5,7 @@ import androidx.compose.runtime.Immutable
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
 import com.sottti.android.app.template.presentation.design.system.icons.model.IconState
+import com.sottti.android.app.template.presentation.design.system.images.local.model.ImageState
 
 @Immutable
 internal sealed class ItemDetailsState {
@@ -41,22 +42,28 @@ internal sealed interface ItemDetailsSectionState {
 
 @Immutable
 internal data class ItemState(
-    val imageState: ImageState,
+    val image: ItemImageState,
     val identity: ItemIdentityState,
 )
 
 @Immutable
-internal data class ImageState(
-    val imageDescription: ImageContentDescription,
-    val imageUrl: ImageUrl,
-)
+internal sealed interface ItemImageState {
+    @Immutable
+    data class NetworkImage(
+        val description: ImageContentDescription,
+        val url: ImageUrl,
+    ) : ItemImageState
+
+    @Immutable
+    data class PlaceholderImage(
+        val state: ImageState,
+    ) : ItemImageState
+}
 
 @Immutable
 internal data class ItemIdentityState(
     override val header: Int,
-    val year: ItemDetailsRow,
     val name: ItemDetailsRow,
-    val tagline: ItemDetailsRow,
 ) : ItemDetailsSectionState
 
 @Immutable

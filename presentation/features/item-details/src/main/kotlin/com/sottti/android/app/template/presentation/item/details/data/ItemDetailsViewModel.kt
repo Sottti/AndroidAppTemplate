@@ -45,5 +45,5 @@ internal class ItemDetailsViewModel @AssistedInject constructor(
         }
 
     private val reducer: (item: Item) -> ItemDetailsReducer =
-        { item -> { previous: ItemDetailsState -> previous.reduce(item = item) } }
+        { item -> { previous: ItemDetailsState -> previous.reduce(update = item) } }
 }

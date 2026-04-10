@@ -46,6 +46,7 @@ dependencies {
     androidTestImplementation(libs.test.runner)
     debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.appcompat)
+    implementation(libs.coil.compose)
     implementation(libs.compose.runtime)
     implementation(libs.hilt)
     implementation(libs.material)
@@ -59,7 +60,7 @@ dependencies {
     implementation(project(module.presentation.features.home))
     implementation(project(module.presentation.features.itemDetails))
     implementation(project(module.presentation.features.itemsList))
+    implementation(project(module.presentation.utils))
     ksp(libs.hilt.compiler)
     kspAndroidTest(libs.hilt.compiler)
-    implementation(project(module.presentation.utils))
 }

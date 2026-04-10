@@ -20,7 +20,7 @@ internal class ItemsRemoteDataMapperTest {
         assertThat(domainModel.tagline.value).isEqualTo(apiModel.tagline)
         assertThat(domainModel.year.value).isEqualTo(apiModel.year)
         assertThat(domainModel.image.description.value).isEqualTo("An image description")
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/${apiModel.id}/600")
+        assertThat(domainModel.image.url.value).isEqualTo("https://picsum.photos/id/${apiModel.id}/600")
     }
 
     @Test
@@ -35,7 +35,7 @@ internal class ItemsRemoteDataMapperTest {
         val domainModel = limeZephyrApiModel.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(331)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/600")
+        assertThat(domainModel.image.url.value).isEqualTo("https://picsum.photos/id/331/600")
     }
 
     @Test
@@ -50,7 +50,7 @@ internal class ItemsRemoteDataMapperTest {
         val domainModel = otherItemWithId331.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(332)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/331/600")
+        assertThat(domainModel.image.url.value).isEqualTo("https://picsum.photos/id/331/600")
     }
 
     @Test
@@ -65,7 +65,7 @@ internal class ItemsRemoteDataMapperTest {
         val domainModel = highIdApiModel.toDomain()
 
         assertThat(domainModel.id.value).isEqualTo(401)
-        assertThat(domainModel.image.imageUrl.value).isEqualTo("https://picsum.photos/id/400/600")
+        assertThat(domainModel.image.url.value).isEqualTo("https://picsum.photos/id/400/600")
     }
 
     @Test

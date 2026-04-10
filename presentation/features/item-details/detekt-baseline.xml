@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>ModifierWithoutDefault:ItemDetailsContentUi.kt$modifier</ID>
-    <ID>ViewModelInjection:ItemDetailsUi.kt$viewModel</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>ModifierWithoutDefault:ItemDetailsContentUi.kt$modifier</ID>
+        <ID>ViewModelInjection:ItemDetailsUi.kt$viewModel</ID>
+    </CurrentIssues>
 </SmellBaseline>

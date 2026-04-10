@@ -7,7 +7,6 @@ import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApi
 import com.sottti.android.app.template.data.items.datasource.remote.fixtures.fixtureItem1ApiModel
 import com.sottti.android.app.template.data.items.datasource.remote.mapper.toDomain
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
-import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ExceptionApiModel
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
@@ -16,12 +15,12 @@ import org.junit.Test
 internal class ItemsRemoteDataSourceImplTest {
 
     private lateinit var apiCalls: ItemsApiCallsFake
-    private lateinit var dataSource: ItemsRemoteDataSourceImpl
+    private lateinit var dataSource: ItemsApiDataSource
 
     @Before
     fun setUp() {
         apiCalls = ItemsApiCallsFake()
-        dataSource = ItemsRemoteDataSourceImpl(api = apiCalls)
+        dataSource = ItemsApiDataSource(api = apiCalls)
     }
 
     @Test
@@ -30,7 +29,6 @@ internal class ItemsRemoteDataSourceImplTest {
 
         val result = dataSource.getItems(
             pageNumber = PageNumberApiModel(1),
-            pageSize = PageSizeApiModel(10)
         )
 
         result.onSuccess { items ->
@@ -43,7 +41,6 @@ internal class ItemsRemoteDataSourceImplTest {
         }
 
         assertThat(apiCalls.lastCalledPageNumber?.value).isEqualTo(1)
-        assertThat(apiCalls.lastCalledPageSize?.value).isEqualTo(10)
     }
 
     @Test
@@ -53,7 +50,6 @@ internal class ItemsRemoteDataSourceImplTest {
 
         val result = dataSource.getItems(
             pageNumber = PageNumberApiModel(1),
-            pageSize = PageSizeApiModel(10)
         )
 
         result.onFailure { error ->
@@ -68,7 +64,7 @@ internal class ItemsRemoteDataSourceImplTest {
     @Test
     fun `get items returns empty list when api returns empty`() = runTest {
         apiCalls.setSuccessResponse(emptyList())
-        val result = dataSource.getItems(PageNumberApiModel(1), PageSizeApiModel(10))
+        val result = dataSource.getItems(PageNumberApiModel(1))
         result
             .onSuccess { items -> assertThat(items).isEmpty() }
             .onFailure { throw AssertionError("Expected success but got failure") }
@@ -79,12 +75,11 @@ internal class ItemsRemoteDataSourceImplTest {
         val apiItems = listOf(fixtureItem1ApiModel, fixtureItem1ApiModel.copy(id = 999))
         apiCalls.setSuccessResponse(apiItems)
 
-        val result = dataSource.getItems(PageNumberApiModel(2), PageSizeApiModel(25))
+        val result = dataSource.getItems(PageNumberApiModel(2))
         result.onSuccess { items ->
             assertThat(items).containsExactlyElementsIn(apiItems.map { it.toDomain() }).inOrder()
         }.onFailure { throw AssertionError("Expected success but got failure") }
 
         assertThat(apiCalls.lastCalledPageNumber?.value).isEqualTo(2)
-        assertThat(apiCalls.lastCalledPageSize?.value).isEqualTo(25)
     }
 }

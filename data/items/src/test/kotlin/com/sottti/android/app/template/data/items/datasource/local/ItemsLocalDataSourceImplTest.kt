@@ -22,7 +22,7 @@ internal class ItemsLocalDataSourceImplTest {
         itemsDao = ItemsDaoFake()
         remoteKeysDao = RemoteKeysDaoFake()
         timeProvider = TimeProviderFake()
-        localDataSource = ItemsLocalDataSourceImpl(
+        localDataSource = ItemsRoomDataSource(
             itemsDao = itemsDao,
             remoteKeysDao = remoteKeysDao,
             timeProvider = timeProvider,

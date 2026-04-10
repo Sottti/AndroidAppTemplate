@@ -4,6 +4,7 @@ import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
 import com.sottti.android.app.template.domain.items.fixtures.listOfTwoItems
 import com.sottti.android.app.template.domain.items.model.Item
+import com.sottti.android.app.template.presentation.items.list.model.ItemImageState
 import org.junit.Test
 
 internal class ItemsListMapperTest {
@@ -16,8 +17,10 @@ internal class ItemsListMapperTest {
 
         assertThat(uiModel.id).isEqualTo(domainItem.id.value)
         assertThat(uiModel.name).isEqualTo(domainItem.name.value)
-        assertThat(uiModel.imageUrl).isEqualTo(domainItem.image.imageUrl)
-        assertThat(uiModel.description).isEqualTo(domainItem.image.description)
+        assertThat(uiModel.image).isInstanceOf(ItemImageState.NetworkImage::class.java)
+        val image = uiModel.image as ItemImageState.NetworkImage
+        assertThat(image.url).isEqualTo(domainItem.image?.url)
+        assertThat(image.description).isEqualTo(domainItem.image?.description)
     }
 
     @Test

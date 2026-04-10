@@ -5,7 +5,6 @@ import com.github.michaelbull.result.Ok
 import com.github.michaelbull.result.annotation.UnsafeResultErrorAccess
 import com.github.michaelbull.result.annotation.UnsafeResultValueAccess
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
-import com.sottti.android.app.template.data.items.datasource.remote.model.PageSizeApiModel
 import com.sottti.android.app.template.data.network.model.ExceptionApiModel.Unknown
 import com.sottti.android.app.template.domain.core.models.Result
 import com.sottti.android.app.template.domain.items.model.Item
@@ -16,7 +15,6 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
     private var response: Result<List<Item>>? = null
 
     var lastCalledPageNumber: PageNumberApiModel? = null
-    var lastCalledPageSize: PageSizeApiModel? = null
 
     fun setSuccessResponse(items: List<Item>) {
         response = Ok(items)
@@ -44,11 +42,8 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
 
     override suspend fun getItems(
         pageNumber: PageNumberApiModel,
-        pageSize: PageSizeApiModel,
     ): Result<List<Item>> {
         lastCalledPageNumber = pageNumber
-        lastCalledPageSize = pageSize
-
         return checkNotNull(response) { "Test response was not set in the fake" }
     }
 }

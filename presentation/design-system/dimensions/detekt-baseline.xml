@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <SmellBaseline>
-  <ManuallySuppressedIssues/>
-  <CurrentIssues>
-    <ID>CompositionLocalAllowlist:LocalDimensions.kt$LocalDimensions</ID>
-  </CurrentIssues>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>CompositionLocalAllowlist:LocalDimensions.kt$LocalDimensions</ID>
+    </CurrentIssues>
 </SmellBaseline>
