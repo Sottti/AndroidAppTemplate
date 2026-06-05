@@ -1,6 +1,5 @@
 plugins {
     alias(libs.plugins.android.library)
-    alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.kotlin.serialization)
 }
 
@@ -10,5 +9,4 @@ android {
 
 dependencies {
     api(libs.navigation.runtime)
-    ksp(libs.hilt.compiler)
 }
