@@ -3,6 +3,7 @@ import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.tasks.testing.Test
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -24,6 +25,9 @@ tasks.register<Delete>("cleanPaparazziSnapshots") {
     description = "Deletes all Paparazzi snapshot images across the project."
     delete(fileTree(rootDir) { include("**/src/test/snapshots/images/**") })
 }
+
+private val excludeSnapshotTestsProperty = "excludeSnapshotTests"
+private val snapshotTestPattern = "**/*SnapshotTest.class"
 
 val libraries = the<LibrariesForLibs>()
 
@@ -59,6 +63,17 @@ subprojects {
     tasks.withType<DetektCreateBaselineTask>().configureEach {
         jvmTarget = "21"
         exclude("**/StateInViewModelWhileSubscribed.kt")
+    }
+
+    val excludeSnapshotTests = providers.gradleProperty(excludeSnapshotTestsProperty)
+        .map(String::toBoolean)
+        .orElse(false)
+
+    tasks.withType<Test>().configureEach {
+        if (excludeSnapshotTests.get()) {
+            exclude(snapshotTestPattern)
+            failOnNoDiscoveredTests.set(false)
+        }
     }
 
     plugins.withId("com.android.application") {

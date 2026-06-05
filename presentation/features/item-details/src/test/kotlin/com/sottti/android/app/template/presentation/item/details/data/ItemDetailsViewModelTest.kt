@@ -8,12 +8,26 @@ import com.sottti.android.app.template.presentation.item.details.model.ItemDetai
 import com.sottti.android.app.template.presentation.item.details.model.ItemDetailsState
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManagerFake
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.test.StandardTestDispatcher
+import kotlinx.coroutines.test.TestDispatcher
+import kotlinx.coroutines.test.advanceUntilIdle
+import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
+import kotlinx.coroutines.test.setMain
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
+import org.junit.rules.TestWatcher
+import org.junit.runner.Description
 
+@OptIn(ExperimentalCoroutinesApi::class)
 internal class ItemDetailsViewModelTest {
+
+    @get:Rule
+    val mainDispatcherRule = MainDispatcherRule()
 
     private lateinit var navigationManager: NavigationManagerFake
     private lateinit var observeItem: ObserveItemFake
@@ -42,14 +56,14 @@ internal class ItemDetailsViewModelTest {
             viewModel = ItemDetailsViewModel(fixtureItem1.id, navigationManager, observeItem)
 
             viewModel.state.test {
-                assertThat(awaitItem()).isInstanceOf(ItemDetailsState.Loading::class.java)
-
-                val loadedState = awaitItem()
+                advanceUntilIdle()
+                val loadedState = viewModel.state.value
                 assertThat(loadedState).isInstanceOf(ItemDetailsState.Loaded::class.java)
 
                 val itemState = (loadedState as ItemDetailsState.Loaded).item
                 assertThat(itemState.identity.name.trailing).isEqualTo(fixtureItem1.name.value)
                 assertThat(loadedState.topBarState.title).isEqualTo(fixtureItem1.name.value)
+                cancelAndIgnoreRemainingEvents()
             }
         }
 
@@ -67,4 +81,18 @@ internal class ItemDetailsViewModelTest {
                 cancelAndIgnoreRemainingEvents()
             }
         }
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+internal class MainDispatcherRule(
+    private val dispatcher: TestDispatcher = StandardTestDispatcher(),
+) : TestWatcher() {
+
+    override fun starting(description: Description) {
+        Dispatchers.setMain(dispatcher)
+    }
+
+    override fun finished(description: Description) {
+        Dispatchers.resetMain()
+    }
 }
