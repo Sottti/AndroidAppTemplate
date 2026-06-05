@@ -17,6 +17,8 @@ internal fun createCoilHttpClient(
 internal fun createApiHttpClient(
     engine: HttpClientEngine,
 ) = HttpClient(engine) {
+    expectSuccess = true
+
     installJson()
 
     defaultRequest {
