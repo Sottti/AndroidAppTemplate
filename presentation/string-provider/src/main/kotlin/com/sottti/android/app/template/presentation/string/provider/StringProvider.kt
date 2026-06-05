@@ -1,4 +1,4 @@
-package com.android.app.template.presentation.string.provider
+package com.sottti.android.app.template.presentation.string.provider
 
 import android.content.Context
 import dagger.hilt.android.qualifiers.ApplicationContext

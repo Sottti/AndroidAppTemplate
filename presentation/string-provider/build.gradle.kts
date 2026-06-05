@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.android.app.template.presentation.string.provider"
+    namespace = "com.sottti.android.app.template.presentation.string.provider"
 }
 
 dependencies {
