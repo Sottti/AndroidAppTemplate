@@ -1,5 +1,3 @@
-import com.sottti.android.app.template.buildSrc.module
-
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.ksp)
@@ -33,5 +31,4 @@ dependencies {
     testFixturesImplementation(libs.hilt.android.testing)
     testFixturesImplementation(libs.kotlinx.serialization.json)
     testFixturesImplementation(libs.ktor.client.mock)
-    testFixturesImplementation(project(module.presentation.designSystem.images))
 }

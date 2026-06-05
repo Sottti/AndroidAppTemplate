@@ -2,13 +2,11 @@ package com.sottti.android.app.template.data.network.di
 
 import android.content.Context
 import android.graphics.Color
-import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toDrawable
 import coil3.ImageLoader
 import coil3.test.FakeImageLoaderEngine
 import coil3.test.intercept
 import com.sottti.android.app.template.data.network.createMockHttpClient
-import com.sottti.android.app.template.presentation.design.system.images.R
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -35,10 +33,7 @@ internal object NetworkDataModuleFake {
     fun provideCoilImageLoader(
         @ApplicationContext context: Context,
     ): ImageLoader {
-        val placeholder =
-            ContextCompat
-                .getDrawable(context, R.drawable.img_android_statue)
-                ?: Color.MAGENTA.toDrawable()
+        val placeholder = Color.MAGENTA.toDrawable()
 
         val engine =
             FakeImageLoaderEngine.Builder()
