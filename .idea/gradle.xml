@@ -60,6 +60,7 @@
             <option value="$PROJECT_DIR$/presentation/navigation-impl" />
             <option value="$PROJECT_DIR$/presentation/paparazzi" />
             <option value="$PROJECT_DIR$/presentation/previews" />
+            <option value="$PROJECT_DIR$/presentation/string-provider" />
             <option value="$PROJECT_DIR$/presentation/utils" />
             <option value="$PROJECT_DIR$/utils" />
             <option value="$PROJECT_DIR$/utils/lifecycle" />

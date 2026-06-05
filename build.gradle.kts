@@ -11,7 +11,6 @@ plugins {
     alias(libs.plugins.android.library) apply false
     alias(libs.plugins.detekt) apply true
     alias(libs.plugins.hilt) apply false
-    alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.compose) apply false
     alias(libs.plugins.kotlin.jvm) apply false
     alias(libs.plugins.kotlin.ksp) apply false
@@ -46,7 +45,7 @@ subprojects {
     }
 
     tasks.withType<Detekt>().configureEach {
-        jvmTarget = "17"
+        jvmTarget = "21"
         ignoreFailures = false
         exclude("**/StateInViewModelWhileSubscribed.kt")
         reports {
@@ -58,37 +57,38 @@ subprojects {
     }
 
     tasks.withType<DetektCreateBaselineTask>().configureEach {
-        jvmTarget = "17"
+        jvmTarget = "21"
         exclude("**/StateInViewModelWhileSubscribed.kt")
     }
 
     plugins.withId("com.android.application") {
         configure<ApplicationExtension> { androidApplicationConfig() }
+        androidKotlinConfig()
     }
 
     plugins.withId("com.android.library") {
         androidLibraryConfig()
-    }
-
-    plugins.withId("org.jetbrains.kotlin.android") {
-        extensions.configure<KotlinAndroidProjectExtension> {
-            explicitApi()
-            jvmToolchain(17)
-            compilerOptions {
-                freeCompilerArgs.add("-Xwhen-guards")
-                freeCompilerArgs.add("-Xcontext-parameters")
-                freeCompilerArgs.add("-Xannotation-default-target=param-property")
-            }
-        }
+        androidKotlinConfig()
     }
 
     plugins.withId("org.jetbrains.kotlin.jvm") {
         extensions.configure<KotlinJvmProjectExtension> {
             explicitApi()
-            jvmToolchain(17)
+            jvmToolchain(21)
             compilerOptions {
                 freeCompilerArgs.add("-Xcontext-parameters")
             }
+        }
+    }
+}
+
+private fun Project.androidKotlinConfig() {
+    extensions.configure<KotlinAndroidProjectExtension> {
+        explicitApi()
+        jvmToolchain(21)
+        compilerOptions {
+            freeCompilerArgs.add("-Xcontext-parameters")
+            freeCompilerArgs.add("-Xannotation-default-target=param-property")
         }
     }
 }

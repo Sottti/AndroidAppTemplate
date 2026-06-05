@@ -81,6 +81,8 @@ This template is packed with the latest libraries and tools from the Android eco
 
 Execute the following Gradle tasks from the project root to run the automated test suites locally:
 
+> ℹ️ Run Gradle with JDK 21 or newer.
+
 | Suite                      | Command                               | Description                                                                                             |
 |----------------------------|---------------------------------------|---------------------------------------------------------------------------------------------------------|
 | Local/unit tests           | `./gradlew testDebug`                 | Executes JVM-based tests located under `src/test` for the `debug` build variant.                        |
