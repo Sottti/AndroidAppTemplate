@@ -1,11 +1,8 @@
 import com.android.build.api.dsl.ApplicationExtension
 import com.android.build.api.dsl.LibraryExtension
-import io.gitlab.arturbosch.detekt.Detekt
-import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+import dev.detekt.gradle.Detekt
+import dev.detekt.gradle.DetektCreateBaselineTask
 import org.gradle.accessors.dm.LibrariesForLibs
-import org.gradle.api.GradleException
-import org.gradle.api.artifacts.ProjectDependency
-import org.gradle.api.tasks.testing.Test
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
 
@@ -75,7 +72,7 @@ private val snapshotTestPattern = "**/*SnapshotTest.class"
 val libraries = the<LibrariesForLibs>()
 
 subprojects {
-    apply(plugin = "io.gitlab.arturbosch.detekt")
+    apply(plugin = "dev.detekt")
 
     dependencies {
         "detektPlugins"(libraries.detekt.compose)
@@ -92,19 +89,19 @@ subprojects {
     }
 
     tasks.withType<Detekt>().configureEach {
-        jvmTarget = "21"
+        jvmTarget.set("21")
         ignoreFailures = false
         exclude("**/StateInViewModelWhileSubscribed.kt")
         reports {
             html.required.set(true) // Human readable (open in browser)
-            xml.required.set(true) // Machine readable (Checkstyle format)
+            checkstyle.required.set(true) // Machine readable
             sarif.required.set(false) // Not needed locally
-            txt.required.set(false)
+            markdown.required.set(false)
         }
     }
 
     tasks.withType<DetektCreateBaselineTask>().configureEach {
-        jvmTarget = "21"
+        jvmTarget.set("21")
         exclude("**/StateInViewModelWhileSubscribed.kt")
     }
 
@@ -168,6 +165,9 @@ private fun Project.androidApplicationConfig() {
             checkReleaseBuilds = false
             xmlReport = true
             htmlReport = true
+        }
+        packaging {
+            jniLibs.keepDebugSymbols.add("**/libandroidx.graphics.path.so")
         }
     }
 }
@@ -252,7 +252,11 @@ private fun ProjectDependencyEdge.boundaryViolations(): List<String> = buildList
         add("$source must not depend on feature module $target via $configuration; feature wiring belongs in :presentation:navigation-impl.")
     }
 
-    if (source.startsWith(":presentation:features:") && target in setOf(":presentation:app-shell", ":presentation:navigation-impl")) {
+    if (source.startsWith(":presentation:features:") && target in setOf(
+            ":presentation:app-shell",
+            ":presentation:navigation-impl"
+        )
+    ) {
         add("$source is a feature module and must not depend on $target via $configuration.")
     }
 

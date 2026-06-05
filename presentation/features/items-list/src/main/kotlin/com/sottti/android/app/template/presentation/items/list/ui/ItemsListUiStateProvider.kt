@@ -75,16 +75,16 @@ internal val emptyState = itemsListState(
 )
 
 internal val errorState = itemsListState(
-    refreshState = LoadState.Error(kotlin.Exception()),
+    refreshState = LoadState.Error(kotlin.Exception("Refresh failed.")),
     data = emptyList(),
 )
 
 internal val loadedStateAppendError = itemsListState(
-    appendState = LoadState.Error(kotlin.Exception()),
+    appendState = LoadState.Error(kotlin.Exception("Append failed.")),
 )
 
 internal val loadedStatePrependError = itemsListState(
-    prependState = LoadState.Error(kotlin.Exception()),
+    prependState = LoadState.Error(kotlin.Exception("Prepend failed.")),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -1,8 +1,7 @@
 package com.sottti.android.app.template.data.items.datasource.local.database
 
 import androidx.paging.PagingSource
-import com.sottti.android.app.template.data.items.datasource.local.mapper.ItemMappingPagingSourceFake
-import com.sottti.android.app.template.data.items.datasource.local.mapper.toDomain
+import com.sottti.android.app.template.data.items.datasource.local.mapper.RoomPagingSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.model.ItemRoomModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,8 +16,19 @@ internal class ItemsDaoFake : ItemsDao {
     private val itemsFlow = MutableStateFlow<List<ItemRoomModel>>(emptyList())
 
     override fun observeItems(): PagingSource<Int, ItemRoomModel> {
-        return ItemMappingPagingSourceFake(saved.map { it.toDomain() }.toMutableList())
-            .let { it as PagingSource<Int, ItemRoomModel> }
+        return RoomPagingSourceFake { params ->
+            val snapshot = saved.toList()
+            val start = (params.key ?: 0).coerceAtLeast(0)
+            val end = (start + params.loadSize).coerceAtMost(snapshot.size)
+
+            PagingSource.LoadResult.Page(
+                data = snapshot.subList(start, end),
+                prevKey = if (start == 0) null else maxOf(0, start - params.loadSize),
+                nextKey = if (end < snapshot.size) end else null,
+                itemsBefore = start,
+                itemsAfter = snapshot.size - end,
+            )
+        }
     }
 
     override suspend fun upsert(items: List<ItemRoomModel>) {

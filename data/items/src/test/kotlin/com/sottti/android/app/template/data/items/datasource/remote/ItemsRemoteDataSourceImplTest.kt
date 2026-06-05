@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.data.items.datasource.remote
 
-import com.github.michaelbull.result.onFailure
-import com.github.michaelbull.result.onSuccess
+import com.github.michaelbull.result.onErr
+import com.github.michaelbull.result.onOk
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsFake
 import com.sottti.android.app.template.data.items.datasource.remote.fixtures.fixtureItem1ApiModel
@@ -31,12 +31,12 @@ internal class ItemsRemoteDataSourceImplTest {
             pageNumber = PageNumberApiModel(1),
         )
 
-        result.onSuccess { items ->
+        result.onOk { items ->
             assertThat(items).isNotEmpty()
             assertThat(items.first()).isEqualTo(fixtureItem1ApiModel.toDomain())
         }
 
-        result.onFailure {
+        result.onErr {
             throw AssertionError("Expected success but got failure")
         }
 
@@ -52,11 +52,11 @@ internal class ItemsRemoteDataSourceImplTest {
             pageNumber = PageNumberApiModel(1),
         )
 
-        result.onFailure { error ->
+        result.onErr { error ->
             assertThat(error).isInstanceOf(ExceptionApiModel.Unknown::class.java)
             assertThat(error.message).isEqualTo(exception.message)
         }
-        result.onSuccess {
+        result.onOk {
             throw AssertionError("Expected failure but got success")
         }
     }
@@ -66,8 +66,8 @@ internal class ItemsRemoteDataSourceImplTest {
         apiCalls.setSuccessResponse(emptyList())
         val result = dataSource.getItems(PageNumberApiModel(1))
         result
-            .onSuccess { items -> assertThat(items).isEmpty() }
-            .onFailure { throw AssertionError("Expected success but got failure") }
+            .onOk { items -> assertThat(items).isEmpty() }
+            .onErr { throw AssertionError("Expected success but got failure") }
     }
 
     @Test
@@ -76,9 +76,9 @@ internal class ItemsRemoteDataSourceImplTest {
         apiCalls.setSuccessResponse(apiItems)
 
         val result = dataSource.getItems(PageNumberApiModel(2))
-        result.onSuccess { items ->
+        result.onOk { items ->
             assertThat(items).containsExactlyElementsIn(apiItems.map { it.toDomain() }).inOrder()
-        }.onFailure { throw AssertionError("Expected success but got failure") }
+        }.onErr { throw AssertionError("Expected success but got failure") }
 
         assertThat(apiCalls.lastCalledPageNumber?.value).isEqualTo(2)
     }

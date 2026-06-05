@@ -2,6 +2,7 @@ package com.sottti.android.app.template.data.network.di
 
 import android.content.Context
 import coil3.ImageLoader
+import coil3.annotation.ExperimentalCoilApi
 import coil3.network.ktor3.KtorNetworkFetcherFactory
 import com.sottti.android.app.template.data.network.createApiHttpClient
 import com.sottti.android.app.template.data.network.createCoilHttpClient
@@ -41,6 +42,7 @@ internal object NetworkDataModule {
 
     @Provides
     @Singleton
+    @OptIn(ExperimentalCoilApi::class)
     fun provideCoilImageLoader(
         @ApplicationContext context: Context,
         @Named(COIL_CLIENT_NAMED_ANNOTATION_VALUE) coilHttpClient: HttpClient

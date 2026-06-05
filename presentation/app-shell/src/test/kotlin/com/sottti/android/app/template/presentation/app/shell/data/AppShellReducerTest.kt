@@ -35,7 +35,7 @@ internal class AppShellReducerTest {
     }
 
     @Test
-    fun `given an app shell state, when reduce is called with the same settings, then it returns an equal but new state`() {
+    fun `reducing with same settings returns equal but new state`() {
         val initialState = AppShellState(
             dynamicColor = DynamicColor(enabled = true),
             systemColorContrast = SystemColorContrast.MediumContrast,

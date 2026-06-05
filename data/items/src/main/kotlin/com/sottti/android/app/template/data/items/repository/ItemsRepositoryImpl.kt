@@ -4,7 +4,7 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.github.michaelbull.result.onSuccess
+import com.github.michaelbull.result.onOk
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.mediator.ItemsRemoteMediator
@@ -29,7 +29,7 @@ internal class ItemsRepositoryImpl @Inject constructor(
                 if (item == null || localDataSource.isExpired(item.id)) {
                     remoteDataSource
                         .getItem(itemId)
-                        .onSuccess { localDataSource.upsert(it) }
+                        .onOk { localDataSource.upsert(it) }
                 }
             }.filterNotNull()
 

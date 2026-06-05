@@ -8,12 +8,12 @@ import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
 @HiltAndroidApp
-internal class AndroidAppTemplateApplication : Application(), SingletonImageLoader.Factory {
+internal class AndroidAppTemplateApplication :
+    Application(),
+    SingletonImageLoader.Factory {
 
     @Inject
     lateinit var imageLoader: ImageLoader
 
-    override fun newImageLoader(
-        context: PlatformContext,
-    ): ImageLoader = imageLoader
+    override fun newImageLoader(context: PlatformContext): ImageLoader = imageLoader
 }
