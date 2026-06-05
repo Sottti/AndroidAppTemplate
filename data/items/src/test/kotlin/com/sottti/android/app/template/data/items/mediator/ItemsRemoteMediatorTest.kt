@@ -4,13 +4,16 @@ import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingConfig
 import androidx.paging.PagingState
+import androidx.paging.RemoteMediator.MediatorResult.Error
 import androidx.paging.RemoteMediator.MediatorResult.Success
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.ItemsLocalDataSourceFake
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSourceFake
+import com.sottti.android.app.template.data.network.model.ExceptionApiModel.Unknown
 import com.sottti.android.app.template.domain.items.fixtures.listOfMultipleItems
 import com.sottti.android.app.template.domain.items.model.Item
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -46,6 +49,28 @@ internal class ItemsRemoteMediatorTest {
         val result = mediator.load(LoadType.REFRESH, pagingState)
 
         assertThat(result).isInstanceOf(Success::class.java)
+    }
+
+    @Test
+    fun `load with refresh type returns error when remote data source fails`() = runTest {
+        val exception = Unknown("Remote error")
+        localDataSource.upsert(listOfMultipleItems)
+        remoteDataSource.setErrorResponse(exception)
+
+        val result = mediator.load(LoadType.REFRESH, pagingState)
+
+        assertThat(result).isInstanceOf(Error::class.java)
+        assertThat((result as Error).throwable).isEqualTo(exception)
+        assertThat(localDataSource.clearAllCalled).isFalse()
+        assertThat(localDataSource.clearAndInsertCalled).isFalse()
+        assertThat(localDataSource.saved.size).isEqualTo(listOfMultipleItems.size)
+    }
+
+    @Test(expected = CancellationException::class)
+    fun `load with refresh type rethrows cancellation exception`() = runTest {
+        remoteDataSource.setErrorResponse(CancellationException("Job cancelled"))
+
+        mediator.load(LoadType.REFRESH, pagingState)
     }
 
     @Test
