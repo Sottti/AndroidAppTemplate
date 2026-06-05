@@ -15,6 +15,7 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
     private var response: Result<List<Item>>? = null
 
     var lastCalledPageNumber: PageNumberApiModel? = null
+    var lastCalledItemId: ItemId? = null
 
     fun setSuccessResponse(items: List<Item>) {
         response = Ok(items)
@@ -26,6 +27,7 @@ internal class ItemsRemoteDataSourceFake : ItemsRemoteDataSource {
 
     @OptIn(UnsafeResultValueAccess::class, UnsafeResultErrorAccess::class)
     override suspend fun getItem(itemId: ItemId): Result<Item> {
+        lastCalledItemId = itemId
         val listResult = checkNotNull(response) { "Test response was not set in fake" }
 
         return when {
