@@ -6,8 +6,8 @@ import com.sottti.android.app.template.presentation.navigation.model.NavigationC
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateBack
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateTo
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateToRoot
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.CharacterDetail
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.CharactersList
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.test.advanceUntilIdle
@@ -34,7 +34,7 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `when navigate to is called, then a navigate to command should be emitted`() = runTest {
-        val destination = ItemsList
+        val destination = CharactersList
 
         manager.commands().test {
             expectNoEvents()
@@ -60,7 +60,7 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when navigate to root is called, then a navigate to root command should be emitted`() =
         runTest {
-            val rootDestination = ItemsList
+            val rootDestination = CharactersList
 
             manager.commands().test {
                 expectNoEvents()
@@ -75,8 +75,8 @@ internal class NavigationManagerImplTest {
     @Test
     fun `when multiple navigation methods are called, then commands should be emitted in the correct order`() =
         runTest {
-            val firstDestination = ItemsList
-            val secondDestination = ItemDetail(itemId = 1)
+            val firstDestination = CharactersList
+            val secondDestination = CharacterDetail(characterId = 1)
 
             manager.commands().test {
                 expectNoEvents()
@@ -95,13 +95,13 @@ internal class NavigationManagerImplTest {
 
     @Test
     fun `burst of commands preserves order`() = runTest {
-        val destinations = List(50) { ItemsList }
+        val destinations = List(50) { CharactersList }
         manager.commands().test {
             expectNoEvents()
             destinations.forEach { manager.navigateTo(it) }
             repeat(destinations.size) {
                 Truth.assertThat(awaitItem())
-                    .isEqualTo(NavigateTo(ItemsList))
+                    .isEqualTo(NavigateTo(CharactersList))
             }
             expectNoEvents()
             cancelAndIgnoreRemainingEvents()

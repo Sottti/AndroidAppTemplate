@@ -24,11 +24,11 @@ import coil3.request.ImageRequest
 import coil3.request.crossfade
 import com.sottti.android.app.template.domain.core.models.ImageContentDescription
 import com.sottti.android.app.template.domain.core.models.ImageUrl
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.dimensions.composition.local.dimensions
 import com.sottti.android.app.template.presentation.design.system.images.R
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicator
 import com.sottti.android.app.template.presentation.design.system.progress.indicators.ProgressIndicatorSize
-import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
+import com.sottti.android.app.template.presentation.design.system.shapes.composition.local.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 

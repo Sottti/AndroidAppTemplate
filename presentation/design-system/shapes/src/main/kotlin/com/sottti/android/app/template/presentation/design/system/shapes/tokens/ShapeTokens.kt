@@ -3,7 +3,7 @@ package com.sottti.android.app.template.presentation.design.system.shapes.tokens
 import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.dimensions.composition.local.dimensions
 
 internal object ShapeTokens {
 

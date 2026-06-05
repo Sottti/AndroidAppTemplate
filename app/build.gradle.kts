@@ -1,4 +1,4 @@
-import com.sottti.android.app.template.buildSrc.module
+import com.sottti.android.app.template.buildsrc.module
 
 plugins {
     alias(libs.plugins.android.application)
@@ -58,7 +58,7 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(platform(libs.compose.bom))
     implementation(project(module.di))
-    implementation(project(module.domain.items))
+    implementation(project(module.domain.characters))
     implementation(project(module.presentation.designSystem.iconResources))
     implementation(project(module.presentation.designSystem.themes))
     implementation(project(module.presentation.designSystem.topBars))

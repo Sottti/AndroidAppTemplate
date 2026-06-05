@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<SmellBaseline>
+    <ManuallySuppressedIssues />
+    <CurrentIssues>
+        <ID>ThrowingExceptionsWithoutMessageOrCause:CharactersListUiStateProvider.kt$Exception()</ID>
+    </CurrentIssues>
+</SmellBaseline>

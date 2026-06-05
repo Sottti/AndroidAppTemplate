@@ -208,7 +208,7 @@ private val dependencyFreeModules = setOf(
 
 private val pureKotlinModules = setOf(
     ":domain:core-models",
-    ":domain:items",
+    ":domain:characters",
     ":domain:settings",
     ":domain:system-features",
     ":presentation:navigation",

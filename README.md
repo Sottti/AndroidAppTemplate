@@ -43,14 +43,16 @@ This template is packed with the latest libraries and tools from the Android eco
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
+    * **Navigation:
+      ** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronicity:
+  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
@@ -96,8 +98,8 @@ Execute the following Gradle tasks from the project root to run the automated te
 * **Dynamic system theming:** The `presentation` layer streams system theme and contrast updates,
   maps them through the `data/system-features` module, and applies them across the Compose UI while
   synchronizing system bars for a fully adaptive experience.
-* **Offline-first paging:** The `data:items` module layers Room DAOs, Paging 3, and a
-  `RemoteMediator` on top of the Ktor client so item feeds stay cached and transparently refresh
+* **Offline-first paging:** The `data:characters` module layers Room DAOs, Paging 3, and a
+  `RemoteMediator` on top of the Ktor client so character feeds stay cached and transparently refresh
   whenever the network is available.
 * **Navigation infrastructure:** A dedicated Compose Navigation 3 stack coordinates screen changes
   via a `NavigationManager`, with `Navigator` components observing command channels and handling
@@ -118,14 +120,15 @@ Execute the following Gradle tasks from the project root to run the automated te
 * **Testable system features:** The `data/system-features` module exposes fake managers backed by
   Turbine-based tests, showcasing how to stub system services when exercising the settings feature.
 * **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
-  `AppShellActivity` combine with the navigation manager to launch directly into themed Compose content
+  `AppShellActivity` combine with the navigation manager to launch directly into themed Compose
+  content
   with minimal boilerplate.
 * **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
   managed centrally so features automatically inherit full-height layouts.
 
 ### 🔭 Incoming Features
 
-* **Multipane large-screen layouts:** Adaptive list-detail experiences that keep the item catalog
+* **Multipane large-screen layouts:** Adaptive list-detail experiences that keep the character catalog
   and the selected detail visible side by side on tablets, foldables, and landscape desktops.
 
 ## 🏛️ Architecture (MVVM + Clean)
@@ -170,7 +173,7 @@ Every Gradle module has a single responsibility. Use the table below to find the
     * `app`: Hosts the `Application`, activities, and wires the dependency graph at runtime.
 * **Presentation layer**
     * `presentation:design-system`: Shared Compose theming, typography, and reusable components.
-    * `presentation:features:`: Feature-specific screens such as `items-list`, `item-details`, and
+    * `presentation:features:`: Feature-specific screens such as `characters-list`, `character-details`, and
       `home`.
     * `presentation:navigation` & `presentation:navigation-impl`: Navigation contracts and their
       Compose Navigation 3 implementation.
@@ -179,10 +182,10 @@ Every Gradle module has a single responsibility. Use the table below to find the
       Tooling for previews, snapshot tests, and sample data.
 * **Domain layer**
     * `domain:core-models`: Canonical models exchanged between layers.
-    * `domain:items`, `domain:settings`, `domain:system-features`: Use cases and business logic per
+    * `domain:characters`, `domain:settings`, `domain:system-features`: Use cases and business logic per
       feature area.
 * **Data layer**
-    * `data:items`: Paging, Room cache, and remote mediator for list and detail flows.
+    * `data:characters`: Paging, Room cache, and remote mediator for list and detail flows.
     * `data:network`: Ktor client configuration and API definitions.
     * `data:settings`: Persistence for user preferences and configuration toggles.
     * `data:system-features`: Abstractions over device capabilities with test fakes.

@@ -1,8 +1,0 @@
-<?xml version="1.0" ?>
-<SmellBaseline>
-    <ManuallySuppressedIssues />
-    <CurrentIssues>
-        <ID>MagicNumber:ItemsRemoteDataMapper.kt$331</ID>
-        <ID>MagicNumber:ItemsRemoteDataMapper.kt$332</ID>
-    </CurrentIssues>
-</SmellBaseline>

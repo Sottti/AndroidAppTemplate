@@ -17,8 +17,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.colors.color.composition.local.colors
+import com.sottti.android.app.template.presentation.design.system.dimensions.composition.local.dimensions
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
 import com.sottti.android.app.template.presentation.design.system.illustrations.ui.circled.CircledIllustration
 import com.sottti.android.app.template.presentation.design.system.text.Text

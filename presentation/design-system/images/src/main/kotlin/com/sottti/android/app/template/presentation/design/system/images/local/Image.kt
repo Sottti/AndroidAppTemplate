@@ -7,7 +7,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import com.sottti.android.app.template.presentation.design.system.images.local.model.ImageState
-import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
+import com.sottti.android.app.template.presentation.design.system.shapes.composition.local.shapes
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 import androidx.compose.foundation.Image as MaterialImage

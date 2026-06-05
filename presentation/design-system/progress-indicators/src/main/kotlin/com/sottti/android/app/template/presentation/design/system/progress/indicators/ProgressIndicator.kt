@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.dimensions
+import com.sottti.android.app.template.presentation.design.system.dimensions.composition.local.dimensions
 import com.sottti.android.app.template.presentation.design.system.themes.AndroidAppTemplateTheme
 import com.sottti.android.app.template.presentation.previews.PreviewAndroidAppTemplate
 

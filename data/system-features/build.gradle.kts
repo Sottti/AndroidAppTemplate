@@ -1,4 +1,4 @@
-import com.sottti.android.app.template.buildSrc.module
+import com.sottti.android.app.template.buildsrc.module
 
 plugins {
     alias(libs.plugins.android.library)
@@ -7,7 +7,7 @@ plugins {
 }
 
 android {
-    namespace = "com.sottti.android.app.template.system.features"
+    namespace = "com.sottti.android.app.template.data.system.features"
 }
 
 dependencies {

@@ -5,7 +5,7 @@ import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import com.sottti.android.app.template.domain.characters.fixtures.fixtureCharacter1
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -17,23 +17,23 @@ internal class AppFlowsTest(
 ) : IntegrationTest(orientation) {
 
     @Test
-    fun itemList_clickItem_itemDetails_navigateBack() {
+    fun characterList_clickCharacter_characterDetails_navigateBack() {
         with(rule) {
             waitUntil() {
-                onAllNodes(hasText(fixtureItem1.name.value))
+                onAllNodes(hasText(fixtureCharacter1.name.value))
                     .fetchSemanticsNodes()
                     .isNotEmpty()
             }
 
-            onNodeWithText(fixtureItem1.name.value)
+            onNodeWithText(fixtureCharacter1.name.value)
                 .assertIsDisplayed()
 
-            onNodeWithText(fixtureItem1.name.value).performClick()
+            onNodeWithText(fixtureCharacter1.name.value).performClick()
 
             waitForIdle()
 
             onNodeWithTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG).assertIsDisplayed()
-            onNodeWithText(fixtureItem1.name.value).assertIsDisplayed()
+            onNodeWithText(fixtureCharacter1.name.value).assertIsDisplayed()
 
             waitForIdle()
 
@@ -41,7 +41,7 @@ internal class AppFlowsTest(
 
             waitForIdle()
 
-            onNodeWithText(fixtureItem1.name.value)
+            onNodeWithText(fixtureCharacter1.name.value)
                 .assertIsDisplayed()
         }
     }

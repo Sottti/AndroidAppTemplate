@@ -1,4 +1,4 @@
-import com.sottti.android.app.template.buildSrc.module
+import com.sottti.android.app.template.buildsrc.module
 
 plugins {
     alias(libs.plugins.android.library)
@@ -26,8 +26,8 @@ dependencies {
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.designSystem.themes))
-    implementation(project(module.presentation.features.itemDetails))
-    implementation(project(module.presentation.features.itemsList))
+    implementation(project(module.presentation.features.characterDetails))
+    implementation(project(module.presentation.features.charactersList))
     implementation(project(module.presentation.navigation))
     ksp(libs.hilt.compiler)
 

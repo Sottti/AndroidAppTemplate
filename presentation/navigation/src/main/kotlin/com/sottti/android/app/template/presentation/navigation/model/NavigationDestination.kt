@@ -8,9 +8,9 @@ import kotlinx.serialization.Serializable
 public sealed interface NavigationDestination : NavKey {
     @Immutable
     @Serializable
-    public data object ItemsList : NavigationDestination
+    public data object CharactersList : NavigationDestination
 
     @Immutable
     @Serializable
-    public data class ItemDetail(val itemId: Int) : NavigationDestination
+    public data class CharacterDetail(val characterId: Int) : NavigationDestination
 }

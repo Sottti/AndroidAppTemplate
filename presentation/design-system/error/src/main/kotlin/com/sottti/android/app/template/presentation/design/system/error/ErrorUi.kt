@@ -6,7 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.tooling.preview.PreviewParameter
-import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
+import com.sottti.android.app.template.presentation.design.system.colors.color.composition.local.colors
 import com.sottti.android.app.template.presentation.design.system.illustrations.data.Illustrations
 import com.sottti.android.app.template.presentation.design.system.illustrations.model.IllustrationState
 import com.sottti.android.app.template.presentation.design.system.informative.InformativeButton

@@ -1,4 +1,4 @@
-import com.sottti.android.app.template.buildSrc.module
+import com.sottti.android.app.template.buildsrc.module
 
 plugins {
     alias(libs.plugins.android.library)

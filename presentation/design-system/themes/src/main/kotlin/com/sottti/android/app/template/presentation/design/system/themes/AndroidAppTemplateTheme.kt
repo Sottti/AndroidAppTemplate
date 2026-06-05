@@ -13,11 +13,11 @@ import com.sottti.android.app.template.domain.core.models.SystemColorContrast
 import com.sottti.android.app.template.domain.core.models.SystemTheme
 import com.sottti.android.app.template.domain.core.models.SystemTheme.DarkSystemTheme
 import com.sottti.android.app.template.domain.core.models.SystemTheme.LightSystemTheme
-import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.ColorsLocalProvider
-import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
-import com.sottti.android.app.template.presentation.design.system.dimensions.compositionLocal.DimensionsLocalProvider
-import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.ShapesLocalProvider
-import com.sottti.android.app.template.presentation.design.system.typography.compositionLocal.TypographyLocalProvider
+import com.sottti.android.app.template.presentation.design.system.colors.color.composition.local.ColorsLocalProvider
+import com.sottti.android.app.template.presentation.design.system.colors.color.composition.local.colors
+import com.sottti.android.app.template.presentation.design.system.dimensions.composition.local.DimensionsLocalProvider
+import com.sottti.android.app.template.presentation.design.system.shapes.composition.local.ShapesLocalProvider
+import com.sottti.android.app.template.presentation.design.system.typography.composition.local.TypographyLocalProvider
 
 @Composable
 public fun AndroidAppTemplateTheme(

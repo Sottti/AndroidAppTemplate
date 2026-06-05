@@ -15,12 +15,12 @@ import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.runtime.rememberSaveableStateHolderNavEntryDecorator
 import androidx.navigation3.ui.NavDisplay
-import com.sottti.android.app.template.presentation.design.system.colors.color.compositionLocal.colors
+import com.sottti.android.app.template.presentation.design.system.colors.color.composition.local.colors
 import com.sottti.android.app.template.presentation.navigation.manager.NavigationManager
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateBack
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateTo
 import com.sottti.android.app.template.presentation.navigation.model.NavigationCommand.NavigateToRoot
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.CharactersList
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -30,7 +30,7 @@ public fun Navigator(
     navigationManager: NavigationManager,
     entryProvider: EntryProvider<NavKey>? = null,
 ) {
-    val backStack = rememberNavBackStack(ItemsList)
+    val backStack = rememberNavBackStack(CharactersList)
     LaunchedEffect(key1 = navigationManager) {
         observeCommandsInScope(
             backStack = backStack,

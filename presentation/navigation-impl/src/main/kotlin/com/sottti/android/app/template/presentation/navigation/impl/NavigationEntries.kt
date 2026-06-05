@@ -4,20 +4,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.navigation3.runtime.NavEntry
 import androidx.navigation3.runtime.NavKey
-import com.sottti.android.app.template.presentation.item.details.ui.ItemDetails
-import com.sottti.android.app.template.presentation.items.list.ui.ItemList
+import com.sottti.android.app.template.presentation.character.details.ui.CharacterDetails
+import com.sottti.android.app.template.presentation.characters.list.ui.CharactersList
 import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemDetail
-import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.ItemsList
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.CharacterDetail
+import com.sottti.android.app.template.presentation.navigation.model.NavigationDestination.CharactersList
 
 @Composable
 @ReadOnlyComposable
 internal fun navigationEntries(): EntryProvider<NavKey> = { key ->
     when (key as NavigationDestination) {
-        ItemsList -> NavEntry(key) { ItemList() }
-        is ItemDetail -> NavEntry(key = key) {
-            val itemId: Int = (key as ItemDetail).itemId
-            ItemDetails(itemId)
+        CharactersList -> NavEntry(key) { CharactersList() }
+        is CharacterDetail -> NavEntry(key = key) {
+            val characterId: Int = (key as CharacterDetail).characterId
+            CharacterDetails(characterId)
         }
     }
 }

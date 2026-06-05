@@ -1,9 +1,0 @@
-package com.sottti.android.app.template.domain.items.model
-
-import com.sottti.android.app.template.domain.core.models.ImageContentDescription
-import com.sottti.android.app.template.domain.core.models.ImageUrl
-
-public data class ItemImage(
-    val description: ImageContentDescription,
-    val url: ImageUrl,
-)
