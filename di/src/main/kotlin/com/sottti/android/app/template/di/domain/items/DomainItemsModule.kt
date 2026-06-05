@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.domain.items.di
+package com.sottti.android.app.template.di.domain.items
 
 import com.sottti.android.app.template.domain.items.usecase.ObserveItem
 import com.sottti.android.app.template.domain.items.usecase.ObserveItemImpl

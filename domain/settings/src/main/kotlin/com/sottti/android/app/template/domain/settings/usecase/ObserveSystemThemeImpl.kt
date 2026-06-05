@@ -5,9 +5,9 @@ import com.sottti.android.app.template.domain.settings.repository.SettingsReposi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-internal class ObserveSystemThemeImpl @Inject constructor(
+public class ObserveSystemThemeImpl @Inject constructor(
     private val settingsRepository: SettingsRepository,
 ) : ObserveSystemTheme {
-    override operator fun invoke(): Flow<SystemTheme> =
+    public override operator fun invoke(): Flow<SystemTheme> =
         settingsRepository.observeSystemTheme()
 }

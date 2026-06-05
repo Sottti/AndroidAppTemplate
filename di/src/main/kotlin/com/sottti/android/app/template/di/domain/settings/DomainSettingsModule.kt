@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.domain.settings.di
+package com.sottti.android.app.template.di.domain.settings
 
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemColorContrast
 import com.sottti.android.app.template.domain.settings.usecase.GetSystemColorContrastImpl

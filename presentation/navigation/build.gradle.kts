@@ -1,12 +1,11 @@
 plugins {
-    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
 }
 
-android {
-    namespace = "com.sottti.android.app.template.presentation.navigation"
-}
-
 dependencies {
+    api(platform(libs.compose.bom))
+    api(libs.compose.runtime)
+    api(libs.kotlin.coroutines.core)
     api(libs.navigation.runtime)
 }

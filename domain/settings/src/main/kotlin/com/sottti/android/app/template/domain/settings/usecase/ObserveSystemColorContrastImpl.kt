@@ -5,9 +5,9 @@ import com.sottti.android.app.template.domain.settings.repository.SettingsReposi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-internal class ObserveSystemColorContrastImpl @Inject constructor(
+public class ObserveSystemColorContrastImpl @Inject constructor(
     private val settingsRepository: SettingsRepository,
 ) : ObserveSystemColorContrast {
-    override operator fun invoke(): Flow<SystemColorContrast> =
+    public override operator fun invoke(): Flow<SystemColorContrast> =
         settingsRepository.observeSystemColorContrast()
 }

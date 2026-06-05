@@ -5,9 +5,9 @@ import com.sottti.android.app.template.domain.settings.repository.SettingsReposi
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-internal class ObserveDynamicColorImpl @Inject constructor(
+public class ObserveDynamicColorImpl @Inject constructor(
     private val settingsRepository: SettingsRepository,
 ) : ObserveDynamicColor {
-    override operator fun invoke(): Flow<DynamicColor> =
+    public override operator fun invoke(): Flow<DynamicColor> =
         settingsRepository.observeDynamicColor()
 }

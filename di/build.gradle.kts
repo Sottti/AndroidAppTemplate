@@ -2,6 +2,7 @@ import com.sottti.android.app.template.buildSrc.module
 
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.ksp)
 }
 

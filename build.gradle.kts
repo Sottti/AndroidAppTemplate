@@ -33,7 +33,7 @@ val checkModuleDependencyBoundaries = tasks.register("checkModuleDependencyBound
     description = "Checks direct project dependencies follow the configured module boundary rules."
 
     doLast {
-        val violations = allprojects
+        val dependencyViolations = allprojects
             .flatMap { project ->
                 project.configurations.flatMap { configuration ->
                     configuration.dependencies
@@ -49,6 +49,12 @@ val checkModuleDependencyBoundaries = tasks.register("checkModuleDependencyBound
                 }
             }
             .flatMap { dependency -> dependency.boundaryViolations() }
+
+        val pluginViolations = allprojects
+            .filter { project -> project.path in pureKotlinModules }
+            .flatMap { project -> project.pureKotlinModuleViolations() }
+
+        val violations = (dependencyViolations + pluginViolations)
             .distinct()
             .sorted()
 
@@ -200,6 +206,21 @@ private val dependencyFreeModules = setOf(
     ":presentation:string-provider",
 )
 
+private val pureKotlinModules = setOf(
+    ":domain:core-models",
+    ":domain:items",
+    ":domain:settings",
+    ":domain:system-features",
+    ":presentation:navigation",
+    ":presentation:paparazzi",
+)
+
+private val pureKotlinForbiddenPluginIds = mapOf(
+    "com.android.application" to "Android application",
+    "com.android.library" to "Android library",
+    "com.google.dagger.hilt.android" to "Hilt Android",
+)
+
 private val presentationSupportModules = setOf(
     ":presentation:fixtures",
     ":presentation:paparazzi",
@@ -250,6 +271,18 @@ private fun ProjectDependencyEdge.boundaryViolations(): List<String> = buildList
     if (source == ":di" && !target.isAllowedDiDependency()) {
         add("$source may only depend on data or domain modules, but $configuration depends on $target.")
     }
+}
+
+private fun Project.pureKotlinModuleViolations(): List<String> = buildList {
+    if (!plugins.hasPlugin("org.jetbrains.kotlin.jvm")) {
+        add("$path is configured as a pure Kotlin module and must apply the Kotlin JVM plugin.")
+    }
+
+    pureKotlinForbiddenPluginIds
+        .filter { (pluginId, _) -> plugins.hasPlugin(pluginId) }
+        .forEach { (pluginId, description) ->
+            add("$path is configured as a pure Kotlin module and must not apply the $description plugin ($pluginId).")
+        }
 }
 
 private fun String.isAllowedDataDependency() =
