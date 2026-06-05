@@ -11,6 +11,7 @@ import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteD
 import com.sottti.android.app.template.data.items.datasource.remote.model.PageNumberApiModel
 import com.sottti.android.app.template.domain.items.model.Item
 import javax.inject.Inject
+import kotlin.coroutines.cancellation.CancellationException
 
 @OptIn(ExperimentalPagingApi::class)
 internal class ItemsRemoteMediator @Inject constructor(
@@ -63,6 +64,8 @@ internal class ItemsRemoteMediator @Inject constructor(
             }
 
             Success(endOfPaginationReached = endReached)
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             MediatorResult.Error(e)
         }
