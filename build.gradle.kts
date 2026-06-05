@@ -41,7 +41,7 @@ subprojects {
         buildUponDefaultConfig = true
         autoCorrect = false
         parallel = true
-        baseline = file("detekt-baseline.xml")
+        baselineFile("detekt-baseline.xml")?.let { baseline = it }
     }
 
     tasks.withType<Detekt>().configureEach {
@@ -62,7 +62,7 @@ subprojects {
     }
 
     plugins.withId("com.android.application") {
-        configure<ApplicationExtension> { androidApplicationConfig() }
+        androidApplicationConfig()
         androidKotlinConfig()
     }
 
@@ -93,18 +93,20 @@ private fun Project.androidKotlinConfig() {
     }
 }
 
-private fun ApplicationExtension.androidApplicationConfig() {
-    compileSdk = compileSdk()
-    defaultConfig {
-        minSdk = minSdk()
-        targetSdk = targetSdk()
-    }
-    lint {
-        baseline = file("lint-baseline.xml")
-        abortOnError = true
-        checkReleaseBuilds = false
-        xmlReport = true
-        htmlReport = true
+private fun Project.androidApplicationConfig() {
+    extensions.configure<ApplicationExtension> {
+        compileSdk = compileSdk()
+        defaultConfig {
+            minSdk = minSdk()
+            targetSdk = targetSdk()
+        }
+        lint {
+            baselineFile("lint-baseline.xml")?.let { baseline = it }
+            abortOnError = true
+            checkReleaseBuilds = false
+            xmlReport = true
+            htmlReport = true
+        }
     }
 }
 
@@ -114,13 +116,16 @@ private fun Project.androidLibraryConfig() {
         defaultConfig { minSdk = minSdk() }
         lint {
             targetSdk = targetSdk()
-            baseline = file("lint-baseline.xml")
+            baselineFile("lint-baseline.xml")?.let { baseline = it }
             abortOnError = true
             xmlReport = true
             htmlReport = true
         }
     }
 }
+
+private fun Project.baselineFile(path: String) =
+    file(path).takeIf { it.exists() }
 
 private fun compileSdk() = libs.versions.compileSdk.get().toInt()
 private fun minSdk() = libs.versions.minSdk.get().toInt()
