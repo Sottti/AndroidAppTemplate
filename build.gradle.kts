@@ -39,7 +39,7 @@ subprojects {
         toolVersion = libraries.versions.detekt.get()
         config.setFrom(files("$rootDir/detekt.yml"))
         buildUponDefaultConfig = true
-        autoCorrect = true
+        autoCorrect = false
         parallel = true
         baseline = file("detekt-baseline.xml")
     }

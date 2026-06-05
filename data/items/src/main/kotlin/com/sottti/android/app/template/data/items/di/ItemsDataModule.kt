@@ -10,8 +10,8 @@ import com.sottti.android.app.template.data.items.datasource.local.TimeProvider
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDao
 import com.sottti.android.app.template.data.items.datasource.local.database.ItemsDatabase
 import com.sottti.android.app.template.data.items.datasource.local.database.RemoteKeysDao
-import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.ItemsApiDataSource
+import com.sottti.android.app.template.data.items.datasource.remote.ItemsRemoteDataSource
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCalls
 import com.sottti.android.app.template.data.items.datasource.remote.api.ItemsApiCallsImpl
 import com.sottti.android.app.template.data.items.mediator.ItemsRemoteMediator

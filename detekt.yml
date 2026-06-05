@@ -58,7 +58,9 @@ Compose:
     active: true
   CompositionLocalNaming:
     active: true
-  MissingRemember:
+  RememberContentMissing:
+    active: true
+  RememberMissing:
     active: true
   ModifierMissing:
     active: false

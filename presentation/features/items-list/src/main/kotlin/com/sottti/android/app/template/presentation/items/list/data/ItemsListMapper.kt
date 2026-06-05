@@ -13,4 +13,7 @@ internal fun Item.toUi() = ItemState(
     name = name.value,
     image = image?.let {
         NetworkImage(description = it.description, url = it.url)
-    } ?: PlaceholderImage(Images.AvatarPlaceholder.state))
+    } ?: PlaceholderImage(
+        Images.AvatarPlaceholder.state,
+    ),
+)
