@@ -118,7 +118,7 @@ Execute the following Gradle tasks from the project root to run the automated te
 * **Testable system features:** The `data/system-features` module exposes fake managers backed by
   Turbine-based tests, showcasing how to stub system services when exercising the settings feature.
 * **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
-  `HomeActivity` combine with the navigation manager to launch directly into themed Compose content
+  `AppShellActivity` combine with the navigation manager to launch directly into themed Compose content
   with minimal boilerplate.
 * **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
   managed centrally so features automatically inherit full-height layouts.

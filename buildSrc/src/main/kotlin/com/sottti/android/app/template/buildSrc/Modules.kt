@@ -8,8 +8,9 @@ object module {
     const val di = ":di"
 
     object presentation {
+        const val appShell = ":presentation:app-shell"
+
         object features {
-            const val home = ":presentation:features:home"
             const val itemDetails = ":presentation:features:item-details"
             const val itemsList = ":presentation:features:items-list"
         }

@@ -43,7 +43,7 @@ include(
     ":presentation:design-system:themes",
     ":presentation:design-system:top-bars",
     ":presentation:design-system:typography",
-    ":presentation:features:home",
+    ":presentation:app-shell",
     ":presentation:features:item-details",
     ":presentation:features:items-list",
     ":presentation:fixtures",

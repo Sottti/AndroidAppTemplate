@@ -1,7 +1,7 @@
 package com.sottti.android.app.template.app
 
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
-import com.sottti.android.app.template.presentation.home.ui.HomeActivity
+import com.sottti.android.app.template.presentation.app.shell.ui.AppShellActivity
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
 import com.sottti.android.app.template.presentation.utils.test.setOrientation
 import dagger.hilt.android.testing.HiltAndroidRule
@@ -18,7 +18,7 @@ internal abstract class IntegrationTest(
     val hilt = HiltAndroidRule(this)
 
     @get:Rule(order = 1)
-    val rule = createAndroidComposeRule<HomeActivity>()
+    val rule = createAndroidComposeRule<AppShellActivity>()
 
     @Before
     fun setup() {
