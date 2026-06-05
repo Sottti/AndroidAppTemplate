@@ -8,6 +8,7 @@ import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem1RoomModel
 import com.sottti.android.app.template.data.items.datasource.local.fixtures.fixtureItem2RoomModel
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.After
 import org.junit.Before
@@ -38,6 +39,20 @@ internal class ItemsDaoTest {
             .asSnapshot()
 
         assertThat(snapshot).isEmpty()
+    }
+
+    @Test
+    fun `get item on empty database returns null`() = runTest {
+        val item = dao.getItem(fixtureItem1RoomModel.id)
+
+        assertThat(item).isNull()
+    }
+
+    @Test
+    fun `observe item on empty database returns null`() = runTest {
+        val item = dao.observeItem(fixtureItem1RoomModel.id).first()
+
+        assertThat(item).isNull()
     }
 
     @Test

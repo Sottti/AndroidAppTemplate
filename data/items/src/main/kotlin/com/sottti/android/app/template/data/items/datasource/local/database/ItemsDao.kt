@@ -25,10 +25,10 @@ internal interface ItemsDao {
     }
 
     @Query("SELECT * FROM items WHERE id = :itemId")
-    suspend fun getItem(itemId: Int): ItemRoomModel
+    suspend fun getItem(itemId: Int): ItemRoomModel?
 
     @Query("SELECT * FROM items WHERE id = :itemId")
-    fun observeItem(itemId: Int): Flow<ItemRoomModel>
+    fun observeItem(itemId: Int): Flow<ItemRoomModel?>
 
     @Query("SELECT * FROM items ORDER BY id ASC")
     fun observeItems(): PagingSource<Int, ItemRoomModel>

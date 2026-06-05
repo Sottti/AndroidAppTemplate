@@ -6,6 +6,7 @@ import com.sottti.android.app.template.data.items.datasource.local.database.Remo
 import com.sottti.android.app.template.data.items.datasource.local.mapper.toRoom
 import com.sottti.android.app.template.data.items.datasource.local.model.RemoteKeysRoomModel
 import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import org.junit.Before
 import org.junit.Test
@@ -53,6 +54,20 @@ internal class ItemsLocalDataSourceImplTest {
 
         assertThat(itemsDao.clearCalled).isTrue()
         assertThat(remoteKeysDao.clearCalled).isTrue()
+    }
+
+    @Test
+    fun `observe item returns null when dao row is absent`() = runTest {
+        val item = localDataSource.observeItem(fixtureItem1.id).first()
+
+        assertThat(item).isNull()
+    }
+
+    @Test
+    fun `is expired returns true when dao row is absent`() = runTest {
+        val expired = localDataSource.isExpired(fixtureItem1.id)
+
+        assertThat(expired).isTrue()
     }
 
     @Test

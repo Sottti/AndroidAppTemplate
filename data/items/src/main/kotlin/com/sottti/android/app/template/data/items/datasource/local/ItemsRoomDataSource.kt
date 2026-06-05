@@ -21,7 +21,7 @@ internal class ItemsRoomDataSource @Inject constructor(
     override fun observeItem(itemId: ItemId): Flow<Item?> =
         itemsDao
             .observeItem(itemId.value)
-            .map { itemRoomModel -> itemRoomModel.toDomain() }
+            .map { itemRoomModel -> itemRoomModel?.toDomain() }
 
     override fun observeItems(): PagingSource<Int, Item> =
         ItemMappingPagingSource(roomPagingSource = itemsDao.observeItems())
@@ -29,7 +29,8 @@ internal class ItemsRoomDataSource @Inject constructor(
     override suspend fun isExpired(itemId: ItemId): Boolean =
         itemsDao
             .getItem(itemId.value)
-            .isExpired(timeProvider.now())
+            ?.isExpired(timeProvider.now())
+            ?: true
 
     override suspend fun upsert(item: Item) {
         itemsDao.upsert(item.toRoom(timeProvider.now()))

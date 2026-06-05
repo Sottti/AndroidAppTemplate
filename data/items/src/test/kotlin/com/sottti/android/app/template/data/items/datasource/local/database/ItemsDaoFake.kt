@@ -40,13 +40,13 @@ internal class ItemsDaoFake : ItemsDao {
         itemsFlow.value = saved.toList()
     }
 
-    override suspend fun getItem(itemId: Int): ItemRoomModel {
-        return saved.first { it.id == itemId }
+    override suspend fun getItem(itemId: Int): ItemRoomModel? {
+        return saved.firstOrNull { it.id == itemId }
     }
 
-    override fun observeItem(itemId: Int): Flow<ItemRoomModel> {
+    override fun observeItem(itemId: Int): Flow<ItemRoomModel?> {
         return itemsFlow
-            .map { list -> list.first { it.id == itemId } }
+            .map { list -> list.firstOrNull { it.id == itemId } }
             .distinctUntilChanged()
     }
 
