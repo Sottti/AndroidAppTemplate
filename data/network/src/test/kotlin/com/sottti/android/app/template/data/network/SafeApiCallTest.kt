@@ -109,11 +109,37 @@ internal class SafeApiCallTest {
     }
 
     @Test
+    fun `api client returns client error when server returns 4xx`() = runTest {
+        val client = createApiMockClient(status = HttpStatusCode.NotFound)
+        val result = client.fetchAsText()
+
+        assertThat(result.isErr).isTrue()
+        val error = result.getError()
+        assertThat(error).isInstanceOf(ExceptionApiModel.ClientError::class.java)
+        error as ExceptionApiModel.ClientError
+        assertThat(error.code).isEqualTo(HttpStatusCode.NotFound.value)
+        assertThat(error.errorBody).isEqualTo(ERROR_BODY_RESPONSE)
+    }
+
+    @Test
     fun `returns server error when server returns 5xx`() = runTest {
         val client = createMockClient {
             respondError(HttpStatusCode.InternalServerError, ERROR_BODY_RESPONSE)
         }
         // Ktor's client throws ServerResponseException automatically on 5xx
+        val result = client.fetchAsText()
+
+        assertThat(result.isErr).isTrue()
+        val error = result.getError()
+        assertThat(error).isInstanceOf(ExceptionApiModel.ServerError::class.java)
+        error as ExceptionApiModel.ServerError
+        assertThat(error.code).isEqualTo(HttpStatusCode.InternalServerError.value)
+        assertThat(error.message).contains("500")
+    }
+
+    @Test
+    fun `api client returns server error when server returns 5xx`() = runTest {
+        val client = createApiMockClient(status = HttpStatusCode.InternalServerError)
         val result = client.fetchAsText()
 
         assertThat(result.isErr).isTrue()
@@ -219,4 +245,19 @@ internal class SafeApiCallTest {
         // This should NOT return a Result.Err, but throw the exception upwards
         safeApiCall { client.get(TEST_URL) }
     }
+
+    private fun createApiMockClient(
+        status: HttpStatusCode,
+    ): HttpClient = createApiHttpClient(
+        MockEngine {
+            respond(
+                content = ERROR_BODY_RESPONSE,
+                status = status,
+                headers = headersOf(
+                    HttpHeaders.ContentType,
+                    ContentType.Application.Json.toString(),
+                ),
+            )
+        },
+    )
 }
