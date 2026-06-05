@@ -12,11 +12,12 @@ android {
 
 dependencies {
     api(project(module.presentation.designSystem.illustrations))
+    debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
     implementation(libs.compose.runtime)
     implementation(libs.compose.ui)
-    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))
     implementation(project(module.presentation.designSystem.dimensions))

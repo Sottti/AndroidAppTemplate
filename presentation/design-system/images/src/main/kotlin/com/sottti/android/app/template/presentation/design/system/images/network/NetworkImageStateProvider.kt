@@ -4,8 +4,8 @@ import androidx.compose.foundation.layout.requiredSize
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
 import androidx.compose.ui.unit.dp
-import com.sottti.android.app.template.domain.core.fixtures.fixtureContentDescription
-import com.sottti.android.app.template.domain.core.fixtures.fixtureImageUrl
+import com.sottti.android.app.template.domain.core.models.ImageContentDescription
+import com.sottti.android.app.template.domain.core.models.ImageUrl
 
 internal class NetworkImageStateProvider :
     PreviewParameterProvider<NetworkImageState> {
@@ -32,15 +32,17 @@ private val modifierValues = listOf(
     Modifier.requiredSize(130.dp),
     Modifier.requiredSize(150.dp),
 )
+private val previewContentDescription = ImageContentDescription("content description")
+private val previewImageUrl = ImageUrl("imageUrl")
 
 private fun imageState(
     loading: Boolean,
     modifier: Modifier,
     roundedCorners: Boolean,
 ) = NetworkImageState(
-    contentDescription = fixtureContentDescription,
+    contentDescription = previewContentDescription,
     foreverLoading = loading,
-    imageUrl = fixtureImageUrl,
+    imageUrl = previewImageUrl,
     modifier = modifier,
     roundedCorners = roundedCorners,
 )

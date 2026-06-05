@@ -11,8 +11,9 @@ android {
 }
 
 dependencies {
+    debugImplementation(libs.compose.ui.tooling)
     implementation(libs.compose.material)
-    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(libs.material)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.colors))

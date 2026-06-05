@@ -9,6 +9,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(platform(libs.compose.bom))
 }

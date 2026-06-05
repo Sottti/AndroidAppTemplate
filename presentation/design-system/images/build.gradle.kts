@@ -12,12 +12,13 @@ android {
 
 dependencies {
     api(project(module.domain.coreModels))
+    debugImplementation(libs.compose.ui.tooling)
     implementation(libs.annotations)
     implementation(libs.coil.compose)
     implementation(libs.coil.network.ktor3)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
-    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
     implementation(platform(libs.compose.bom))
     implementation(project(module.presentation.designSystem.dimensions))
     implementation(project(module.presentation.designSystem.progressIndicators))
