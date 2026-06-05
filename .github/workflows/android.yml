@@ -39,6 +39,9 @@ jobs:
       - name: Make gradlew executable
         run: chmod +x gradlew
 
+      - name: Check Module Boundaries
+        run: ./gradlew --no-daemon checkModuleDependencyBoundaries
+
       - name: Run Static Analysis
         run: ./gradlew --no-daemon detekt lintDebug
 

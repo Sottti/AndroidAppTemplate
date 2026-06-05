@@ -63,8 +63,6 @@ dependencies {
     implementation(project(module.presentation.designSystem.themes))
     implementation(project(module.presentation.designSystem.topBars))
     implementation(project(module.presentation.appShell))
-    implementation(project(module.presentation.features.itemDetails))
-    implementation(project(module.presentation.features.itemsList))
     implementation(project(module.presentation.utils))
     ksp(libs.hilt.compiler)
     kspAndroidTest(libs.hilt.compiler)

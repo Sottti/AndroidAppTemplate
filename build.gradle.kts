@@ -3,6 +3,8 @@ import com.android.build.api.dsl.LibraryExtension
 import io.gitlab.arturbosch.detekt.Detekt
 import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.gradle.api.GradleException
+import org.gradle.api.artifacts.ProjectDependency
 import org.gradle.api.tasks.testing.Test
 import org.jetbrains.kotlin.gradle.dsl.KotlinAndroidProjectExtension
 import org.jetbrains.kotlin.gradle.dsl.KotlinJvmProjectExtension
@@ -24,6 +26,41 @@ tasks.register<Delete>("cleanPaparazziSnapshots") {
     group = "verification"
     description = "Deletes all Paparazzi snapshot images across the project."
     delete(fileTree(rootDir) { include("**/src/test/snapshots/images/**") })
+}
+
+val checkModuleDependencyBoundaries = tasks.register("checkModuleDependencyBoundaries") {
+    group = "verification"
+    description = "Checks direct project dependencies follow the configured module boundary rules."
+
+    doLast {
+        val violations = allprojects
+            .flatMap { project ->
+                project.configurations.flatMap { configuration ->
+                    configuration.dependencies
+                        .withType(ProjectDependency::class.java)
+                        .filter { dependency -> dependency.path != project.path }
+                        .map { dependency ->
+                            ProjectDependencyEdge(
+                                configuration = configuration.name,
+                                source = project.path,
+                                target = dependency.path,
+                            )
+                        }
+                }
+            }
+            .flatMap { dependency -> dependency.boundaryViolations() }
+            .distinct()
+            .sorted()
+
+        if (violations.isNotEmpty()) {
+            throw GradleException(
+                buildString {
+                    appendLine("Module dependency boundary violations found:")
+                    violations.forEach { violation -> appendLine("- $violation") }
+                },
+            )
+        }
+    }
 }
 
 private val excludeSnapshotTestsProperty = "excludeSnapshotTests"
@@ -74,6 +111,10 @@ subprojects {
             exclude(snapshotTestPattern)
             failOnNoDiscoveredTests.set(false)
         }
+    }
+
+    tasks.matching { it.name == "check" }.configureEach {
+        dependsOn(checkModuleDependencyBoundaries)
     }
 
     plugins.withId("com.android.application") {
@@ -145,3 +186,95 @@ private fun Project.baselineFile(path: String) =
 private fun compileSdk() = libs.versions.compileSdk.get().toInt()
 private fun minSdk() = libs.versions.minSdk.get().toInt()
 private fun targetSdk() = libs.versions.targetSdk.get().toInt()
+
+private data class ProjectDependencyEdge(
+    val configuration: String,
+    val source: String,
+    val target: String,
+)
+
+private val dependencyFreeModules = setOf(
+    ":domain:core-models",
+    ":presentation:navigation",
+    ":presentation:previews",
+    ":presentation:string-provider",
+)
+
+private val presentationSupportModules = setOf(
+    ":presentation:fixtures",
+    ":presentation:paparazzi",
+    ":presentation:previews",
+)
+
+private fun ProjectDependencyEdge.boundaryViolations(): List<String> = buildList {
+    if (source in dependencyFreeModules) {
+        add("$source must not declare project dependencies, but $configuration depends on $target.")
+    }
+
+    if (target == ":app") {
+        add("$source must not depend on :app via $configuration.")
+    }
+
+    if (source.startsWith(":domain:") && !target.startsWith(":domain:")) {
+        add("$source is a domain module and may only depend on domain modules, but $configuration depends on $target.")
+    }
+
+    if (source.startsWith(":data:") && !target.isAllowedDataDependency()) {
+        add("$source is a data module and may only depend on data, domain, or utils modules, but $configuration depends on $target.")
+    }
+
+    if (source.startsWith(":presentation:") && target.isForbiddenPresentationDependency()) {
+        add("$source is a presentation module and must not depend on data, di, or app modules, but $configuration depends on $target.")
+    }
+
+    if (target.startsWith(":presentation:features:") && source != ":presentation:navigation-impl") {
+        add("$source must not depend on feature module $target via $configuration; feature wiring belongs in :presentation:navigation-impl.")
+    }
+
+    if (source.startsWith(":presentation:features:") && target in setOf(":presentation:app-shell", ":presentation:navigation-impl")) {
+        add("$source is a feature module and must not depend on $target via $configuration.")
+    }
+
+    if (source == ":presentation:app-shell" && !target.isAllowedAppShellDependency()) {
+        add("$source may only depend on domain settings, navigation, navigation-impl, design-system modules, or presentation utils, but $configuration depends on $target.")
+    }
+
+    if (source.startsWith(":presentation:design-system:") && target.isForbiddenDesignSystemDependency()) {
+        add("$source is a design-system module and must not depend on $target via $configuration.")
+    }
+
+    if (source.isNonPresentationLayer() && target in presentationSupportModules) {
+        add("$source must not depend on presentation support module $target via $configuration.")
+    }
+
+    if (source == ":di" && !target.isAllowedDiDependency()) {
+        add("$source may only depend on data or domain modules, but $configuration depends on $target.")
+    }
+}
+
+private fun String.isAllowedDataDependency() =
+    startsWith(":data:") || startsWith(":domain:") || startsWith(":utils:")
+
+private fun String.isForbiddenPresentationDependency() =
+    startsWith(":data:") || this == ":di" || this == ":app"
+
+private fun String.isAllowedAppShellDependency() =
+    this == ":domain:settings" ||
+        this == ":presentation:navigation" ||
+        this == ":presentation:navigation-impl" ||
+        this == ":presentation:utils" ||
+        startsWith(":presentation:design-system:")
+
+private fun String.isForbiddenDesignSystemDependency() =
+    startsWith(":presentation:features:") ||
+        this == ":presentation:app-shell" ||
+        this == ":presentation:navigation-impl" ||
+        startsWith(":data:") ||
+        this == ":di" ||
+        this == ":app"
+
+private fun String.isNonPresentationLayer() =
+    startsWith(":domain:") || startsWith(":data:") || this == ":di" || this == ":app"
+
+private fun String.isAllowedDiDependency() =
+    startsWith(":data:") || startsWith(":domain:")

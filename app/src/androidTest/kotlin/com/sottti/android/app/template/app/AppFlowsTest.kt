@@ -7,8 +7,6 @@ import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import com.sottti.android.app.template.domain.items.fixtures.fixtureItem1
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG
-import com.sottti.android.app.template.presentation.item.details.ui.ITEM_DETAILS_DETAILS_TEST_TAG
-import com.sottti.android.app.template.presentation.item.details.ui.ITEM_DETAILS_IMAGE_TEST_TAG
 import com.sottti.android.app.template.presentation.utils.test.OrientationTest
 import dagger.hilt.android.testing.HiltAndroidTest
 import org.junit.Test
@@ -34,8 +32,8 @@ internal class AppFlowsTest(
 
             waitForIdle()
 
-            onNodeWithTag(ITEM_DETAILS_IMAGE_TEST_TAG).assertIsDisplayed()
-            onNodeWithTag(ITEM_DETAILS_DETAILS_TEST_TAG).assertIsDisplayed()
+            onNodeWithTag(MAIN_TOP_BAR_BACK_NAVIGATION_TEST_TAG).assertIsDisplayed()
+            onNodeWithText(fixtureItem1.name.value).assertIsDisplayed()
 
             waitForIdle()
 
