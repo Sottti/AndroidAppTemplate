@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="items_list_title">Items List</string>
+    <string name="items_list_pagination_error">We couldn\'t load more items.</string>
+    <string name="items_list_pagination_error_retry">Retry</string>
 </resources>

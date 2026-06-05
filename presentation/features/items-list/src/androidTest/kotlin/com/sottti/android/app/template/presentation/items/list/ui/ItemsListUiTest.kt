@@ -58,6 +58,28 @@ internal class ItemsListUiTest(
         }
 
     @Test
+    fun givenStateIsAppendError_thenAppendErrorAndItemsAreVisible() =
+        runUiTest(content = { ItemListUiPreview(loadedStateAppendError) }) {
+            onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
+            onNode(gridIndicatorMatcher()).assertDoesNotExist()
+
+            onNodeWithTag(PAGINATION_ERROR_TEST_TAG).assertIsDisplayed()
+            onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
+        }
+
+    @Test
+    fun givenStateIsPrependError_thenPrependErrorAndItemsAreVisible() =
+        runUiTest(content = { ItemListUiPreview(loadedStatePrependError) }) {
+            onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()
+            onNode(gridIndicatorMatcher()).assertDoesNotExist()
+
+            onNodeWithTag(PAGINATION_ERROR_TEST_TAG).assertIsDisplayed()
+            onAllNodesWithTag(GRID_ITEM_TEST_TAG).assertCountEquals(2)
+            onNodeWithTag(MAIN_TOP_BAR_TEST_TAG).assertIsDisplayed()
+        }
+
+    @Test
     fun givenStateIsLoadedNoPagination_thenItemsAreVisible() =
         runUiTest(content = { ItemListUiPreview(loadedStateNoPagination) }) {
             onNode(fullscreenIndicatorMatcher()).assertDoesNotExist()

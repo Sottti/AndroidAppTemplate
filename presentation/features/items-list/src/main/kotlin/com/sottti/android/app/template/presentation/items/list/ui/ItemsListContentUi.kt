@@ -12,9 +12,11 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyGridItemScope
 import androidx.compose.foundation.lazy.grid.LazyGridState
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
@@ -44,6 +46,7 @@ import com.sottti.android.app.template.presentation.design.system.progress.indic
 import com.sottti.android.app.template.presentation.design.system.shapes.compositionLocal.shapes
 import com.sottti.android.app.template.presentation.design.system.text.Text
 import com.sottti.android.app.template.presentation.design.system.top.bars.ui.MainTopBar
+import com.sottti.android.app.template.presentation.items.list.R
 import com.sottti.android.app.template.presentation.items.list.model.ItemImageState
 import com.sottti.android.app.template.presentation.items.list.model.ItemImageState.NetworkImage
 import com.sottti.android.app.template.presentation.items.list.model.ItemImageState.PlaceholderImage
@@ -135,8 +138,13 @@ private fun ItemsLoaded(
         state = listState,
         verticalArrangement = Arrangement.spacedBy(dimensions.spacing.medium),
     ) {
-        if (items.loadState.prepend is Loading) {
-            item(key = "prepend loading") { ProgressIndicatorGridItem() }
+        when (items.loadState.prepend) {
+            is Error -> item(key = "prepend error", span = { GridItemSpan(maxLineSpan) }) {
+                PaginationErrorGridItem(onRetry = { items.retry() })
+            }
+
+            is Loading -> item(key = "prepend loading") { ProgressIndicatorGridItem() }
+            else -> Unit
         }
 
         items(
@@ -144,8 +152,13 @@ private fun ItemsLoaded(
             key = items.itemKey { it.id },
         ) { index -> items[index]?.let { item -> ItemCard(item = item, onAction = onAction) } }
 
-        if (items.loadState.append is Loading) {
-            item(key = "append loading") { ProgressIndicatorGridItem() }
+        when (items.loadState.append) {
+            is Error -> item(key = "append error", span = { GridItemSpan(maxLineSpan) }) {
+                PaginationErrorGridItem(onRetry = { items.retry() })
+            }
+
+            is Loading -> item(key = "append loading") { ProgressIndicatorGridItem() }
+            else -> Unit
         }
     }
 }
@@ -221,4 +234,32 @@ private fun ProgressIndicatorGridItem() {
             .testTag(PROGRESS_INDICATOR_GRID_TEST_TAG)
             .size(dimensions.components.cardInGrid.small)
     )
+}
+
+@Composable
+private fun PaginationErrorGridItem(
+    onRetry: () -> Unit,
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .testTag(PAGINATION_ERROR_TEST_TAG),
+        shape = shapes.roundedCorner.large,
+    ) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(dimensions.spacing.medium),
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(dimensions.spacing.small),
+        ) {
+            Text.Body.Medium(
+                textResId = R.string.items_list_pagination_error,
+                textAlign = TextAlign.Center,
+            )
+            Button(onClick = onRetry) {
+                Text.Vanilla(R.string.items_list_pagination_error_retry)
+            }
+        }
+    }
 }

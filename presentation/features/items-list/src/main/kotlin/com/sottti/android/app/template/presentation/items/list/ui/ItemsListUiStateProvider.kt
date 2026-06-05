@@ -30,6 +30,8 @@ internal class ItemsListUiStateProvider : PreviewParameterProvider<ItemsListStat
             yield(loadedStateLoadsOfItemsRefreshing)
             yield(emptyState)
             yield(errorState)
+            yield(loadedStateAppendError)
+            yield(loadedStatePrependError)
         }
 }
 
@@ -75,6 +77,14 @@ internal val emptyState = itemsListState(
 internal val errorState = itemsListState(
     refreshState = LoadState.Error(kotlin.Exception()),
     data = emptyList(),
+)
+
+internal val loadedStateAppendError = itemsListState(
+    appendState = LoadState.Error(kotlin.Exception()),
+)
+
+internal val loadedStatePrependError = itemsListState(
+    prependState = LoadState.Error(kotlin.Exception()),
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
