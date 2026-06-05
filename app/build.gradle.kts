@@ -28,14 +28,18 @@ android {
             signingConfig = signingConfigs.getByName("debug")
         }
     }
+}
 
-    // compose.ui.test.junit4 forces runner 1.5.0 with BoM version 2025.11.01
-    configurations.all {
+// compose.ui.test.junit4 forces runner 1.5.0 with BoM version 2025.11.01
+configurations
+    .matching { configuration ->
+        configuration.name.contains("AndroidTest", ignoreCase = true)
+    }
+    .configureEach {
         resolutionStrategy {
             force("androidx.test:runner:1.7.0")
         }
     }
-}
 
 dependencies {
     androidTestImplementation(libs.compose.ui.test.junit4)
