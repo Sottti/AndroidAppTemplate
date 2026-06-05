@@ -24,7 +24,7 @@ public fun createMockHttpClient(context: Context): HttpClient =
     }
 
 private fun createMockEngineForJson(context: Context): MockEngine {
-    val itemsJson = context.loadJsonAsset("fake_api_response.json")
+    val itemsJson = context.loadJsonAsset("api_response_fake.json")
     val itemsById = buildItemsById(
         itemsJson = itemsJson,
         json = Json { ignoreUnknownKeys = true },
