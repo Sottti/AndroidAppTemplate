@@ -1,4 +1,4 @@
-package com.sottti.android.app.template.presentation.design.system.illustrations.ui.cricled
+package com.sottti.android.app.template.presentation.design.system.illustrations.ui.circled
 
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.padding
