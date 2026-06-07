@@ -53,7 +53,7 @@ This template is packed with modern libraries and tools from the Android ecosyst
   & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
-* **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
+* **Networking:** [Ktor Client](https://ktor.io/docs/client-create-and-configure.html) for efficient REST API
   communication.
 * **Serialization:** [Kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization) (used
   with Ktor) for fast and modern JSON parsing.
@@ -136,7 +136,7 @@ from Clean Architecture.
 * **UI (Compose)**: Observes `State` from the `ViewModel` and sends `Actions` (user actions) to it.
   It is passive and dumb.
 * **ViewModel**: Follows
-  a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
+  a [declarative state holder approach](https://developer.android.com/topic/architecture/ui-layer/stateholders).
   Handles business logic for the screen. It consumes `Actions`, interacts with
   UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
 * **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.g.,
