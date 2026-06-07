@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.min
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -40,34 +41,65 @@ public fun NetworkImage(
     roundedCorners: Boolean = false,
     foreverLoading: Boolean = false,
 ) {
-    val painter = rememberAsyncImagePainter(model(url))
-    val painterState by painter.state.collectAsStateWithLifecycle()
     BoxWithConstraints(modifier = modifier.clip(cornerRadius(roundedCorners))) {
         val imageModifier = Modifier.matchParentSize()
 
         when {
-            foreverLoading || painterState is AsyncImagePainter.State.Loading ->
+            foreverLoading ->
                 ProgressIndicator(modifier = imageModifier, size = indicatorSize())
 
-            painterState is AsyncImagePainter.State.Success ->
-                Image(
-                    painter = painter,
-                    contentDescription = contentDescription.value,
-                    contentScale = ContentScale.Crop,
-                    modifier = imageModifier,
-                )
+            LocalInspectionMode.current ->
+                PreviewImage(contentDescription = contentDescription, modifier = imageModifier)
 
-            else -> Box(modifier = imageModifier)
+            else ->
+                AsyncNetworkImage(
+                    contentDescription = contentDescription,
+                    loadingIndicatorSize = indicatorSize(),
+                    modifier = imageModifier,
+                    url = url,
+                )
         }
     }
 }
 
 @Composable
-private fun model(url: ImageUrl): Any =
+private fun AsyncNetworkImage(
+    url: ImageUrl,
+    contentDescription: ImageContentDescription,
+    loadingIndicatorSize: ProgressIndicatorSize,
+    modifier: Modifier,
+) {
+    val painter = rememberAsyncImagePainter(imageRequest(url))
+    val painterState by painter.state.collectAsStateWithLifecycle()
+
     when {
-        LocalInspectionMode.current -> R.drawable.img_android_statue
-        else -> imageRequest(url)
+        painterState is AsyncImagePainter.State.Loading ->
+            ProgressIndicator(modifier = modifier, size = loadingIndicatorSize)
+
+        painterState is AsyncImagePainter.State.Success ->
+            Image(
+                painter = painter,
+                contentDescription = contentDescription.value,
+                contentScale = ContentScale.Crop,
+                modifier = modifier,
+            )
+
+        else -> Box(modifier = modifier)
     }
+}
+
+@Composable
+private fun PreviewImage(
+    contentDescription: ImageContentDescription,
+    modifier: Modifier,
+) {
+    Image(
+        painter = painterResource(R.drawable.img_android_statue),
+        contentDescription = contentDescription.value,
+        contentScale = ContentScale.Crop,
+        modifier = modifier,
+    )
+}
 
 @Composable
 private fun imageRequest(url: ImageUrl): ImageRequest {

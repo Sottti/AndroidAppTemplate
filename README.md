@@ -119,8 +119,7 @@ Execute the following Gradle tasks from the project root to run the automated te
   Turbine-based tests, showcasing how to stub system services when exercising the settings feature.
 * **Streamlined startup:** A Hilt-enabled `Application`, splash activity, and edge-to-edge
   `AppShellActivity` combine with the navigation manager to launch directly into themed Compose
-  content
-  with minimal boilerplate.
+  content with minimal boilerplate.
 * **Edge-to-edge ready:** Compose screens are rendered behind the system bars, with window insets
   managed centrally so features automatically inherit full-height layouts.
 
@@ -171,8 +170,9 @@ Every Gradle module has a single responsibility. Use the table below to find the
     * `app`: Hosts the `Application`, activities, and wires the dependency graph at runtime.
 * **Presentation layer**
     * `presentation:design-system`: Shared Compose theming, typography, and reusable components.
-    * `presentation:features:`: Feature-specific screens such as `characters-list`, `character-details`, and
-      `home`.
+    * `presentation:app-shell`: Owns the app shell and top-level screen composition.
+    * `presentation:features:`: Feature-specific screens such as `characters-list` and
+      `character-details`.
     * `presentation:navigation` & `presentation:navigation-impl`: Navigation contracts and their
       Compose Navigation 3 implementation.
     * `presentation:paparazzi`, `presentation:previews`, `presentation:utils`,
@@ -238,14 +238,7 @@ If you feel like saying hi, have any comments, suggestions or
 questions, [open an issue](https://github.com/Sottti/AndroidAppTemplate/issues?q=sort%3Aupdated-desc+is%3Aissue+is%3Aopen)
 or say [hi 👋 on X](https://x.com/Sotttti).
 
-## 📷 Screenshots
-
-<p align="center">   
-   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" width="24%"/>
-</p>
+## 📷 Extended Screenshots
 
 <p align="center">
    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>

@@ -1,5 +1,7 @@
 package com.sottti.android.app.template.presentation.design.system.images.network
 
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.platform.LocalInspectionMode
 import com.android.ide.common.rendering.api.SessionParams
 import com.android.resources.NightMode
 import com.sottti.android.app.template.presentation.paparazzi.nightModeParameters
@@ -21,7 +23,9 @@ internal class NetworkImagesSnapshotTest(
     @Test
     fun snapshotTest() {
         paparazzi.snapshot {
-            NetworkImagePreview(state)
+            CompositionLocalProvider(LocalInspectionMode provides true) {
+                NetworkImagePreview(state)
+            }
         }
     }
 
