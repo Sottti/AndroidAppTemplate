@@ -28,6 +28,37 @@ the repetitive setup process of configuring dependencies, setting up architectur
 common utilities. Use the template, rename the package and feature placeholders, then start building
 your app's features.
 
+## Screenshots
+
+### Light Theme
+
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" alt="Characters list screen in light theme" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" alt="Character details screen in light theme" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" alt="Settings screen in light theme" width="24%"/>
+</p>
+
+### Dark Theme
+
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" alt="Characters list screen in dark theme" width="24%"/>
+</p>
+
+### Extended Layouts
+
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" alt="Character details screen in landscape" width="48%"/>
+</p>
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" alt="Settings screen in landscape" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" alt="Characters list screen with large font scale" width="48%"/>
+</p>
+<p align="center">
+   <img src="https://github.com/user-attachments/assets/8cdab79c-c894-468f-8cbc-36301fe813fe" alt="Character details screen with large font scale" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/0da05dbf-795f-4fca-990b-d035c47aa34f" alt="Settings screen with large font scale" width="48%"/>
+</p>
+
 ## ✨ Features
 
 This template is packed with modern libraries and tools from the Android ecosystem:
@@ -184,37 +215,6 @@ Every Gradle module has a single responsibility. Use the table below to find the
     * `di`: Shared Hilt modules and component wiring consumed across the app.
 * **Shared utilities**
     * `utils:lifecycle`: Lifecycle-aware coroutine helpers and Flow extensions reused in ViewModels.
-
-## Screenshots
-
-### Light Theme
-
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" alt="Characters list screen in light theme" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" alt="Character details screen in light theme" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" alt="Settings screen in light theme" width="24%"/>
-</p>
-
-### Dark Theme
-
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" alt="Characters list screen in dark theme" width="24%"/>
-</p>
-
-### Extended Layouts
-
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" alt="Character details screen in landscape" width="48%"/>
-</p>
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" alt="Settings screen in landscape" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" alt="Characters list screen with large font scale" width="48%"/>
-</p>
-<p align="center">
-   <img src="https://github.com/user-attachments/assets/8cdab79c-c894-468f-8cbc-36301fe813fe" alt="Character details screen with large font scale" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/0da05dbf-795f-4fca-990b-d035c47aa34f" alt="Settings screen with large font scale" width="48%"/>
-</p>
 
 ## 🚀 How to Use This Template
 
