@@ -10,7 +10,7 @@ import org.junit.Test
 internal class CharactersListMapperTest {
 
     @Test
-    fun `given a domain Character, when mapped to UI model, then it should map all fields correctly`() {
+    fun `maps a domain character to a UI model`() {
         val domainCharacter = fixtureCharacter1
 
         val uiModel = domainCharacter.toUi()
@@ -24,7 +24,7 @@ internal class CharactersListMapperTest {
     }
 
     @Test
-    fun `given a list of domain characters, when mapped to UI models, it should return a list of correctly mapped models`() {
+    fun `maps domain characters to UI models`() {
         val domainList = listOfTwoCharacters
 
         val uiModelList = domainList.toUi()
@@ -39,7 +39,7 @@ internal class CharactersListMapperTest {
     }
 
     @Test
-    fun `given an empty list of domain Characters, when mapped to UI models, then it should return an empty list`() {
+    fun `maps an empty domain character list to an empty UI list`() {
         val emptyDomainList = emptyList<Character>()
 
         val uiModelList = emptyDomainList.toUi()

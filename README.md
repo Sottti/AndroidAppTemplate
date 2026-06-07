@@ -1,22 +1,22 @@
 # Android App Template (AAT)
 
+[![Android CI](https://github.com/Sottti/AndroidAppTemplate/actions/workflows/android.yml/badge.svg)](https://github.com/Sottti/AndroidAppTemplate/actions/workflows/android.yml)
 ![API](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.minSdk&label=API&color=brightgreen&suffix=%2B&logo=android&logoColor=white)
 ![Compose BOM](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.compose-bom&label=Compose%20BOM&color=007ACC&logo=jetpackcompose&logoColor=white)
 ![Navigation](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.navigation&label=Navigation&color=4CAF50&logo=android&logoColor=white)
 ![Kotlin](https://img.shields.io/badge/dynamic/toml?url=https://raw.githubusercontent.com/Sottti/AndroidAppTemplate/refs/heads/main/gradle/libs.versions.toml&query=$.versions.kotlin&label=Kotlin&color=7F52FF&logo=kotlin&logoColor=white)
 ![GitHub last commit](https://img.shields.io/github/last-commit/Sottti/AndroidAppTemplate?logo=github&logoColor=white)
 ![GitHub repo size](https://img.shields.io/github/repo-size/Sottti/AndroidAppTemplate)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat&logo=opensourceinitiative&logoColor=white)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/License-MIT-blue?style=flat&logo=opensourceinitiative&logoColor=white)](LICENSE)
 
-A clean, modern, and opinionated Android application template to bootstrap your new projects
-quickly. This template is built with a focus on modern Android development (MAD), scalability, and
-best practices.
+Modern Kotlin Android app template with Jetpack Compose, Hilt, Navigation 3, Ktor, Room/Paging,
+Paparazzi, and a modular MVVM/Clean Architecture setup.
 
 <p align="center">   
-   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" width="24%"/>
-   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" alt="Characters list screen in light theme" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/4b93be8d-586b-4eaf-90ec-51f69f25366a" alt="Character details screen in light theme" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" alt="Settings screen in light theme" width="24%"/>
+   <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" alt="Characters list screen in dark theme" width="24%"/>
 </p>
 
 ## Disclaimer
@@ -32,27 +32,25 @@ scope, and delivery goals before adopting it wholesale.
 
 This project serves as a starter kit for new Android applications. It's designed to save you from
 the repetitive setup process of configuring dependencies, setting up architecture, and implementing
-common utilities. Just clone or use this template, rename the packages, features... and start
-building your app's
-features immediately.
+common utilities. Use the template, rename the package and feature placeholders, then start building
+your app's features.
 
 ## ✨ Features
 
-This template is packed with the latest libraries and tools from the Android ecosystem:
+This template is packed with modern libraries and tools from the Android ecosystem:
 
 * **Tech Stack:** 100% [Kotlin](https://kotlinlang.org/)
 * **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) for declarative UI.
     * **Theming:** [Material 3](https://m3.material.io/) (Material You) support.
-    * **Navigation:
-      ** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
+    * **Navigation:** [Compose Navigation 3](https://developer.android.com/guide/navigation/navigation-3)
       for all screen transitions.
 * **Architecture:** Follows Google's official "Guide to app architecture".
     * [MVVM](https://developer.android.com/jetpack/guide) (Model-View-ViewModel).
     * **UI Layer:** State-driven UI with `ViewModel`, `State`, and `Actions`.
     * **Domain Layer:** (Optional but recommended) for business logic.
     * **Data Layer:** `Repository` pattern.
-* **Asynchronicity:
-  ** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html) & [Flows](https://developer.android.com/kotlin/flow)
+* **Asynchronous work:** [Kotlin Coroutines](https://kotlinlang.org/docs/coroutines-overview.html)
+  & [Flows](https://developer.android.com/kotlin/flow)
   for managing background threads and streams of data.
 * **Dependency Injection:** [Hilt](https://dagger.dev/hilt/) for managing dependencies.
 * **Networking:** [Ktor Client](https://ktor.io/docs/client-overview.html) for efficient REST API
@@ -142,8 +140,8 @@ from Clean Architecture.
   a [declarative approach](https://proandroiddev.com/loading-initial-data-in-launchedeffect-vs-viewmodel-f1747c20ce62).
   Handles business logic for the screen. It consumes `Actions`, interacts with
   UseCases/Repositories, and exposes a single `State` Flow for the UI to observe.
-* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.am.,
-  `GetItem`). This makes logic reusable and easier to test.
+* **UseCases (Domain Layer)**: (Optional) Encapsulates a single piece of business logic (e.g.,
+  `GetCharacter`). This makes logic reusable and easier to test.
 * **Repository (Data Layer)**: The single source of truth for data. It abstracts away the data
   source (network or local database) and provides a clean API for the `ViewModel` or `UseCases` to
   consume.
@@ -202,8 +200,8 @@ Every Gradle module has a single responsibility. Use the table below to find the
 
 2. **Clone Your New Repository:**
    ```bash
-   git clone https://github.com/Sottti/android-app-template.git
-   cd android-app-template
+   git clone https://github.com/<your-github-user>/<your-repo>.git
+   cd <your-repo>
    ```
 
 3. **Rename Package Name:**
@@ -227,12 +225,7 @@ Every Gradle module has a single responsibility. Use the table below to find the
 This is a template for *your* projects, but if you have ideas on how to improve the template itself,
 contributions are welcome!
 
-1. **Fork** the repository.
-2. Create a new branch (`git checkout -b feature/my-new-feature`).
-3. Make your changes.
-4. Commit your changes (`git commit -am 'Add some feature'`).
-5. Push to the branch (`git push origin feature/my-new-feature`).
-6. Create a new **Pull Request**.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and pull request expectations.
 
 ## License
 
@@ -255,14 +248,14 @@ or say [hi 👋 on X](https://x.com/Sotttti).
 </p>
 
 <p align="center">
-    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" alt="Character details screen in landscape" width="48%"/>
 </p>
 <p align="center">
-   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/e5b2b42f-f7c4-4ab7-bac4-d1641aa6faf6" alt="Settings screen in landscape" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/029a3036-4864-42b4-9ae2-817d3def3ab9" alt="Characters list screen with large font scale" width="48%"/>
 </p>
 <p align="center">
-   <img src="https://github.com/user-attachments/assets/8cdab79c-c894-468f-8cbc-36301fe813fe" width="48%"/>
-   <img src="https://github.com/user-attachments/assets/0da05dbf-795f-4fca-990b-d035c47aa34f" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/8cdab79c-c894-468f-8cbc-36301fe813fe" alt="Character details screen with large font scale" width="48%"/>
+   <img src="https://github.com/user-attachments/assets/0da05dbf-795f-4fca-990b-d035c47aa34f" alt="Settings screen with large font scale" width="48%"/>
 </p>

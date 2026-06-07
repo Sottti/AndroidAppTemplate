@@ -22,7 +22,10 @@ import com.sottti.android.app.template.domain.characters.model.LocationName
 import kotlin.time.ExperimentalTime
 import kotlin.time.Instant
 
-internal fun CharactersApiModel.toDomain(): List<Character> = results.map { characterApiModel -> characterApiModel.toDomain() }
+internal fun CharactersApiModel.toDomain(): List<Character> =
+    results.map { characterApiModel ->
+        characterApiModel.toDomain()
+    }
 
 @OptIn(ExperimentalTime::class)
 internal fun CharacterApiModel.toDomain(): Character = Character(
