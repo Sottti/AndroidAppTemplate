@@ -12,7 +12,7 @@
 Modern Kotlin Android app template with Jetpack Compose, Hilt, Navigation 3, Ktor, Room/Paging,
 Paparazzi, and a modular MVVM/Clean Architecture setup.
 
-## Disclaimer
+## ⚠️ Disclaimer
 
 This repository intentionally demonstrates a production-ready architecture suited for teams that
 need to scale quickly and collaborate across multiple features. Elements such as multi-module
@@ -21,16 +21,16 @@ large, collaborative projects can stay maintainable over time. They may be unnec
 apps or teams with different preferences. Evaluate each practice against your team's size, project
 scope, and delivery goals before adopting it wholesale.
 
-## Overview
+## 🧭 Overview
 
 This project serves as a starter kit for new Android applications. It's designed to save you from
 the repetitive setup process of configuring dependencies, setting up architecture, and implementing
 common utilities. Use the template, rename the package and feature placeholders, then start building
 your app's features.
 
-## Screenshots
+## 📷 Screenshots
 
-### Light Theme
+### 💡 Light Theme
 
 <p align="center">
    <img src="https://github.com/user-attachments/assets/b2f91f07-502e-4870-828a-f55718ebcb40" alt="Characters list screen in light theme" width="24%"/>
@@ -38,13 +38,13 @@ your app's features.
    <img src="https://github.com/user-attachments/assets/9be4f529-7a55-4af7-b0a6-7c372948330f" alt="Settings screen in light theme" width="24%"/>
 </p>
 
-### Dark Theme
+### 🌙 Dark Theme
 
 <p align="center">
    <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" alt="Characters list screen in dark theme" width="24%"/>
 </p>
 
-### Extended Layouts
+### 📐 Extended Layouts
 
 <p align="center">
    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>
@@ -251,7 +251,7 @@ contributions are welcome!
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution workflow and pull request expectations.
 
-## License
+## 📜 License
 
 This project is licensed under the [MIT License](https://opensource.org/licenses/MIT) - see
 the [LICENSE](LICENSE) file for details.
