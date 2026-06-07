@@ -44,8 +44,6 @@ your app's features.
    <img src="https://github.com/user-attachments/assets/88d117c8-81ae-4f42-938b-c4b68d2d6afa" alt="Characters list screen in dark theme" width="24%"/>
 </p>
 
-### 📐 Extended Layouts
-
 <p align="center">
    <img src="https://github.com/user-attachments/assets/198fd950-fbc5-49a8-959c-8c7b37463f6e" alt="Characters list screen in landscape" width="48%"/>
    <img src="https://github.com/user-attachments/assets/759dba38-48b5-4539-947f-c68e19bce883" alt="Character details screen in landscape" width="48%"/>
