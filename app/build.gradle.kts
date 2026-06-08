@@ -1,5 +1,3 @@
-import com.sottti.android.app.template.buildsrc.module
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.hilt)
@@ -47,8 +45,8 @@ dependencies {
     androidTestImplementation(libs.junit)
     androidTestImplementation(libs.test.core)
     androidTestImplementation(libs.test.runner)
-    androidTestImplementation(testFixtures(project(module.data.network)))
-    androidTestImplementation(testFixtures(project(module.presentation.utils)))
+    androidTestImplementation(testFixtures(projects.data.network))
+    androidTestImplementation(testFixtures(projects.presentation.utils))
     debugImplementation(libs.compose.ui.test.manifest)
     implementation(libs.appcompat)
     implementation(libs.coil.compose)
@@ -57,13 +55,13 @@ dependencies {
     implementation(libs.material)
     implementation(libs.splashscreen)
     implementation(platform(libs.compose.bom))
-    implementation(project(module.di))
-    implementation(project(module.domain.characters))
-    implementation(project(module.presentation.designSystem.iconResources))
-    implementation(project(module.presentation.designSystem.themes))
-    implementation(project(module.presentation.designSystem.topBars))
-    implementation(project(module.presentation.appShell))
-    implementation(project(module.presentation.utils))
+    implementation(projects.di)
+    implementation(projects.domain.characters)
+    implementation(projects.presentation.designSystem.iconResources)
+    implementation(projects.presentation.designSystem.themes)
+    implementation(projects.presentation.designSystem.topBars)
+    implementation(projects.presentation.appShell)
+    implementation(projects.presentation.utils)
     ksp(libs.hilt.compiler)
     kspAndroidTest(libs.hilt.compiler)
 }
